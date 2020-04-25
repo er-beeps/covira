@@ -1,0 +1,139 @@
+.cal-btn {
+  margin: 5px 2px 2px 2px;
+  border-radius: 5px;
+}
+
+.calendar__week, .calendar__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar__header>.w_day {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.calendar__week {
+  /* grid-auto-rows: 100px; */
+  text-align: right;
+  min-height: 80px;
+}
+
+.calendar__header {
+  grid-auto-rows: 50px;
+  align-items: center;
+  text-align: center;
+  border-right: 1px solid #e1e1e1;
+}
+
+.calendar {
+  background-color: white;
+  border: 1px solid #e1e1e1;
+}
+
+.calendar__header>div {
+  text-transform: uppercase;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.calendar__day {
+  border-right: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+  min-height: 80px;
+}
+
+.calendar__day__today {
+  border-right: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+  min-height: 80px;
+  background-color: #64fa9b;
+}
+
+.calendar__day:hover {
+  background-color: lightgray;
+}
+
+.day_of_month {
+  font-size: 25px !important;
+  text-align: right !important;
+  font-weight: 400 !important;
+  margin-right: 10px;
+}
+
+.eng_day_of_month {
+  font-size: 14px !important;
+  text-align: right !important;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.day_of_month a {
+  color: black !important;
+  font-weight: 400;
+}
+
+.day_of_month a:hover {
+  cursor: pointer;
+}
+
+.calendar__holiday {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.calendar__holiday a {
+  color: red !important;
+}
+
+.calendar__event {
+  color: blue;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+
+.calendar__event a {
+  color: blue !important;
+}
+
+.calendar__event a:hover {
+  color: purple !important;
+  text-decoration: none;
+}
+
+.calendar__meeting {
+  color: blue;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+
+.calendar__meeting a {
+  color: blue !important;
+}
+
+.calendar__meeting a:hover {
+  color: purple !important;
+  text-decoration: none;
+}
+
+tr>th {
+  font-size: 14px;
+}
+
+tr>td {
+  font-size: 13px;
+}
+
+#meeting_event_modal, #event_modal, #meeting_modal {
+  z-index: auto;
+  opacity: .95;
+  background-color: white;
+}

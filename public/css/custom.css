@@ -1,0 +1,84 @@
+/* css for navbar*/
+
+.app-header {
+    /* background-color: #2f353a; */
+    background-color: #23282c;
+    color: white;
+}
+
+.app-header .navbar-brand {
+    color: white;
+}
+
+.app-header .navbar-toggler-icon {
+    color: white;
+}
+
+legend {
+    color: red !important;
+}
+
+/* css for tabs*/
+
+.tab-link.active {
+    color: black !important;
+    background-color: white !important;
+}
+
+.tab-link {
+    background-color: #23282c;
+    color: white !important;
+}
+
+/* css for sidebar*/
+
+.sidebar .nav-link.active {
+    color: orange;
+}
+
+.sidebar .nav-dropdown.open .nav-link.active {
+    color: orange;
+    font-weight: bold;
+}
+
+.sidebar .nav-dropdown-items .nav-item {
+    color: white;
+    margin-left: 15px;
+    font-size: small;
+}
+
+/* css for orderup and down button */
+
+.order-btn {
+    margin-left: 0px;
+    padding: 0px 2px 0px 2px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #055d78;
+}
+
+.fa-arrow-up, .fa-arrow-down {
+    color: white;
+}
+
+/* css for buttons*/
+
+.btn-success {
+    background-color: #067a52;
+}
+
+.edit-btn {
+    margin-left: 2px;
+    padding: 0px 2px 0px 3px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.delete-btn {
+    margin-left: 2px;
+    padding: 0px 2px 0px 2px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+}

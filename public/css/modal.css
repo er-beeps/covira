@@ -1,0 +1,4 @@
+.fade {
+    transition: opacity .15s linear;
+    background-color: black !important;
+}
