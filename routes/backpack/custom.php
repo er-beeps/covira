@@ -33,4 +33,8 @@ Route::group([
     Route::crud('prquarantinecenter', 'PrQuarantineCenterCrudController');
     Route::crud('prfactor', 'PrFactorCrudController');
     Route::crud('practivity', 'PrActivityCrudController');
+
+
+    Route::crud('response', 'ResponseCrudController');
+    
 }); // this should be the absolute last line of this file

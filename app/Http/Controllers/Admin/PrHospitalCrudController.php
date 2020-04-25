@@ -72,10 +72,7 @@ class PrHospitalCrudController extends BaseCrudController
                 
             ],
         ];
-        $this->crud->addColumns($cols);
-   
-       
-        
+        $this->crud->addColumns($cols);   
     }
 
     protected function setupCreateOperation()
@@ -145,7 +142,7 @@ class PrHospitalCrudController extends BaseCrudController
                 'data_source' => url("api/district/province_id"),
                 'placeholder' => "Select a District",
                 'minimum_input_length' => 0,
-                'dependencies'         => ['provice_id'],
+                'dependencies'         => ['province_id'],
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6',
                 ],

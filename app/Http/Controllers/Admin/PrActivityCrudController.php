@@ -28,12 +28,12 @@ class PrActivityCrudController extends BaseCrudController
             $this->addRowNumber(),
             $this->addCodeColumn(),
             [
-                'name' => 'name_lc',
+                'name' => 'name_en',
                 'type' => 'text',
                 'label' => trans('Name'),
             ],
             [
-                'name' => 'name_en',
+                'name' => 'name_lc',
                 'type' => 'text',
                 'label' => trans('नाम'),
             ],
