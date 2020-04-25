@@ -6,6 +6,11 @@
 // This route file is loaded automatically by Backpack\Base.
 // Routes you generate using Backpack\Generators will be placed here.
 
+
+// api routes
+Route::get('api/district/{province_id}', 'App\Http\Controllers\api\ProvinceDistrictController@index');
+Route::get('api/locallevel/{district_id}', 'App\Http\Controllers\api\DistrictLocalLevelController@index');
+
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],

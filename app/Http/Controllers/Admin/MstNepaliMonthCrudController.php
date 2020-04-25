@@ -49,7 +49,18 @@ class MstNepaliMonthCrudController extends BaseCrudController
         $this->crud->setValidation(MstNepaliMonthRequest::class);
 
         $arr = [
-            $this->addCodeField(),
+            $this->addReadOnlyCodeField(),
+            [ // CustomHTML
+                'name' => 'fieldset_open',
+                'type' => 'custom_html',
+                'value' => '<fieldset>',
+            ],
+
+            [
+                'name' => 'legend1',
+                'type' => 'custom_html',
+                'value' => '<b><legend></legend></b>',
+            ],
             [
                 'name' => 'name_en',
                 'type' => 'text',

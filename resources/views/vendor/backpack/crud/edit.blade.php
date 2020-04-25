@@ -14,12 +14,13 @@
 @section('header')
 	<section class="container-fluid">
 	  <h2>
+		@if ($crud->hasAccess('list'))
+		<small><a href="{{ url($crud->route) }}" class="hidden-print back-btn"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }}</a></small>
+		@endif
+		<br>
         <span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
-        <small>{!! $crud->getSubheading() ?? trans('backpack::crud.edit').' '.$crud->entity_name !!}.</small>
+        {{-- <small>{!! $crud->getSubheading() ?? trans('backpack::crud.edit').' '.$crud->entity_name !!}.</small> --}}
 
-        @if ($crud->hasAccess('list'))
-          <small><a href="{{ url($crud->route) }}" class="hidden-print font-sm"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }} <span>{{ $crud->entity_name_plural }}</span></a></small>
-        @endif
 	  </h2>
 	</section>
 @endsection
@@ -67,3 +68,21 @@
 	</div>
 </div>
 @endsection
+
+<style>
+	.back-btn{
+		background-color:grey; 
+		color:white;
+		border-radius: 4px;
+		line-height: 50px;
+		padding:1px 7px 1px 2px;
+		transition: transform .2s;
+		}
+
+	.back-btn:hover{
+		background-color:grey; 
+		color:white;
+		font-weight: bold;
+		text-decoration-line: none;
+	}
+</style>

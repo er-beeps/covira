@@ -40,6 +40,14 @@ class PrHospitalCrudController extends BaseCrudController
                 
             ],
             [
+                'name' => 'province_district',
+                'label' => trans('प्रदेश').'<br>'.trans('जिल्ला'),
+            ],
+            [
+                'name'=>'local_address',
+                'label'=>trans('स्थानीय तह').'<br>'.trans('वडा नं.'),
+            ],
+            [
                 'name'        => 'is_covid_center',
                 'label'       => trans('Covid Center हो ?'),
                 'type'        => 'radio',
@@ -100,6 +108,67 @@ class PrHospitalCrudController extends BaseCrudController
                 'name' => 'name_lc',
                 'type' => 'text',
                 'label' => trans('अस्पतालको नाम'),
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
+            ],
+  
+            [ // CustomHTML
+                'name' => 'fieldset_open',
+                'type' => 'custom_html',
+                'value' => '<fieldset>',
+            ],
+
+            [
+                'name' => 'legend2',
+                'type' => 'custom_html',
+                'value' => '<b><legend>Address</legend></b>',
+            ],
+            [
+                'name'=>'province_id',
+                'type'=>'select2',
+                'label'=>trans('प्रदेश'),
+                'entity'=>'province',
+                'model'=>'App\Models\MstProvince',
+                'attribute'=>'name_lc',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
+            ],
+            [
+                'name'=>'district_id',
+                'label'=>trans('जिल्ला'),
+                'type'=>'select2_from_ajax',
+                'model'=>'App\Models\MstDistrict',
+                'entity'=>'district',
+                'attribute'=>'name_lc',
+                'data_source' => url("api/district/province_id"),
+                'placeholder' => "Select a District",
+                'minimum_input_length' => 0,
+                'dependencies'         => ['provice_id'],
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
+            ],
+            [
+                'name'=>'local_level_id',
+                'label'=>trans('स्थानीय तह'),
+                'type'=>'select2_from_ajax',
+                'entity'=>'locallevel',
+                'model'=>'App\Models\MstLocalLevel',
+                'attribute'=>'name_lc',
+                'data_source' => url("api/locallevel/district_id"),
+                'placeholder' => "Select a Local Level",
+                'minimum_input_length' => 0,
+                'dependencies'         => ['district_id'],
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
+            ],
+            [
+                'name'=>'ward_number',
+                'type'=>'number',
+                'label'=>trans('वडा नं.'),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6',
                 ],
@@ -172,11 +241,12 @@ class PrHospitalCrudController extends BaseCrudController
             [
                 'name' => 'gps_lat',
                 'label' => trans('Decimal Degrees Latitude'),
-                'type' => 'text',
+                'type' => 'number',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-3',
                 ],
                 'attributes' => [
+                    'step' => 'any',
                     'id' => 'gps_lat',
                 ],
                 'default' => '0',
@@ -237,11 +307,12 @@ class PrHospitalCrudController extends BaseCrudController
           [
                 'name' => 'gps_long',
                 'label' => trans('Decimal Degrees Longitude'),
-                'type' => 'text',
+                'type' => 'number',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-3',
                 ],
                 'attributes' => [
+                    'step' => 'any',
                     'id' => 'gps_long',
                 ],
                 'default' => '0',

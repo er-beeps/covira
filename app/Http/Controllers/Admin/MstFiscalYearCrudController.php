@@ -55,7 +55,7 @@ class MstFiscalYearCrudController extends BaseCrudController
             ],
 
             [
-                'name' => 'legend4',
+                'name' => 'legend1',
                 'type' => 'custom_html',
                 'value' => '<legend></legend>',
 

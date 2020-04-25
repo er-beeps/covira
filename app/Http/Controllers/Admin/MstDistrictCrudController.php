@@ -53,7 +53,7 @@ class MstDistrictCrudController extends BaseCrudController
     {
         $this->crud->addFilter(
             [ // Name(en) filter
-                'label' => trans('coremst.province'),
+                'label' => trans('प्रदेश'),
                 'type' => 'select2',
                 'name' => 'province_id', // the db column for the foreign key
             ],
@@ -95,6 +95,17 @@ class MstDistrictCrudController extends BaseCrudController
 
         $arr=[
             $this->addCodeField(),
+            [ // CustomHTML
+                'name' => 'fieldset_open',
+                'type' => 'custom_html',
+                'value' => '<fieldset>',
+            ],
+
+            [
+                'name' => 'legend1',
+                'type' => 'custom_html',
+                'value' => '<b><legend></legend></b>',
+            ],
             [  // Select
                 'label' => trans('coremst.province'),
                 'type' => 'select2',

@@ -127,6 +127,17 @@ class MstLocalLevelCrudController extends BaseCrudController
 
         $arr = [
             $this->addReadOnlyCodeField(),
+            [ // CustomHTML
+                'name' => 'fieldset_open',
+                'type' => 'custom_html',
+                'value' => '<fieldset>',
+            ],
+
+            [
+                'name' => 'legend1',
+                'type' => 'custom_html',
+                'value' => '<b><legend></legend></b>',
+            ],
             [  // Select2
                 'label' => "District",
                 'type' => 'select2',

@@ -17,7 +17,11 @@ class CreateAppSecondaryMasterTables extends Migration
             $table->smallIncrements('id');
             $table->string('code',20);
             $table->string('name_en',200);
-            $table->string('name_lc',200);  
+            $table->string('name_lc',200);
+            $table->unsignedSmallInteger('province_id');
+            $table->unsignedSmallInteger('district_id');
+            $table->unsignedSmallInteger('local_level_id');
+            $table->unsignedSmallInteger('ward_number')->nullable();
             $table->string('gps_lat',20)->nullable();
             $table->string('gps_long',20)->nullable();
             $table->boolean('is_covid_center',20)->default(0);
@@ -35,13 +39,22 @@ class CreateAppSecondaryMasterTables extends Migration
             $table->unique('code','uq_mst_hospital_code');
             $table->unique('name_lc','uq_mst_hospital_name_lc');
             $table->unique('name_en','uq_mst_hospital_name_en');
+
+            $table->foreign('province_id','fk_pr_hospital_province_id')->references('id')->on('mst_fed_province');
+            $table->foreign('district_id','fk_pr_hospital_district_id')->references('id')->on('mst_fed_district');
+            $table->foreign('local_level_id','fk_pr_hospital_local_level_id')->references('id')->on('mst_fed_local_level');
+
         });
 
         Schema::create('pr_quarantine_center', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->string('code',20);
             $table->string('name_en',200);
-            $table->string('name_lc',200);  
+            $table->string('name_lc',200);
+            $table->unsignedSmallInteger('province_id');
+            $table->unsignedSmallInteger('district_id');
+            $table->unsignedSmallInteger('local_level_id');
+            $table->unsignedSmallInteger('ward_number')->nullable();  
             $table->string('gps_lat',20)->nullable();
             $table->string('gps_long',20)->nullable();
             $table->unsignedSmallInteger('capacity')->nullable()->default(0);
@@ -59,6 +72,10 @@ class CreateAppSecondaryMasterTables extends Migration
             $table->unique('code','uq_mst_quarantine_center_code');
             $table->unique('name_lc','uq_mst_quarantine_center_name_lc');
             $table->unique('name_en','uq_mst_quarantine_center_name_en');
+
+            $table->foreign('province_id','fk_pr_quarantine_center_province_id')->references('id')->on('mst_fed_province');
+            $table->foreign('district_id','fk_pr_quarantine_center_district_id')->references('id')->on('mst_fed_district');
+            $table->foreign('local_level_id','fk_pr_quarantine_center_local_level_id')->references('id')->on('mst_fed_local_level');
         });
 
         Schema::create('pr_factor', function (Blueprint $table) {
