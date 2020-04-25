@@ -61,6 +61,12 @@ class Response extends BaseModel
         return $this->belongsTo('App\Models\MstProfession','profession_id','id');
     }
 
+    //pivot saving
+    public function personal_travel()
+    {
+        return $this->belongsToMany('App\Models\PrActivity','respondant_data','activity_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
