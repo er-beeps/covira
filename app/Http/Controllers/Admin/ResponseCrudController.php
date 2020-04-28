@@ -365,11 +365,11 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend5',
                 'type' => 'custom_html',
-                'value' => '<legend><b>Activities</b></legend>',
+                'value' => '<legend>Personal Travel</legend>',
             ],
 
             [
-                'label'     => '<b>Personal Travel</b>',
+                'label'     => '<b>Do you ?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'personal_travel',
                 'entity'    => 'personal_travel',
@@ -389,11 +389,11 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend6',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Safety Measure</legend>',
             ],
 
             [
-                'label'     => '<b>Safety Measure</b>',
+                'label'     => '<b>Do you ?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'safety_measure',
                 'entity'    => 'safety_measure',
@@ -413,11 +413,11 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend7',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Habits</legend>',
             ],
 
             [
-                'label'     => '<b>Habits</b>',
+                'label'     => '<b>Do you?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'habits',
                 'entity'    => 'habits',
@@ -437,11 +437,11 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend8',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Existing Health Condition</legend>',
             ],
 
             [
-                'label'     => '<b>Health Condition</b>',
+                'label'     => '<b>Do you have any of the following heath condition ?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'health_condition',
                 'entity'    => 'health_condition',
@@ -461,11 +461,11 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend9',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Symptom</legend>',
             ],
 
             [
-                'label'     => '<b>Symptom</b>',
+                'label'     => '<b>Do you have any of the following symptoms(currently) ?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'symptom',
                 'entity'    => 'symptom',
@@ -485,12 +485,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend10',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Neighbour Proximity</legend>',
             ],
 
             [
-                'label'     => '<b>Neighbour Proximity</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>Nearby houses from your home (with in 100 meters)</b>',
+                'type'      => 'select2',
                 'name'      => 'neighbour_proximity',
                 'entity'    => 'neighbour_proximity',
                 'attribute' => 'name_lc',
@@ -498,7 +498,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(6)->get();
                 }),
-                'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -509,12 +511,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend11',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Community Situation</legend>',
             ],
 
             [
-                'label'     => '<b>Community Situation</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>How is current situation in your community ?</b>',
+                'type'      => 'select2',
                 'name'      => 'community_situation',
                 'entity'    => 'community_situation',
                 'attribute' => 'name_lc',
@@ -522,7 +524,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(7)->get();
                 }),
-                'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -533,11 +537,11 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend12',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Economic Impact</legend>',
             ],
 
             [
-                'label'     => '<b>Economic Impact</b>',
+                'label'     => '<b>Economic impact of pandemic in your life</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'economic_impact',
                 'entity'    => 'economic_impact',
@@ -557,20 +561,22 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend13',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Confirmed Case</legend>',
             ],
 
             [
-                'label'     => '<b>Confirmed Case</b>',
-                'type'      => 'checklist_filtered',
-                'name'      => 'confirmed case',
-                'entity'    => 'confirmed case',
+                'label'     => '<b>Is there any confirmed case in your community ?</b>',
+                'type'      => 'select2',
+                'name'      => 'confirmed_case',
+                'entity'    => 'confirmed_case',
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(9)->get();
                 }),
-                'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
 
@@ -582,12 +588,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend14',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Inbound Foreign Travel</legend>',
             ],
 
             [
-                'label'     => '<b>Inbound Foreign Travel</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>Are there any people travelled recently from abroad ?</b>',
+                'type'      => 'select2',
                 'name'      => 'inbound_foreign_travel',
                 'entity'    => 'inbound_foreign_travel',
                 'attribute' => 'name_lc',
@@ -595,8 +601,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(10)->get();
                 }),
-                'pivot'     => true,
-            ],
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]            ],
 
             [ // CustomHTML
                 'name' => 'fieldset_open',
@@ -606,12 +613,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend15',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Community Population</legend>',
             ],
 
             [
-                'label'     => '<b>Community Population</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>Population of your community(village/tole, where you mostly interact in normal time)</b>',
+                'type'      => 'select2',
                 'name'      => 'community_population',
                 'entity'    => 'community_population',
                 'attribute' => 'name_lc',
@@ -619,8 +626,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(11)->get();
                 }),
-                'pivot'     => true,
-            ],
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]            ],
 
             [ // CustomHTML
                 'name' => 'fieldset_open',
@@ -630,12 +638,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend16',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Hospital Proximity</legend>',
             ],
 
             [
-                'label'     => '<b>Hospital Proximity</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>How far is the hospital/healthpost ?</b>',
+                'type'      => 'select2',
                 'name'      => 'hospital_proximity',
                 'entity'    => 'hospital_proximity',
                 'attribute' => 'name_lc',
@@ -643,7 +651,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(12)->get();
                 }),
-                'pivot'     => true,
+               'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -654,12 +664,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend17',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Corona Centre Proximity</legend>',
             ],
 
             [
-                'label'     => '<b>Corona Centre Proximity</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>How far is the corona centre ?</b>',
+                'type'      => 'select2',
                 'name'      => 'corona_centre_proximity',
                 'entity'    => 'corona_centre_proximity',
                 'attribute' => 'name_lc',
@@ -667,7 +677,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(13)->get();
                 }),
-                'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -678,12 +690,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend18',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Health Facility</legend>',
             ],
 
             [
-                'label'     => '<b>Health Facility</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>Condition of hospital/healthpost</b>',
+                'type'      => 'select2',
                 'name'      => 'health_facility',
                 'entity'    => 'health_facility',
                 'attribute' => 'name_lc',
@@ -691,7 +703,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(14)->get();
                 }),
-                'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -702,12 +716,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend19',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Market Proximity</legend>',
             ],
 
             [
-                'label'     => '<b>Market Proximity</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>How far is the market area from your place or locality ?</b>',
+                'type'      => 'select2',
                 'name'      => 'market_proximity',
                 'entity'    => 'market_proximity',
                 'attribute' => 'name_lc',
@@ -715,7 +729,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(15)->get();
                 }),
-                'pivot'     => true,
+                 'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -726,12 +742,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend20',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Food Stock</legend>',
             ],
 
             [
-                'label'     => '<b>Food Stock</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>Were there sufficient food items supplies in your house during lock down ?</b>',
+                'type'      => 'select2',
                 'name'      => 'food_stock',
                 'entity'    => 'food_stock',
                 'attribute' => 'name_lc',
@@ -739,7 +755,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(16)->get();
                 }),
-                'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -750,12 +768,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend21',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Agri Producer Seller</legend>',
             ],
 
             [
-                'label'     => '<b>Agri Producer Seller</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>Are you able to sell your agricultutal products in market ?</b>',
+                'type'      => 'select2',
                 'name'      => 'agri_producer_seller',
                 'entity'    => 'agri_producer_seller',
                 'attribute' => 'name_lc',
@@ -763,7 +781,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(17)->get();
                 }),
-                'pivot'     => true,
+                 'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -774,12 +794,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend22',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Product Selling Price</legend>',
             ],
 
             [
-                'label'     => '<b>Product Selling Price</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>Are you getting regular price compared to normal situation ?</b>',
+                'type'      => 'select2',
                 'name'      => 'product_selling_price',
                 'entity'    => 'product_selling_price',
                 'attribute' => 'name_lc',
@@ -787,7 +807,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(18)->get();
                 }),
-                'pivot'     => true,
+                 'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -798,12 +820,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend23',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Commodity Availability</legend>',
             ],
 
             [
-                'label'     => '<b>Commodity Availability</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>Is there food and other commoditiity item available in local market ?</b>',
+                'type'      => 'select2',
                 'name'      => 'commodity_availability',
                 'entity'    => 'commodity_availability',
                 'attribute' => 'name_lc',
@@ -811,7 +833,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(19)->get();
                 }),
-                'pivot'     => true,
+                 'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -822,12 +846,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend24',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Commodity Price Difference</legend>',
             ],
 
             [
-                'label'     => '<b>Commodity Price Difference</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>What is the state of market food and commodity price ?</b>',
+                'type'      => 'select2',
                 'name'      => 'commodity_price_difference',
                 'entity'    => 'commodity_price_difference',
                 'attribute' => 'name_lc',
@@ -835,7 +859,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(20)->get();
                 }),
-                'pivot'     => true,
+                 'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -846,12 +872,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend25',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Job Status</legend>',
             ],
 
             [
-                'label'     => '<b>Job Status</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>Are you doing regulary your job ?</b>',
+                'type'      => 'select2',
                 'name'      => 'job_status',
                 'entity'    => 'job_status',
                 'attribute' => 'name_lc',
@@ -859,7 +885,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(21)->get();
                 }),
-                'pivot'     => true,
+                 'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML
@@ -870,12 +898,12 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend26',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '<legend>Sustainability Duration</legend>',
             ],
 
             [
-                'label'     => '<b>Sustainability Duration</b>',
-                'type'      => 'checklist_filtered',
+                'label'     => '<b>How long can you sustain in the current situaiton ?</b>',
+                'type'      => 'select2',
                 'name'      => 'sustainability_duration',
                 'entity'    => 'sustainability_duration',
                 'attribute' => 'name_lc',
@@ -883,7 +911,9 @@ class ResponseCrudController extends BaseCrudController
                 'options'   => (function ($query) {
                     return $query->whereFactorId(22)->get();
                 }),
-                'pivot'     => true,
+                 'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
+                ]
             ],
 
             [ // CustomHTML

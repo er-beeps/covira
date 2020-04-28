@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(PrimaryMasterTableSeeder::class);
         $this->call(DateSettingTableSeeder::class);
+        $this->call(FactorTableSeeder::class);
+        $this->call(ActivityTableSeeder::class);
     }
 }

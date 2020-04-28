@@ -67,6 +67,75 @@ class Response extends BaseModel
         return $this->belongsToMany('App\Models\PrActivity','respondent_data','response_id','activity_id');
     }
 
+     public function safety_measure()
+    {
+        return $this->belongsToMany('App\Models\PrActivity','respondent_data','response_id','activity_id');
+    }
+
+    // public function neighbour_proximity()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','neighbour_proximity','id');
+    // }
+    // public function community_situation()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','community_situation','id');
+    // }
+    // public function confirmed_case()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','confirmed_case','id');
+    // }
+    // public function inbound_foreign_travel()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','inbound_foreign_travel','id');
+    // }
+    // public function community_population()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','community_population','id');
+    // }
+    // public function hospital_proximity()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','hospital_proximity','id');
+    // }
+    // public function corona_centre_proximity()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','corona_centre_proximity','id');
+    // }
+    // public function health_facility()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','health_facility','id');
+    // }
+    // public function market_proximity()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','market_proximity','id');
+    // }
+    // public function food_stock()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','food_stock','id');
+    // }
+    // public function agri_producer_seller()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','agri_producer_seller','id');
+    // }
+    // public function product_selling_price()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','product_selling_price','id');
+    // }
+    // public function commodity_availability()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','commodity_availability','id');
+    // }
+    // public function commodity_price_difference()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','commodity_price_difference','id');
+    // }
+    // public function job_status()
+    // {
+    //     return $this->belongsTo('App\Models\PrActivity','job_status','id');
+    // }
+    
+    
+    
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

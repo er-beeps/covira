@@ -115,8 +115,8 @@ class CreateAppSecondaryMasterTables extends Migration
 
 
             $table->unique('code','uq_pr_activity_code');
-            $table->unique('name_lc','uq_pr_activity_name_lc');
-            $table->unique('name_en','uq_pr_activity_name_en');
+            // $table->unique('name_lc','uq_pr_activity_name_lc');
+            // $table->unique('name_en','uq_pr_activity_name_en');
 
             $table->foreign('factor_id','fk_pr_activity_factor_id')->references('id')->on('pr_factor');
 

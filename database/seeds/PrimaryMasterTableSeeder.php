@@ -19,6 +19,8 @@ class PrimaryMasterTableSeeder extends Seeder
         $this->mst_nepali_month();
         $this->mst_fiscal_year();
         $this->mst_gender();
+        $this->mst_educational_level();
+        $this->mst_profession();
     }
 
     private function mst_fed_province(){
@@ -942,6 +944,29 @@ class PrimaryMasterTableSeeder extends Seeder
             array('id' => 3,'name_en' => 'Third Gender','name_lc' => 'तेश्रो लिंगी'),
             array('id' => 4,'name_en' => 'Other','name_lc' => 'अन्य'),
         ]);
-            DB::statement("SELECT SETVAL('mst_gender_id_seq',1000)");
+            DB::statement("SELECT SETVAL('mst_gender_id_seq',100)");
         }
+
+    private function mst_educational_level(){
+        DB::table('mst_educational_level')->insert([
+            array('id' => 1,'code' => '1','name_en' => 'Masters or higher','name_lc' => 'Masters or higher'),
+            array('id' => 2,'code' => '2','name_en' => 'Bachelors','name_lc' => 'Bachelors'),
+            array('id' => 3,'code' => '3','name_en' => 'High School','name_lc' => 'High School'),
+            array('id' => 4,'code' => '4','name_en' => 'SLC','name_lc' => 'SLC'),
+    
+        ]);
+        DB::statement("SELECT SETVAL('mst_educational_level_id_seq',100)");
+    }
+
+    private function mst_profession(){
+        DB::table('mst_profession')->insert([
+            array('id' => 1,'code' => '1','name_en' => 'Agriculture','name_lc' => 'Agriculture'),
+            array('id' => 2,'code' => '2','name_en' => 'Civil servant','name_lc' => 'Civil servant'),
+            array('id' => 3,'code' => '3','name_en' => 'Teaching','name_lc' => 'Teaching'),
+            array('id' => 4,'code' => '4','name_en' => 'Private Companies','name_lc' => 'Private Companies'),
+          
+        ]);
+        DB::statement("SELECT SETVAL('mst_profession_id_seq',100)");
+
+    }
 }

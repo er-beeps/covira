@@ -35,14 +35,13 @@ class FactorTableSeeder extends Seeder
             array('id' => 16,'code' => '16','name_en' => 'Food Stock','name_lc' => 'Food Stock'),
             array('id' => 17,'code' => '17','name_en' => 'Agri Producer Seller','name_lc' => 'Agri Producer Seller'),
             array('id' => 18,'code' => '18','name_en' => 'Product Selling Price','name_lc' => 'Product Selling Price'),
-            array('id' => 19,'code' => '19','name_en' => 'Commodity Availability','name_lc' => 'ommodity Availability'),
+            array('id' => 19,'code' => '19','name_en' => 'Commodity Availability','name_lc' => 'Commodity Availability'),
             array('id' => 20,'code' => '20','name_en' => 'Commodity Price Difference','name_lc' => 'Commodity Price Difference'),
             array('id' => 21,'code' => '21','name_en' => 'Job Status','name_lc' => 'Job Status'),
             array('id' => 22,'code' => '22','name_en' => 'Sustainability','name_lc' => 'Sustainability'),
 
         ]);
-        DB::statement("SELECT SETVAL('pr_factor_id_seq',1000)");
-
+        DB::statement("SELECT SETVAL('pr_factor_id_seq',100)");
 
     }
 }
