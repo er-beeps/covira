@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\PrActivity;
 use App\Base\Traits\ParentData;
 use App\Base\BaseCrudController;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ResponseRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -23,6 +24,23 @@ class ResponseCrudController extends BaseCrudController
         $this->crud->setModel('App\Models\Response');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/response');
         $this->crud->setEntityNameStrings('Response', 'Response');
+        $this->data['script_js'] = $this->getScripsJs();
+
+        $mode = $this->crud->getActionMethod();
+
+        if (in_array($mode,['edit','update'])){
+            $this->data['next_btn'] = true;
+        }
+    }
+
+    public function getScripsJs(){
+        return "
+        $(document).ready(function(){
+            $('.toBeHidden1').hide();
+             $('#legend1').hide();
+            $('.toBeHidden2').hide();
+        });
+        ";
     }
 
     protected function setupListOperation()
@@ -64,23 +82,17 @@ class ResponseCrudController extends BaseCrudController
 
         $arr = [
             $this->addReadOnlyCodeField(),
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
-
             [
                 'name' => 'legend1',
                 'type' => 'custom_html',
-                'value' => '<b><legend></legend></b>',
+                'value' => '',
             ],
             [
                 'name' => 'name_en',
                 'type' => 'text',
                 'label' => trans('Name'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4',
+                    'class' => 'form-inline col-md-3',
                 ],
             ],
             [
@@ -88,7 +100,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'text',
                 'label' => trans('नाम'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4',
+                    'class' => 'form-inline col-md-3',
                 ],
             ],
 
@@ -100,19 +112,14 @@ class ResponseCrudController extends BaseCrudController
                 'model'=>'App\Models\MstGender',
                 'attribute'=>'name_lc',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4',
+                    'class' => 'form-inline col-md-3',
                 ],
-            ],
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
             ],
 
             [
                 'name' => 'legend2',
                 'type' => 'custom_html',
-                'value' => '<b><legend>Education and Profession</legend></b>',
+                'value' => '<b><legend>Education and Profession:</legend></b>',
             ],
           
             [
@@ -146,11 +153,7 @@ class ResponseCrudController extends BaseCrudController
                 ],
             ],
   
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
 
             [
                 'name' => 'legend3',
@@ -206,11 +209,7 @@ class ResponseCrudController extends BaseCrudController
                     'class' => 'form-group col-md-6',
                 ],
             ],
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
 
             [
                 'name' => 'legend4',
@@ -356,16 +355,15 @@ class ResponseCrudController extends BaseCrudController
             //     'type' => 'map',
             // ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
 
             [
                 'name' => 'legend5',
                 'type' => 'custom_html',
                 'value' => '<legend>Personal Travel</legend>',
+                'attributes'=>[
+                    'id' => 'legend1'
+                ]  
             ],
 
             [
@@ -379,13 +377,12 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(1)->get();
                 }),
                 'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden1',
+                ],
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend6',
                 'type' => 'custom_html',
@@ -403,13 +400,12 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(2)->get();
                 }),
                 'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden1',
+                ],
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend7',
                 'type' => 'custom_html',
@@ -427,13 +423,12 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(3)->get();
                 }),
                 'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden1',
+                ],
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend8',
                 'type' => 'custom_html',
@@ -451,13 +446,12 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(4)->get();
                 }),
                 'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden1',
+                ],
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend9',
                 'type' => 'custom_html',
@@ -475,13 +469,33 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(5)->get();
                 }),
                 'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden1',
+                ],
+            ],
+                 [
+                'name' => 'legend12',
+                'type' => 'custom_html',
+                'value' => '<legend>Economic Impact</legend>',
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
+            [
+                'label'     => '<b>Economic impact of pandemic in your life</b>',
+                'type'      => 'checklist_filtered',
+                'name'      => 'economic_impact',
+                'entity'    => 'economic_impact',
+                'attribute' => 'name_lc',
+                'model'     => PrActivity::class,
+                'options'   => (function ($query) {
+                    return $query->whereFactorId(8)->get();
+                }),
+                'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden2'
+                ]
             ],
+
+
             [
                 'name' => 'legend10',
                 'type' => 'custom_html',
@@ -499,19 +513,15 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(6)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend11',
                 'type' => 'custom_html',
-                'value' => '<legend>Community Situation</legend>',
+                'value' => '<legend>Community Situation</legend>',                
             ],
 
             [
@@ -525,39 +535,10 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(7)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
-            [
-                'name' => 'legend12',
-                'type' => 'custom_html',
-                'value' => '<legend>Economic Impact</legend>',
-            ],
-
-            [
-                'label'     => '<b>Economic impact of pandemic in your life</b>',
-                'type'      => 'checklist_filtered',
-                'name'      => 'economic_impact',
-                'entity'    => 'economic_impact',
-                'attribute' => 'name_lc',
-                'model'     => PrActivity::class,
-                'options'   => (function ($query) {
-                    return $query->whereFactorId(8)->get();
-                }),
-                'pivot'     => true,
-            ],
-
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
             [
                 'name' => 'legend13',
                 'type' => 'custom_html',
@@ -575,16 +556,10 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(9)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
             [
                 'name' => 'legend14',
                 'type' => 'custom_html',
@@ -602,14 +577,10 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(10)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]            ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend15',
                 'type' => 'custom_html',
@@ -627,14 +598,10 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(11)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]            ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend16',
                 'type' => 'custom_html',
@@ -652,15 +619,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(12)->get();
                 }),
                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend17',
                 'type' => 'custom_html',
@@ -678,15 +641,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(13)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend18',
                 'type' => 'custom_html',
@@ -704,15 +663,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(14)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend19',
                 'type' => 'custom_html',
@@ -730,15 +685,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(15)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend20',
                 'type' => 'custom_html',
@@ -756,15 +707,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(16)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend21',
                 'type' => 'custom_html',
@@ -782,15 +729,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(17)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend22',
                 'type' => 'custom_html',
@@ -808,15 +751,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(18)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend23',
                 'type' => 'custom_html',
@@ -834,15 +773,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(19)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend24',
                 'type' => 'custom_html',
@@ -860,15 +795,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(20)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend25',
                 'type' => 'custom_html',
@@ -886,15 +817,11 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(21)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend26',
                 'type' => 'custom_html',
@@ -912,19 +839,15 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(22)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6'
+                    'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
+
             [
                 'name' => 'legend27',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '',
             ],
 
 
@@ -938,5 +861,59 @@ class ResponseCrudController extends BaseCrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+
+    public function store()
+    {
+
+       
+        $this->crud->hasAccessOrFail('create');
+
+         $request = $this->crud->validateRequest();
+         
+        // execute the FormRequest authorization and validation, if one is required
+         if ($request->has('code')) {
+            $query = $this->crud->model->latest('code')->first();
+            $code = 1;
+            if ($query != null) {
+                $code = $query->code + 1;
+            }
+            // TODO : $request->request->set('code', $code);
+            request()->request->set('code', $code);
+        }
+
+           // insert item in the db
+        DB::beginTransaction();
+        try {
+            $item = $this->crud->create($this->crud->getStrippedSaveRequest());
+            dd($item);
+            $this->data['entry'] = $this->crud->entry = $item;
+    
+            //getting first process step for process type-bill
+            $firstProcessStep = ProcessSteps::whereIsFirstStep(true)->first();
+
+            //Updating the PsBill for process event
+            Response::whereId($item->id)->update([
+                'process_step_id' => $firstProcessStep->step_id,
+            ]);
+
+            DB::commit();
+
+        } catch (\Throwable $th) {
+            DB::rollback();
+            dd($th);
+        }
+
+            // show a success message
+        \Alert::success(trans('backpack::crud.insert_success'))->flash();
+        return redirect(backpack_url('/response').'/'.$item->id.'/edit');
+
+        // save the redirect choice for next time
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction($item->getKey());
+
+
     }
 }

@@ -38,4 +38,6 @@ Route::group([
     Route::crud('response', 'ResponseCrudController');
     
     Route::crud('respondantdata', 'RespondentDataCrudController');
+    // Route::crud('stepmaster', 'StepMasterCrudController');
+    // Route::crud('processsteps', 'ProcessStepsCrudController');
 }); // this should be the absolute last line of this file

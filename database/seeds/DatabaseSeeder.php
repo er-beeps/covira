@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DateSettingTableSeeder::class);
         $this->call(FactorTableSeeder::class);
         $this->call(ActivityTableSeeder::class);
+        $this->call(ProcessSeeder::class);
     }
 }

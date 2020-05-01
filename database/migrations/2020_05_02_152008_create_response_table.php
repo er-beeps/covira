@@ -29,6 +29,8 @@ class CreateResponseTable extends Migration
             $table->unsignedSmallInteger('profession_id')->nullable();
             $table->string('gps_lat',20)->nullable();
             $table->string('gps_long',20)->nullable();
+            $table->unsignedSmallInteger('process_step_id')->nullable();										
+
             
             $table->timestamps();
             $table->string('remarks',500)->nullable();
@@ -44,6 +46,8 @@ class CreateResponseTable extends Migration
             $table->foreign('local_level_id','fk_response_local_level_id')->references('id')->on('mst_fed_local_level');
             $table->foreign('education_id','fk_response_education_id')->references('id')->on('mst_educational_level');
             $table->foreign('profession_id','fk_response_profession_id')->references('id')->on('mst_profession');
+            $table->foreign('process_step_id','fk_response_process_step_id')->references('id')->on('process_steps');										
+
  
         });
 
