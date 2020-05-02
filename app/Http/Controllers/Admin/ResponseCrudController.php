@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Response;
 use App\Models\PrActivity;
+use App\Models\StepMaster;
+use App\Models\ProcessSteps;
 use App\Base\Traits\ParentData;
 use App\Base\BaseCrudController;
 use Illuminate\Support\Facades\DB;
@@ -29,16 +32,23 @@ class ResponseCrudController extends BaseCrudController
         $mode = $this->crud->getActionMethod();
 
         if (in_array($mode,['edit','update'])){
+            $response_id = $this->parent('id');
+            $current_process_step_id  = Response::find($response_id)->process_step_id;
+            $next_step_id = ProcessSteps::whereStepId($current_process_step_id)->first()->next_step_id;
+            $next_step_name = StepMaster::find($next_step_id)->name_lc;
+
             $this->data['next_btn'] = true;
+            $this->data['next_step_id'] = $next_step_id;
+            $this->data['next_step_name'] = $next_step_name;
         }
     }
 
     public function getScripsJs(){
         return "
         $(document).ready(function(){
-            $('.toBeHidden1').hide();
-             $('#legend1').hide();
-            $('.toBeHidden2').hide();
+            // $('.toBeHidden1').hide();
+            //  $('#legend1').hide();
+            // $('.toBeHidden2').hide();
         });
         ";
     }
@@ -361,8 +371,8 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend5',
                 'type' => 'custom_html',
                 'value' => '<legend>Personal Travel</legend>',
-                'attributes'=>[
-                    'id' => 'legend1'
+                'wrapperAttributes'=>[
+                    'class' => 'legend1'
                 ]  
             ],
 
@@ -387,6 +397,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend6',
                 'type' => 'custom_html',
                 'value' => '<legend>Safety Measure</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend1'
+                ]  
             ],
 
             [
@@ -410,6 +423,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend7',
                 'type' => 'custom_html',
                 'value' => '<legend>Habits</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend1'
+                ]  
             ],
 
             [
@@ -433,6 +449,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend8',
                 'type' => 'custom_html',
                 'value' => '<legend>Existing Health Condition</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend1'
+                ]  
             ],
 
             [
@@ -456,6 +475,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend9',
                 'type' => 'custom_html',
                 'value' => '<legend>Symptom</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend1'
+                ]  
             ],
 
             [
@@ -477,6 +499,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend12',
                 'type' => 'custom_html',
                 'value' => '<legend>Economic Impact</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend1'
+                ]  
             ],
 
             [
@@ -500,6 +525,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend10',
                 'type' => 'custom_html',
                 'value' => '<legend>Neighbour Proximity</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]  
             ],
 
             [
@@ -521,7 +549,10 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend11',
                 'type' => 'custom_html',
-                'value' => '<legend>Community Situation</legend>',                
+                'value' => '<legend>Community Situation</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]                
             ],
 
             [
@@ -543,6 +574,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend13',
                 'type' => 'custom_html',
                 'value' => '<legend>Confirmed Case</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -564,6 +598,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend14',
                 'type' => 'custom_html',
                 'value' => '<legend>Inbound Foreign Travel</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -585,6 +622,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend15',
                 'type' => 'custom_html',
                 'value' => '<legend>Community Population</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -606,6 +646,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend16',
                 'type' => 'custom_html',
                 'value' => '<legend>Hospital Proximity</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -628,6 +671,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend17',
                 'type' => 'custom_html',
                 'value' => '<legend>Corona Centre Proximity</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -650,6 +696,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend18',
                 'type' => 'custom_html',
                 'value' => '<legend>Health Facility</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -672,6 +721,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend19',
                 'type' => 'custom_html',
                 'value' => '<legend>Market Proximity</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -694,6 +746,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend20',
                 'type' => 'custom_html',
                 'value' => '<legend>Food Stock</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -716,6 +771,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend21',
                 'type' => 'custom_html',
                 'value' => '<legend>Agri Producer Seller</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -738,6 +796,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend22',
                 'type' => 'custom_html',
                 'value' => '<legend>Product Selling Price</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -760,6 +821,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend23',
                 'type' => 'custom_html',
                 'value' => '<legend>Commodity Availability</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -782,6 +846,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend24',
                 'type' => 'custom_html',
                 'value' => '<legend>Commodity Price Difference</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -804,10 +871,13 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend25',
                 'type' => 'custom_html',
                 'value' => '<legend>Job Status</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
-                'label'     => '<b>Are you doing regulary your job ?</b>',
+                'label'     => '<b>Are you regularly doing your job ?</b>',
                 'type'      => 'select2',
                 'name'      => 'job_status',
                 'entity'    => 'job_status',
@@ -826,6 +896,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend26',
                 'type' => 'custom_html',
                 'value' => '<legend>Sustainability Duration</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]
             ],
 
             [
@@ -887,7 +960,7 @@ class ResponseCrudController extends BaseCrudController
         DB::beginTransaction();
         try {
             $item = $this->crud->create($this->crud->getStrippedSaveRequest());
-            dd($item);
+            // dd($item);
             $this->data['entry'] = $this->crud->entry = $item;
     
             //getting first process step for process type-bill

@@ -106,9 +106,8 @@ trait CreateOperation
         $this->crud->hasAccessOrFail('create');
         $this->crud->setOperation('create');
 
-        if (is_null($request)) {
-            $request = \Request::instance();
-        }
+        $request = $this->crud->validateRequest();
+
         $user_id = backpack_user()->id;
         $request->request->set('created_by', $user_id);
 
@@ -132,7 +131,6 @@ trait CreateOperation
 
         // execute the FormRequest authorization and validation, if one is required
 
-        $request = $this->crud->validateRequest();
         // insert item in the db
 //        $item = $this->crud->create($this->crud->getStrippedSaveRequest());
         $item = $this->crud->create($request->except(['save_action', 'http_referrer', '_token']));

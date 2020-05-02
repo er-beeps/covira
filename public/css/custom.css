@@ -97,6 +97,19 @@ legend {
     font-weight: 550;
 }
 
+.legend1 {
+    width: 98%;
+    max-width: 100%;
+    font-size: 1.3rem;
+    margin-left: 12px;
+    line-height: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 17px;
+    color: #9C27B0;
+    background-color: #c4d8e2;
+    font-weight: 550;
+}
+
 .dataTables_wrapper .dataTables_filter input:focus, .dataTables_wrapper .dataTables_length select:focus, .form-control:focus, .select2-container.select2-container--bootstrap:focus, .select2-container--bootstrap .select2-search--dropdown .select2-search__field:focus {
     background-color: #def9be;
     box-shadow: 0 0 0 3px rgba(70, 127, 207, 0.88);

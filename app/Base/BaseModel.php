@@ -9,6 +9,8 @@ class BaseModel extends  Model
 {
     use CrudTrait;
     use SaasModelTrait;
+
+
     public function setGuarded($guarded=["id"]){
 
         $this->guarded = $guarded;

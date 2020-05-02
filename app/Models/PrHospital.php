@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Base\BaseModel;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use Illuminate\Database\Eloquent\Model;
 
 class PrHospital extends BaseModel
 {
