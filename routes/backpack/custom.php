@@ -36,6 +36,7 @@ Route::group([
 
 
     Route::crud('response', 'ResponseCrudController');
+    Route::put('response/{response_id}/nextstep', 'ResponseCrudController@nextstep');
     
     Route::crud('respondantdata', 'RespondentDataCrudController');
     // Route::crud('stepmaster', 'StepMasterCrudController');

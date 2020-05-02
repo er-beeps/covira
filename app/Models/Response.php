@@ -20,7 +20,7 @@ class Response extends BaseModel
     protected $guarded = ['id','created_by','updated_by'];
     protected $fillable = ['code','name_en','name_lc','gender_id','email','province_id','district_id','local_level_id','ward_number','education_id','profession_id','gps_lat','gps_long',
     'process_step_id','neighbour_proximity','community_situation','confirmed_case','inbound_foreign_travel','community_population','hospital_proximity','corona_centre_proximity',
-    'health_facility','market_proximity','food_stock','agri_producer_seller','product_selling_price','commodity_availability','commodity_price_difference','job_status','sustainability_duration','remarks'];
+    'health_facility','market_proximity','food_stock','agri_producer_seller','product_selling_price','commodity_availability','commodity_price_difference','job_status','economic_impact','sustainability_duration','remarks'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -29,6 +29,13 @@ class Response extends BaseModel
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+     public function convertToNepaliNumber($input)
+    {
+        $standard_numsets = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", '-', '/');
+        $devanagari_numsets = array("०", "१", "२", "३", "४", "५", "६", "७", "८", "९", '-', '-');
+
+        return str_replace($standard_numsets, $devanagari_numsets, $input);
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -87,10 +94,7 @@ class Response extends BaseModel
         return $this->belongsToMany('App\Models\PrActivity','respondent_data','response_id','activity_id');
     }
 
-    public function economic_impact()
-    {
-        return $this->belongsToMany('App\Models\PrActivity','respondent_data','response_id','activity_id');
-    }
+  
    
     //normal saving in own table
     public function neighbour_proximity()
@@ -153,6 +157,10 @@ class Response extends BaseModel
     {
         return $this->belongsTo('App\Models\PrActivity','job_status','id');
     }
+    public function economic_impact()
+    {
+        return $this->belongsTo('App\Models\PrActivity','economic_impact','id');
+    }
     public function sustainability_duration()
     {
         return $this->belongsTo('App\Models\PrActivity','sustainability_duration','id');
@@ -178,13 +186,13 @@ class Response extends BaseModel
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-    public function getProvinceDistrictAttribute()
+    public function province_district()
     {
         return $this->province->name_lc.'<br>'.$this->district->name_lc;
     }
     
-    public function getLocalAddressAttribute()
+    public function local_address()
     {
-        return $this->locallevel->name_lc.'<br>'.$this->ward_number;
+        return $this->locallevel->name_lc.'<br>'.$this->convertToNepaliNumber($this->ward_number);
     }
 }

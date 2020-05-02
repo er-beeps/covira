@@ -39,7 +39,8 @@ class MstEducationalLevelCrudController extends BaseCrudController
           
      
              ];
-             $this->crud->addColumns($col);  
+             $this->crud->addColumns($col);
+             $this->crud->orderBy('id');  
     }
 
     protected function setupCreateOperation()

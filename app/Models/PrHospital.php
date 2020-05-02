@@ -28,6 +28,13 @@ class PrHospital extends BaseModel
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+       public function convertToNepaliNumber($input)
+    {
+        $standard_numsets = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", '-', '/');
+        $devanagari_numsets = array("०", "१", "२", "३", "४", "५", "६", "७", "८", "९", '-', '-');
+
+        return str_replace($standard_numsets, $devanagari_numsets, $input);
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -64,13 +71,13 @@ class PrHospital extends BaseModel
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-    public function getProvinceDistrictAttribute()
+     public function province_district()
     {
         return $this->province->name_lc.'<br>'.$this->district->name_lc;
     }
     
-    public function getLocalAddressAttribute()
+    public function local_address()
     {
-        return $this->locallevel->name_lc.'<br>'.$this->ward_number;
+        return $this->locallevel->name_lc.'<br>'.$this->convertToNepaliNumber($this->ward_number);
     }
 }

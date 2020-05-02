@@ -7,10 +7,10 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-link-secondary nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-cogs"></i>{{ trans('main.secondary') }}</span></a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prhospital') }}'><i class='nav-icon fa fa-question'></i>{{ trans('main.prhospital')}}</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prquarantinecenter') }}'><i class='nav-icon fa fa-question'></i>{{ trans('main.prquarantinecenter')}}</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prfactor') }}'><i class='nav-icon fa fa-question'></i>{{ trans('main.prfactor')}}</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('practivity') }}'><i class='nav-icon fa fa-question'></i>{{ trans('main.practivity')}}</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prhospital') }}'><i class='nav-icon fa fa-hospital-o'></i>{{ trans('main.prhospital')}}</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prquarantinecenter') }}'><i class='nav-icon fa fa-h-square'></i>{{ trans('main.prquarantinecenter')}}</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prfactor') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.prfactor')}}</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('practivity') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.practivity')}}</a></li>
     </ul>
 </li>
 

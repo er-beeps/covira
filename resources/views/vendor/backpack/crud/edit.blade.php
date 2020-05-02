@@ -32,6 +32,18 @@
 
 		@include('crud::inc.grouped_errors')
 
+		@if($crud->getRoute() == 'admin/response') 
+			@if(isset($next_btn))
+
+			 <form method="post"
+		  		action="{{ backpack_url('response/'.$entry->getKey().'/nextstep') }}"
+				@if ($crud->hasUploadFields('update', $entry->getKey()))
+				enctype="multipart/form-data"
+				@endif
+				  >
+			@endif
+		@endif		  
+
 		  <form method="post"
 		  		action="{{ url($crud->route.'/'.$entry->getKey()) }}"
 				@if ($crud->hasUploadFields('update', $entry->getKey()))
@@ -61,9 +73,22 @@
 		      	@include('vendor.backpack.crud.form_content', ['fields' => $crud->fields(), 'action' => 'edit'])
 		      @else
 		      	@include('crud::form_content', ['fields' => $crud->fields(), 'action' => 'edit'])
-		      @endif
-
-            @include('crud::inc.form_save_buttons')
+			  @endif
+			 	@if($crud->getRoute() == 'admin/response')
+					@if(isset($next_btn) && ($next_btn == true) && (isset($current_step_id) && $current_step_id < 4))
+					<div class="row">
+						@include('crud::buttons.step_buttons')
+					</div>
+					<div class="row">
+						@include('crud::buttons.cancel_button')
+					</div>	
+					@else
+						@include('crud::buttons.cancel_button')
+					@endif
+				@else
+					@include('crud::inc.form_save_buttons')
+				@endif
+			
 		  </form>
 	</div>
 </div>

@@ -5,6 +5,9 @@
     background-color: #23282c;
     color: white;
 }
+.app-body{
+    background-color: rgb(251, 237, 216);
+}
 
 .app-header .navbar-brand {
     color: white;
@@ -28,6 +31,13 @@
 
 /* css for sidebar*/
 
+.sidebar {
+    position: relative;
+    color: #306c9c !important;
+    background-color: azure;
+    /* font-weight: bold; */
+}
+
 .sidebar .nav-link.active {
     color: orange;
 }
@@ -41,6 +51,31 @@
     color: white;
     margin-left: 15px;
     font-size: small;
+}
+
+.sidebar {
+    position: relative;
+    color: #306c9c !important;
+    /* font-weight: bold; */
+}
+
+.sidebar .nav-dropdown.open .nav-dropdown-toggle {
+    color: orange;
+    background-color: #89a5bb;
+    font-weight: bold;
+}
+
+.sidebar .nav-dropdown.open .nav-dropdown-toggle .nav-icon {
+    color: orange;
+}
+
+.sidebar .nav-link.active {
+    background: #4289c1;
+    /*  #306c9c; */
+}
+
+.sidebar .nav-link.active .nav-icon {
+    color: orange;
 }
 
 /* css for orderup and down button */
@@ -79,6 +114,17 @@
     font-weight: bold;
 }
 
+.btn-next {
+    margin: 20px 0px 30px 30px;
+    background-color: #21c249;
+    color: black;
+    font-weight: bolder;
+}
+
+.btn-cancel {
+    margin: 0px 0px 50px 3%;
+}
+
 .form-inline {
     justify-content: space-between;
 }
@@ -90,17 +136,17 @@ legend {
     padding: 2px;
     margin-bottom: -5px;
     margin-top: 15px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: inherit;
     color: #9C27B0;
     background-color: #c4d8e2;
     font-weight: 550;
 }
 
-.legend1 {
+.legend0 {
     width: 98%;
     max-width: 100%;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-left: 12px;
     line-height: 10px;
     margin-bottom: 15px;
@@ -110,20 +156,35 @@ legend {
     font-weight: 550;
 }
 
-.dataTables_wrapper .dataTables_filter input:focus, .dataTables_wrapper .dataTables_length select:focus, .form-control:focus, .select2-container.select2-container--bootstrap:focus, .select2-container--bootstrap .select2-search--dropdown .select2-search__field:focus {
-    background-color: #def9be;
-    box-shadow: 0 0 0 3px rgba(70, 127, 207, 0.88);
+.legend1 {
+    width: 98%;
+    max-width: 100%;
+    font-size: 1.2rem;
+    margin-left: 12px;
+    line-height: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 17px;
+    color: #9C27B0;
+    background-color: #c4d8e2;
+    font-weight: 550;
 }
 
-.radio-inline input[type="radio"]:focus, .checkbox input:focus, .form-check input:focus {
-    box-shadow: 0 0 0 6px rgba(75, 230, 139, 0.88);
+.legend2 {
+    width: 30%;
+    font-size: 1.2rem;
+    margin-left: 12px;
+    line-height: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 17px;
+    margin-top: 5px;
+    margin-right: 20px;
+    color: #9C27B0;
+    background-color: #c4d8e2;
+    border-radius: 5px;
+    font-weight: 550;
 }
 
-.select2-search__field:focus, .select2-selection.select2-selection--multiple:focus, .select2-selection.select2-selection--single:focus {
-    background-color: #def9be;
-}
-
-.dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_length select, .form-control {
+.form-control {
     display: block;
     width: 100%;
     /* height: 2.15rem;
@@ -139,4 +200,60 @@ legend {
     border: 1px solid rgba(0, 40, 100, .12);
     border-radius: 3px;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.input-group-text {
+    padding: 0 .75rem;
+}
+
+.select2-container--bootstrap .select2-selection--single {
+    height: 30px;
+}
+
+.table th {
+    /* padding: 0.4rem !important; */
+    border-top: none;
+    background-color: #c8ced3;
+}
+
+.table td {
+    padding-top: 0.15rem !important;
+    padding-bottom: 0.15rem !important;
+    border-top: none;
+}
+
+/* DataTable related customization */
+
+.dataTables_scrollFoot, .DTFC_RightFootWrapper {
+    display: none;
+}
+
+.DTFC_RightBodyLiner td {
+    vertical-align: middle;
+}
+
+.DTFC_RightBodyLiner {
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+}
+
+.DTFC_RightBodyLiner {
+    left: -12px;
+}
+
+td p {
+    margin-top: .3rem;
+    margin-bottom: .3rem;
+}
+
+/* css for current focus element */
+
+.dataTables_wrapper .dataTables_filter input:focus, .dataTables_wrapper .dataTables_length select:focus, .form-control:focus, .form-check input:focus {
+    background-color: #def9be;
+    box-shadow: 0 0 0 3px rgba(70, 127, 207, 0.88);
+}
+
+.select2-container--bootstrap .select2-search--dropdown .select2-search__field:focus {
+    background-color: #def9be;
+    box-shadow: 0 0 0 3px rgba(70, 127, 207, 0.88);
 }

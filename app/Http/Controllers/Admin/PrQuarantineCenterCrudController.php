@@ -81,12 +81,16 @@ class PrQuarantineCenterCrudController extends BaseCrudController
                 'label' => trans('नाम'),
                 
             ],
-            [
+          [
                 'name' => 'province_district',
+                'type' => 'model_function',
+                'function_name' =>'province_district',
                 'label' => trans('प्रदेश').'<br>'.trans('जिल्ला'),
             ],
             [
                 'name'=>'local_address',
+                'type' => 'model_function',
+                'function_name' =>'local_address',
                 'label'=>trans('स्थानीय तह').'<br>'.trans('वडा नं.'),
             ],
             [
@@ -118,16 +122,11 @@ class PrQuarantineCenterCrudController extends BaseCrudController
         $this->crud->setValidation(PrQuarantineCenterRequest::class);
         $arr = [
             $this->addReadOnlyCodeField(),
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
 
             [
                 'name' => 'legend1',
                 'type' => 'custom_html',
-                'value' => '<b><legend></legend></b>',
+                'value' => '',
             ],
             [
                 'name' => 'name_en',
@@ -146,12 +145,6 @@ class PrQuarantineCenterCrudController extends BaseCrudController
                     'class' => 'form-group col-md-6',
                 ],
             ],
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
-
             [
                 'name' => 'legend2',
                 'type' => 'custom_html',
@@ -206,12 +199,6 @@ class PrQuarantineCenterCrudController extends BaseCrudController
                     'class' => 'form-group col-md-6',
                 ],
             ],
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
-
             [
                 'name' => 'legend3',
                 'type' => 'custom_html',
@@ -356,16 +343,10 @@ class PrQuarantineCenterCrudController extends BaseCrudController
             //     'type' => 'map',
             // ],
 
-            [ // CustomHTML
-                'name' => 'fieldset_open',
-                'type' => 'custom_html',
-                'value' => '<fieldset>',
-            ],
-
             [
                 'name' => 'legend4',
                 'type' => 'custom_html',
-                'value' => '<legend></legend>',
+                'value' => '',
             ],
             [
                 'name' => 'capacity',

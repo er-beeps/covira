@@ -47,6 +47,8 @@ class MstDistrictCrudController extends BaseCrudController
             $this->crud->addColumns($col);
 
             $this->addFilters();
+            $this->crud->orderBy('id');
+
     }
 
     private function addFilters()

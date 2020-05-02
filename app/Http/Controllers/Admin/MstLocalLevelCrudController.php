@@ -115,6 +115,8 @@ class MstLocalLevelCrudController extends BaseCrudController
     
             ];
             $this->crud->addColumns($col);
+            $this->crud->orderBy('id');
+
     }
 
 

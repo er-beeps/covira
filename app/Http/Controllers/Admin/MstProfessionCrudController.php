@@ -38,7 +38,8 @@ class MstProfessionCrudController extends BaseCrudController
              ],
         
              ];
-             $this->crud->addColumns($col);  
+             $this->crud->addColumns($col);
+             $this->crud->orderBy('id');  
    
     }
 

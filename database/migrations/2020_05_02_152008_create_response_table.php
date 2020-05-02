@@ -46,6 +46,7 @@ class CreateResponseTable extends Migration
             $table->unsignedSmallInteger('commodity_availability')->nullable();										
             $table->unsignedSmallInteger('commodity_price_difference')->nullable();										
             $table->unsignedSmallInteger('job_status')->nullable();										
+            $table->unsignedSmallInteger('economic_impact')->nullable();										
             $table->unsignedSmallInteger('sustainability_duration')->nullable();										
 
             
@@ -80,6 +81,7 @@ class CreateResponseTable extends Migration
             $table->foreign('commodity_availability','fk_response_commodity_availability')->references('id')->on('pr_activity');
             $table->foreign('commodity_price_difference','fk_response_commodity_price_difference')->references('id')->on('pr_activity');
             $table->foreign('job_status','fk_response_job_status')->references('id')->on('pr_activity');
+            $table->foreign('economic_impact','fk_response_economic_impact')->references('id')->on('pr_activity');
             $table->foreign('sustainability_duration','fk_response_sustainability_duration')->references('id')->on('pr_activity');
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Response;
 use App\Models\PrActivity;
 use App\Models\StepMaster;
+use App\Base\Helpers\ResponseProcessHelper;
 use App\Models\ProcessSteps;
 use App\Base\Traits\ParentData;
 use App\Base\BaseCrudController;
@@ -34,21 +35,59 @@ class ResponseCrudController extends BaseCrudController
         if (in_array($mode,['edit','update'])){
             $response_id = $this->parent('id');
             $current_process_step_id  = Response::find($response_id)->process_step_id;
-            $next_step_id = ProcessSteps::whereStepId($current_process_step_id)->first()->next_step_id;
-            $next_step_name = StepMaster::find($next_step_id)->name_lc;
-
+            $this->data['current_step_id'] = $current_process_step_id;
             $this->data['next_btn'] = true;
-            $this->data['next_step_id'] = $next_step_id;
-            $this->data['next_step_name'] = $next_step_name;
+
+            $this->data['next_step_id'] = NULL;
+            if($current_process_step_id == 4){
+             
+            }else{
+                $next_step_id = ProcessSteps::whereStepId($current_process_step_id)->first()->next_step_id;
+                $next_step_name = StepMaster::find($next_step_id)->name_lc;
+                $this->data['next_step_id'] = $next_step_id;
+            }
+          
         }
     }
 
     public function getScripsJs(){
         return "
         $(document).ready(function(){
-            // $('.toBeHidden1').hide();
-            //  $('#legend1').hide();
-            // $('.toBeHidden2').hide();
+            $('.toBeHidden1').hide();
+            $('.legend1').hide();
+            $('.toBeHidden2').hide();
+            $('.legend2').hide();
+
+
+            var process_step_id = $('#process_step_id').val();
+
+            console.log(process_step_id);
+
+            if(process_step_id == 2){
+                $('.toBeHidden').hide();
+                $('.legend0').hide();
+                $('.toBeHidden1').show();
+                $('.legend1').show();
+            }
+
+            if(process_step_id == 3){
+                $('.toBeHidden').hide();
+                $('.legend0').hide();
+                $('.toBeHidden1').hide();
+                $('.legend1').hide();
+                $('.toBeHidden2').show();
+                $('.legend2').show();
+            }
+
+            if(process_step_id == 4){
+                $('.toBeHidden').show();
+                $('.legend0').show();
+                $('.toBeHidden1').show();
+                $('.legend1').show();
+                $('.toBeHidden2').show();
+                $('.legend2').show();
+                $('.form-control').prop('disabled',true);
+            }
         });
         ";
     }
@@ -73,10 +112,14 @@ class ResponseCrudController extends BaseCrudController
             ],
             [
                 'name' => 'province_district',
+                'type' => 'model_function',
+                'function_name' =>'province_district',
                 'label' => trans('प्रदेश').'<br>'.trans('जिल्ला'),
             ],
             [
                 'name'=>'local_address',
+                'type' => 'model_function',
+                'function_name' =>'local_address',
                 'label'=>trans('स्थानीय तह').'<br>'.trans('वडा नं.'),
             ],
           
@@ -89,9 +132,23 @@ class ResponseCrudController extends BaseCrudController
     protected function setupCreateOperation()
     {
         $this->crud->setValidation(ResponseRequest::class);
+        
+        $mode = $this->crud->getActionMethod();
+        $process_step_id = NULL;
+        if(in_array($mode,['edit','update'])){
+            $process_step_id = [
+                'name' => 'process_step_id',
+                'type' => 'hidden',
+                'value' => Response::whereId($this->parent('id'))->first()->process_step_id,
+                'attributes' => [
+                    'id' => 'process_step_id'
+                ],
+            ];
+        }
 
         $arr = [
             $this->addReadOnlyCodeField(),
+            $process_step_id,
             [
                 'name' => 'legend1',
                 'type' => 'custom_html',
@@ -102,7 +159,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'text',
                 'label' => trans('Name'),
                 'wrapperAttributes' => [
-                    'class' => 'form-inline col-md-3',
+                    'class' => 'form-group col-md-4 toBeHidden',
                 ],
             ],
             [
@@ -110,7 +167,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'text',
                 'label' => trans('नाम'),
                 'wrapperAttributes' => [
-                    'class' => 'form-inline col-md-3',
+                    'class' => 'form-group col-md-4 toBeHidden',
                 ],
             ],
 
@@ -122,7 +179,7 @@ class ResponseCrudController extends BaseCrudController
                 'model'=>'App\Models\MstGender',
                 'attribute'=>'name_lc',
                 'wrapperAttributes' => [
-                    'class' => 'form-inline col-md-3',
+                    'class' => 'form-group col-md-4 toBeHidden',
                 ],
             ],
 
@@ -130,6 +187,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend2',
                 'type' => 'custom_html',
                 'value' => '<b><legend>Education and Profession:</legend></b>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend0'
+                ],
             ],
           
             [
@@ -140,7 +200,7 @@ class ResponseCrudController extends BaseCrudController
                 'model'=>'App\Models\MstEducationalLevel',
                 'attribute'=>'name_lc',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
             [
@@ -151,7 +211,7 @@ class ResponseCrudController extends BaseCrudController
                 'model'=>'App\Models\MstProfession',
                 'attribute'=>'name_en',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
             [
@@ -159,7 +219,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'text',
                 'label' => trans('Email'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-12',
+                    'class' => 'form-group col-md-12 toBeHidden',
                 ],
             ],
   
@@ -169,6 +229,9 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend3',
                 'type' => 'custom_html',
                 'value' => '<b><legend>Address</legend></b>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend0'
+                ]
             ],
             [
                 'name'=>'province_id',
@@ -178,7 +241,7 @@ class ResponseCrudController extends BaseCrudController
                 'model'=>'App\Models\MstProvince',
                 'attribute'=>'name_lc',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
             [
@@ -193,7 +256,7 @@ class ResponseCrudController extends BaseCrudController
                 'minimum_input_length' => 0,
                 'dependencies'         => ['province_id'],
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
             [
@@ -208,7 +271,7 @@ class ResponseCrudController extends BaseCrudController
                 'minimum_input_length' => 0,
                 'dependencies'         => ['district_id'],
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
             [
@@ -216,7 +279,7 @@ class ResponseCrudController extends BaseCrudController
                 'type'=>'number',
                 'label'=>trans('वडा नं.'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
 
@@ -225,13 +288,16 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend4',
                 'type' => 'custom_html',
                 'value' => '<b><legend>GPS Co-ordinates</legend></b>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend0'
+                ]
             ],
             [
                 'name' => 'separater1',
                 'type' => 'custom_html',
                 'value' => '<h5><b><span style="position: relative; top:23px;">Latitude :</span></b></h5>',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2',
+                    'class' => 'form-group col-md-2 toBeHidden',
                 ],
             ],
             [
@@ -240,7 +306,7 @@ class ResponseCrudController extends BaseCrudController
                 'label' => trans('Degrees'),
                 'type' => 'number',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2',
+                    'class' => 'form-group col-md-2 toBeHidden',
                 ],
                 'attributes' => [
                     'id' => 'gps_lat_degree',
@@ -252,7 +318,7 @@ class ResponseCrudController extends BaseCrudController
                 'label' => trans('Minutes'),
                 'type' => 'number',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2',
+                    'class' => 'form-group col-md-2 toBeHidden',
                 ],
                 'attributes' => [
                     'id' => 'gps_lat_minute',
@@ -265,7 +331,7 @@ class ResponseCrudController extends BaseCrudController
                 'label' => trans('Seconds'),
                 'type' => 'number',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2',
+                    'class' => 'form-group col-md-2 toBeHidden',
                 ],
                 'attributes' => [
                     'id' => 'gps_lat_second',
@@ -277,7 +343,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'custom_html',
                 'value' => '<b><span style="position: relative; top:25px; font-size:22px; color:red;">&#8651;</span></b>',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-1',
+                    'class' => 'form-group col-md-1 toBeHidden',
                 ],
             ],
             [
@@ -285,7 +351,7 @@ class ResponseCrudController extends BaseCrudController
                 'label' => trans('Decimal Degrees Latitude'),
                 'type' => 'number',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-3',
+                    'class' => 'form-group col-md-3 toBeHidden',
                 ],
                 'attributes' => [
                     'step' => 'any',
@@ -298,7 +364,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'custom_html',
                 'value' => '<h5><b><span style="position: relative; top:23px;">Longitude :</span></b></h5>',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2',
+                    'class' => 'form-group col-md-2 toBeHidden',
                 ],
             ],
             [
@@ -307,7 +373,7 @@ class ResponseCrudController extends BaseCrudController
                 'label' => trans('Degrees'),
                 'type' => 'number',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2',
+                    'class' => 'form-group col-md-2 toBeHidden',
                 ],
                 'attributes' => [
                     'id' => 'gps_long_degree',
@@ -319,7 +385,7 @@ class ResponseCrudController extends BaseCrudController
                 'label' => trans('Minutes'),
                 'type' => 'number',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2',
+                    'class' => 'form-group col-md-2 toBeHidden',
                 ],
                 'attributes' => [
                     'id' => 'gps_long_minute',
@@ -331,7 +397,7 @@ class ResponseCrudController extends BaseCrudController
                 'label' => trans('Seconds'),
                 'type' => 'number',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2',
+                    'class' => 'form-group col-md-2 toBeHidden',
                 ],
                 'attributes' => [
                     'id' => 'gps_long_second',
@@ -342,7 +408,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'custom_html',
                 'value' => '<b><span style="font-size:22px; position: relative; top:25px; color:red;">&#8651;</span></b>',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-1',
+                    'class' => 'form-group col-md-1 toBeHidden',
                 ],
             ],
 
@@ -351,7 +417,7 @@ class ResponseCrudController extends BaseCrudController
                 'label' => trans('Decimal Degrees Longitude'),
                 'type' => 'number',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-3',
+                    'class' => 'form-group col-md-3 toBeHidden',
                 ],
                 'attributes' => [
                     'step' => 'any',
@@ -494,32 +560,7 @@ class ResponseCrudController extends BaseCrudController
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden1',
                 ],
-            ],
-                 [
-                'name' => 'legend12',
-                'type' => 'custom_html',
-                'value' => '<legend>Economic Impact</legend>',
-                'wrapperAttributes'=>[
-                    'class' => 'legend1'
-                ]  
-            ],
-
-            [
-                'label'     => '<b>Economic impact of pandemic in your life</b>',
-                'type'      => 'checklist_filtered',
-                'name'      => 'economic_impact',
-                'entity'    => 'economic_impact',
-                'attribute' => 'name_lc',
-                'model'     => PrActivity::class,
-                'options'   => (function ($query) {
-                    return $query->whereFactorId(8)->get();
-                }),
-                'pivot'     => true,
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-12 toBeHidden2'
-                ]
-            ],
-
+       
 
             [
                 'name' => 'legend10',
@@ -570,6 +611,8 @@ class ResponseCrudController extends BaseCrudController
                 ]
             ],
 
+            ],
+          
             [
                 'name' => 'legend13',
                 'type' => 'custom_html',
@@ -865,6 +908,29 @@ class ResponseCrudController extends BaseCrudController
                     'class' => 'form-group col-md-6 toBeHidden2'
                 ]
             ],
+              [
+                'name' => 'legend12',
+                'type' => 'custom_html',
+                'value' => '<legend>Economic Impact</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ]  
+            ],
+
+            [
+                'label'     => '<b>Economic impact of pandemic in your life</b>',
+                'type'      => 'select2',
+                'name'      => 'economic_impact',
+                'entity'    => 'economic_impact',
+                'attribute' => 'name_lc',
+                'model'     => PrActivity::class,
+                'options'   => (function ($query) {
+                    return $query->whereFactorId(8)->get();
+                }),
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6 toBeHidden2'
+                ]
+            ],
 
 
             [
@@ -922,10 +988,18 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'custom_html',
                 'value' => '',
             ],
+            [
+                'name' => 'remarks',
+                'label' => trans('common.remarks'),
+                'type' => 'textarea',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden'
+                ]
+            ]
 
 
-            $this->addRemarksField(),
         ];
+        $arr = array_filter($arr);
         $this->crud->addFields($arr);
 
 
@@ -936,12 +1010,18 @@ class ResponseCrudController extends BaseCrudController
         $this->setupCreateOperation();
     }
 
+    public function nextstep($id){
+     
+    $request = $this->crud->validateRequest();
+    ResponseProcessHelper::updateProcess($id, $request);
 
+    return redirect(backpack_url('/response').'/'.$id.'/edit');
+    }
+
+    
     public function store()
     {
-
-       
-        $this->crud->hasAccessOrFail('create');
+          $this->crud->hasAccessOrFail('create');
 
          $request = $this->crud->validateRequest();
          
@@ -968,7 +1048,7 @@ class ResponseCrudController extends BaseCrudController
 
             //Updating the PsBill for process event
             Response::whereId($item->id)->update([
-                'process_step_id' => $firstProcessStep->step_id,
+                'process_step_id' => 2,
             ]);
 
             DB::commit();
@@ -979,14 +1059,12 @@ class ResponseCrudController extends BaseCrudController
         }
 
             // show a success message
-        \Alert::success(trans('backpack::crud.insert_success'))->flash();
+        \Alert::success(trans('Data Submitted Successfully'))->flash();
         return redirect(backpack_url('/response').'/'.$item->id.'/edit');
 
         // save the redirect choice for next time
         $this->crud->setSaveAction();
 
         return $this->crud->performSaveAction($item->getKey());
-
-
     }
 }
