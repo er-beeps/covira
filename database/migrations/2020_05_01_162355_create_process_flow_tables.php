@@ -38,6 +38,7 @@ class CreateProcessFlowTables extends Migration
             $table->smallIncrements('id');
             $table->string('code',20);
             $table->unsignedSmallInteger('step_id')->nullable();
+            $table->unsignedSmallInteger('back_step_id')->nullable();
             $table->unsignedSmallInteger('next_step_id')->nullable();
             $table->boolean('is_first_step')->nullable()->default(false);
             $table->boolean('is_active')->nullable()->default(true);
@@ -48,6 +49,7 @@ class CreateProcessFlowTables extends Migration
             $table->timestamps();
 
             $table->foreign('step_id','fk_process_steps_step_id')->references('id')->on('step_master');
+            $table->foreign('back_step_id','fk_process_steps_back_step_id')->references('id')->on('step_master');
             $table->foreign('next_step_id','fk_process_steps_next_step_id')->references('id')->on('step_master');
         });
 
