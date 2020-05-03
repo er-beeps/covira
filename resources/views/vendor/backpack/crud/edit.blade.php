@@ -75,7 +75,7 @@
 		      	@include('crud::form_content', ['fields' => $crud->fields(), 'action' => 'edit'])
 			  @endif
 			 	@if($crud->getRoute() == 'admin/response')
-					@if(isset($next_btn) && ($next_btn == true) && (isset($current_step_id) && $current_step_id < 4))
+					@if(isset($next_btn) && (isset($current_step_id) && $current_step_id < 4))
 					<div class="row">
 						@include('crud::buttons.step_buttons')
 					</div>

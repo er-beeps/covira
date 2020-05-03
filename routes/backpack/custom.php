@@ -37,6 +37,7 @@ Route::group([
 
     Route::crud('response', 'ResponseCrudController');
     Route::put('response/{response_id}/nextstep', 'ResponseCrudController@nextstep');
+    Route::get('response/{response_id}/backstep', 'ResponseCrudController@backstep');
     
     Route::crud('respondantdata', 'RespondentDataCrudController');
     // Route::crud('stepmaster', 'StepMasterCrudController');

@@ -37,12 +37,14 @@ class ResponseCrudController extends BaseCrudController
             $current_process_step_id  = Response::find($response_id)->process_step_id;
             $this->data['current_step_id'] = $current_process_step_id;
             $this->data['next_btn'] = true;
+            $this->data['back_btn'] = true;
 
             $this->data['next_step_id'] = NULL;
             if($current_process_step_id == 4){
              
             }else{
                 $next_step_id = ProcessSteps::whereStepId($current_process_step_id)->first()->next_step_id;
+
                 $next_step_name = StepMaster::find($next_step_id)->name_lc;
                 $this->data['next_step_id'] = $next_step_id;
             }
@@ -1013,7 +1015,14 @@ class ResponseCrudController extends BaseCrudController
     public function nextstep($id){
      
     $request = $this->crud->validateRequest();
-    ResponseProcessHelper::updateProcess($id, $request);
+    ResponseProcessHelper::updateProcess($id, $request,'next');
+
+    return redirect(backpack_url('/response').'/'.$id.'/edit');
+    }
+
+    public function backstep($id){
+     
+    ResponseProcessHelper::updateProcess($id,$request=NULL,'back');
 
     return redirect(backpack_url('/response').'/'.$id.'/edit');
     }
