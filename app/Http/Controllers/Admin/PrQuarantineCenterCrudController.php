@@ -28,7 +28,7 @@ class PrQuarantineCenterCrudController extends BaseCrudController
             if($('#gps_lat').val() == 0 && $('#gps_long').val() == 0){  
                 getLocation();
             }else{
-                // updateMarkerByInputs();
+                updateMarkerByInputs();
             }
 
             //Convert degree-minute-second to decimal
@@ -50,13 +50,13 @@ class PrQuarantineCenterCrudController extends BaseCrudController
             // Convert decimal to degree-minute-second
             $('#gps_lat').on('keyup', function() {
                 changeLatDecimalToDegree();
-                // updateMarkerByInputs();
+                updateMarkerByInputs();
             });
 
         
             $('#gps_long').on('keyup', function() {
                 changeLongDecimalToDegree();
-                // updateMarkerByInputs();
+                updateMarkerByInputs();
 
             });
 
@@ -338,10 +338,10 @@ class PrQuarantineCenterCrudController extends BaseCrudController
                 'default' => '0',
             ],
 
-            // [
-            //     'name' => 'map',
-            //     'type' => 'map',
-            // ],
+            [
+                'name' => 'map',
+                'type' => 'map',
+            ],
 
             [
                 'name' => 'legend4',

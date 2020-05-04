@@ -19,6 +19,48 @@ class PrHospitalCrudController extends BaseCrudController
         $this->crud->setModel('App\Models\PrHospital');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/prhospital');
         $this->crud->setEntityNameStrings('अस्पताल', 'अस्पताल');
+         $this->data['script_js'] =  "
+        $(document).ready(function() {
+
+            changeLatDecimalToDegree();
+            changeLongDecimalToDegree();
+
+            if($('#gps_lat').val() == 0 && $('#gps_long').val() == 0){  
+                getLocation();
+            }else{
+                updateMarkerByInputs();
+            }
+
+            //Convert degree-minute-second to decimal
+        
+            $('#gps_lat_degree, #gps_lat_minute, #gps_lat_second').on('keyup', function() {
+                var degree = parseInt($('#gps_lat_degree').val());
+                var minute = parseInt($('#gps_lat_minute').val());
+                var second = parseInt($('#gps_lat_second').val());
+                $('#gps_lat').val(ConvertDMSToDD(degree, minute, second));
+            });
+        
+            $('#gps_long_degree, #gps_long_minute, #gps_long_second').on('keyup', function() {
+                var degree = parseInt($('#gps_long_degree').val());
+                var minute = parseInt($('#gps_long_minute').val());
+                var second = parseInt($('#gps_long_second').val());
+                $('#gps_long').val(ConvertDMSToDD(degree, minute, second));
+            });
+        
+            // Convert decimal to degree-minute-second
+            $('#gps_lat').on('keyup', function() {
+                changeLatDecimalToDegree();
+                 updateMarkerByInputs();
+            });
+
+        
+            $('#gps_long').on('keyup', function() {
+                changeLongDecimalToDegree();
+                 updateMarkerByInputs();
+
+            });
+
+        })";
     }
 
     protected function setupListOperation()
@@ -303,10 +345,10 @@ class PrHospitalCrudController extends BaseCrudController
                 'default' => '0',
             ],
 
-            // [
-            //     'name' => 'map',
-            //     'type' => 'map',
-            // ],
+            [
+                'name' => 'map',
+                'type' => 'map',
+            ],
 
             [
                 'name' => 'legend4',
