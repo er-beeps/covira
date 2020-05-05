@@ -1,5 +1,5 @@
 #map {
-    height: 470px;
+    height: 500px;
     border-radius: 14px;
     /* top: 50px; */
 }
@@ -8,7 +8,7 @@
 /* Set the size of the div element that contains the map */
 
 #map1 {
-    height: 470px;
+    height: 500px;
     border-radius: 14px;
     /* top: 50px; */
     /* The height is 400 pixels */

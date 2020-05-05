@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FedDistrict;
-use App\Models\FedProvince;
-use App\Models\FedLocalLevel;
+use App\Models\MstDistrict;
+use App\Models\MstProvince;
+use App\Models\MstLocalLevel;
 use App\Models\NepaliMonth;
 // use App\unit_type;
 // use App\Base\AccessCrudController as CrudController;
@@ -14,18 +14,18 @@ class DependentDropdownController extends Controller
 
     public function index()
     {
-        $province = FedProvince::all();
+        $province = MstProvince::all();
         return view('gismap', compact('province_id'));
     }
 
     public function getdistrict($id)
     {
-        $district = FedDistrict::where('province_id', $id)->whereRaw("id in (SELECT distinct district_id from mst_fed_local_level)")->get();
+        $district = MstDistrict::where('province_id', $id)->whereRaw("id in (SELECT distinct district_id from mst_fed_local_level)")->get();
         return response()->json($district);
     }
     public function getlocal_level($id)
     {
-        $local_level = FedLocalLevel::where('district_id', $id)->get();
+        $local_level = MstLocalLevel::where('district_id', $id)->get();
         return response()->json($local_level);
     }
   

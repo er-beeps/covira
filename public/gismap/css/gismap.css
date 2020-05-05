@@ -10,19 +10,15 @@
     transition: 0.4s;
 }
 
-
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 
-.active,
-.accordion:hover {
+.active, .accordion:hover {
     background-color: #ccc;
 }
 
-
 /* Style the accordion panel. Note: hidden by default */
 
-.active,
-#timeline {
+.active, #timeline {
     background-color: #cccccc1a;
 }
 
@@ -34,69 +30,42 @@
     border: 1px solid #ddd;
 }
 
-#tabspan {
-    background-color: #cccccc26;
-}
-
-a:hover,
-a:focus {
-    outline: none;
-    text-decoration: none;
-}
-
-.tab {
-    top: 15px;
-    margin-bottom: -13px;
-}
-
-.tab .nav-tabs {
-    display: inline-block;
-    background: #fff;
-    border-radius: 50px;
-    border: none;
-    padding: 1px;
-}
-
-.tab .nav-tabs li {
-    float: none;
-    display: inline-block;
-    position: relative;
-}
-
-.tab .nav-tabs li a {
-    font-size: 16px;
-    font-weight: 700;
-    background: none;
-    color: #999;
-    border: none;
-    padding: 3px 6px;
-    border-radius: 50px;
-    transition: all 0.5s ease 0s;
-}
-
-.tab .nav-tabs li a:hover {
-    background: #ffa399;
-    color: #fff;
-    border: none;
-}
-
-.tab .nav-tabs li.active a,
-.tab .nav-tabs li.active a:focus,
-.tab .nav-tabs li.active a:hover {
+.tab .nav-tabs li.active a, .tab .nav-tabs li.active a:focus, .tab .nav-tabs li.active a:hover {
     border: none;
     background: #4CAF50;
     color: #fff;
 }
 
-.tab .nav-tabs {
-    margin-top: -8px;
-    margin-bottom: 3px;
-}
-
-.tab .tab-content {
-    margin-top: 2%;
-}
-
 .act {
     list-style-image: url('sqpurple.gif');
+}
+
+.nav-tabs>li>a {
+    display: inline-flex;
+    margin-top: 7px;
+}
+
+.nav-tabs li a:hover {
+    background: #28cf79;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.nav-tabs li a.active {
+    background-color: #fa9746;
+    border-radius: 5px;
+    padding: 2px;
+    border:1px solid gray;
+}
+
+.map-tab {
+    background-color: white;
+    width: fit-content;
+    border-radius: 15px;
+    padding-bottom: 20px;
+}
+.card-header{
+    border-radius: 5px;
 }

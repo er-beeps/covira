@@ -4,7 +4,7 @@ var map = L.map("map", {
     fullscreenControl: true
 
 }).setView([27.700769, 85.300140], 6);
-map.on('layeradd', function(event) {
+map.on('layeradd', function (event) {
     var layer = event.layer;
     if (layer instanceof L.Marker && !(layer instanceof L.MarkerCluster)) {
         layer.closePopup();
@@ -18,13 +18,8 @@ var markers = [];
 for (var x in json) {
     var lat = json[x].lat;
     lng = json[x].lon;
-    code = json[x].code;
     name_en = json[x].name_en;
     name_lc = json[x].name_lc;
-    category = json[x].category;
-    sub_category = json[x].sub_category;
-    Status = json[x].status;
-    budget_allocated = json[x].budget_allocated;
     icons = json[x].icon;
     id = json[x].id;
     locallevel = json[x].locallevel;
@@ -32,17 +27,12 @@ for (var x in json) {
 
     // var url='/gismap/icons/ROAD.png';
     var url = '/gismap/icons/' + icons + '.png';
-    var detail = '/admin/project/' + id + '/edit/';
     var firefoxIcon = L.icon({ iconUrl: url, iconSize: [20, 25] });
     if (lat !== null) {
         marker = new L.marker([lat, lng], { icon: firefoxIcon }).addTo(mcg).bindPopup('कोड: ' + '<font color="red">' + code + '</font>' + '<br>' +
             'नाम: ' + '<font color="green">' + name_en + '</font>' + '<br>' +
             'जिल्ला: ' + '<font color="green">' + district + '</font>' + '<br>' +
             'स्थानीय तह: ' + '<font color="blue">' + locallevel + '</font>' + '<br>' +
-            'समूह: ' + '<font color="red">' + category + '</font>' + '<br>' +
-            'उपसमूह: ' + '<font color="green">' + sub_category + '</font>' + '<br>' +
-            'परियोजना लागत :' + '<font color="blue">' + budget_allocated + '</font>' + '<br>' +
-            'स्थिति: ' + '<font color="blue">' + Status + '</font>' + '<br>' +
             '<a href="' + detail + '" target="_blank"><i class="fa fa-eye"></i>View Details</a>' + '<br>',
 
             {

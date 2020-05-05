@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use DB;
-use Session;
 use Charts;
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -39,9 +39,9 @@ $wheres = [];
 $data = null;
 $request = request();
 if ($request->all() != null) {
-    $Province = Input::get('province');
-    $District = Input::get('district');
-    $Local_Level = Input::get('local_level');
+    $Province = $request->province;
+    $District = $request->district;
+    $Local_Level = $request->local_level;
 
     if (!empty($Province)) {
         $wheres[] =  'and d.province_id = :province';
