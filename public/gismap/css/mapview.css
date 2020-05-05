@@ -1,0 +1,54 @@
+#map {
+    height: 470px;
+    border-radius: 14px;
+    /* top: 50px; */
+}
+
+
+/* Set the size of the div element that contains the map */
+
+#map1 {
+    height: 470px;
+    border-radius: 14px;
+    /* top: 50px; */
+    /* The height is 400 pixels */
+    /* The width is the width of the web page */
+}
+
+html,
+body {
+    height: 80%;
+    margin: 0;
+    padding: 0;
+}
+
+.div2 {
+    width: 300px;
+    height: 500px;
+}
+
+.household {
+    margin-top: 0%;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+#activity {
+    margin-top: -1%;
+    padding: 2px 7px;
+}
+
+#timeline {
+    margin-top: -1%;
+    width: 97%;
+}
+
+#search {
+    margin-top: -2%;
+    background: #e2bcbcb5;
+}
+
+#m1 {
+    margin-top: -1%;
+    background: #e2bcbcb5;
+}

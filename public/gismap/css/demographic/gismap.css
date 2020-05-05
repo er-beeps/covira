@@ -1,0 +1,107 @@
+.Technical {
+    list-style-type: decimal;
+}
+
+.treeview-menu li {
+    list-style-type: decimal !important;
+}
+
+.band,
+.cluster,
+.Armour {
+    /* list-style-type:decimal; */
+    padding: 5px 5px 5px 15px;
+    display: block;
+    font-size: 14px;
+}
+
+/* .treeview a{ color:#000;} */
+
+/* Style the buttons that are used to open and close the accordion panel */
+
+.accordion {
+    /* background-color: #eee; */
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+.active,
+.accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.active,#timeline{ background-color: #cccccc1a;}
+.panel {
+    padding-top: 15px;
+    background-color: #f1ebdac2;
+    display: none;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.col-sm-2 {
+    width: 14%;
+}
+
+.col-sm-4 {
+    width: 18%;
+}
+#date
+{
+  width:16%;
+}
+#tabspan
+{
+    background-color: #cccccc26;
+}
+
+a:hover,a:focus{
+    outline: none;
+    text-decoration: none;
+}
+.tab{margin-bottom: -13px;}
+.tab .nav-tabs{
+    display: inline-block;
+    background: #fff;
+    border-radius: 50px;
+    border: none;
+    padding: 1px;
+}
+.tab .nav-tabs li{
+    float: none;
+    display: inline-block;
+    position: relative;
+}
+.tab .nav-tabs li a{
+    font-size: 16px;
+    font-weight: 700;
+    background: none;
+    color: #999;
+    border: none;
+    padding: 3px 6px;
+    border-radius: 50px;
+    transition: all 0.5s ease 0s;
+}
+.tab .nav-tabs li a:hover{
+    background: #ffa399;
+    color: #fff;
+    border: none;
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li.active a:focus,
+.tab .nav-tabs li.active a:hover{
+    border: none;
+    background: #4CAF50;
+    color: #fff;
+}
+.tab .nav-tabs{margin-top: -8px;margin-bottom: 3px;}
+.tab .tab-content{margin-top: -2%;}

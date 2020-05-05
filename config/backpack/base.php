@@ -127,6 +127,7 @@ return [
         'js/datePicker.js',
         'js/nepali.datepicker.v2.2.min.js',
         'js/lattitude.longitude.converter.js',
+        'js/dependentdropdown.js'
 
         // examples (everything inside the bundle, loaded from CDN)
         // 'https://code.jquery.com/jquery-3.4.1.min.js',
