@@ -1,9 +1,9 @@
-var map = L.map("map", {
+var map = L.map(document.getElementById('map'), {
     closePopupOnClick: false,
     maxZoom: 20,
     fullscreenControl: true
 
-}).setView([27.700769, 85.300140], 6);
+}).setView([28.35, 84.25], 7);
 map.on('layeradd', function (event) {
     var layer = event.layer;
     if (layer instanceof L.Marker && !(layer instanceof L.MarkerCluster)) {
@@ -18,6 +18,7 @@ var markers = [];
 for (var x in json) {
     var lat = json[x].lat;
     lng = json[x].lon;
+    code = json[x].code;
     name_en = json[x].name_en;
     name_lc = json[x].name_lc;
     icons = json[x].icon;
@@ -32,9 +33,7 @@ for (var x in json) {
         marker = new L.marker([lat, lng], { icon: firefoxIcon }).addTo(mcg).bindPopup('कोड: ' + '<font color="red">' + code + '</font>' + '<br>' +
             'नाम: ' + '<font color="green">' + name_en + '</font>' + '<br>' +
             'जिल्ला: ' + '<font color="green">' + district + '</font>' + '<br>' +
-            'स्थानीय तह: ' + '<font color="blue">' + locallevel + '</font>' + '<br>' +
-            '<a href="' + detail + '" target="_blank"><i class="fa fa-eye"></i>View Details</a>' + '<br>',
-
+            'स्थानीय तह: ' + '<font color="blue">' + locallevel + '</font>' + '<br>',
             {
                 autoClose: true,
                 autoPan: false

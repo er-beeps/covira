@@ -29,7 +29,8 @@
             <div class="card-body" style="background-color: white;">
                 <form>
                 <div class="row">
-                        <div class="form-inline col-md-3">
+                    <div class="row col-md-8">
+                        <div class="form-inline col-md-4">
                             <label>Province</label>
                             <select class="form-control select2" name="province" id="province" style="width: 100%;">
                             <option selected disabled style="font-weight:bold;">प्रदेश छान्नुहोस्</option>
@@ -44,17 +45,23 @@
                             </select>
                         </div>
 
-                        <div class="form-inline col-md-3">
+                        <div class="form-inline col-md-4">
                             <label for="district">District</label>
                             <select class="form-control select2" style="width: 100%;" name="district" id="district"></select>
                         </div>
 
-                        <div class="form-inline col-md-3">
+                        <div class="form-inline col-md-4">
                             <label for="locallevel">Local Level</label>
                                 <select class="form-control select2" style="width: 100%;" name="local_level" id="local_level"></select>
                         </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-info"><i class="fa fa-search"></i>Search</button>
+                        </div>
+                        <div class="row col-md-4">
+                        <div class="form-inine col-md-6">
+                            <button type="submit" class="btn btn-info" style="margin-top: 9px;"><i class="fa fa-search"></i>Search</button>
+                        </div>
+                        <div class="form-inline col-md-4">
+                            <a href="{{backpack_url('gismap')}}" type="reset" class="btn btn-warning"><i class="fa fa-refresh"></i>Reset</a>
+                        </div>
                         </div>
                     </div> <!-- row ends here -->
                 </form>    
@@ -119,7 +126,7 @@
     </div> 
 </div>
     
-@endsection
+
 
 <script src="{{asset('js/dependentdropdown.js') }}"></script>
 <script src="{{asset('js/accordion.js') }}"></script>
@@ -135,4 +142,5 @@
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoEoSKYFDXovqwCwCHIhAYGFsnrUW09Oo&callback=initMap"></script>
 
+@endsection
 
