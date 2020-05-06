@@ -42,6 +42,7 @@ if ($request->all() != null) {
     $Province = $request->province;
     $District = $request->district;
     $Local_Level = $request->local_level;
+    // dd($Province, $District, $Local_Level);
 
     if (!empty($Province)) {
         $wheres[] =  'and d.province_id = :province';
@@ -62,23 +63,26 @@ if ($request->all() != null) {
         $where_clause = " WHERE 1=1 " . implode(" ", $wheres);
         $sql .= $where_clause;
     }
+
+  
     $gps = DB::select($sql, $params);
+    //   dd($sql);
 } else {   
     $gps = DB::select($sql);
+}
     
     $markers = json_encode($gps);
-        $area_province = DB::select('select id, code,name_en,name_lc from mst_fed_province as p	WHERE id in (SELECT distinct province_id FROM mst_fed_district where id in (SELECT distinct district_id from mst_fed_local_level)) order by code asc');
+    $area_province = DB::select('select id, code,name_en,name_lc from mst_fed_province as p	WHERE id in (SELECT distinct province_id FROM mst_fed_district where id in (SELECT distinct district_id from mst_fed_local_level)) order by code asc');
 
-        $selected_params = array();
-        foreach ($params as $key => $val) {
-            $selected_params[str_replace(":", "", $key)] = $val;
-        }
+    $selected_params = array();
+
+    foreach ($params as $key => $val) {
+        $selected_params[str_replace(":", "", $key)] = $val;
+    }
 
 
-        return view('gismap', compact('markers','area_province','gps', 'selected_params'));
-       
-     }
-     }
-
+    return view('gismap', compact('markers','area_province','gps', 'selected_params'));   
+    }
 }
+
 

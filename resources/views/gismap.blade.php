@@ -24,7 +24,7 @@
     <div class="col-md-12">
 
         <div class="card bg-light">
-            <div class="card-header" style="background-color: lightgray; height:45px;"><h5>Search</h5>
+            <div class="card-header" style="background-color: lightgray; height:40px; padding-top:10px;"><h5>Search</h5>
             </div>
             <div class="card-body" style="background-color: white;">
                 <form>

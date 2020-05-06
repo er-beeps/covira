@@ -13,26 +13,23 @@ map.on('layeradd', function (event) {
 var mcg = L.markerClusterGroup();
 var markers = [];
 
-// var firefoxIcon = L.icon({iconUrl:'/gismap/icons/ROAD.png',iconSize:[20, 25]});
-console.log(json);
 for (var x in json) {
     var lat = json[x].lat;
     lng = json[x].lon;
     code = json[x].code;
     name_en = json[x].name_en;
     name_lc = json[x].name_lc;
-    icons = json[x].icon;
-    id = json[x].id;
     locallevel = json[x].locallevel;
     district = json[x].district_name_np;
 
+
     // var url='/gismap/icons/ROAD.png';
-    var url = '/gismap/icons/' + icons + '.png';
-    var firefoxIcon = L.icon({ iconUrl: url, iconSize: [20, 25] });
+    var url = '/gismap/icons/person.png';
+    var firefoxIcon = L.icon({ iconUrl: url, iconSize: [12, 12] });
+
     if (lat !== null) {
-        marker = new L.marker([lat, lng], { icon: firefoxIcon }).addTo(mcg).bindPopup('कोड: ' + '<font color="red">' + code + '</font>' + '<br>' +
-            'नाम: ' + '<font color="green">' + name_en + '</font>' + '<br>' +
-            'जिल्ला: ' + '<font color="green">' + district + '</font>' + '<br>' +
+        marker = new L.marker([lat, lng], { icon: firefoxIcon }).addTo(mcg).bindPopup('कोड: ' + '<font color="red">' + code + '</font>' + '<br>' +   
+            'जिल्ला: ' + '<font color="orange">' + district + '</font>' + '<br>' +
             'स्थानीय तह: ' + '<font color="blue">' + locallevel + '</font>' + '<br>',
             {
                 autoClose: true,

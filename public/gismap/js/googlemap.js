@@ -17,13 +17,12 @@ function initMap() {
         code = json[x].code;
         name_en = json[x].name_en;
         name_lc = json[x].name_lc;
-        icons = json[x].icon;
-        id = json[x].id;
         locallevel = json[x].locallevel;
         district = json[x].district_name_np;
+
         var icon = {
-            url: '/gismap/icons/' + icons + '.png', // url
-            scaledSize: new google.maps.Size(20, 25), // scaled size
+            url: '/gismap/icons/person.png', // url
+            scaledSize: new google.maps.Size(12, 12), // scaled size
         };
 
         marker = new google.maps.Marker({
@@ -32,8 +31,7 @@ function initMap() {
             map: map1,
             icon: icon,
             content: 'कोड: ' + '<font color="red">' + code + '</font>' + '<br>' +
-                'नाम: ' + '<font color="green">' + name_en + '</font>' + '<br>' +
-                'जिल्ला: ' + '<font color="green">' + district + '</font>' + '<br>' +
+                'जिल्ला: ' + '<font color="orange">' + district + '</font>' + '<br>' +
                 'स्थानीय तह: ' + '<font color="blue">' + locallevel + '</font>'
 
         });
@@ -48,7 +46,7 @@ function initMap() {
     }
     var markerCluster = new MarkerClusterer(map1, markers, {
         imagePath: '/gismap/images/m',
-        minimumClusterSize: 6
+        minimumClusterSize: 2
     }
 
     );

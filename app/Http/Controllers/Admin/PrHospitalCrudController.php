@@ -19,7 +19,7 @@ class PrHospitalCrudController extends BaseCrudController
         $this->crud->setModel('App\Models\PrHospital');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/prhospital');
         $this->crud->setEntityNameStrings('अस्पताल', 'अस्पताल');
-         $this->data['script_js'] =  "
+        $this->data['script_js'] =  "
         $(document).ready(function() {
 
             changeLatDecimalToDegree();

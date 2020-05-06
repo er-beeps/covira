@@ -90,6 +90,46 @@ class ResponseCrudController extends BaseCrudController
                 $('.legend2').show();
                 $('.form-control').prop('disabled',true);
             }
+//js for gismap
+
+            changeLatDecimalToDegree();
+            changeLongDecimalToDegree();
+
+            if($('#gps_lat').val() == 0 && $('#gps_long').val() == 0){  
+                getLocation();
+            }else{
+                updateMarkerByInputs();
+            }
+
+            //Convert degree-minute-second to decimal
+        
+            $('#gps_lat_degree, #gps_lat_minute, #gps_lat_second').on('keyup', function() {
+                var degree = parseInt($('#gps_lat_degree').val());
+                var minute = parseInt($('#gps_lat_minute').val());
+                var second = parseInt($('#gps_lat_second').val());
+                $('#gps_lat').val(ConvertDMSToDD(degree, minute, second));
+            });
+        
+            $('#gps_long_degree, #gps_long_minute, #gps_long_second').on('keyup', function() {
+                var degree = parseInt($('#gps_long_degree').val());
+                var minute = parseInt($('#gps_long_minute').val());
+                var second = parseInt($('#gps_long_second').val());
+                $('#gps_long').val(ConvertDMSToDD(degree, minute, second));
+            });
+        
+            // Convert decimal to degree-minute-second
+            $('#gps_lat').on('keyup', function() {
+                changeLatDecimalToDegree();
+                 updateMarkerByInputs();
+            });
+
+        
+            $('#gps_long').on('keyup', function() {
+                changeLongDecimalToDegree();
+                 updateMarkerByInputs();
+
+            });
+
         });
         ";
     }
@@ -428,10 +468,13 @@ class ResponseCrudController extends BaseCrudController
                 'default' => '0',
             ],
 
-            // [
-            //     'name' => 'map',
-            //     'type' => 'map',
-            // ],
+            [
+                'name' => 'map',
+                'type' => 'map',
+                'wrapperAttributes' => [
+                    'class' => 'toBeHidden',
+                ],
+            ],
 
 
 

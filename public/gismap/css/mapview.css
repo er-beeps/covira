@@ -4,7 +4,6 @@
     /* top: 50px; */
 }
 
-
 /* Set the size of the div element that contains the map */
 
 #map1 {
@@ -15,8 +14,7 @@
     /* The width is the width of the web page */
 }
 
-html,
-body {
+html, body {
     height: 80%;
     margin: 0;
     padding: 0;
@@ -34,13 +32,13 @@ body {
 }
 
 #activity {
-    margin-top: -1%;
-    padding: 2px 7px;
+    margin-top: 0;
+    width: 100%;
 }
 
 #timeline {
-    margin-top: -1%;
-    width: 97%;
+    margin-top: 0%;
+    width: 100%;
 }
 
 #search {
