@@ -3,14 +3,7 @@ function initMap() {
         center: new google.maps.LatLng(28.35, 84.25),
         zoom: 7
     });
-    map.data.loadGeoJson(
-        'https://storage.googleapis.com/mapsdevsite/json/google.json');
-    
-    map.data.setStyle({
-        fillColor: 'green',
-        strokeWeight:1
-    });
-    
+
     var infowindow = new google.maps.InfoWindow();
     var oms = new OverlappingMarkerSpiderfier(map1, {
         markersWontMove: true,

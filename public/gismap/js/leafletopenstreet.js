@@ -14,7 +14,7 @@ var mcg = L.markerClusterGroup();
 var markers = [];
 
 // var firefoxIcon = L.icon({iconUrl:'/gismap/icons/ROAD.png',iconSize:[20, 25]});
-
+console.log(json);
 for (var x in json) {
     var lat = json[x].lat;
     lng = json[x].lon;
@@ -42,9 +42,6 @@ for (var x in json) {
         );
     }
 }
-
-
-
 
 // create marker object, pass custom icon as option, add to map
 

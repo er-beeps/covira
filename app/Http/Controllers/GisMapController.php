@@ -66,7 +66,7 @@ if ($request->all() != null) {
 } else {   
     $gps = DB::select($sql);
     
-        $markers = json_encode($gps);
+    $markers = json_encode($gps);
         $area_province = DB::select('select id, code,name_en,name_lc from mst_fed_province as p	WHERE id in (SELECT distinct province_id FROM mst_fed_district where id in (SELECT distinct district_id from mst_fed_local_level)) order by code asc');
 
         $selected_params = array();
