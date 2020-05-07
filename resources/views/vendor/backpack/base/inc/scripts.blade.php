@@ -9,7 +9,6 @@
     <script type="text/javascript" src="{{ mix($path, $manifest) }}"></script>
     @endforeach
 @endif
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 

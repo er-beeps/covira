@@ -10,7 +10,13 @@ map.on('layeradd', function (event) {
         layer.closePopup();
     }
 });
-var mcg = L.markerClusterGroup();
+var mcg = L.markerClusterGroup(
+    // {
+    //     spiderfyOnMaxZoom: false,
+    //     showCoverageOnHover: false,
+    //     zoomToBoundsOnClick: false
+    // }
+);
 var markers = [];
 
 for (var x in json) {
@@ -28,7 +34,7 @@ for (var x in json) {
     var firefoxIcon = L.icon({ iconUrl: url, iconSize: [12, 12] });
 
     if (lat !== null) {
-        marker = new L.marker([lat, lng], { icon: firefoxIcon }).addTo(mcg).bindPopup('कोड: ' + '<font color="red">' + code + '</font>' + '<br>' +   
+        marker = new L.marker([lat, lng], { icon: firefoxIcon }).addTo(mcg).bindPopup('कोड: ' + '<font color="red">' + code + '</font>' + '<br>' +
             'जिल्ला: ' + '<font color="orange">' + district + '</font>' + '<br>' +
             'स्थानीय तह: ' + '<font color="blue">' + locallevel + '</font>' + '<br>',
             {

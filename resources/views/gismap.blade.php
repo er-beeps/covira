@@ -129,7 +129,6 @@
 
 
 <script src="{{asset('js/dependentdropdown.js') }}"></script>
-<script src="{{asset('js/accordion.js') }}"></script>
 <script src="{{ asset('/gismap/js/oms.min.js') }}"></script>
 <script src="{{ asset('/gismap/js/leaflet-src.js') }}"></script>
 

@@ -122,7 +122,7 @@ return [
     // JS files that are loaded in all pages, using Laravel's asset() helper
     'scripts' => [
         // Backstrap includes jQuery, Bootstrap, CoreUI, PNotify, Popper
-        'https://code.jquery.com/jquery-3.4.1.min.js',
+        'js/jquery-3.5.1.min.js',
         'packages/backpack/base/js/bundle.js',
         'js/datePicker.js',
         'js/nepali.datepicker.v2.2.min.js',

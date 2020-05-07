@@ -8,7 +8,9 @@ function initMap() {
     var oms = new OverlappingMarkerSpiderfier(map1, {
         markersWontMove: true,
         markersWontHide: true,
-        basicFormatEvents: true
+        basicFormatEvents: true,
+        keepSpiderfied: true,
+        circleSpiralSwitchover: 2
     });
     var markers = [];
     for (var x in json) {
