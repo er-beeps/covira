@@ -12,6 +12,16 @@ Route::get('api/district/{province_id}', 'App\Http\Controllers\api\ProvinceDistr
 Route::get('api/locallevel/{district_id}', 'App\Http\Controllers\api\DistrictLocalLevelController@index');
 
 Route::group([
+    'middleware' => ['web'],
+    'namespace'  => 'App\Http\Controllers\Admin',
+], function () {
+
+    Route::crud('response', 'ResponseCrudController');
+    Route::put('response/{response_id}/nextstep', 'ResponseCrudController@nextstep');
+    Route::get('response/{response_id}/backstep', 'ResponseCrudController@backstep');
+});
+
+Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],
     'namespace'  => 'App\Http\Controllers\Admin',
@@ -33,7 +43,6 @@ Route::group([
     Route::crud('prquarantinecenter', 'PrQuarantineCenterCrudController');
     Route::crud('prfactor', 'PrFactorCrudController');
     Route::crud('practivity', 'PrActivityCrudController');
-
 
     Route::crud('response', 'ResponseCrudController');
     Route::put('response/{response_id}/nextstep', 'ResponseCrudController@nextstep');

@@ -1,17 +1,11 @@
 #map {
-    height: 500px;
-    border-radius: 14px;
-    /* top: 50px; */
+    height: 410px;
+    border-radius: 10px;
 }
 
-/* Set the size of the div element that contains the map */
-
 #map1 {
-    height: 500px;
-    border-radius: 14px;
-    /* top: 50px; */
-    /* The height is 400 pixels */
-    /* The width is the width of the web page */
+    height: 410px;
+    border-radius: 10px;
 }
 
 html, body {
@@ -31,12 +25,12 @@ html, body {
     font-weight: bold;
 }
 
-#activity {
+#open_street {
     margin-top: 0;
     width: 100%;
 }
 
-#timeline {
+#google_map {
     margin-top: 0%;
     width: 100%;
 }

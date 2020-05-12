@@ -77,7 +77,7 @@ trait CreateOperation
      */
     public function create()
     {
-        $this->crud->hasAccessOrFail('create');
+        // $this->crud->hasAccessOrFail('create');
 
         // prepare the fields you need to show
         $this->data['crud'] = $this->crud;
@@ -103,13 +103,13 @@ trait CreateOperation
      */
     public function store()
     {
-        $this->crud->hasAccessOrFail('create');
+        // $this->crud->hasAccessOrFail('create');
         $this->crud->setOperation('create');
 
         $request = $this->crud->validateRequest();
 
-        $user_id = backpack_user()->id;
-        $request->request->set('created_by', $user_id);
+        // $user_id = backpack_user()->id;
+        // $request->request->set('created_by', $user_id);
 
         if($request->has('code')){
             if(trim($request->get('code')) == ''){

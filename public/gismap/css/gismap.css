@@ -12,15 +12,7 @@
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 
-.active, .accordion:hover {
-    background-color: #ccc;
-}
-
 /* Style the accordion panel. Note: hidden by default */
-
-.active, #timeline {
-    background-color: #cccccc1a;
-}
 
 .panel {
     padding-top: 15px;
@@ -42,30 +34,65 @@
 
 .nav-tabs>li>a {
     display: inline-flex;
-    margin-top: 7px;
+    margin: 0px 3px;
+}
+
+.nav-tabs>li>a img {
+    height: 22px;
+    width: 22px;
+    margin-top: 0px;
+    margin-bottom: 4px;
 }
 
 .nav-tabs li a:hover {
     background: #28cf79;
     color: #fff;
-    border: none;
-    border-radius: 5px;
+    border: 1px dotted black;
+    border-radius: 50%;
     padding: 2px;
+    height: 27px;
 }
 
 .nav-tabs li a.active {
-    background-color: #fa9746;
-    border-radius: 5px;
+    background-color: #df5210;
+    border-radius: 50%;
     padding: 2px;
-    border:1px solid gray;
+    border: 1px dotted black;
+    height: 27px;
+    padding-bottom: 4px;
 }
 
 .map-tab {
-    background-color: white;
+    background-color: lightgray;
     width: fit-content;
-    border-radius: 15px;
-    padding-bottom: 20px;
-}
-.card-header{
     border-radius: 5px;
+    height: 27px;
+}
+
+div.card-header.map-card-header, .map-tab {
+    height: 27px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.div.map-card-header {
+    background-color: #444;
+}
+
+.side-card, .head-card, .card-body {
+    border-radius: 20px;
+}
+
+.tab-content {
+    padding: 1px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.card {
+    border: none;
+}
+
+.tab-content .tab-pane{
+    padding:5px;
 }

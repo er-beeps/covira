@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('admin/gismap', 'GisMapController@index');
+Route::get('/', 'GisMapController@index');
+Route::get('/gismap', 'GisMapController@index');
+Route::get('/admin/gismap', 'GisMapController@index');
+Route::get('/home', 'GisMapController@index');
 Route::get('/district/{id}', 'DependentDropdownController@getdistrict');
 Route::get('/local_level/{id}', 'DependentDropdownController@getlocal_level');

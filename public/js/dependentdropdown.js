@@ -8,6 +8,9 @@ $(document).ready(function () {
             return null;
         }
     }
+    $('#district').append('<option value="">--जिल्ला--</option>');
+    $('#local_level').append('<option value="">--स्थानीय तह--</option>');
+
     $('#province').on('change', function () {
         var stateID = $(this).val();
 

@@ -1,9 +1,10 @@
 var map = L.map(document.getElementById('map'), {
     closePopupOnClick: false,
     maxZoom: 20,
+    zoomSnap: 0.25,
     fullscreenControl: true
 
-}).setView([28.35, 84.25], 7);
+}).setView([28.35, 84.25], 6.8);
 map.on('layeradd', function (event) {
     var layer = event.layer;
     if (layer instanceof L.Marker && !(layer instanceof L.MarkerCluster)) {
@@ -51,5 +52,5 @@ for (var x in json) {
 mcg.addTo(map);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
