@@ -31,15 +31,17 @@
 <div class="row">
 	<div class="{{ $crud->getCreateContentClass() }}">
 		<!-- Default box -->
-
 		@include('crud::inc.grouped_errors')
 
-		  <form method="post"
-		  		action="{{ url($crud->route) }}"
-				@if ($crud->hasUploadFields('create'))
-				enctype="multipart/form-data"
-				@endif
-		  		>
+		@if(backpack_user())
+		  <form method="post" action="{{ url($crud->route) }}"
+				@if ($crud->hasUploadFields('create')) enctype="multipart/form-data"
+				@endif>
+		@else
+		  <form method="post" action="{{ url('/response/store') }}"
+				@if ($crud->hasUploadFields('create')) enctype="multipart/form-data"
+				@endif>
+		@endif
 			  {!! csrf_field() !!}
 
 		      <!-- load the view from the application if it exists, otherwise load the one in the package -->
@@ -48,8 +50,11 @@
 		      @else
 		      	@include('crud::form_content', [ 'fields' => $crud->fields(), 'action' => 'create' ])
 		      @endif
-
-	          @include('crud::inc.form_save_buttons')
+				@if(backpack_user())
+				  	@include('crud::inc.form_save_buttons')
+				@else
+					@include('crud::inc.custom_form_save_button')
+				@endif
 		  </form>
 	</div>
 </div>

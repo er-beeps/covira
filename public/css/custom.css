@@ -267,3 +267,30 @@ td p {
     background: white;
     box-shadow: 0px 0px 5px 1px #ddd9d9;
 }
+
+.nepal_data_table tr td.title {
+    font-size: 13px;
+    font-weight: 550;
+}
+
+.nepal_data_table tr td.data {
+    font-size: 16px;
+    font-weight: 600;
+    float: right;
+}
+
+.setting_table tr td.title {
+    font-size: 13px;
+    font-weight: 550;
+}
+
+.setting_table tr td.toggle_btn {
+    float: right;
+}
+.toggle.ios, .toggle-on.ios, .toggle-off.ios {
+    border-radius: 20px;
+}
+
+.toggle.ios .toggle-handle {
+    border-radius: 20px;
+}

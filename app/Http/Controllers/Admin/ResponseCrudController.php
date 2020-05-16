@@ -30,6 +30,7 @@ class ResponseCrudController extends BaseCrudController
         $this->crud->setEntityNameStrings('Response', 'Response');
         $this->data['script_js'] = $this->getScripsJs();
 
+
         $mode = $this->crud->getActionMethod();
 
         if (in_array($mode,['edit','update'])){
@@ -1073,10 +1074,8 @@ class ResponseCrudController extends BaseCrudController
     
     public function store()
     {
-          $this->crud->hasAccessOrFail('create');
-
+        // $this->crud->hasAccessOrFail('create');
          $request = $this->crud->validateRequest();
-         
         // execute the FormRequest authorization and validation, if one is required
          if ($request->has('code')) {
             $query = $this->crud->model->latest('code')->first();
@@ -1088,11 +1087,15 @@ class ResponseCrudController extends BaseCrudController
             request()->request->set('code', $code);
         }
 
+        if(!backpack_user()){
+            $this->saveRequest($request);
+        }else{
+
            // insert item in the db
         DB::beginTransaction();
         try {
+            dd($this->crud->getStrippedSaveRequest());
             $item = $this->crud->create($this->crud->getStrippedSaveRequest());
-            // dd($item);
             $this->data['entry'] = $this->crud->entry = $item;
     
             //getting first process step for process type-bill
@@ -1109,14 +1112,58 @@ class ResponseCrudController extends BaseCrudController
             DB::rollback();
             dd($th);
         }
+        
 
             // show a success message
         \Alert::success(trans('Data Submitted Successfully'))->flash();
         return redirect(backpack_url('/response').'/'.$item->id.'/edit');
 
         // save the redirect choice for next time
-        $this->crud->setSaveAction();
+        // $this->crud->setSaveAction();
 
         return $this->crud->performSaveAction($item->getKey());
+    }
+    }
+
+    public function saveRequest($request){
+        $dataSet= [
+        'code' => $request->code,
+        'name_en' => $request->name_en,
+        'name_lc' => $request->name_lc,
+        'gender_id' => $request->gender_id,
+        'education_id' => $request->education_id,
+        'profession_id' => $request->profession_id,
+        'email' => $request->email,
+        'province_id' => $request->province_id,
+        'district_id' => $request->district_id,
+        'local_level_id' => $request->local_level_id,
+        'ward_number' => $request->ward_number,
+        'gps_lat' => $request->gps_lat,
+        'gps_long' => $request->gps_long,
+        'remarks' => $request->remarks,
+        ];
+
+        DB::beginTransaction();
+        try {
+            
+            $itemId = DB::table('response')->insertGetId($dataSet);
+            //getting first process step for process type-bill
+            $firstProcessStep = ProcessSteps::whereIsFirstStep(true)->first();
+
+            //Updating the PsBill for process event
+            Response::whereId($itemId)->update([
+                'process_step_id' => 2,
+            ]);
+
+            DB::commit();
+
+        } catch (\Throwable $th) {
+            DB::rollback();
+            dd($th);
+        }
+
+         \Alert::success(trans('Data Submitted Successfully'))->flash();
+        return redirect(url('/response/').$itemId.'/edit');
+
     }
 }

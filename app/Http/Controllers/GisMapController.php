@@ -33,6 +33,15 @@ class GisMapController extends Controller
                 LEFT JOIN mst_fed_province pr ON d.province_id = pr.id
                 ";
 
+        $nepal_covid_data = DB::table('covid_details_nepal')
+                                ->select('*')
+                                ->get();
+
+         if($nepal_covid_data->count()>0){
+            $nepal_covid_data = $nepal_covid_data->first();
+        }                       
+                               
+
 //search criteria
 $params = [];
 $wheres = [];
@@ -81,7 +90,7 @@ if ($request->all() != null) {
     }
 
 
-    return view('gismap', compact('markers','area_province','gps', 'selected_params'));   
+    return view('gismap', compact('markers','area_province','gps', 'nepal_covid_data','selected_params'));   
     }
 }
 

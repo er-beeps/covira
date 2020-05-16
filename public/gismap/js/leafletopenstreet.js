@@ -1,10 +1,10 @@
 var map = L.map(document.getElementById('map'), {
     closePopupOnClick: false,
     maxZoom: 20,
-    zoomSnap: 0.25,
+    zoomSnap: 0.10,
     fullscreenControl: true
 
-}).setView([28.35, 84.25], 6.8);
+}).setView([28.45, 83.50], 6.8);
 map.on('layeradd', function (event) {
     var layer = event.layer;
     if (layer instanceof L.Marker && !(layer instanceof L.MarkerCluster)) {
@@ -12,11 +12,11 @@ map.on('layeradd', function (event) {
     }
 });
 var mcg = L.markerClusterGroup(
-    // {
-    //     spiderfyOnMaxZoom: false,
-    //     showCoverageOnHover: false,
-    //     zoomToBoundsOnClick: false
-    // }
+    {
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: true,
+        zoomToBoundsOnClick: true
+    }
 );
 var markers = [];
 

@@ -41,3 +41,4 @@
 {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('respondantdata') }}'><i class='nav-icon fa fa-question'></i> RespondantDatas</a></li> --}}
 {{-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('stepmaster') }}'><i class='nav-icon fa fa-question'></i> StepMasters</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('processsteps') }}'><i class='nav-icon fa fa-question'></i> ProcessSteps</a></li> --}}
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('nepaldatacovid') }}'><i class='nav-icon fa fa-question'></i> NepalDataCovids</a></li>

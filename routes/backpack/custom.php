@@ -17,8 +17,10 @@ Route::group([
 ], function () {
 
     Route::crud('response', 'ResponseCrudController');
+    Route::post('/response/store', 'ResponseCrudController@store');
     Route::put('response/{response_id}/nextstep', 'ResponseCrudController@nextstep');
     Route::get('response/{response_id}/backstep', 'ResponseCrudController@backstep');
+    Route::crud('respondantdata', 'RespondentDataCrudController');
 });
 
 Route::group([
@@ -52,4 +54,5 @@ Route::group([
 
     // Route::crud('stepmaster', 'StepMasterCrudController');
     // Route::crud('processsteps', 'ProcessStepsCrudController');
+    Route::crud('nepaldatacovid', 'NepalDataCovidCrudController');
 }); // this should be the absolute last line of this file

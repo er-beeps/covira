@@ -19,3 +19,8 @@ Route::get('/admin/gismap', 'GisMapController@index');
 Route::get('/home', 'GisMapController@index');
 Route::get('/district/{id}', 'DependentDropdownController@getdistrict');
 Route::get('/local_level/{id}', 'DependentDropdownController@getlocal_level');
+Route::post('/response/store', 'Admin\ResponseCrudController@store');
+
+    Route::put('/admin/response/{response_id}/nextstep', 'Admin\ResponseCrudController@nextstep');
+    Route::get('/admin/response/{response_id}/backstep', 'Admin\ResponseCrudController@backstep');
+    Route::crud('/admin/respondantdata', 'Admin\RespondentDataCrudController');
