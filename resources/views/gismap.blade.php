@@ -161,27 +161,27 @@
                         <table class="nepal_data_table" style="margin-left:-20px; font-size:14px;">
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:orange; font-weight:bolder"> &nbsp;</i> कुल संक्रमित</td>
-                                <td class="data"> {{$nepal_covid_data->total_affected}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_affected ?? '0'}}</td>
                             </tr>
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:green; font-weight:bolder"> &nbsp;</i> निको भएका</td>
-                                <td class="data"> {{$nepal_covid_data->total_recovered}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_recovered ?? '0'}}</td>
                             </tr>
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:gray; font-weight:bolder"> &nbsp;</i>आईसोलेसनमा बसेका </td>
-                                <td class="data"> {{$nepal_covid_data->total_isolation}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_isolation ?? '0'}}</td>
                             </tr>
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:red; font-weight:bolder"> &nbsp;</i>मृत्यु</td>
-                                <td class="data"> {{$nepal_covid_data->total_death}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_death ?? '0'}}</td>
                             </tr>
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:rgb(203, 71, 226); font-weight:bolder"> &nbsp;</i>कुल स्वाब परिक्षण गरिएको</td>
-                                <td class="data"> {{$nepal_covid_data->total_swab_test}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_swab_test ?? '0'}}</td>
                             </tr>
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:blue; font-weight:bolder"> &nbsp;</i>क्वारेन्टाईनमा बसेका</td>
-                                <td class="data"> {{$nepal_covid_data->total_quarantine}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_quarantine ?? '0'}}</td>
                             </tr>
                     </table>
                 </div>
