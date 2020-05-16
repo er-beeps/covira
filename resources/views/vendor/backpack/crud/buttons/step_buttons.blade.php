@@ -1,5 +1,9 @@
 @if(isset($back_btn) && ($current_step_id > 1 && $current_step_id <= 3))
-    <a  href= "{{backpack_url('response/'.$entry->getKey().'/backstep')}}" class="btn btn-primary btn-back" data-process = "backstep"><i class="fa fa-angle-left"></i>{{ trans('Go Back') }}</a>
+    @if(backpack_user())
+        <a  href= "{{backpack_url('response/'.$entry->getKey().'/backstep')}}" class="btn btn-primary btn-back" data-process = "backstep"><i class="fa fa-angle-left"></i>{{ trans('Go Back') }}</a>
+    @else
+        <a  href= "{{url('/response'.'/'.$entry->getKey().'/backstep')}}" class="btn btn-primary btn-back" data-process = "backstep"><i class="fa fa-angle-left"></i>{{ trans('Go Back') }}</a>
+    @endif
 @endif  
 
 @if(isset($current_step_id) && ($current_step_id < 3))

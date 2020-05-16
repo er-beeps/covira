@@ -31,25 +31,38 @@
 		<!-- Default box -->
 
 		@include('crud::inc.grouped_errors')
+		@if(backpack_user())
+			@if($crud->getRoute() == 'admin/response') 
+				@if(isset($next_btn))
 
-		@if($crud->getRoute() == 'admin/response') 
-			@if(isset($next_btn))
-
-			 <form method="post"
-		  		action="{{ backpack_url('response/'.$entry->getKey().'/nextstep') }}"
-				@if ($crud->hasUploadFields('update', $entry->getKey()))
-				enctype="multipart/form-data"
+					<form method="post"
+						action="{{ backpack_url('response/'.$entry->getKey().'/nextstep') }}"
+						@if ($crud->hasUploadFields('update', $entry->getKey()))
+						enctype="multipart/form-data"
+						@endif
+						>
 				@endif
-				  >
+			@else
+				<form method="post"
+					action="{{ url($crud->route.'/'.$entry->getKey()) }}"
+					@if ($crud->hasUploadFields('update', $entry->getKey()))
+					enctype="multipart/form-data"
+					@endif
+					>
 			@endif
-		@endif		  
+		@else
+			@if(isset($next_btn))
+				<form method="post"
+					action="{{ url('/response'.'/'.$entry->getKey().'/nextstep') }}"
+					@if ($crud->hasUploadFields('update', $entry->getKey()))
+					enctype="multipart/form-data"
+					@endif
+					>
+			@endif		
+		@endif		
+			  
 
-		  <form method="post"
-		  		action="{{ url($crud->route.'/'.$entry->getKey()) }}"
-				@if ($crud->hasUploadFields('update', $entry->getKey()))
-				enctype="multipart/form-data"
-				@endif
-		  		>
+		 
 		  {!! csrf_field() !!}
 		  {!! method_field('PUT') !!}
 

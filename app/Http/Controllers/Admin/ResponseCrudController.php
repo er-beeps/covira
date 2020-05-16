@@ -90,7 +90,9 @@ class ResponseCrudController extends BaseCrudController
                 $('.toBeHidden2').show();
                 $('.legend2').show();
                 $('.form-control').prop('disabled',true);
+                $('form input[type=checkbox]').prop('disabled', true);
             }
+
 //js for gismap
 
             changeLatDecimalToDegree();
@@ -1061,14 +1063,23 @@ class ResponseCrudController extends BaseCrudController
     $request = $this->crud->validateRequest();
     ResponseProcessHelper::updateProcess($id, $request,'next');
 
-    return redirect(backpack_url('/response').'/'.$id.'/edit');
+    if(backpack_user()){
+        return redirect(backpack_url('/response').'/'.$id.'/edit');
+    }else{
+        return redirect(url('/response').'/'.$id.'/edit');
+    }
+
     }
 
     public function backstep($id){
      
     ResponseProcessHelper::updateProcess($id,$request=NULL,'back');
 
-    return redirect(backpack_url('/response').'/'.$id.'/edit');
+    if(backpack_user()){
+        return redirect(backpack_url('/response').'/'.$id.'/edit');
+    }else{
+        return redirect(url('/response').'/'.$id.'/edit');
+    }
     }
 
     
@@ -1088,41 +1099,38 @@ class ResponseCrudController extends BaseCrudController
         }
 
         if(!backpack_user()){
-            $this->saveRequest($request);
+            $itemId = $this->saveRequest($request);
+            \Alert::success(trans('Data Submitted Successfully'))->flash();
+            return redirect(url('/response').'/'.$itemId.'/edit');
         }else{
 
            // insert item in the db
-        DB::beginTransaction();
-        try {
-            dd($this->crud->getStrippedSaveRequest());
-            $item = $this->crud->create($this->crud->getStrippedSaveRequest());
-            $this->data['entry'] = $this->crud->entry = $item;
-    
-            //getting first process step for process type-bill
-            $firstProcessStep = ProcessSteps::whereIsFirstStep(true)->first();
+            DB::beginTransaction();
+            try {
+                dd($this->crud->getStrippedSaveRequest());
+                $item = $this->crud->create($this->crud->getStrippedSaveRequest());
+                $this->data['entry'] = $this->crud->entry = $item;
 
-            //Updating the PsBill for process event
-            Response::whereId($item->id)->update([
-                'process_step_id' => 2,
-            ]);
-
-            DB::commit();
-
-        } catch (\Throwable $th) {
-            DB::rollback();
-            dd($th);
-        }
+                $itemId = $item->id;
         
+                //getting first process step for process type-bill
+                $firstProcessStep = ProcessSteps::whereIsFirstStep(true)->first();
 
-            // show a success message
-        \Alert::success(trans('Data Submitted Successfully'))->flash();
-        return redirect(backpack_url('/response').'/'.$item->id.'/edit');
+                //Updating the PsBill for process event
+                Response::whereId($itemId)->update([
+                    'process_step_id' => 2,
+                ]);
 
-        // save the redirect choice for next time
-        // $this->crud->setSaveAction();
+                DB::commit();
 
-        return $this->crud->performSaveAction($item->getKey());
-    }
+            } catch (\Throwable $th) {
+                DB::rollback();
+                dd($th);
+            }
+                // show a success message
+            \Alert::success(trans('Data Submitted Successfully'))->flash();
+            return redirect(backpack_url('/response').'/'.$itemId.'/edit');
+        }
     }
 
     public function saveRequest($request){
@@ -1162,8 +1170,7 @@ class ResponseCrudController extends BaseCrudController
             dd($th);
         }
 
-         \Alert::success(trans('Data Submitted Successfully'))->flash();
-        return redirect(url('/response/').$itemId.'/edit');
+        return $itemId;
 
     }
 }
