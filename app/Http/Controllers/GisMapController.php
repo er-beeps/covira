@@ -40,7 +40,7 @@ class GisMapController extends Controller
          if($nepal_covid_data->count()>0){
             $nepal_covid_data = $nepal_covid_data->first();
         }                       
-                               
+
 
 //search criteria
 $params = [];

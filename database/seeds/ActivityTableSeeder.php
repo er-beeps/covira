@@ -36,7 +36,8 @@ class ActivityTableSeeder extends Seeder
               array('id' => 15, 'code' => '15', 'name_en' => 'Kidney related problem', 'name_lc' => 'Kidney related problem','factor_id' => 4 ,'weight_factor' => 90),
               array('id' => 16, 'code' => '16', 'name_en' => 'Tuberculosis', 'name_lc' => 'Tuberculosis','factor_id' => 4 ,'weight_factor' => 40),
               array('id' => 17, 'code' => '17', 'name_en' => 'Cancer(including treated within 3 years)', 'name_lc' => 'Cancer(including treated within 3 years)','factor_id' => 4 ,'weight_factor' => 54),
-              array('id' => 18, 'code' => '18', 'name_en' => 'None', 'name_lc' => 'None','factor_id' => 4 ,'weight_factor' => 0),
+              array('id' => 18, 'code' => '18', 'name_en' => 'Diabetes', 'name_lc' => 'Diabetes','factor_id' => 4 ,'weight_factor' => 69),
+
 
               array('id' => 19, 'code' => '19', 'name_en' => 'High fever', 'name_lc' => 'High fever','factor_id' => 5 ,'weight_factor' => 100),
               array('id' => 20, 'code' => '20', 'name_en' => 'Dry cough', 'name_lc' => 'Dry cough','factor_id' => 5 ,'weight_factor' => 87),
@@ -122,7 +123,7 @@ class ActivityTableSeeder extends Seeder
               array('id' => 84, 'code' => '84', 'name_en' => '3 months', 'name_lc' => '3 months','factor_id' => 22,'weight_factor' => 0),
               array('id' => 85, 'code' => '85', 'name_en' => '1 year', 'name_lc' => '1 year','factor_id' => 22,'weight_factor' => 0),
 
-              array('id' => 86, 'code' => '86', 'name_en' => 'Diabetes', 'name_lc' => 'Diabetes','factor_id' => 4 ,'weight_factor' => 69),
+              array('id' => 86, 'code' => '86', 'name_en' => 'None', 'name_lc' => 'None','factor_id' => 4 ,'weight_factor' => 0),
               array('id' => 87, 'code' => '87', 'name_en' => 'Hypertension', 'name_lc' => 'Hypertension','factor_id' => 4 ,'weight_factor' => 54),
               array('id' => 88, 'code' => '88', 'name_en' => 'Obesity', 'name_lc' => 'Obesity','factor_id' => 4 ,'weight_factor' => 54),
               array('id' => 89, 'code' => '89', 'name_en' => 'Cerebrovascular disease', 'name_lc' => 'Cerebrovascular disease','factor_id' => 4 ,'weight_factor' => 48),
