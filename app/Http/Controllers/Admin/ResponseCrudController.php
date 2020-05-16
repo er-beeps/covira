@@ -1076,10 +1076,10 @@ class ResponseCrudController extends BaseCrudController
     $response = Response::whereId($id)->get()->toArray();
     $process_step_id = $response[0]['process_step_id'];
 
-        // if($process_step_id == 4){
-        //     $risk_calculation = new RiskCalculationHelper();
-        //     $risk_calculation->calculate_risk($id);
-        // }
+        if($process_step_id == 4){
+            $risk_calculation = new RiskCalculationHelper();
+            $risk_calculation->calculate_risk($id);
+        }
 
         if(backpack_user()){
             return redirect(backpack_url('/response').'/'.$id.'/edit');
