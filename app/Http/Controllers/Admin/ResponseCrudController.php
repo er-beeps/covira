@@ -1107,7 +1107,6 @@ class ResponseCrudController extends BaseCrudController
            // insert item in the db
             DB::beginTransaction();
             try {
-                dd($this->crud->getStrippedSaveRequest());
                 $item = $this->crud->create($this->crud->getStrippedSaveRequest());
                 $this->data['entry'] = $this->crud->entry = $item;
 
