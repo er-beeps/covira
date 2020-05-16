@@ -93,7 +93,7 @@
                                             <a href="{{url('/')}}" type="reset" class="btn btn-warning btn-sm" style="margin: 0px 13px;"><i class="fa fa-refresh"></i> Reset</a>
                                         </div>
                                         <div class="form-inline">
-                                                <a href="response/create" class="btn btn-success btn-sm" style="margin-left:0px; float:right">Assess your risk</a>
+                                                <a href="fill_response/create" class="btn btn-success btn-sm" style="margin-left:0px; float:right">Assess your risk</a>
                                         </div>
                                     </div>
                                 </div>    

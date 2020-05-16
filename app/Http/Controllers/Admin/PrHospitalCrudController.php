@@ -214,7 +214,7 @@ class PrHospitalCrudController extends BaseCrudController
             [
                 'name' => 'separater1',
                 'type' => 'custom_html',
-                'value' => '<h4><b><span style="position: relative; top:23px;">Latitude :</span></b></h4>',
+                'value' => '<h5><b><span style="position: relative; top:23px;">Latitude :</span></b></h5>',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-2',
                 ],
@@ -281,7 +281,7 @@ class PrHospitalCrudController extends BaseCrudController
             [
                 'name' => 'separater2',
                 'type' => 'custom_html',
-                'value' => '<h4><b><span style="position: relative; top:23px;">Longitude :</span></b></h4>',
+                'value' => '<h5><b><span style="position: relative; top:23px;">Longitude :</span></b></h5>',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-2',
                 ],

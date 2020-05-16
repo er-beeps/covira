@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Response;
 use App\Models\PrActivity;
 use App\Models\StepMaster;
-use App\Base\Helpers\ResponseProcessHelper;
 use App\Models\ProcessSteps;
 use App\Base\Traits\ParentData;
 use App\Base\BaseCrudController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ResponseRequest;
+use App\Base\Helpers\ResponseProcessHelper;
+use App\Base\Helpers\RiskCalculationHelper;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -204,7 +205,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'text',
                 'label' => trans('Name'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4 toBeHidden',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
             [
@@ -212,8 +213,17 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'text',
                 'label' => trans('नाम'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4 toBeHidden',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
+            ],
+            [
+                'name' => 'age',
+                'type' => 'number',
+                'label' => trans('उमेर'),
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6 toBeHidden',
+                ],
+                'suffix' => 'बर्ष',
             ],
 
             [
@@ -224,7 +234,7 @@ class ResponseCrudController extends BaseCrudController
                 'model'=>'App\Models\MstGender',
                 'attribute'=>'name_lc',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4 toBeHidden',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
 
@@ -1063,12 +1073,18 @@ class ResponseCrudController extends BaseCrudController
     $request = $this->crud->validateRequest();
     ResponseProcessHelper::updateProcess($id, $request,'next');
 
-    if(backpack_user()){
-        return redirect(backpack_url('/response').'/'.$id.'/edit');
-    }else{
-        return redirect(url('/response').'/'.$id.'/edit');
-    }
+    $response = Response::whereId($id)->get()->toArray();
+    $process_step_id = $response[0]['process_step_id'];
+        if($process_step_id == 4){
+            $risk_calculation = new RiskCalculationHelper();
+            $risk_calculation->calculate_risk($id);
+        }
 
+        if(backpack_user()){
+            return redirect(backpack_url('/response').'/'.$id.'/edit');
+        }else{
+            return redirect(url('/fill_response').'/'.$id.'/edit');
+        }
     }
 
     public function backstep($id){
@@ -1078,7 +1094,7 @@ class ResponseCrudController extends BaseCrudController
     if(backpack_user()){
         return redirect(backpack_url('/response').'/'.$id.'/edit');
     }else{
-        return redirect(url('/response').'/'.$id.'/edit');
+        return redirect(url('/fill_response').'/'.$id.'/edit');
     }
     }
 
@@ -1101,7 +1117,7 @@ class ResponseCrudController extends BaseCrudController
         if(!backpack_user()){
             $itemId = $this->saveRequest($request);
             \Alert::success(trans('Data Submitted Successfully'))->flash();
-            return redirect(url('/response').'/'.$itemId.'/edit');
+            return redirect(url('/fill_response').'/'.$itemId.'/edit');
         }else{
 
            // insert item in the db
@@ -1137,6 +1153,7 @@ class ResponseCrudController extends BaseCrudController
         'code' => $request->code,
         'name_en' => $request->name_en,
         'name_lc' => $request->name_lc,
+        'age' => $request->age,
         'gender_id' => $request->gender_id,
         'education_id' => $request->education_id,
         'profession_id' => $request->profession_id,

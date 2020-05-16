@@ -20,6 +20,7 @@ class CreateResponseTable extends Migration
             $table->string('name_en',200);
             $table->string('name_lc',200);
             $table->unsignedSmallInteger('gender_id');
+            $table->unsignedSmallInteger('age');
             $table->string('email')->nullable();
             $table->unsignedSmallInteger('province_id');
             $table->unsignedSmallInteger('district_id');

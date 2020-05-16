@@ -9,9 +9,9 @@
             position: relative;
             border: 1px solid gray;
             border-radius: 25px;
-            left: 150px;
+            left: 100px;
             height: 450px;
-            width: 800px;
+            width: 700px;
       }
 </style>
 

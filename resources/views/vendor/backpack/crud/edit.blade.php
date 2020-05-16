@@ -14,8 +14,12 @@
 @section('header')
 	<section class="container-fluid">
 	  <h2>
-		@if ($crud->hasAccess('list'))
-		<small><a href="{{ url($crud->route) }}" class="hidden-print back-btn"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }}</a></small>
+		@if(backpack_user()) 
+			@if ($crud->hasAccess('list'))
+			<small><a href="{{ url($crud->route) }}" class="hidden-print back-btn"><i class="fa fa-angle-double-left"></i> {{ trans('backpack::crud.back_to_all') }}</a></small>
+			@endif
+		@else
+			<small><a href="{{ url('/') }}" class="hidden-print back-btn"><i class="fa fa-angle-double-left"></i> {{ trans('Back to dashboard') }}</a></small>
 		@endif
 		<br>
         <span class="text-capitalize">{!! $crud->getHeading() ?? $crud->entity_name_plural !!}</span>
