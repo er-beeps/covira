@@ -16,7 +16,6 @@ Route::group([
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () {
 
-    Route::crud('response', 'ResponseCrudController');
     Route::post('/response/store', 'ResponseCrudController@store');
     Route::put('response/{response_id}/nextstep', 'ResponseCrudController@nextstep');
     Route::get('response/{response_id}/backstep', 'ResponseCrudController@backstep');
