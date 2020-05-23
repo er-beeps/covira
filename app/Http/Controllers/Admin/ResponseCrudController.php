@@ -226,8 +226,8 @@ class ResponseCrudController extends BaseCrudController
             ];
 
             $barometer = [
-                'name' => 'barometer',
-                'type' => 'barometer',
+                'name' => 'gauge',
+                'type' => 'gauge',
 
             ];
         }

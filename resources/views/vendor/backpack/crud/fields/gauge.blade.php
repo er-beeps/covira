@@ -1,7 +1,7 @@
 <script src="{{asset('js/gauge.js')}}"></script>
 
 <style>
-  #barometer{
+  #gauge{
     margin-left:15%;
   }
   .index{
@@ -37,7 +37,7 @@
     </table>
   </div>
 
-    <canvas id="barometer"></canvas>
+    <canvas id="gauge"></canvas>
   </div>
 
   <script type="text/javascript">
@@ -79,7 +79,7 @@
 
     };
 
-var target = document.getElementById('barometer');
+var target = document.getElementById('gauge');
 var gauge = new Gauge(target).setOptions(opts);
 gauge.maxValue = 100;
 gauge.setMinValue(0);
