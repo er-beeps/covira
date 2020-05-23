@@ -2,37 +2,56 @@
 
 <style>
   #gauge{
-    margin-left:15%;
+    margin-left:12%;
   }
   .index{
     margin-left: 10%;
   }
+  span.indicator-box {
+    margin-bottom:5px;
+    margin-right:5px;
+  }
+  .indicator-box{
+    width:15px;
+    height:15px;
+    margin:auto;
+    display: inline-block;
+    border:1px solid gray;
+    border-radius: 3px;
+  }
+  .indicator-label{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    font-weight:bold;
+    margin-bottom:5px;
+  }
+
   </style>
 
 <div @include('crud::inc.field_wrapper_attributes')>
   <div class="row">
 
   <div class = "index">
-    <table>
+    <table id ="index">
       <tr>
-        <td><span  class="indicator" style= "width: 15px; height: 15px; margin:auto; display:inline-block; background-color:green"></td>
-        <td>Very Low</td>
+        <td><span class="indicator-box" style= "background-color:green"></td>
+        <td><span class="indicator-label">Very Low</span></td>
       </tr>
       <tr>
-        <td><span class="indicator" style= "width: 15px; height: 15px; margin:auto; display:inline-block; background-color:#10b552"></td>
-        <td>Low</td>
+        <td><span class="indicator-box" style= "background-color:#10b552"></td>
+        <td><span class="indicator-label">Low</span></td>
       </tr>
       <tr>
-        <td><span class="indicator" style= "width: 15px; height: 15px; margin:auto; display:inline-block; background-color:yellow"></td>
-        <td>Moderate</td>
+        <td><span class="indicator-box" style= "background-color:yellow"></td>
+        <td><span class="indicator-label">Moderate</span></td>
       </tr>
       <tr>
-        <td><span class="indicator" style= "width: 15px; height: 15px; margin:auto; display:inline-block; background-color:red"></td>
-        <td>High</td>
+        <td><span class="indicator-box" style= "background-color:red"></td>
+        <td><span class="indicator-label">High</span></td>
       </tr>
       <tr>
-        <td><span class="indicator" style= "width: 15px; height: 15px; margin:auto; display:inline-block; background-color:darkred"></td>
-        <td>Very High</td>
+        <td><span class="indicator-box" style= "background-color:darkred"></td>
+        <td><span class="indicator-label">Very High</span></td>
       </tr>
     </table>
   </div>
@@ -83,7 +102,5 @@ var target = document.getElementById('gauge');
 var gauge = new Gauge(target).setOptions(opts);
 gauge.maxValue = 100;
 gauge.setMinValue(0);
-gauge.set(40);
-
 </script>
 </div>

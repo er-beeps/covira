@@ -9,7 +9,7 @@
             position: relative;
             border: 1px solid gray;
             border-radius: 25px;
-            left: 100px;
+            left: 22%;
             height: 450px;
             width: 700px;
             margin-bottom:30px;

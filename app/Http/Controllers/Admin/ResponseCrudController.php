@@ -93,8 +93,18 @@ class ResponseCrudController extends BaseCrudController
                 $('.toBeHidden2').show();
                 $('.legend2').show();
                 $('.form-control').prop('disabled',true);
-                $('form input[type=checkbox]').prop('disabled', true);
+                $('form input[type=checkbox]').prop('readonly', true);
+                $('form input[type=checkbox]').click(false);
+                $('#map').click(false);
             }
+
+            //update value in gauge
+            var ageRiskFactor = $('#age_risk_factor').val();
+            var covidRiskIndex = $('#covid_risk_index').val();
+            var probabilityOfCovidInfection = $('#probability_of_covid_infection').val();
+            gauge.set(covidRiskIndex);
+
+
 
             //js for autoloading lat and long from local_level
             $('#local_level_id').on('change',function(){
@@ -225,16 +235,42 @@ class ResponseCrudController extends BaseCrudController
                 ],
             ];
 
-            $barometer = [
+            $gauge = [
                 'name' => 'gauge',
                 'type' => 'gauge',
 
+            ];
+
+            $age_risk_factor = [
+                'name' => 'age_risk_factor',
+                'type' => 'hidden',
+                'attributes' => [
+                    'id' => 'age_risk_factor',
+                ]
+            ];
+             $covid_risk_index = [
+                'name' => 'covid_risk_index',
+                'type' => 'hidden',
+                'attributes' => [
+                    'id' => 'covid_risk_index',
+                ]
+            ];
+
+            $probability_of_covid_infection = [
+                'name' => 'probability_of_covid_infection',
+                'type' => 'hidden',
+                'attributes' => [
+                    'id' => 'probability_of_covid_infection',
+                ]
             ];
         }
 
         $arr = [
             $process_step_id,
-            $barometer,
+            $gauge,
+            $age_risk_factor,
+            $probability_of_covid_infection,
+            $covid_risk_index,
             $this->addReadOnlyCodeField(),
             [
                 'name' => 'legend1',

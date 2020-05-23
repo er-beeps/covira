@@ -287,10 +287,15 @@ td p {
 .setting_table tr td.toggle_btn {
     float: right;
 }
+
 .toggle.ios, .toggle-on.ios, .toggle-off.ios {
     border-radius: 20px;
 }
 
 .toggle.ios .toggle-handle {
     border-radius: 20px;
+}
+
+form input[type=checkbox][readonly] {
+    cursor: not-allowed;
 }
