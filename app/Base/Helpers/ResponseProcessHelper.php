@@ -30,7 +30,6 @@ class ResponseProcessHelper{
             $back_step_id = ProcessSteps::whereStepId($response->process_step_id)->first()->back_step_id; 
 
             $further_step_id = $step == 'back'? $back_step_id : $next_step_id;
-
 // dd($further_step_id);
 
             switch ($further_step_id){

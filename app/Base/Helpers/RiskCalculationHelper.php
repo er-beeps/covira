@@ -27,25 +27,50 @@ class RiskCalculationHelper{
 
         $respondant_data = RespondentData::whereResponseId($id)->get()->toArray();
 
-        $required_ids = [13,14,15,17,86,87,88,89];
+        $crf_ids = [13,14,15,17,86,87,88,89];
+        $activity_ids = [];
         foreach($respondant_data as $data){
-            if(in_array($data['activity_id'],$required_ids)){
+            if(in_array($data['activity_id'],$crf_ids)){
                 $activity_ids []=  $data['activity_id'];
             }
         }
         
 
-        $wieght_factor_values = PrActivity::whereIn('id',$activity_ids)
+        $weight_factor_values_for_crf = PrActivity::whereIn('id',$activity_ids)
                                 ->pluck('weight_factor')
                                 ->toArray();
 
-        $crf = array_sum($wieght_factor_values);
+        $crf = array_sum($weight_factor_values_for_crf);
 
     
         $total_covid_risk_index = $age_risk_factor*((1-$comorbidities_factor)+($comorbidities_factor*$crf/100));
-        dd($total_covid_risk_index);
 
+        $symptoms_ids = [19,20,22,23,24,25,26,27,28,29,90,91,92];
+        $activities_ids = [];
+        foreach($respondant_data as $d){
+                 if(in_array($d['activity_id'],$symptoms_ids)){
+                $activities_ids []=  $d['activity_id'];
+            }
+        }
 
+        $weight_factor_values_for_symptom = PrActivity::whereIn('id',$activities_ids)
+                                ->pluck('weight_factor')
+                                ->toArray();
+
+        $ss = array_sum($weight_factor_values_for_symptom);
+
+        $other_ids = [4,5];
+        $value [] = 0;
+        foreach($respondant_data as $d){
+            if(in_array($d['activity_id'],$other_ids)){
+                $value [] =  100;
+            }
+        }
+        $max_value = max($value);
+        
+        $probability_of_covid_infection = (0.8923*(0.41*$ss))+(0.1077*$max_value);
+
+        dd($probability_of_covid_infection);
 }
 
 }
