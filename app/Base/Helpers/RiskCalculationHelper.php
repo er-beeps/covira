@@ -29,9 +29,9 @@ class RiskCalculationHelper{
 
         $crf_ids = [13,14,15,17,86,87,88,89];
         $activity_ids = [];
-        foreach($respondant_data as $data){
-            if(in_array($data['activity_id'],$crf_ids)){
-                $activity_ids []=  $data['activity_id'];
+        foreach($respondant_data as $d){
+            if(in_array($d['activity_id'],$crf_ids)){
+                $activity_ids []=  $d['activity_id'];
             }
         }
         
@@ -70,7 +70,12 @@ class RiskCalculationHelper{
         
         $probability_of_covid_infection = (0.8923*(0.41*$ss))+(0.1077*$max_value);
 
-        dd($probability_of_covid_infection);
-}
+        $data = [
+            'age_risk_factor' => $age_risk_factor,
+            'covid_risk_index' => $total_covid_risk_index,
+            'probability_of_covid_infection' => $probability_of_covid_infection
+        ];
+            Response::whereId($id)->update($data);
+ }
 
 }

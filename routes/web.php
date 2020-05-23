@@ -23,4 +23,5 @@ Route::post('/response/store', 'Admin\ResponseCrudController@store');
 
     Route::put('/response/{response_id}/nextstep', 'Admin\ResponseCrudController@nextstep');
     Route::get('/response/{response_id}/backstep', 'Admin\ResponseCrudController@backstep');
+    Route::get('/response/getlatlong', 'Admin\ResponseCrudController@fetchLatLong');
     Route::crud('/respondantdata', 'Admin\RespondentDataCrudController');

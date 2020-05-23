@@ -12,6 +12,7 @@
             left: 100px;
             height: 450px;
             width: 700px;
+            margin-bottom:30px;
       }
 </style>
 

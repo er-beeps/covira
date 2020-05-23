@@ -6,6 +6,8 @@ use App\Models\Response;
 use App\Models\PrActivity;
 use App\Models\StepMaster;
 use App\Models\ProcessSteps;
+use Illuminate\Http\Request;
+use App\Models\MstLocalLevel;
 use App\Base\Traits\ParentData;
 use App\Base\BaseCrudController;
 use Illuminate\Support\Facades\DB;
@@ -94,7 +96,39 @@ class ResponseCrudController extends BaseCrudController
                 $('form input[type=checkbox]').prop('disabled', true);
             }
 
-//js for gismap
+            //js for autoloading lat and long from local_level
+            $('#local_level_id').on('change',function(){
+                var localLevelId = $('#local_level_id').val();
+                    if(localLevelId != null){
+                    $.ajax({
+                        type: 'GET',
+                        url: '/response/getlatlong',
+                        data: { localLevelId: localLevelId },
+                        success: function(response) {
+                            console.log(response);
+                            if(response.message == 'success'){
+                                $('#gps_lat').val(response.locallevel.gps_lat).trigger('change');
+                                $('#gps_long').val(response.locallevel.gps_long).trigger('change');
+                                changeLatDecimalToDegree();
+                                changeLongDecimalToDegree();
+                                updateMarkerByInputs();
+                            }
+                            else if(response.message == 'fail'){
+                                new Noty({
+                                    type: 'warning',
+                                    text: 'समस्या पर्यो'
+                                }).show();
+                            }
+                        },
+                        error: function(error) {}
+                    });
+                }else{
+                    $('#gps_lat').val('').trigger('change');
+                    $('#gps_long').val('').trigger('change');
+                }
+            });
+
+            //js for gismap
 
             changeLatDecimalToDegree();
             changeLongDecimalToDegree();
@@ -190,11 +224,18 @@ class ResponseCrudController extends BaseCrudController
                     'id' => 'process_step_id'
                 ],
             ];
+
+            $barometer = [
+                'name' => 'barometer',
+                'type' => 'barometer',
+
+            ];
         }
 
         $arr = [
-            $this->addReadOnlyCodeField(),
             $process_step_id,
+            $barometer,
+            $this->addReadOnlyCodeField(),
             [
                 'name' => 'legend1',
                 'type' => 'custom_html',
@@ -328,6 +369,9 @@ class ResponseCrudController extends BaseCrudController
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
+                'attributes' => [
+                    'id' => 'local_level_id',
+                ]
             ],
             [
                 'name'=>'ward_number',
@@ -1189,5 +1233,21 @@ class ResponseCrudController extends BaseCrudController
 
         return $itemId;
 
+    }
+
+    public function fetchLatLong(Request $request){
+        $localLevelId = $request->localLevelId;
+        
+        $locallevel = MstLocalLevel::find($localLevelId);
+         if($locallevel){
+            return response()->json([
+                'message' => 'success',
+                'locallevel' => $locallevel
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'fail',
+            ]);
+        }
     }
 }

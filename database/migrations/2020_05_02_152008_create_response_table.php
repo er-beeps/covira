@@ -48,7 +48,11 @@ class CreateResponseTable extends Migration
             $table->unsignedSmallInteger('commodity_price_difference')->nullable();										
             $table->unsignedSmallInteger('job_status')->nullable();										
             $table->unsignedSmallInteger('economic_impact')->nullable();										
-            $table->unsignedSmallInteger('sustainability_duration')->nullable();										
+            $table->unsignedSmallInteger('sustainability_duration')->nullable();
+
+            $table->float('age_risk_factor',5,3)->nullable();										
+            $table->float('covid_risk_index',5,3)->nullable();										
+            $table->float('probability_of_covid_infection',5,3)->nullable();										
 
             
             $table->timestamps();
