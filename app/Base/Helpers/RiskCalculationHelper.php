@@ -70,6 +70,13 @@ class RiskCalculationHelper{
         
         $probability_of_covid_infection = (0.8923*(0.41*$ss))+(0.1077*$max_value);
 
+        if($total_covid_risk_index > 100){
+            $total_covid_risk_index = 100;
+        }
+        if($probability_of_covid_infection > 100){
+            $probability_of_covid_infection = 100;
+        }
+
         $data = [
             'age_risk_factor' => $age_risk_factor,
             'covid_risk_index' => $total_covid_risk_index,

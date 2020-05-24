@@ -102,7 +102,8 @@ class ResponseCrudController extends BaseCrudController
             var ageRiskFactor = $('#age_risk_factor').val();
             var covidRiskIndex = $('#covid_risk_index').val();
             var probabilityOfCovidInfection = $('#probability_of_covid_infection').val();
-            gauge.set(covidRiskIndex);
+            cri_gauge.set(covidRiskIndex);
+            pci_gauge.set(probabilityOfCovidInfection);
 
 
 
@@ -225,7 +226,8 @@ class ResponseCrudController extends BaseCrudController
 
         $mode = $this->crud->getActionMethod();
         $process_step_id = NULL;
-        $gauge = NULL;
+        $cri_gauge = NULL;
+        $pci_gauge = NULL;
         $age_risk_factor = NULL;
         $covid_risk_index = NULL;
         $probability_of_covid_infection = NULL;
@@ -243,9 +245,20 @@ class ResponseCrudController extends BaseCrudController
 
             if($current_process_step_id == 4){
 
-            $gauge = [
-                'name' => 'gauge',
-                'type' => 'gauge',
+            $cri_gauge = [
+                'name' => 'cri_gauge',
+                'type' => 'cri_gauge',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
+
+            ];
+            $pci_gauge = [
+                'name' => 'pci_gauge',
+                'type' => 'pci_gauge',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
 
             ];
 
@@ -276,7 +289,8 @@ class ResponseCrudController extends BaseCrudController
 
         $arr = [
             $process_step_id,
-            $gauge,
+            $cri_gauge,
+            $pci_gauge,
             $age_risk_factor,
             $probability_of_covid_infection,
             $covid_risk_index,
