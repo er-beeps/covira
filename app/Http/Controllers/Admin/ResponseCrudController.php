@@ -222,10 +222,16 @@ class ResponseCrudController extends BaseCrudController
     protected function setupCreateOperation()
     {
         $this->crud->setValidation(ResponseRequest::class);
-        
+
         $mode = $this->crud->getActionMethod();
         $process_step_id = NULL;
+        $gauge = NULL;
+        $age_risk_factor = NULL;
+        $covid_risk_index = NULL;
+        $probability_of_covid_infection = NULL;
         if(in_array($mode,['edit','update'])){
+            $current_process_step_id  = Response::find($this->parent('id'))->process_step_id;
+
             $process_step_id = [
                 'name' => 'process_step_id',
                 'type' => 'hidden',
@@ -234,6 +240,8 @@ class ResponseCrudController extends BaseCrudController
                     'id' => 'process_step_id'
                 ],
             ];
+
+            if($current_process_step_id == 4){
 
             $gauge = [
                 'name' => 'gauge',
@@ -263,6 +271,7 @@ class ResponseCrudController extends BaseCrudController
                     'id' => 'probability_of_covid_infection',
                 ]
             ];
+        }
         }
 
         $arr = [
