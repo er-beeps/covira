@@ -9,7 +9,7 @@
 
 <div class="col-md-6">
     <div class="row">
-      <span class="pci_title">Probability of Covid Infection</span>
+      <span class="pci_title">Probability of COVID Infection</span>
     </div>
       
     <div class="row">

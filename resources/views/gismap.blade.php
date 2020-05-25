@@ -1,13 +1,8 @@
 @extends(backpack_view('layouts.top_left'))
 
-@section('header')
-<section class="content-header">
-</section>
-@endsection
-
 @section('content')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <link rel="stylesheet" href="{{ asset('/gismap/css/gismap.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/mapview.css') }}" />
 <link href="{{ asset('css/responsive.bootstrap.min.css') }}" rel="stylesheet"/>
@@ -16,6 +11,15 @@
 <link rel="stylesheet" href="{{ asset('/gismap/css/MarkerCluster.Default.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/Control.FullScreen.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/leaflet.css') }}" />
+
+<style>
+  .toggle.ios, .toggle-on.ios, .toggle-off.ios { 
+      border-radius: 20px; 
+      }
+  .toggle.ios .toggle-handle { 
+      border-radius: 20px; 
+      }
+</style>
 
 <div class ="row">
     <div class="col-md-2">
@@ -27,12 +31,12 @@
         
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: white; background-size:cover">
-                <div class="card-header"><center><b>सेटिंग</b></center></div>
+                <div class="card-header"><center><b>Layers</b></center></div>
                 <div class="card-body">
                     <table class="setting_table" style="margin-left:-20px; font-size:14px;">
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:orange; font-weight:bolder"> &nbsp;</i> Testing Lab</td>
-                                <td class="toggle_btn"> <input type="checkbox"  data-toggle="toggle" data-style="ios"></td>
+                                <td class="toggle_btn"><input type="checkbox" data-toggle="toggle" data-style="ios"></td>
                             </tr>
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:green; font-weight:bolder"> &nbsp;</i> Hospital</td>
@@ -198,14 +202,6 @@
     </div>       
 </div>
 
-<script>
-  $(function() {
-    $('#toggle-two').bootstrapToggle({
-      on: 'Enabled',
-      off: 'Disabled'
-    });
-  })
-</script>
     
 <script src="{{asset('js/dependentdropdown.js') }}"></script>
 <script src="{{ asset('/gismap/js/oms.min.js') }}"></script>

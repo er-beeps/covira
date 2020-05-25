@@ -20,7 +20,6 @@ class ResponseProcessHelper{
     }
 
     public  function performProcessUpdate($id, $request, $step){
-
           // insert item in the db
         DB::beginTransaction();
         try {
@@ -28,9 +27,11 @@ class ResponseProcessHelper{
             $response = Response::find($id);
             $next_step_id = ProcessSteps::whereStepId($response->process_step_id)->first()->next_step_id;
             $back_step_id = ProcessSteps::whereStepId($response->process_step_id)->first()->back_step_id; 
-
+            if($response->process_step_id == 4){
+                $this->saveQuestionnaire($id,'4',$request);
+            }
+            
             $further_step_id = $step == 'back'? $back_step_id : $next_step_id;
-// dd($further_step_id);
 
             switch ($further_step_id){
                 case 1:
@@ -49,6 +50,8 @@ class ResponseProcessHelper{
 
                 case 4:
                     $this->saveLogistics($id, $further_step_id, $request);
+                break;
+                default:
                 break;
             }
             DB::commit();
@@ -98,7 +101,6 @@ class ResponseProcessHelper{
     }
 
     private function saveQuestionnaire($id, $further_step_id, $request){
-
         $personal_travel = $request->personal_travel;
         $safety_measure = $request->safety_measure;
         $habits = $request->habits;

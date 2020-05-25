@@ -1171,15 +1171,21 @@ class ResponseCrudController extends BaseCrudController
         $this->setupCreateOperation();
     }
 
+    public function updatefinalstep($id){
+         Response::whereId($id)->update(['process_step_id' => 4]);
+
+          return response()->json(['message' => 'success']);
+    }
+
     public function nextstep($id){
      
-    $request = $this->crud->validateRequest();
-    ResponseProcessHelper::updateProcess($id, $request,'next');
+        $request = $this->crud->validateRequest();
+        ResponseProcessHelper::updateProcess($id, $request,'next');
 
-    $response = Response::whereId($id)->get()->toArray();
-    $process_step_id = $response[0]['process_step_id'];
+        $response = Response::whereId($id)->get()->toArray();
+        $process_step_id = $response[0]['process_step_id'];
 
-        if($process_step_id == 4){
+        if($process_step_id == 3){
             $risk_calculation = new RiskCalculationHelper();
             $risk_calculation->calculate_risk($id);
         }

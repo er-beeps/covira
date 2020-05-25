@@ -1,16 +1,76 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @if(isset($back_btn) && ($current_step_id > 1 && $current_step_id <= 3))
     @if(backpack_user())
         <a  href= "{{backpack_url('response/'.$entry->getKey().'/backstep')}}" class="btn btn-primary btn-back" data-process = "backstep"><i class="fa fa-angle-left"></i>{{ trans('Go Back') }}</a>
     @else
         <a  href= "{{url('/response'.'/'.$entry->getKey().'/backstep')}}" class="btn btn-primary btn-back" data-process = "backstep"><i class="fa fa-angle-left"></i>{{ trans('Go Back') }}</a>
     @endif
-@endif  
+@endif
 
-@if(isset($current_step_id) && ($current_step_id < 3))
+@if(isset($current_step_id) && $current_step_id == 2)
+        <a href= "javascript:void(0)" onclick="confirmation()" class="btn btn-primary btn-next">{{ trans('Proceed Next') }}<i class="fa fa-angle-right"></i></a>
+@endif
+
+{{-- @if(isset($current_step_id) && ($current_step_id < 3))
     <button type ="submit" class="btn btn-primary btn-next">{{ trans('Proceed Next') }}<i class="fa fa-angle-right"></i></button>
 @else
     <button type ="submit" class="btn btn-primary btn-next"><i class="fa fa-database"></i>{{ trans('  Submit') }}</button>
-@endif
+@endif --}}
+<style>
+    .swal-modal{
+        width:700px;
+        margin-bottom:20%;
+    }
+.swal-text {
+    font-weight:bold;
+  background-color: #FEFAE3;
+  padding: 17px;
+  border: 1px solid #F0E1A1;
+  display: block;
+  margin: 22px;
+  text-align: center;
+  color: #61534e;
+}
+</style>
+
+<script>
+    function confirmation(){
+      	swal({
+		  title: "",
+		  text: 'We are conducting research on the impact of this pandemic, hence would you like to help us by answering few questions? If you have done it once, no need to repeat it.',
+		  buttons: {
+		  	submit: {
+			  text: " Submit ",
+			  value: 'submit',
+			  visible: true,
+			  className: "btn btn-success",
+			  closeModal: true,
+			},
+		  	delete: {
+			  text: "Proceed Next",
+			  value: 'procees_next',
+			  visible: true,
+			  className: "btn btn-warning",
+			}
+		  },
+          }).then((value) => {
+              if(value == 'submit'){
+                  var response_id = '<?php echo $entry->getKey(); ?>'
+                  $.ajax({
+                      url: '/response/'+response_id+'/updatefinalstep',
+                      type: 'PUT',
+                      success: function(response){
+                            if(response.message == "success"){
+                                $('form').submit();
+                            }
+                      }
+                  })
+              }else{
+                  
+              }
+          });
+    }
 
 
-    {{-- <a  href= "{{backpack_url('response/'.$entry->getKey().'/nextstep')}}" class="btn btn-primary btn-next" data-process = "nextstep">{{ trans('Proceed Next') }}<i class="fa fa-angle-right"></i></a> --}}
+</script>
+

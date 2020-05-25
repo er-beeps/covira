@@ -39,7 +39,7 @@
 
 <div class="col-md-6">
     <div class="row">
-      <span class="cri_title">Covid Risk Index</span>
+      <span class="cri_title">COVID Risk Index</span>
     </div>
 
     <div class="row">

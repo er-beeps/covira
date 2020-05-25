@@ -19,10 +19,10 @@ class ActivityTableSeeder extends Seeder
               array('id' => 1, 'code' => '1', 'name_en' => 'Work in hospitals/healthposts/carehomes/pharmacy', 'name_lc' => 'Work in hospitals/healthposts/carehomes/pharmacy','factor_id' => 1 ,'weight_factor' => 50),
               array('id' => 2, 'code' => '2', 'name_en' => 'Driving public vehicles', 'name_lc' => 'Driving public vehicles' ,'factor_id' => 1 ,'weight_factor' => 75),
               array('id' => 3, 'code' => '3', 'name_en' => 'Need to attend meetings in person occasionally', 'name_lc' => 'Need to attend meetings in person occasionally','factor_id' => 1 ,'weight_factor' => 50),
-              array('id' => 4, 'code' => '4', 'name_en' => 'Travelled abroad within a month', 'name_lc' => 'Travelled abroad within a month','factor_id' => 1 ,'weight_factor' => 50),
+              array('id' => 4, 'code' => '4', 'name_en' => 'Arrived from India or other foreign country wiht in a month', 'name_lc' => 'Arrived from India or other foreign country wiht in a month','factor_id' => 1 ,'weight_factor' => 50),
               array('id' => 5, 'code' => '5', 'name_en' => 'Meet with COVID19 infected person', 'name_lc' => 'Meet with COVID19 infected person','factor_id' => 1 ,'weight_factor' => 100),
 
-              array('id' => 6, 'code' => '6', 'name_en' => 'Wear mask when going outside', 'name_lc' => 'Wear mask when going outside','factor_id' => 2 ,'weight_factor' => -5),
+              array('id' => 6, 'code' => '6', 'name_en' => 'Wear mask when going to crowded areas', 'name_lc' => 'Wear mask when going outside','factor_id' => 2 ,'weight_factor' => -5),
               array('id' => 7, 'code' => '7', 'name_en' => 'Sanitize hands time by time', 'name_lc' => 'Sanitize hands time by time','factor_id' => 2 ,'weight_factor' => -20),
               array('id' => 8, 'code' => '8', 'name_en' => 'Maintain physical distance when going outside', 'name_lc' => 'Maintain physical distance when going outside','factor_id' => 2 ,'weight_factor' => -20),
 
