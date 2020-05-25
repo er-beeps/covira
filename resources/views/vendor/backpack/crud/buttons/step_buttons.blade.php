@@ -11,11 +11,11 @@
         <a href= "javascript:void(0)" onclick="confirmation()" class="btn btn-primary btn-next">{{ trans('Proceed Next') }}<i class="fa fa-angle-right"></i></a>
 @endif
 
-{{-- @if(isset($current_step_id) && ($current_step_id < 3))
+@if(isset($current_step_id) && ($current_step_id == 1))
     <button type ="submit" class="btn btn-primary btn-next">{{ trans('Proceed Next') }}<i class="fa fa-angle-right"></i></button>
-@else
+@elseif(isset($current_step_id) && ($current_step_id == 3))
     <button type ="submit" class="btn btn-primary btn-next"><i class="fa fa-database"></i>{{ trans('  Submit') }}</button>
-@endif --}}
+@endif
 <style>
     .swal-modal{
         width:700px;
@@ -48,7 +48,7 @@
 			},
 		  	delete: {
 			  text: "Proceed Next",
-			  value: 'procees_next',
+			  value: 'process_next',
 			  visible: true,
 			  className: "btn btn-warning",
 			}
@@ -64,9 +64,10 @@
                                 $('form').submit();
                             }
                       }
-                  })
-              }else{
-                  
+                  });
+              }
+              if(value == 'process_next'){
+                    $('form').submit();
               }
           });
     }
