@@ -35,6 +35,8 @@ class GisMapController extends Controller
 
         $nepal_covid_data = DB::table('covid_details_nepal')
                                 ->select('*')
+                                ->orderby('created_at','desc')
+                                ->limit(1)
                                 ->get();
 
          if($nepal_covid_data->count()>0){
