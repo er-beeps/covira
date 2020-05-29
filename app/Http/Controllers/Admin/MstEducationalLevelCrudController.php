@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Base\BaseCrudController;
+use App\Base\Traits\CheckPermission;
 use App\Http\Requests\MstEducationalLevelRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -14,11 +15,13 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class MstEducationalLevelCrudController extends BaseCrudController
 {
+    use checkPermission;
     public function setup()
     {
         $this->crud->setModel('App\Models\MstEducationalLevel');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/educationallevel');
         $this->crud->setEntityNameStrings('शैक्षिक योग्यता', 'शैक्षिक योग्यता');
+        $this->checkPermission();
     }
 
     protected function setupListOperation()

@@ -9,6 +9,35 @@
 | handled by the Backpack\Base package.
 |
 */
+//custom routes for login and logout override
+Route::group(
+    [
+        'namespace'  => 'App\Http\Controllers\Auth',
+        'middleware' => 'web',
+        'prefix'     => config('backpack.base.route_prefix'),
+    ],
+    function () {
+        Route::get('login', 'LoginController@showLoginForm')->name('backpack.auth.login');
+        Route::get('logout', 'LoginController@logout')->name('backpack.auth.logout');
+
+
+        Route::post('login', 'LoginController@login');
+        Route::post('logout', 'LoginController@logout');
+
+     });
+
+Route::group(
+[
+    'namespace'  => 'App\Http\Controllers',
+    'middleware' => 'web',
+    'prefix'     => config('backpack.base.route_prefix'),
+],
+    function () {  
+        Route::get('dashboard', 'GisMapController@index')->name('backpack.dashboard');
+        Route::get('/', 'AdminController@redirect')->name('backpack');
+    
+    });
+
 
 Route::group(
 [
@@ -20,10 +49,10 @@ function () {
     // if not otherwise configured, setup the auth routes
     if (config('backpack.base.setup_auth_routes')) {
         // Authentication Routes...
-        Route::get('login', 'Auth\LoginController@showLoginForm')->name('backpack.auth.login');
-        Route::post('login', 'Auth\LoginController@login');
-        Route::get('logout', 'Auth\LoginController@logout')->name('backpack.auth.logout');
-        Route::post('logout', 'Auth\LoginController@logout');
+        // Route::get('login', 'Auth\LoginController@showLoginForm')->name('backpack.auth.login');
+        // Route::post('login', 'Auth\LoginController@login');
+        // Route::get('logout', 'Auth\LoginController@logout')->name('backpack.auth.logout');
+        // Route::post('logout', 'Auth\LoginController@logout');
 
         // Registration Routes...
         Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('backpack.auth.register');
@@ -37,15 +66,15 @@ function () {
     }
 
     // if not otherwise configured, setup the dashboard routes
-    if (config('backpack.base.setup_dashboard_routes')) {
-        Route::get('dashboard', 'AdminController@dashboard')->name('backpack.dashboard');
-        Route::get('/', 'AdminController@redirect')->name('backpack');
-    }
+    // if (config('backpack.base.setup_dashboard_routes')) {
+    //     Route::get('dashboard', 'AdminController@dashboard')->name('backpack.dashboard');
+    //     Route::get('/', 'AdminController@redirect')->name('backpack');
+    // }
 
     // if not otherwise configured, setup the "my account" routes
     if (config('backpack.base.setup_my_account_routes')) {
         Route::get('edit-account-info', 'MyAccountController@getAccountInfoForm')->name('backpack.account.info');
-        Route::post('edit-account-info', 'MyAccountController@postAccountInfoForm')->name('backpack.account.info.store');
+        Route::post('edit-account-info', 'MyAccountController@postAccountInfoForm');
         Route::post('change-password', 'MyAccountController@postChangePasswordForm')->name('backpack.account.password');
     }
 });

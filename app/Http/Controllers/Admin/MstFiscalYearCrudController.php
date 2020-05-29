@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Base\BaseCrudController;
 use App\Http\Requests\MstFiscalYearRequest;
+use App\Base\Traits\CheckPermission;
+
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -14,11 +16,13 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class MstFiscalYearCrudController extends BaseCrudController
 {
+    use checkPermission;
     public function setup()
     {
         $this->crud->setModel('App\Models\MstFiscalYear');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/fiscalyear');
         $this->crud->setEntityNameStrings('आर्थिक वर्ष', 'आर्थिक वर्ष');
+        $this->checkPermission();
     }
 
     protected function setupListOperation()

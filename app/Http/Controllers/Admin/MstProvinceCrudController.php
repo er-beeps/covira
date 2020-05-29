@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Base\BaseCrudController;
 use App\Http\Requests\MstProvinceRequest;
+use App\Base\Traits\CheckPermission;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -14,12 +15,13 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class MstProvinceCrudController extends BaseCrudController
 {
-   
+   use checkPermission;
     public function setup()
     {
         $this->crud->setModel('App\Models\MstProvince');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/province');
         $this->crud->setEntityNameStrings('प्रदेश', 'प्रदेश');
+        $this->checkPermission();
     }
 
     protected function setupListOperation()

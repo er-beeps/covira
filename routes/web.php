@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/admin', 'Auth\LoginController@showLoginForm');
+
 
 Route::get('/', 'GisMapController@index');
 Route::get('/gismap', 'GisMapController@index');

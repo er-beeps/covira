@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ResponseRequest;
 use App\Base\Helpers\ResponseProcessHelper;
 use App\Base\Helpers\RiskCalculationHelper;
+use App\Base\Traits\CheckPermission;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -25,6 +26,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class ResponseCrudController extends BaseCrudController
 {   
     use ParentData;
+    use CheckPermission;
 
     public function setup()
     {
@@ -32,7 +34,9 @@ class ResponseCrudController extends BaseCrudController
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/response');
         $this->crud->setEntityNameStrings('Response', 'Response');
         $this->data['script_js'] = $this->getScripsJs();
-
+        if(backpack_user()){
+        $this->checkPermission();  
+        }    
 
         $mode = $this->crud->getActionMethod();
 
@@ -102,8 +106,8 @@ class ResponseCrudController extends BaseCrudController
             var ageRiskFactor = $('#age_risk_factor').val();
             var covidRiskIndex = $('#covid_risk_index').val();
             var probabilityOfCovidInfection = $('#probability_of_covid_infection').val();
-            cri_gauge.set(covidRiskIndex);
-            pci_gauge.set(probabilityOfCovidInfection);
+            // cri_gauge.set(covidRiskIndex);
+            // pci_gauge.set(probabilityOfCovidInfection);
 
 
 
@@ -294,7 +298,18 @@ class ResponseCrudController extends BaseCrudController
             $age_risk_factor,
             $probability_of_covid_infection,
             $covid_risk_index,
-            $this->addReadOnlyCodeField(),
+            // $this->addReadOnlyCodeField(),
+            [
+                'name' => 'code',
+                'label' => trans('common.code'),
+                'type' => 'hidden',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-4',
+                ],
+                'attributes' => [
+                    'readonly' => true,
+                ],
+            ],
             [
                 'name' => 'legend1',
                 'type' => 'custom_html',
@@ -597,7 +612,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend5',
                 'type' => 'custom_html',
-                'value' => '<legend>Personal Travel</legend>',
+                'value' => '<legend>Exposure</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend1'
                 ]  
@@ -1244,6 +1259,7 @@ class ResponseCrudController extends BaseCrudController
                 //Updating the PsBill for process event
                 Response::whereId($itemId)->update([
                     'process_step_id' => 2,
+                    'user_id' => backpack_user()->id,
                 ]);
 
                 DB::commit();

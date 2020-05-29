@@ -6,7 +6,11 @@
 
         <button type="submit" class="btn btn-success">
             <span class="fa fa-save" role="presentation" aria-hidden="true"></span> &nbsp;
+            @if($crud->getRoute()== "admin/response")
+            <span data-value="{{ $saveAction['active']['value'] }}">{{ 'Save and Next' }}</span>
+            @else
             <span data-value="{{ $saveAction['active']['value'] }}">{{ $saveAction['active']['label'] }}</span>
+            @endif
         </button>
 
         <div class="btn-group" role="group">

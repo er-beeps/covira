@@ -16,12 +16,12 @@
 <!-- ========================================================= -->
 <!-- ========= Top menu right items (ordered right) ========== -->
 <!-- ========================================================= -->
-<ul class="nav navbar-nav ml-auto">
+<ul class="nav navbar-nav ml-auto" style="margin-right:30px;">
     @if (backpack_auth()->guest())
-        <li class="nav-item"><a class="nav-link" href="{{ route('backpack.auth.login') }}">{{ trans('backpack::base.login') }}</a>
+        <li class="nav-item"><a class="btn btn-secondary" style="margin-right:10px;" href="{{ route('backpack.auth.login') }}">{{ trans('backpack::base.login') }}</a>
         </li>
         @if (config('backpack.base.registration_open'))
-            <li class="nav-item"><a class="nav-link" href="{{ route('backpack.auth.register') }}">{{ trans('backpack::base.register') }}</a></li>
+            <li class="nav-item"><a class="btn btn-secondary" href="{{ route('backpack.auth.register') }}">{{ trans('backpack::base.register') }}</a></li>
         @endif
     @else
         <!-- Topbar. Contains the right part -->

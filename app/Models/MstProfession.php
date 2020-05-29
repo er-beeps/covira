@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
+use App\Base\DataAccessPermission;
+
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +17,7 @@ class MstProfession extends BaseModel
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
+    public $dataAccessPermission = DataAccessPermission::SystemOnly;
 
     protected $table = 'mst_profession';
     // protected $primaryKey = 'id';

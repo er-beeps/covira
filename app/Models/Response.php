@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
+use App\Base\DataAccessPermission;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 
 class Response extends BaseModel
@@ -13,12 +14,13 @@ class Response extends BaseModel
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
+    public $dataAccessPermission = DataAccessPermission::ShowClientWiseDataOnly;
 
     protected $table = 'response';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id','created_by','updated_by'];
-    protected $fillable = ['code','name_en','name_lc','age','gender_id','email','province_id','district_id','local_level_id','ward_number','education_id','profession_id','gps_lat','gps_long',
+    protected $fillable = ['code','user_id','name_en','name_lc','age','gender_id','email','province_id','district_id','local_level_id','ward_number','education_id','profession_id','gps_lat','gps_long',
     'process_step_id','neighbour_proximity','community_situation','confirmed_case','inbound_foreign_travel','community_population','hospital_proximity','corona_centre_proximity',
     'health_facility','market_proximity','food_stock','agri_producer_seller','product_selling_price','commodity_availability','commodity_price_difference','job_status','economic_impact','sustainability_duration','remarks'];
     // protected $hidden = [];

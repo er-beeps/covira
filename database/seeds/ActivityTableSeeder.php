@@ -19,37 +19,50 @@ class ActivityTableSeeder extends Seeder
               array('id' => 1, 'code' => '1', 'name_en' => 'Work in hospitals/healthposts/carehomes/pharmacy', 'name_lc' => 'Work in hospitals/healthposts/carehomes/pharmacy','factor_id' => 1 ,'weight_factor' => 50),
               array('id' => 2, 'code' => '2', 'name_en' => 'Driving public vehicles', 'name_lc' => 'Driving public vehicles' ,'factor_id' => 1 ,'weight_factor' => 75),
               array('id' => 3, 'code' => '3', 'name_en' => 'Need to attend meetings in person occasionally', 'name_lc' => 'Need to attend meetings in person occasionally','factor_id' => 1 ,'weight_factor' => 50),
-              array('id' => 4, 'code' => '4', 'name_en' => 'Arrived from India or other foreign country wiht in a month', 'name_lc' => 'Arrived from India or other foreign country wiht in a month','factor_id' => 1 ,'weight_factor' => 50),
+              array('id' => 4, 'code' => '4', 'name_en' => 'Arrived from India or other foreign country with in a month', 'name_lc' => 'Arrived from India or other foreign country wiht in a month','factor_id' => 1 ,'weight_factor' => 50),
               array('id' => 5, 'code' => '5', 'name_en' => 'Meet with COVID19 infected person', 'name_lc' => 'Meet with COVID19 infected person','factor_id' => 1 ,'weight_factor' => 100),
+              array('id' => 93, 'code' => '93', 'name_en' => 'None', 'name_lc' => 'None','factor_id' => 1 ,'weight_factor' => 0),
 
               array('id' => 6, 'code' => '6', 'name_en' => 'Wear mask when going to crowded areas', 'name_lc' => 'Wear mask when going outside','factor_id' => 2 ,'weight_factor' => -5),
               array('id' => 7, 'code' => '7', 'name_en' => 'Sanitize hands time by time', 'name_lc' => 'Sanitize hands time by time','factor_id' => 2 ,'weight_factor' => -20),
               array('id' => 8, 'code' => '8', 'name_en' => 'Maintain physical distance when going outside', 'name_lc' => 'Maintain physical distance when going outside','factor_id' => 2 ,'weight_factor' => -20),
+              array('id' => 94, 'code' => '94', 'name_en' => 'Used gloves when handling purchased item', 'name_lc' => 'Used gloves when handling purchased item','factor_id' => 2 ,'weight_factor' => 0),
+              array('id' => 95, 'code' => '95', 'name_en' => 'None', 'name_lc' => 'None','factor_id' => 2 ,'weight_factor' => 0),
 
               array('id' => 9, 'code' => '9', 'name_en' => 'Smoke regularly', 'name_lc' => 'Smoke regularly','factor_id' => 3 ,'weight_factor' => 30),
               array('id' => 10, 'code' => '10', 'name_en' => 'Drink Alcohol Regularly', 'name_lc' => 'Drink Alcohol Regularly','factor_id' => 3 ,'weight_factor' => 30),
               array('id' => 11, 'code' => '11', 'name_en' => 'Take Drugs Regularly', 'name_lc' => 'Take Drugs Regularly','factor_id' => 3 ,'weight_factor' => 30),
               array('id' => 12, 'code' => '12', 'name_en' => 'None', 'name_lc' => 'None','factor_id' => 3 ,'weight_factor' => 0),
 
-              array('id' => 13, 'code' => '13', 'name_en' => 'Asthma like respiratory problems', 'name_lc' => 'Asthma like respiratory problems','factor_id' => 4 ,'weight_factor' => 100),
-              array('id' => 14, 'code' => '14', 'name_en' => 'Heart realted problem', 'name_lc' => 'Heart realted problem','factor_id' => 4 ,'weight_factor' => 99),
-              array('id' => 15, 'code' => '15', 'name_en' => 'Kidney related problem', 'name_lc' => 'Kidney related problem','factor_id' => 4 ,'weight_factor' => 90),
-              array('id' => 16, 'code' => '16', 'name_en' => 'Tuberculosis', 'name_lc' => 'Tuberculosis','factor_id' => 4 ,'weight_factor' => 40),
+              array('id' => 13, 'code' => '13', 'name_en' => 'Asthma/Chronic obstructive pulmonary disease', 'name_lc' => 'Asthma/Chronic obstructive pulmonary disease','factor_id' => 4 ,'weight_factor' => 100),
+              array('id' => 14, 'code' => '14', 'name_en' => 'Cardiovascular/Coronary heart disease', 'name_lc' => 'Cardiovascular/Coronary heart disease','factor_id' => 4 ,'weight_factor' => 99),
+              array('id' => 15, 'code' => '15', 'name_en' => 'Renal Disease', 'name_lc' => 'Renal Disease','factor_id' => 4 ,'weight_factor' => 90),
+              array('id' => 16, 'code' => '16', 'name_en' => 'Hypertension', 'name_lc' => 'Hypertension','factor_id' => 4 ,'weight_factor' => 54),
               array('id' => 17, 'code' => '17', 'name_en' => 'Cancer(including treated within 3 years)', 'name_lc' => 'Cancer(including treated within 3 years)','factor_id' => 4 ,'weight_factor' => 54),
               array('id' => 18, 'code' => '18', 'name_en' => 'Diabetes', 'name_lc' => 'Diabetes','factor_id' => 4 ,'weight_factor' => 69),
 
+              array('id' => 87, 'code' => '87', 'name_en' => 'Obesity', 'name_lc' => 'Obesity','factor_id' => 4 ,'weight_factor' => 54),
+              array('id' => 88, 'code' => '88', 'name_en' => 'Cerebrovascular disease', 'name_lc' => 'Cerebrovascular disease','factor_id' => 4 ,'weight_factor' => 48),
+              array('id' => 89, 'code' => '89', 'name_en' => 'None', 'name_lc' => 'None','factor_id' => 4 ,'weight_factor' => 0),
+
+
 
               array('id' => 19, 'code' => '19', 'name_en' => 'High fever', 'name_lc' => 'High fever','factor_id' => 5 ,'weight_factor' => 100),
-              array('id' => 20, 'code' => '20', 'name_en' => 'Dry cough', 'name_lc' => 'Dry cough','factor_id' => 5 ,'weight_factor' => 87),
-              array('id' => 21, 'code' => '21', 'name_en' => 'Wet cough', 'name_lc' => 'Wet cough','factor_id' => 5 ,'weight_factor' => 10),
+              array('id' => 20, 'code' => '20', 'name_en' => 'Cough', 'name_lc' => 'Cough','factor_id' => 5 ,'weight_factor' => 87),
+              array('id' => 21, 'code' => '21', 'name_en' => 'Chills', 'name_lc' => 'Chills','factor_id' => 5 ,'weight_factor' => 13),
               array('id' => 22, 'code' => '22', 'name_en' => 'Fatigue', 'name_lc' => 'Fatigue','factor_id' => 5 ,'weight_factor' => 34),
-              array('id' => 23, 'code' => '23', 'name_en' => 'Difficult in breathing', 'name_lc' => 'Difficult in breathing','factor_id' => 5 ,'weight_factor' => 57),
+              array('id' => 23, 'code' => '23', 'name_en' => 'Shortness of breathe', 'name_lc' => 'Shortness of breathe','factor_id' => 5 ,'weight_factor' => 57),
               array('id' => 24, 'code' => '24', 'name_en' => 'Throat pain', 'name_lc' => 'Throat pain','factor_id' => 5 ,'weight_factor' => 18),
               array('id' => 25, 'code' => '25', 'name_en' => 'Headache', 'name_lc' => 'Headache','factor_id' => 5 ,'weight_factor' => 17),
               array('id' => 26, 'code' => '26', 'name_en' => 'Body pain (Myalgia)', 'name_lc' => 'Body pain (Myalgia)','factor_id' => 5 ,'weight_factor' => 24),
-              array('id' => 27, 'code' => '27', 'name_en' => 'Vomitting', 'name_lc' => 'Vomitting','factor_id' => 5 ,'weight_factor' => 13),
-              array('id' => 28, 'code' => '28', 'name_en' => 'Nose congestion', 'name_lc' => 'Nose congestion','factor_id' => 5 ,'weight_factor' => 12),
+              array('id' => 27, 'code' => '27', 'name_en' => 'Nausea and Vomitting', 'name_lc' => 'Nausea and Vomitting','factor_id' => 5 ,'weight_factor' => 13),
+              array('id' => 28, 'code' => '28', 'name_en' => 'Nasal congestion', 'name_lc' => 'Nasal congestion','factor_id' => 5 ,'weight_factor' => 12),
               array('id' => 29, 'code' => '29', 'name_en' => 'Diarrhoea', 'name_lc' => 'Diarrhoea','factor_id' => 5 ,'weight_factor' => 14),
+
+                
+              array('id' => 90, 'code' => '90', 'name_en' => 'Sputum Production', 'name_lc' => 'Sputum Production','factor_id' => 5 ,'weight_factor' => 31),
+              array('id' => 91, 'code' => '91', 'name_en' => 'Chest pain', 'name_lc' => 'Chest pain','factor_id' => 5 ,'weight_factor' => 17),
+              array('id' => 92, 'code' => '92', 'name_en' => 'None', 'name_lc' => 'None','factor_id' => 5 ,'weight_factor' => 0),
 
               array('id' => 30, 'code' => '30', 'name_en' => 'upto 5', 'name_lc' => 'upto 5','factor_id' => 6 ,'weight_factor' => 50),
               array('id' => 31, 'code' => '31', 'name_en' => 'More than 5', 'name_lc' => 'More than 5','factor_id' => 6 ,'weight_factor' => 100),
@@ -122,18 +135,8 @@ class ActivityTableSeeder extends Seeder
               array('id' => 83, 'code' => '83', 'name_en' => '1 month', 'name_lc' => '1 month','factor_id' => 22,'weight_factor' => 0),
               array('id' => 84, 'code' => '84', 'name_en' => '3 months', 'name_lc' => '3 months','factor_id' => 22,'weight_factor' => 0),
               array('id' => 85, 'code' => '85', 'name_en' => '1 year', 'name_lc' => '1 year','factor_id' => 22,'weight_factor' => 0),
+              ]);
 
-              array('id' => 86, 'code' => '86', 'name_en' => 'None', 'name_lc' => 'None','factor_id' => 4 ,'weight_factor' => 0),
-              array('id' => 87, 'code' => '87', 'name_en' => 'Hypertension', 'name_lc' => 'Hypertension','factor_id' => 4 ,'weight_factor' => 54),
-              array('id' => 88, 'code' => '88', 'name_en' => 'Obesity', 'name_lc' => 'Obesity','factor_id' => 4 ,'weight_factor' => 54),
-              array('id' => 89, 'code' => '89', 'name_en' => 'Cerebrovascular disease', 'name_lc' => 'Cerebrovascular disease','factor_id' => 4 ,'weight_factor' => 48),
-
-              
-              array('id' => 90, 'code' => '90', 'name_en' => 'Sputum Production', 'name_lc' => 'Sputum Production','factor_id' => 5 ,'weight_factor' => 31),
-              array('id' => 91, 'code' => '91', 'name_en' => 'Chest pain', 'name_lc' => 'Chest pain','factor_id' => 5 ,'weight_factor' => 17),
-              array('id' => 92, 'code' => '92', 'name_en' => 'Chills', 'name_lc' => 'Chills','factor_id' => 5 ,'weight_factor' => 13),
-
-             ]);
              DB::statement("SELECT SETVAL('pr_activity_id_seq',100)");
               
     }

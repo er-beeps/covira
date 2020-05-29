@@ -16,6 +16,7 @@ class CreateResponseTable extends Migration
         Schema::create('response', function (Blueprint $table) 
         {
             $table->smallIncrements('id');
+            $table->unsignedSmallInteger('user_id')->nullable();
             $table->string('code',20);
             $table->string('name_en',200);
             $table->string('name_lc',200);
@@ -62,6 +63,7 @@ class CreateResponseTable extends Migration
 
 
             $table->unique('code','uq_response_code');
+            $table->foreign('user_id','fk_response_user_id')->references('id')->on('users');
 
             $table->foreign('gender_id','fk_response_gender_id')->references('id')->on('mst_gender');
             $table->foreign('province_id','fk_response_province_id')->references('id')->on('mst_fed_province');

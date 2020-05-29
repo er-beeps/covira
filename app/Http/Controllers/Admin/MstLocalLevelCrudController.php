@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Base\BaseCrudController;
 use App\Http\Requests\MstLocalLevelRequest;
+use App\Base\Traits\CheckPermission;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -14,12 +15,13 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class MstLocalLevelCrudController extends BaseCrudController
 {
-
+    use checkPermission;
     public function setup()
     {
         $this->crud->setModel('App\Models\MstLocalLevel');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/locallevel');
         $this->crud->setEntityNameStrings('स्थानीय तह','स्थानीय तह');
+        $this->checkPermission();
     }
     protected function setFilters(){
         $this->crud->addFilter([

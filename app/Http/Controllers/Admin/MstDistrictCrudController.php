@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Base\BaseCrudController;
 use App\Http\Requests\MstDistrictRequest;
+use App\Base\Traits\CheckPermission;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -14,12 +15,14 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class MstDistrictCrudController extends BaseCrudController
 {
+    use checkPermission;
 
     public function setup()
     {
         $this->crud->setModel('App\Models\MstDistrict');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/district');
         $this->crud->setEntityNameStrings('जिल्ला', 'जिल्ला');
+        $this->checkPermission();
 
         // $this->enableDialog(true);
     }

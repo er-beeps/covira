@@ -92,7 +92,7 @@ if ($request->all() != null) {
     }
 
 
-    return view('gismap', compact('markers','area_province','gps', 'nepal_covid_data','selected_params'));   
+    return view('dashboard', compact('markers','area_province','gps', 'nepal_covid_data','selected_params'));   
     }
 }
 

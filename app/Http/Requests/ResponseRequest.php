@@ -26,7 +26,14 @@ use Illuminate\Foundation\Http\FormRequest;
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name_en' => 'required|min:5|max:255',
+            'name_lc' => 'required|min:5|max:255',
+            'age' => 'required|min:1|max:3',
+            'gender_id' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
+            'local_level_id' => 'required',
+            'ward_number' => 'required|min:1|max:2',
         ];
     }
 
@@ -50,7 +57,14 @@ use Illuminate\Foundation\Http\FormRequest;
     public function messages()
     {
         return [
-            //
+            'name_en.required'=>'Name आवश्यक छ |',
+            'name_lc.required'=>'नाम आवश्यक छ |',
+            'age.required'=>'कृपया उमेर भर्नुहोस् |',
+            'gender.required'=>'कृपया लिङ्ग छान्नुहोस् |',
+            'province_id.required'=>'कृपया प्रदेश छान्नुहोस् |',
+            'district_id.required'=>'कृपया जिल्ला छान्नुहोस् |',
+            'local_level_id.required'=>'कृपया स्थानीय तह छान्नुहोस् |',
+            'ward_number.required'=>'कृपया वडा नं. भर्नुहोस् |',
         ];
     }
 }
