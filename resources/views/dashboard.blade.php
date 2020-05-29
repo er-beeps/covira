@@ -14,11 +14,11 @@
 
 <div class ="row">
     <div class="col-md-2">
-        <div class="row">
+        <!-- <div class="row">
             <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
                 <div class="card-header"><center><b>COVIRA ड्यासबोर्ड</b></center></div>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: lightblue; background-size:cover;">
