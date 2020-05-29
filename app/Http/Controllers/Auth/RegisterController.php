@@ -1,11 +1,13 @@
 <?php
 
-namespace Backpack\CRUD\app\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use Backpack\CRUD\app\Library\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+
 use Validator;
 
 class RegisterController extends Controller
@@ -114,6 +116,12 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
+
+        DB::table('model_has_roles')->insert([
+            'role_id' => 3,
+            'model_type' => 'App\Models\BackpackUser',
+            'model_id' => $user->id
+        ]);
 
         event(new Registered($user));
         $this->guard()->login($user);

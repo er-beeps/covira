@@ -24,6 +24,9 @@ Route::group(
         Route::post('login', 'LoginController@login');
         Route::post('logout', 'LoginController@logout');
 
+        Route::get('register', 'RegisterController@showRegistrationForm')->name('backpack.auth.register');
+        Route::post('register', 'RegisterController@register');
+
      });
 
 Route::group(
@@ -55,8 +58,8 @@ function () {
         // Route::post('logout', 'Auth\LoginController@logout');
 
         // Registration Routes...
-        Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('backpack.auth.register');
-        Route::post('register', 'Auth\RegisterController@register');
+        // Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('backpack.auth.register');
+        // Route::post('register', 'Auth\RegisterController@register');
 
         // Password Reset Routes...
         Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('backpack.auth.password.reset');
@@ -74,7 +77,7 @@ function () {
     // if not otherwise configured, setup the "my account" routes
     if (config('backpack.base.setup_my_account_routes')) {
         Route::get('edit-account-info', 'MyAccountController@getAccountInfoForm')->name('backpack.account.info');
-        Route::post('edit-account-info', 'MyAccountController@postAccountInfoForm');
+        Route::post('edit-account-info', 'MyAccountController@postAccountInfoForm')->name('backpack.account.info.store');
         Route::post('change-password', 'MyAccountController@postChangePasswordForm')->name('backpack.account.password');
     }
 });

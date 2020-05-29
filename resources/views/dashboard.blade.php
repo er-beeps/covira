@@ -35,26 +35,29 @@
                 @if(backpack_user())
                     <center><a href="{{backpack_url('response/create')}}" style="color:blue; font-size:18px;"><b>Assess your risk</b></a><center>
                 @else
-                    <center><a href="fill_response/create" style="color:blue; font-size:18px;">Assess your risk</a><center>
+                    <center><a href="fill_response/create" style="color:blue; font-size:18px;"><b>Assess your risk</b></a><center>
                 @endif    
                 </div>
             </div>
         </div>
-        
+        @if(backpack_user())
         <div class="row">
-            <div class="card col-md-12 side-card" style="background-color: white; background-size:cover">
+            <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
                 <div class="card-header"><center><b>COVID Risk Index</b></center></div>
                 <div class="card-body">
-                        <div class="tab-pane" id="cri_gauge_meter">
                         @include(backpack_view('inc.cri_gauge'))
-                        </div>
-
-                        <!-- <div class="active tab-pane" id="pci_gauge_meter">
-                        @include(backpack_view('inc.pci_gauge'))
-                        </div> -->
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="card col-md-12 side-card" style="background-color: bisque; background-size:cover">
+                <div class="card-header"><center><b>Probability of COVID Infection</b></center></div>
+                <div class="card-body">
+                        @include(backpack_view('inc.pci_gauge'))
+                </div>
+            </div>
+        </div>
+        @endif
 
         @if(backpack_user())
         @php
@@ -209,9 +212,23 @@
         </div>
 
         <div class="row">
-            <div class="card col-md-12 side-card" style="background-color:lemonchiffon; background-size:cover;">
-                <div class="card-header"><center><b>Other</b></center></div>
-                <div class="card-body">
+            <div class="card col-md-12 side-card" style="background-color: lightgreen; background-size:cover;">
+                <div class="card-header">
+                    <center><a target="_blank" href="https://www.worldometers.info/coronavirus/" style="color:blue; font-size:18px;"><b>World updates regarding COVID-19</b></a><center>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card col-md-12 side-card" style="background-color:bisque; background-size:cover;">
+                <div class="card-header">
+                    <center><a target="_blank" href="https://heoc.mohp.gov.np/update-on-novel-corona-virus-covid-19/" style="color:blue; font-size:17px;"><b>Guidelines on COVID-19 (Nepal Government)</b></a><center>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
+                <div class="card-header">
+                    <center><a target="_blank" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019?gclid=CjwKCAjw5cL2BRASEiwAENqAPngAvVQESLDpig3crKIIaGLOmmAflAkyRa8lrvBPUAtaKIX-pbwOKhoCDWwQAvD_BwE" style="color:darkblue; font-size:17px;"><b>Rolling Updates on COVID-19 (WHO)</b></a><center>
                 </div>
             </div>
         </div>
