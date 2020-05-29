@@ -1,4 +1,4 @@
-<script src="{{asset('js/gauge.js')}}"></script>
+<!-- <script src="{{asset('js/gauge.js')}}"></script> -->
 
 <style>
     .pci_title{
@@ -37,6 +37,13 @@
   }
 
   </style>
+
+@php
+$data = \App\Models\Response::where('user_id',backpack_user()->id)->get();
+$arf = $data[0]->age_risk_factor;
+$pci = $data[0]->probability_of_covid_infection;
+@endphp
+
 
 <div class="col-md-12">   
     <div class="row">
@@ -114,4 +121,7 @@ var target = document.getElementById('pci_gauge_view');
 var pci_gauge_view = new Gauge(target).setOptions(opts);
 pci_gauge_view.maxValue = 100;
 pci_gauge_view.setMinValue(0);
+
+var pci_value =  '<?php echo $pci ?>';
+pci_gauge_view.set(pci_value);
 </script>

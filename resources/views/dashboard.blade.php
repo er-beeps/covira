@@ -1,8 +1,8 @@
 @extends(backpack_view('layouts.top_left'))
 
 @section('content')
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="{{asset('js/gauge.js')}}"></script>
+
 <link rel="stylesheet" href="{{ asset('/gismap/css/gismap.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/mapview.css') }}" />
 <link href="{{ asset('css/responsive.bootstrap.min.css') }}" rel="stylesheet"/>
@@ -11,15 +11,6 @@
 <link rel="stylesheet" href="{{ asset('/gismap/css/MarkerCluster.Default.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/Control.FullScreen.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/leaflet.css') }}" />
-
-<style>
-  .toggle.ios, .toggle-on.ios, .toggle-off.ios { 
-      border-radius: 20px; 
-      }
-  .toggle.ios .toggle-handle { 
-      border-radius: 20px; 
-      }
-</style>
 
 <div class ="row">
     <div class="col-md-2">
@@ -41,11 +32,18 @@
             </div>
         </div>
         @if(backpack_user())
+        @php
+        $id = \App\Models\Response::where('user_id',backpack_user()->id)->pluck('id')->first();
+        @endphp
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
                 <div class="card-header"><center><b>COVID Risk Index</b></center></div>
                 <div class="card-body">
+                @if(isset($id))
                         @include(backpack_view('inc.cri_gauge'))
+                @else
+                <span style="color:red;"><b>Please,fill out the response form first !!</b></span>
+                @endif        
                 </div>
             </div>
         </div>
@@ -53,16 +51,17 @@
             <div class="card col-md-12 side-card" style="background-color: bisque; background-size:cover">
                 <div class="card-header"><center><b>Probability of COVID Infection</b></center></div>
                 <div class="card-body">
+                @if(isset($id))
                         @include(backpack_view('inc.pci_gauge'))
+                @else
+                    <span style="color:red;"><b>Please,fill out the response form first !!</b></span>
+                @endif  
                 </div>
             </div>
         </div>
         @endif
 
         @if(backpack_user())
-        @php
-        $id = \App\Models\Response::where('user_id',backpack_user()->id)->pluck('id')->first();
-        @endphp
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: lightgreen; background-size:cover;">
                 <div class="card-header">

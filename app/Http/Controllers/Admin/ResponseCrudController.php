@@ -106,11 +106,9 @@ class ResponseCrudController extends BaseCrudController
             var ageRiskFactor = $('#age_risk_factor').val();
             var covidRiskIndex = $('#covid_risk_index').val();
             var probabilityOfCovidInfection = $('#probability_of_covid_infection').val();
-            // cri_gauge.set(covidRiskIndex);
-            // pci_gauge.set(probabilityOfCovidInfection);
-
-
-
+            cri_gauge.set(covidRiskIndex);
+            pci_gauge.set(probabilityOfCovidInfection);
+            
             //js for autoloading lat and long from local_level
             $('#local_level_id').on('change',function(){
                 var localLevelId = $('#local_level_id').val();

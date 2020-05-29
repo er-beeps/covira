@@ -1,4 +1,4 @@
-<script src="{{asset('js/gauge.js')}}"></script>
+<!-- <script src="{{asset('js/gauge.js')}}"></script> -->
 
 <style>
   .cri_title{
@@ -71,6 +71,11 @@
     </div>
 </div>
 
+@php
+$data = \App\Models\Response::where('user_id',backpack_user()->id)->get();
+$cri = $data[0]->covid_risk_index;
+@endphp
+
   <script type="text/javascript">
     var opts = {
     // color configs
@@ -111,8 +116,11 @@
     };
 
 var target = document.getElementById('cri_gauge_view');
-var cri_gauge_ciew = new Gauge(target).setOptions(opts);
+var cri_gauge_view = new Gauge(target).setOptions(opts);
 cri_gauge_view.maxValue = 100;
 cri_gauge_view.setMinValue(0);
+
+var cri_value =  '<?php echo $cri ?>';
+cri_gauge_view.set(cri_value);
 </script>
 
