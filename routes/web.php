@@ -32,3 +32,5 @@ Route::crud('/respondantdata', 'Admin\RespondentDataCrudController');
 Route::post('/dashboard/incrementlike', 'GisMapController@incrementLike');
 Route::post('/dashboard/incrementdislike', 'GisMapController@incrementDislike');
 
+
+ 
