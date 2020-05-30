@@ -76,9 +76,11 @@ class GisMapController extends Controller
                             //                 GROUP BY id,image_category_id
                             //                 ORDER BY max(created_at) desc');
 
-                                            // dd($risk_map);
-
+        if($risk_map->count()>0){                                 // dd($risk_map);
         $risk_map_path = $risk_map[0]->image_path;
+        }else{
+            $risk_map_path ='';
+        }
 
 //search criteria
 $params = [];
