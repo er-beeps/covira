@@ -10,11 +10,10 @@
     <ul class="nav-dropdown-items">
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prhospital') }}'><i class='nav-icon fa fa-hospital-o'></i>{{ trans('main.prhospital')}}</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prquarantinecenter') }}'><i class='nav-icon fa fa-h-square'></i>{{ trans('main.prquarantinecenter')}}</a></li>
-        @hasanyrole('superadmin|admin')
+       
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prfactor') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.prfactor')}}</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('practivity') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.practivity')}}</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('imagecategory') }}'><i class='nav-icon fa fa-question'></i> Image Category</a></li>
-        @endhasanyrole
     </ul>
 </li>
 {{-- Primary Masters --}}
@@ -33,12 +32,8 @@
     </ul>
 </li>
 
-@hasanyrole('superadmin|admin')
 <li class='nav-item'><a class='nav-link nav-link-secondary' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-users'></i>{{trans('Users')}} </a></li>
-@endhasanyrole
 
-@hasanyrole('superadmin|admin')
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('nepaldatacovid') }}'><i class='nav-icon fa fa-question'></i> NepalDataCovids</a></li>
-@endhasanyrole
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('uploadimage') }}'><i class='nav-icon fa fa-question'></i>Upload Images</a></li>
