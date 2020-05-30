@@ -16,6 +16,25 @@ class GisMapController extends Controller
         // $client_id = \App\User::getSystemUserId();
         // $this->data['list_tab_header_view'] = 'admin.gismap.tab';
 
+        // CounterInfo::where("id", $id)->update(['views_counter' => DB::raw('views_counter+1')]);
+
+        DB::table('counter_info')
+            ->update(['views_counter'=>DB::raw('views_counter+1')]);
+
+        $result = DB::table('counter_info')->get()->first();
+
+        if(isset($result)){
+            $likes = $result->like_counter;
+            $dislikes = $result->dislike_counter;
+            $views = $result->views_counter;
+            $shares = $result->share_counter;
+        }else{
+        $likes = '';
+        $dislikes = '';
+        $views = '';
+        $shares = '';
+        }
+
         $sql = "SELECT 
                 r.id,
                 r.code,
@@ -52,6 +71,12 @@ class GisMapController extends Controller
                             ->orderby('created_at','desc')
                             ->limit(1)
                             ->get();
+
+                            // $risk_map = DB::select('SELECT image_path,image_category_id from image_upload
+                            //                 GROUP BY id,image_category_id
+                            //                 ORDER BY max(created_at) desc');
+
+                                            // dd($risk_map);
 
         $risk_map_path = $risk_map[0]->image_path;
 
@@ -103,8 +128,43 @@ if ($request->all() != null) {
     }
 
 
-    return view('dashboard', compact('markers','area_province','gps', 'nepal_covid_data','selected_params','risk_map_path'));   
+    return view('dashboard', compact('markers','area_province','gps', 'nepal_covid_data','selected_params','risk_map_path','likes','dislikes','views','shares'));   
     }
+
+    public function incrementLike(Request $request){
+        DB::table('counter_info')->update(['like_counter'=>DB::raw('like_counter+1')]);
+
+        $likes = DB::table('counter_info')->pluck('like_counter')->first();
+
+        if($likes){
+            return response()->json([
+                'message' => 'success',
+                'value'=>$likes,
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'fail',
+            ]);
+        }
+    }
+
+    public function incrementDislike(Request $request){
+        DB::table('counter_info')->update(['dislike_counter'=>DB::raw('dislike_counter+1')]);
+
+        $dislikes = DB::table('counter_info')->pluck('dislike_counter')->first();
+
+        if($dislikes){
+            return response()->json([
+                'message' => 'success',
+                'value'=>$dislikes,
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'fail',
+            ]);
+        }
+    }
+
 }
 
 
