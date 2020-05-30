@@ -2,13 +2,13 @@
 
 
 return [
-    'title_text' => ' जिल्ला   ',
-    'code' => 'जिल्लाको कोड',
+    'title_text' => 'District',
+    'code' => 'District Code',
     'name_en' => 'District Name',
     'name_lc' => ' जिल्लाको नाम',
-    'province_id' => 'प्रदेश ',
-    'remarks' => 'कैफियत ',
-    'is_active'=>'सक्रिय छ ', 
+    'province_id' => 'Province',
+    'remarks' => 'Remarks',
+    'is_active'=>'Status', 
     
 
 ];
