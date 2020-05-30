@@ -2,17 +2,17 @@
 
 
 return [
-    'title_text' => ' आर्थिक वर्ष     ',
-    'code' => 'कोड',
-    'from' => 'देखि',
-    'to' => 'सम्म',
-    'remarks' => 'टिप्पणीहरू',
-    'is_active'=>'सक्रिय छ ', 
-    'From Date(BS)' => 'देखि (बि.स.)',
-    'From Date(AD)' => 'देखि (ई.स.)',
-    'To Date(BS)' => 'सम्म (बि.स.)',
-    'To Date(AD)' => 'सम्म (ई.स.)',
-    'sn' => 'क्र.सं.',
+    'title_text' => 'Fiscal Year',
+    'code' => 'Code',
+    'from' => 'From',
+    'to' => 'To',
+    'remarks' => 'Remarks',
+    'is_active'=>'Status', 
+    'From Date(BS)' => 'From (B.S.)',
+    'From Date(AD)' => 'From (A.D.)',
+    'To Date(BS)' => 'To (B.S.)',
+    'To Date(AD)' => 'To (A.D.)',
+    'sn' => 'S.N.',
     
 
 ];

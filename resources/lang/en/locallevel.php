@@ -2,18 +2,17 @@
 
 
 return [
-    'title_text' => '  स्थानीय तह  ',
-    'code' => 'कोड',
+    'title_text' => 'Local Level',
+    'code' => 'Code',
     'name_en' => 'Name',
     'name_lc' => 'नाम',
-    'district_id'=>' जिल्ला ',
-    'level_type_id' => ' तह प्रकार ',
-    'remarks' => 'टिप्पणीहरू',
-    'is_active'=>'सक्रिय छ ', 
-    'wards_count'=>'वडा ',
-    'remarks'=>'कैफियत ',
-    'gps_lat'=>'जीपीएस अक्षांश',
-    'gps_long'=>'जीपीएस देशान्तर'
+    'district_id'=>'District',
+    'level_type_id' => 'Local Level Type',
+    'remarks' => 'Remarks',
+    'is_active'=>'Status', 
+    'wards_count'=>'Wards',
+    'gps_lat'=>'GPS - Latitude',
+    'gps_long'=>'GPS - Longitude'
     
 
 ];
