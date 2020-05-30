@@ -44,7 +44,7 @@
     margin-bottom: 4px;
 }
 
-.nav-tabs li a:hover {
+.nav-tabs li.for_map a:hover {
     background: #28cf79;
     color: #fff;
     border: 1px dotted black;
@@ -53,7 +53,7 @@
     height: 27px;
 }
 
-.nav-tabs li a.active {
+.nav-tabs li.for_map a.active {
     background-color: #df5210;
     border-radius: 50%;
     padding: 2px;
@@ -62,15 +62,33 @@
     padding-bottom: 4px;
 }
 
+.nav-tabs li.for_chart a:hover {
+    background: #28cf79;
+    color: #fff;
+    border: 1px dotted black;
+    border-radius: 10%;
+    padding: 3px;
+    height: 27px;
+}
+.nav-tabs li.for_chart a.active {
+    background-color: #df5210;
+    border-radius: 10%;
+    padding: 3px;
+    border: 1px dotted black;
+    height: 27px;
+    padding-bottom: 3px;
+}
+
 .map-tab {
     background-color: lightgray;
     width: fit-content;
     border-radius: 5px;
-    height: 27px;
+    height: 35px;
 }
 
+
 div.card-header.map-card-header, .map-tab {
-    height: 27px;
+    height: 35px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }

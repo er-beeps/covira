@@ -135,17 +135,24 @@ table.nepal_data_table tr td.data{
                     <div class="card-header map-card-header" style="background-color: lightgray">
                         <div class = "map-tab">
                             <ul class="nav nav-tabs">
-                                {{-- <li>
+                                {{-- <li class="for_map">
                                     <a href="#open_street" data-toggle="tab" class="streets">
                                         <div data-toggle="tooltip" data-placement="bottom" title="Open Streets Map">
                                             <img class="" src="/css/images/open_street_map1.ico" width="30px">
                                         </div>
                                     </a>
                                 </li> --}}
-                                <li>
+                                <li class="for_map">
                                     <a href="#google_map" data-toggle="tab" class="active streets">
                                         <div data-toggle="tooltip" data-placement="bottom" title="Google Map">
                                             <img class="" src="/css/images/google-map.png" width="30px">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="for_chart">
+                                    <a href="#risk_map" data-toggle="tab" class="riskmap">
+                                        <div data-toggle="tooltip" data-placement="bottom" title="Risk Map">
+                                            <button class="btn btn-secondary btn-sm btn-map" style="border:1px solid black;">Risk map</button>
                                         </div>
                                     </a>
                                 </li>
@@ -169,6 +176,12 @@ table.nepal_data_table tr td.data{
                                 <script>
                                     var json = <?php echo $markers; ?>
                                 </script>   
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="risk_map">
+                            <div class="map-body">
+                                <div id="risk_image"></div> 
+                               <img id ="image1" src = "{{asset('storage/uploads/'.$risk_map_path)}}"></img>  
                             </div>
                         </div>
                     </div>

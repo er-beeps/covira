@@ -7,6 +7,12 @@
     height: 410px;
     border-radius: 10px;
 }
+#image1 {
+    height: 410px;
+    width:100%;
+    border-radius: 10px;
+}
+
 
 html, body {
     height: 80%;

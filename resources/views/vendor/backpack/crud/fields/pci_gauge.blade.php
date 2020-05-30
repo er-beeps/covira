@@ -46,8 +46,8 @@
           {strokeStyle: "green", min: 0, max: 20},
           {strokeStyle: "#10b552", min: 20, max: 40},
           {strokeStyle: "yellow", min: 40, max: 60},
-          {strokeStyle: "red", min: 60, max: 80},
-          {strokeStyle: "darkred", min: 80, max: 100}
+          {strokeStyle: "orange", min: 60, max: 80},
+          {strokeStyle: "#e80000", min: 80, max: 100}
         ],
 
         highDpiSupport: true,

@@ -86,7 +86,7 @@ class ImageUploadCrudController extends BaseCrudController
             ],
             [
                 'name' => 'image_path',
-                'type' => 'upload_multiple',
+                'type' => 'upload',
                 'label' => trans('Upload image'),
                 'upload' => true,
                 'disk' => 'uploads',

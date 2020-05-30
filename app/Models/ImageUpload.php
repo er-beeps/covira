@@ -26,9 +26,9 @@ class ImageUpload extends BaseModel
     // protected $hidden = [];
     // protected $dates = [];
 
-    protected $casts = [
-        'image_path' => 'array',
-    ];
+    // protected $casts = [
+    //     'image_path' => 'array',
+    // ];
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ class ImageUpload extends BaseModel
         $category_id = (isset(request()->image_category_id) ? $this->imagecategory->name_lc : 'tmp');
 
         $destination_path = str_replace('###CATEGORY_ID###',$category_id,$path);
-        $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
+        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
         // dd($value, $attribute_name,$destination_path);
     }
 
