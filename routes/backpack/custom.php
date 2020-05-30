@@ -55,4 +55,6 @@ Route::group([
     // Route::crud('stepmaster', 'StepMasterCrudController');
     // Route::crud('processsteps', 'ProcessStepsCrudController');
     Route::crud('nepaldatacovid', 'NepalDataCovidCrudController');
+    Route::crud('uploadimage', 'ImageUploadCrudController');
+    Route::crud('imagecategory', 'ImageCategoryCrudController');
 }); // this should be the absolute last line of this file

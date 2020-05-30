@@ -13,6 +13,7 @@
         @hasanyrole('superadmin|admin')
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prfactor') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.prfactor')}}</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('practivity') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.practivity')}}</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('imagecategory') }}'><i class='nav-icon fa fa-question'></i> Image Category</a></li>
         @endhasanyrole
     </ul>
 </li>
@@ -40,5 +41,4 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('nepaldatacovid') }}'><i class='nav-icon fa fa-question'></i> NepalDataCovids</a></li>
 @endhasanyrole
 
-
-
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('uploadimage') }}'><i class='nav-icon fa fa-question'></i>Upload Images</a></li>
