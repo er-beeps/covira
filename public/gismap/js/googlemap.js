@@ -21,10 +21,23 @@ function initMap() {
         name_lc = json[x].name_lc;
         locallevel = json[x].locallevel;
         district = json[x].district_name_np;
+        cri =json[x].covid_risk_index;
+
+        if(cri >0 && cri < 20){
+            url = '/gismap/icons/verylow.png';
+        }else if(cri > 20 && cri <= 40){
+            url = '/gismap/icons/low.png';
+        }else if(cri > 40 && cri <= 60){
+            url = '/gismap/icons/moderate.png';
+        }else if(cri > 60 && cri <= 80){
+            url = '/gismap/icons/high.png';
+        }else if(cri = 80){
+            url = '/gismap/icons/veryhigh.png';
+        }
 
         var icon = {
-            url: '/gismap/icons/person.png', // url
-            scaledSize: new google.maps.Size(12, 12), // scaled size
+            url: url, // url
+            scaledSize: new google.maps.Size(13, 13), // scaled size
         };
 
         marker = new google.maps.Marker({

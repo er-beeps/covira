@@ -27,7 +27,8 @@ class RiskCalculationHelper{
 
         $respondant_data = RespondentData::whereResponseId($id)->get()->toArray();
 
-        $crf_ids = [13,14,15,16,17,86,88];
+//weight factor value for covid_risk_factor
+        $crf_ids = [13,14,15,16,17,18,87,88];
         $activity_ids = [];
         foreach($respondant_data as $d){
             if(in_array($d['activity_id'],$crf_ids)){
@@ -45,7 +46,8 @@ class RiskCalculationHelper{
     
         $total_covid_risk_index = $age_risk_factor*((1-$comorbidities_factor)+($comorbidities_factor*$crf/100));
 
-        $symptoms_ids = [19,20,22,23,24,25,26,27,28,29,90,91];
+// weight factor values for symptopms
+        $symptoms_ids = [19,20,21,22,23,24,25,26,27,28,29,90,91];
         $activities_ids = [];
         foreach($respondant_data as $d){
                  if(in_array($d['activity_id'],$symptoms_ids)){
@@ -59,16 +61,49 @@ class RiskCalculationHelper{
 
         $ss = array_sum($weight_factor_values_for_symptom);
 
-        $other_ids = [4,5];
-        $value [] = 0;
+//weight factor values for exposure
+        $exposure_ids = [1,2,3,4,5];
+        $exposureIds = [];
         foreach($respondant_data as $d){
-            if(in_array($d['activity_id'],$other_ids)){
-                $value [] =  100;
+            if(in_array($d['activity_id'],$exposure_ids)){
+                $exposureIds [] = $d['activity_id'];
             }
         }
-        $max_value = max($value);
-        
-        $probability_of_covid_infection = (0.8923*(0.41*$ss))+(0.1077*$max_value);
+
+        $weight_factor_values_for_exposure = PrActivity::whereIn('id',$exposureIds)
+                                            ->pluck('weight_factor')
+                                            ->toArray();
+
+        if(!isset($weight_factor_values_for_exposure)){
+            $weight_factor_values_for_exposure = 0;
+            }   
+//weight factor values for habituals
+        $habituals_ids = [1,2,3,4,5];
+        $habitualIds = [];
+        foreach($respondant_data as $d){
+            if(in_array($d['activity_id'],$habituals_ids)){
+                $habitualIds [] = $d['activity_id'];
+            }
+        }
+
+        $weight_factor_values_for_habituals = PrActivity::whereIn('id',$habitualIds)
+                                            ->pluck('weight_factor')
+                                            ->toArray();
+        if(!isset($weight_factor_values_for_habituals)){
+            $weight_factor_values_for_habituals = 0;
+        }                                    
+                                            
+
+        $merge_habitual_and_exposure = array_merge($weight_factor_values_for_exposure,$weight_factor_values_for_habituals);
+        $sum_habitual_and_exposure = array_sum($merge_habitual_and_exposure);
+
+        if($sum_habitual_and_exposure > 100){
+            $sum_habitual_and_exposure = 100;
+        }
+
+
+//actual probability calculation formula    
+        $probability_of_covid_infection = (0.8923*(0.41*$ss))+(0.1077*$sum_habitual_and_exposure);
 
         if($total_covid_risk_index > 100){
             $total_covid_risk_index = 100;

@@ -23,6 +23,9 @@ class GisMapController extends Controller
                 d.name_en as district_name_en,
                 r.name_en,
                 r.name_lc,
+                r.age_risk_factor,
+                r.covid_risk_index,
+                r.probability_of_covid_infection,
                 ll.name_lc locallevel,
                 ll.name_en enlocallevel,
                 COALESCE (cast(nullif(r.gps_lat, '') as float), 27.700769) lat,
@@ -43,6 +46,14 @@ class GisMapController extends Controller
             $nepal_covid_data = $nepal_covid_data->first();
         }                       
 
+        $risk_map = DB::table('image_upload')
+                            ->select('image_path')
+                            ->where('image_category_id',1)
+                            ->orderby('created_at','desc')
+                            ->limit(1)
+                            ->get();
+
+        $risk_map_path = $risk_map[0]->image_path;
 
 //search criteria
 $params = [];
@@ -92,7 +103,7 @@ if ($request->all() != null) {
     }
 
 
-    return view('dashboard', compact('markers','area_province','gps', 'nepal_covid_data','selected_params'));   
+    return view('dashboard', compact('markers','area_province','gps', 'nepal_covid_data','selected_params','risk_map_path'));   
     }
 }
 

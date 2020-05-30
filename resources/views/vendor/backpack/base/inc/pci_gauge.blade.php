@@ -62,11 +62,11 @@ $pci = $data[0]->probability_of_covid_infection;
                 <td><span class="indicator-label">Moderate</span></td>
             </tr>
             <tr>
-                <td><span class="indicator-box" style= "background-color:red"></td>
+                <td><span class="indicator-box" style= "background-color:orange"></td>
                 <td><span class="indicator-label">High</span></td>
             </tr>
             <tr>
-                <td><span class="indicator-box" style= "background-color:darkred"></td>
+                <td><span class="indicator-box" style= "background-color:#e80000"></td>
                 <td><span class="indicator-label">Very High</span></td>
             </tr>
             </table>
@@ -107,8 +107,8 @@ $pci = $data[0]->probability_of_covid_infection;
           {strokeStyle: "green", min: 0, max: 20},
           {strokeStyle: "#10b552", min: 20, max: 40},
           {strokeStyle: "yellow", min: 40, max: 60},
-          {strokeStyle: "red", min: 60, max: 80},
-          {strokeStyle: "darkred", min: 80, max: 100}
+          {strokeStyle: "orange", min: 60, max: 80},
+          {strokeStyle: "#e80000", min: 80, max: 100}
         ],
 
         highDpiSupport: true,

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Base\BaseCrudController;
 use App\Http\Requests\MstDistrictRequest;
 use App\Base\Traits\CheckPermission;
-use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**

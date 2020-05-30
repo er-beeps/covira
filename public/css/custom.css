@@ -270,12 +270,12 @@ td p {
 
 .nepal_data_table tr td.title {
     font-size: 13px;
-    font-weight: 550;
+    font-weight: 600;
 }
 
 .nepal_data_table tr td.data {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     float: right;
 }
 
