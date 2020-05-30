@@ -28,10 +28,22 @@ for (var x in json) {
     name_lc = json[x].name_lc;
     locallevel = json[x].locallevel;
     district = json[x].district_name_np;
+    cri =json[x].covid_risk_index;
+
+    if(cri >0 && cri < 20){
+        url = '/gismap/icons/verylow.png';
+    }else if(cri > 20 && cri <= 40){
+        url = '/gismap/icons/low.png';
+    }else if(cri > 40 && cri <= 60){
+        url = '/gismap/icons/moderate.png';
+    }else if(cri > 60 && cri <= 80){
+        url = '/gismap/icons/high.png';
+    }else if(cri = 80){
+        url = '/gismap/icons/veryhigh.png';
+    }
 
 
-    // var url='/gismap/icons/ROAD.png';
-    var url = '/gismap/icons/person.png';
+    var url = url;
     var firefoxIcon = L.icon({ iconUrl: url, iconSize: [12, 12] });
 
     if (lat !== null) {

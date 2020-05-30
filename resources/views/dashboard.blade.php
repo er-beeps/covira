@@ -11,6 +11,11 @@
 <link rel="stylesheet" href="{{ asset('/gismap/css/MarkerCluster.Default.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/Control.FullScreen.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/leaflet.css') }}" />
+<style>
+table.nepal_data_table tr td.data{
+    margin-left:50px;
+}
+</style>
 
 <div class ="row">
     <div class="col-md-2">
@@ -32,43 +37,40 @@
             </div>
         </div>
         @if(backpack_user())
-        @php
-        $id = \App\Models\Response::where('user_id',backpack_user()->id)->pluck('id')->first();
-        @endphp
-        <div class="row">
-            <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
-                <div class="card-header"><center><b>COVID Risk Index</b></center></div>
-                <div class="card-body">
-                @if(isset($id))
-                        @include(backpack_view('inc.cri_gauge'))
-                @else
-                <span style="color:red;"><b>Please,fill out the response form first !!</b></span>
-                @endif        
+            @php
+            $id = \App\Models\Response::where('user_id',backpack_user()->id)->pluck('id')->first();
+            @endphp
+            <div class="row">
+                <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
+                    <div class="card-header"><center><b>COVID Risk Index</b></center></div>
+                    <div class="card-body">
+                    @if(isset($id))
+                            @include(backpack_view('inc.cri_gauge'))
+                    @else
+                    <span style="color:red;"><b>Please,acces your risk first !!</b></span>
+                    @endif        
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="card col-md-12 side-card" style="background-color: bisque; background-size:cover">
-                <div class="card-header"><center><b>Probability of COVID Infection</b></center></div>
-                <div class="card-body">
-                @if(isset($id))
-                        @include(backpack_view('inc.pci_gauge'))
-                @else
-                    <span style="color:red;"><b>Please,fill out the response form first !!</b></span>
-                @endif  
+            <div class="row">
+                <div class="card col-md-12 side-card" style="background-color: bisque; background-size:cover">
+                    <div class="card-header"><center><b>Probability of COVID Infection</b></center></div>
+                    <div class="card-body">
+                    @if(isset($id))
+                            @include(backpack_view('inc.pci_gauge'))
+                    @else
+                        <span style="color:red;"><b>Please,access your risk first !!</b></span>
+                    @endif  
+                    </div>
                 </div>
             </div>
-        </div>
-        @endif
-
-        @if(backpack_user())
-        <div class="row">
-            <div class="card col-md-12 side-card" style="background-color: lightgreen; background-size:cover;">
-                <div class="card-header">
-                    <center><a href="{{backpack_url('/response'.'/'.$id.'/edit')}}" style="color:blue; font-size:18px;"><b>Take part in survey</b></a><center>
+            <div class="row">
+                <div class="card col-md-12 side-card" style="background-color: lightgreen; background-size:cover;">
+                    <div class="card-header">
+                        <center><a href="{{backpack_url('/response'.'/'.$id.'/edit')}}" style="color:blue; font-size:18px;"><b>Take part in survey</b></a><center>
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
 
     </div>
@@ -178,7 +180,7 @@
     <div class="col-md-2">
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
-                <div class="card-header"><center><b>नेपाल कोभिड-१९</b><center></div>
+                <div class="card-header"><center><b style="font-size:18px;">नेपाल कोभिड-१९</b><center></div>
                 <div class="card-body ">
                         <table class="nepal_data_table" style="margin-left:-20px; font-size:14px;">
                             <tr>
