@@ -29,9 +29,9 @@ table.nepal_data_table tr td.data{
             <div class="card col-md-12 side-card" style="background-color: lightblue; background-size:cover;">
                 <div class="card-header">
                 @if(backpack_user())
-                    <center><a href="{{backpack_url('response/create')}}" style="color:blue; font-size:18px;"><b>Assess your risk</b></a><center>
+                    <center><a href="{{backpack_url('response/create')}}" style="color:blue; font-size:18px;"><b>{{trans('dashboard.accessrisk')}}</b></a><center>
                 @else
-                    <center><a href="fill_response/create" style="color:blue; font-size:18px;"><b>Assess your risk</b></a><center>
+                    <center><a href="fill_response/create" style="color:blue; font-size:18px;"><b>{{trans('dashboard.accessrisk')}}</b></a><center>
                 @endif    
                 </div>
             </div>
@@ -42,24 +42,24 @@ table.nepal_data_table tr td.data{
             @endphp
             <div class="row">
                 <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
-                    <div class="card-header"><center><b>COVID Risk Index</b></center></div>
+                    <div class="card-header"><center><b>{{trans('dashboard.covidriskindex')}}</b></center></div>
                     <div class="card-body">
                     @if(isset($id))
                             @include(backpack_view('inc.cri_gauge'))
                     @else
-                    <span style="color:red;"><b>Please,acces your risk first !!</b></span>
+                    <span style="color:red;"><b>{{trans('dashboard.accessriskwarning')}}</b></span>
                     @endif        
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="card col-md-12 side-card" style="background-color: bisque; background-size:cover">
-                    <div class="card-header"><center><b>Probability of COVID Infection</b></center></div>
+                    <div class="card-header"><center><b>{{trans('dashboard.covidchance')}}</b></center></div>
                     <div class="card-body">
                     @if(isset($id))
                             @include(backpack_view('inc.pci_gauge'))
                     @else
-                        <span style="color:red;"><b>Please,access your risk first !!</b></span>
+                        <span style="color:red;"><b>{{trans('dashboard.covidchance')}}</b></span>
                     @endif  
                     </div>
                 </div>
@@ -67,7 +67,7 @@ table.nepal_data_table tr td.data{
             <div class="row">
                 <div class="card col-md-12 side-card" style="background-color: lightgreen; background-size:cover;">
                     <div class="card-header">
-                        <center><a href="{{backpack_url('/response'.'/'.$id.'/edit')}}" style="color:blue; font-size:18px;"><b>Take part in survey</b></a><center>
+                        <center><a href="{{backpack_url('/response'.'/'.$id.'/edit')}}" style="color:blue; font-size:18px;"><b>{{trans('dashboard.survey')}}</b></a><center>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ table.nepal_data_table tr td.data{
                                         <div class="form-inline col-md-4">
                                             {{-- <label>Province</label> --}}
                                             <select class="form-control select2" name="province" id="province" style="width: 100%;">
-                                            <option selected disabled style="font-weight:bold;">प्रदेश छान्नुहोस्</option>
+                                            <option selected disabled style="font-weight:bold;">{{trans('dashboard.province')}}</option>
                                             @foreach($area_province as $ap)
 
                                             @if(isset($selected_params['province']) && $ap->id == $selected_params['province'])
@@ -103,6 +103,7 @@ table.nepal_data_table tr td.data{
                                         <div class="form-inline col-md-4">
                                             {{-- <label for="district">District</label> --}}
                                             <select class="form-control" style="width: 100%;" name="district" id="district">
+                                            <option selected disabled style="font-weight:bold;">{{trans('dashboard.district')}}</option>
                                             </select>
                                         </div>
 
@@ -115,10 +116,10 @@ table.nepal_data_table tr td.data{
                                 <div class="col-md-3">    
                                     <div class="row">
                                         <div class="form-inline">
-                                            <button type="submit" class="btn btn-primary btn-md" style="margin: 0px 0px 0px 10px;"><i class="fa fa-search"></i> Search</button>
+                                            <button type="submit" class="btn btn-primary btn-md" style="margin: 0px 0px 0px 10px;"><i class="fa fa-search"></i> {{trans('dashboard.search')}}</button>
                                         </div>
                                         <div class="form-inline">
-                                            <a href="{{url('/')}}" type="reset" class="btn btn-warning btn-md" style="margin: 0px 13px;"><i class="fa fa-refresh"></i> Reset</a>
+                                            <a href="{{url('/')}}" type="reset" class="btn btn-warning btn-md" style="margin: 0px 13px;"><i class="fa fa-refresh"></i>{{trans('dashboard.reset')}}</a>
                                         </div>
                                     </div>
                                 </div>    
@@ -153,7 +154,7 @@ table.nepal_data_table tr td.data{
                                 <li class="for_chart">
                                     <a href="#risk_map" data-toggle="tab" class="riskmap">
                                         <div data-toggle="tooltip" data-placement="bottom" title="Risk Map">
-                                            <button class="btn btn-secondary btn-sm btn-map" style="border:1px solid black;">Risk map</button>
+                                            <button class="btn btn-secondary btn-sm btn-map" style="border:1px solid black;">{{trans('dashboard.riskmap')}}</button>
                                         </div>
                                     </a>
                                 </li>
@@ -209,31 +210,31 @@ table.nepal_data_table tr td.data{
     <div class="col-md-2">
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
-                <div class="card-header"><center><b style="font-size:18px;">नेपाल कोभिड-१९</b><center></div>
+                <div class="card-header"><center><b style="font-size:18px;">{{trans('dashboard.covidnepal')}}</b><center></div>
                 <div class="card-body ">
                         <table class="nepal_data_table" style="margin-left:-20px; font-size:14px;">
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:orange; font-weight:bolder"> &nbsp;</i> कुल संक्रमित</td>
+                                <td class="title"><i class="fa fa-dot-circle-o" style="color:orange; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.infected')}}</td>
                                 <td class="data"> {{$nepal_covid_data->total_affected ?? '0'}}</td>
                             </tr>
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:green; font-weight:bolder"> &nbsp;</i> निको भएका</td>
+                                <td class="title"><i class="fa fa-dot-circle-o" style="color:green; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.recovered')}}</td>
                                 <td class="data"> {{$nepal_covid_data->total_recovered ?? '0'}}</td>
                             </tr>
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:gray; font-weight:bolder"> &nbsp;</i>आईसोलेसनमा बसेका </td>
+                                <td class="title"><i class="fa fa-dot-circle-o" style="color:gray; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.isolation')}}</td>
                                 <td class="data"> {{$nepal_covid_data->total_isolation ?? '0'}}</td>
                             </tr>
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:red; font-weight:bolder"> &nbsp;</i>मृत्यु</td>
+                                <td class="title"><i class="fa fa-dot-circle-o" style="color:red; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.deaths')}}</td>
                                 <td class="data"> {{$nepal_covid_data->total_death ?? '0'}}</td>
                             </tr>
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:rgb(203, 71, 226); font-weight:bolder"> &nbsp;</i>कुल स्वाब परिक्षण गरिएको</td>
+                                <td class="title"><i class="fa fa-dot-circle-o" style="color:rgb(203, 71, 226); font-weight:bolder"> &nbsp;</i>{{trans('dashboard.swab_test')}}</td>
                                 <td class="data"> {{$nepal_covid_data->total_swab_test ?? '0'}}</td>
                             </tr>
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:blue; font-weight:bolder"> &nbsp;</i>क्वारेन्टाईनमा बसेका</td>
+                                <td class="title"><i class="fa fa-dot-circle-o" style="color:blue; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.quarantine')}}</td>
                                 <td class="data"> {{$nepal_covid_data->total_quarantine ?? '0'}}</td>
                             </tr>
                     </table>
@@ -244,21 +245,21 @@ table.nepal_data_table tr td.data{
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: lightgreen; background-size:cover;">
                 <div class="card-header">
-                    <center><a target="_blank" href="https://www.worldometers.info/coronavirus/" style="color:blue; font-size:18px;"><b>World updates regarding COVID-19</b></a><center>
+                    <center><a target="_blank" href="https://www.worldometers.info/coronavirus/" style="color:blue; font-size:18px;"><b>{{trans('dashboard.worldupdates')}}</b></a><center>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color:bisque; background-size:cover;">
                 <div class="card-header">
-                    <center><a target="_blank" href="https://heoc.mohp.gov.np/update-on-novel-corona-virus-covid-19/" style="color:blue; font-size:17px;"><b>Guidelines on COVID-19 (Nepal Government)</b></a><center>
+                    <center><a target="_blank" href="https://heoc.mohp.gov.np/update-on-novel-corona-virus-covid-19/" style="color:blue; font-size:17px;"><b>{{trans('dashboard.covid_guidelines')}}</b></a><center>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
                 <div class="card-header">
-                    <center><a target="_blank" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019?gclid=CjwKCAjw5cL2BRASEiwAENqAPngAvVQESLDpig3crKIIaGLOmmAflAkyRa8lrvBPUAtaKIX-pbwOKhoCDWwQAvD_BwE" style="color:darkblue; font-size:17px;"><b>Rolling Updates on COVID-19 (WHO)</b></a><center>
+                    <center><a target="_blank" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019?gclid=CjwKCAjw5cL2BRASEiwAENqAPngAvVQESLDpig3crKIIaGLOmmAflAkyRa8lrvBPUAtaKIX-pbwOKhoCDWwQAvD_BwE" style="color:darkblue; font-size:17px;"><b>{{trans('dashboard.covid_updates')}}</b></a><center>
                 </div>
             </div>
         </div>
