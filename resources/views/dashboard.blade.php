@@ -36,7 +36,7 @@ table.nepal_data_table tr td.data{
                 </div>
             </div>
         </div>
-        @if(backpack_user())
+        @if(backpack_user() && backpack_user()->hasrole('normal'))
             @php
             $id = \App\Models\Response::where('user_id',backpack_user()->id)->pluck('id')->first();
             @endphp
