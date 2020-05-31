@@ -76,6 +76,7 @@ table.nepal_data_table tr td.data{
     </div>
 
     <div class="col-md-8">
+        @if(backpack_user() && backpack_user()->hasanyrole('superadmin|admin'))
         <div class="row">
             <div class="col-md-12">
                 <div class="card bg-light head-card">
@@ -127,7 +128,7 @@ table.nepal_data_table tr td.data{
                 </div>
             </div> 
         </div>
-    
+        @endif
 
         <div class="row">
             <div class="col-md-12">
@@ -193,10 +194,6 @@ table.nepal_data_table tr td.data{
                     <button type="button" onclick="incrementLike(this)" class="btn btn-outline-secondary"><i
                             class="fa fa-thumbs-o-up text-success"></i> <span id="like-counter"
                         class="badge" style="color:black; font-size:13px;">Likes {{$likes}}</span></button>
-                    <button type="button" onclick="incrementDislike(this)" class="btn btn-outline-secondary"><i
-                            class="fa fa-thumbs-o-down text-danger"></i><span id="dislike-counter"
-                            class="badge"style="color:black; font-size:13px;">Disklikes {{$dislikes}}</span>
-                    </button>
                     <button type="button" class="btn btn-outline-secondary"><i
                         class="fa fa-eye text-primary"></i><span
                         class="badge"style="color:black; font-size:13px;">Views {{$views}}</span>
@@ -301,22 +298,6 @@ function incrementLike(button){
     });
 }
 
-function incrementDislike(button){
-    var button = $(button);
-    Url = '/dashboard/incrementdislike';
-
-    $.ajax({
-        url:Url,
-        method:"POST",
-        success:function(res){
-            if(res.message =='success'){
-                var dislike = res.value;
-                $('#dislike-counter').html('Dislikes '+dislike);
-            }else{
-            }
-        }
-    });
-}
 </script>
 
 @endsection

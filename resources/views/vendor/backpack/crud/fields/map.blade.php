@@ -49,14 +49,16 @@
             L.control.layers(baseLayers).addTo(map);
 
             var marker = L.marker( [0, 0]).addTo(map);
-                   function updateMarker(lat, lng) {
-                        marker
-                        .setLatLng([lat, lng])
-                        .bindPopup("Latitude:  " + marker.getLatLng().lat.toString().substring(0, 8)
-                        + " " + "Latitude:  "+ marker.getLatLng().lng.toString().substring(0, 8) )
-                        .openPopup();
-                        return false;
-                  };
+
+                  //  function updateMarker(lat, lng) {
+                  //       marker
+                  //       .setLatLng([lat, lng])
+                  //       .bindPopup("Latitude:  " + marker.getLatLng().lat.toString().substring(0, 8)
+                  //       + " " + "Latitude:  "+ marker.getLatLng().lng.toString().substring(0, 8) )
+                  //       .openPopup()
+                  //       .setView([lat,lng],7);
+                  //       return false;
+                  // };
 
             
                   map.on('click', function(e) {
@@ -76,6 +78,7 @@
                   .setLatLng([lat, lng])
                   .bindPopup("Your location :  " + marker.getLatLng().toString())
                   .openPopup();
+                  map.setView([lat,lng],9);
                   $('#gps_lat').val(lat);
                   $('#gps_long').val(lng);
                   changeLatDecimalToDegree();
