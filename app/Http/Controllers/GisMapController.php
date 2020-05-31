@@ -52,8 +52,8 @@ class GisMapController extends Controller
                             ->orderby('created_at','desc')
                             ->limit(1)
                             ->get();
-
-        $risk_map_path = $risk_map[0]->image_path;
+        $risk_map_path =0;
+        // $risk_map_path = $risk_map[0]->image_path;
 
 //search criteria
 $params = [];

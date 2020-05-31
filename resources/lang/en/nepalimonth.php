@@ -1,15 +1,15 @@
 <?php
 return [
-    'title_text' => 'कोष श्रोत',
-    'add' => 'प्रविस्ट',
-    'code' => 'कोड',
-    'remarks' => 'टिप्पणीहरू',
-    'is_active'=>'सक्रिय छ ', 
-    'funding_category_id'=>'कोष वर्ग ',
+    'title_text' => 'Nepali Month',
+    'add' => 'Add',
+    'code' => 'Code',
+    'remarks' => 'Remarks',
+    'is_active'=>'Status', 
+    'funding_category_id'=>'Funding Category',
     'min'=>'min',
     'max'=>'max',
-    'sn' => 'क्र.सं.',
-    'nepali_month' => 'नेपाली महिना',
+    'sn' => 'S.N.',
+    'nepali_month' => 'Nepali Month',
     'name_en' => 'Month',
     'name_lc' => 'महिना'
 ];
