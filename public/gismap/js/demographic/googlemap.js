@@ -50,7 +50,7 @@ function initMap() {
             zoomOnClick: true,
 
             imagePath: '/gismap/images/m',
-            minimumClusterSize: 10
+            minimumClusterSize:20
 
         },
         infowindow

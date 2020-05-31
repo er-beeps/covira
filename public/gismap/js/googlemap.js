@@ -61,7 +61,7 @@ function initMap() {
     }
     var markerCluster = new MarkerClusterer(map1, markers, {
         imagePath: '/gismap/images/m',
-        minimumClusterSize: 2
+        minimumClusterSize: 10
     }
 
     );

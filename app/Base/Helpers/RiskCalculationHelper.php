@@ -105,8 +105,14 @@ class RiskCalculationHelper{
 //actual probability calculation formula    
         $probability_of_covid_infection = (0.8923*(0.41*$ss))+(0.1077*$sum_habitual_and_exposure);
 
+        if($total_covid_risk_index < 0){
+            $total_covid_risk_index = 0;
+        }
         if($total_covid_risk_index > 100){
             $total_covid_risk_index = 100;
+        }
+        if($probability_of_covid_infection < 0){
+            $probability_of_covid_infection = 0;
         }
         if($probability_of_covid_infection > 100){
             $probability_of_covid_infection = 100;
