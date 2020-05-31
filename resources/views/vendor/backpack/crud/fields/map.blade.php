@@ -78,7 +78,7 @@
                   .setLatLng([lat, lng])
                   .bindPopup("Your location :  " + marker.getLatLng().toString())
                   .openPopup();
-                  map.setView([lat,lng],9);
+                  map.setView([lat,lng],20);
                   $('#gps_lat').val(lat);
                   $('#gps_long').val(lng);
                   changeLatDecimalToDegree();
