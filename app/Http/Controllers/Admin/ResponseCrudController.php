@@ -1233,15 +1233,31 @@ class ResponseCrudController extends BaseCrudController
         // $this->crud->hasAccessOrFail('create');
          $request = $this->crud->validateRequest();
         // execute the FormRequest authorization and validation, if one is required
-         if ($request->has('code')) {
-            $query = $this->crud->model->latest('code')->first();
-            $code = 1;
-            if ($query != null) {
-                $code = $query->code + 1;
+        if($request->has('code')){
+            if(trim($request->get('code')) == ''){
+                $qu = DB::table($this->crud->model->getTable())
+                    ->selectRaw('COALESCE(max(code::NUMERIC),0)+1 as code')
+                    ->whereRaw("(code ~ '^([0-9]+[.]?[0-9]*|[.][0-9]+)$') = true");
+            
+                $rec = $qu->first();
+                if(isset($rec)){
+                    $code = $rec->code;
+                }
+                else{
+                    $code = 1;
+                }
+                request()->request->set('code', $code);
             }
-            // TODO : $request->request->set('code', $code);
-            request()->request->set('code', $code);
         }
+            $lat = request()->request->get('gps_lat');
+            $long = request()->request->get('gps_long');
+
+            $random = $this->generateRandomNum(0,9);
+            $gps_lat = (float)$lat+(float)$random;
+            $gps_long = (float)$long+(float)$random;
+
+            request()->request->set('gps_lat',$gps_lat);
+            request()->request->set('gps_long',$gps_long);
 
         if(!backpack_user()){
             $itemId = $this->saveRequest($request);
@@ -1279,7 +1295,18 @@ class ResponseCrudController extends BaseCrudController
     }
 
     public function saveRequest($request){
-        $dataSet= [
+        $request->validate([
+            'name_en' => 'required|max:255',
+            'name_lc' => 'required|max:255',
+            'age' => 'required|min:1|max:3',
+            'gender_id' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
+            'local_level_id' => 'required',
+            'ward_number' => 'required|min:1|max:2',
+        ]);
+
+        $dataSet = [
         'code' => $request->code,
         'name_en' => $request->name_en,
         'name_lc' => $request->name_lc,
@@ -1292,10 +1319,15 @@ class ResponseCrudController extends BaseCrudController
         'district_id' => $request->district_id,
         'local_level_id' => $request->local_level_id,
         'ward_number' => $request->ward_number,
-        'gps_lat' => $request->gps_lat,
-        'gps_long' => $request->gps_long,
         'remarks' => $request->remarks,
         ];
+        //add random number to gps lat and long to make difference in co-ordinates
+        $random = $this->generateRandomNum(0,9);
+        $gps_lat = (float)$request->gps_lat+(float)$random;
+        $gps_long = (float)$request->gps_long+(float)$random;
+
+        $dataSet['gps_lat'] = $gps_lat;
+        $dataSet['gps_long'] = $gps_long;
 
         DB::beginTransaction();
         try {
@@ -1318,6 +1350,15 @@ class ResponseCrudController extends BaseCrudController
 
         return $itemId;
 
+    }
+
+    public function generateRandomNum($a,$b){
+        $float_part = mt_rand(0, mt_getrandmax())/mt_getrandmax();
+        $number = explode('.',$float_part);
+        $num = substr($number[1],0,3);
+        $i = '0.0000';
+        $random = $i.$num;
+    return $random;
     }
 
     public function fetchLatLong(Request $request){

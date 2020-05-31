@@ -26,8 +26,8 @@ use Illuminate\Foundation\Http\FormRequest;
     public function rules()
     {
         return [
-            'name_en' => 'required|min:5|max:255',
-            'name_lc' => 'required|min:5|max:255',
+            'name_en' => 'required|max:255',
+            'name_lc' => 'required|max:255',
             'age' => 'required|min:1|max:3',
             'gender_id' => 'required',
             'province_id' => 'required',
