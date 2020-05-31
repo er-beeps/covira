@@ -28,3 +28,9 @@ Route::put('/response/{response_id}/updatefinalstep', 'Admin\ResponseCrudControl
 Route::get('/response/{response_id}/backstep', 'Admin\ResponseCrudController@backstep');
 Route::get('/response/getlatlong', 'Admin\ResponseCrudController@fetchLatLong');
 Route::crud('/respondantdata', 'Admin\RespondentDataCrudController');
+
+Route::post('/dashboard/incrementlike', 'GisMapController@incrementLike');
+Route::post('/dashboard/incrementdislike', 'GisMapController@incrementDislike');
+
+
+ 

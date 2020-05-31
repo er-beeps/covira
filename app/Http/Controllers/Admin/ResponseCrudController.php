@@ -100,28 +100,31 @@ class ResponseCrudController extends BaseCrudController
                 $('form input[type=checkbox]').prop('readonly', true);
                 $('form input[type=checkbox]').click(false);
                 $('#map').click(false);
+
+                //update value in gauge
+                var ageRiskFactor = $('#age_risk_factor').val();
+                var covidRiskIndex = $('#covid_risk_index').val();
+                var probabilityOfCovidInfection = $('#probability_of_covid_infection').val();
+                cri_gauge.set(covidRiskIndex);
+                pci_gauge.set(probabilityOfCovidInfection);
             }
 
-            //update value in gauge
-            var ageRiskFactor = $('#age_risk_factor').val();
-            var covidRiskIndex = $('#covid_risk_index').val();
-            var probabilityOfCovidInfection = $('#probability_of_covid_infection').val();
-            cri_gauge.set(covidRiskIndex);
-            pci_gauge.set(probabilityOfCovidInfection);
-            
+         
+    
             //js for autoloading lat and long from local_level
-            $('#local_level_id').on('change',function(){
+            $('input[name = ward_number]').on('blur',function(){
                 var localLevelId = $('#local_level_id').val();
-                    if(localLevelId != null){
+                var wardNo = $('input[name = ward_number]').val();
+                    if(wardNo != null){
                     $.ajax({
                         type: 'GET',
                         url: '/response/getlatlong',
-                        data: { localLevelId: localLevelId },
+                        data: { localLevelId: localLevelId, wardNo: wardNo },
                         success: function(response) {
                             console.log(response);
                             if(response.message == 'success'){
-                                $('#gps_lat').val(response.locallevel.gps_lat).trigger('change');
-                                $('#gps_long').val(response.locallevel.gps_long).trigger('change');
+                                $('#gps_lat').val(response.wardinfo.lat_ward).trigger('change');
+                                $('#gps_long').val(response.wardinfo.long_ward).trigger('change');
                                 changeLatDecimalToDegree();
                                 changeLongDecimalToDegree();
                                 updateMarkerByInputs();
@@ -452,6 +455,9 @@ class ResponseCrudController extends BaseCrudController
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
+                'attributes'=> [
+                    'id' => 'ward_num',
+                ]
             ],
 
 
@@ -1316,12 +1322,16 @@ class ResponseCrudController extends BaseCrudController
 
     public function fetchLatLong(Request $request){
         $localLevelId = $request->localLevelId;
+        $ward_no = $request->wardNo;
+
+        $local_level = MstLocalLevel::find($localLevelId);
         
-        $locallevel = MstLocalLevel::find($localLevelId);
-         if($locallevel){
+        $ward_info = DB::table('mst_ward')->where([['local_level_code',$local_level->code],['ward',$ward_no]])->get();
+        $ward_info = $ward_info[0];
+         if($ward_info){
             return response()->json([
                 'message' => 'success',
-                'locallevel' => $locallevel
+                'wardinfo' => $ward_info
             ]);
         }else{
             return response()->json([

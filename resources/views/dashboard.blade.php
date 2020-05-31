@@ -36,7 +36,7 @@ table.nepal_data_table tr td.data{
                 </div>
             </div>
         </div>
-        @if(backpack_user())
+        @if(backpack_user() && backpack_user()->hasrole('normal'))
             @php
             $id = \App\Models\Response::where('user_id',backpack_user()->id)->pluck('id')->first();
             @endphp
@@ -189,6 +189,25 @@ table.nepal_data_table tr td.data{
                 </div>
             </div> 
         </div>
+        <div class="row">
+            <div class="content-footer" style="margin-left:3%">
+                    <button type="button" onclick="incrementLike(this)" class="btn btn-outline-secondary"><i
+                            class="fa fa-thumbs-o-up text-success"></i> <span id="like-counter"
+                        class="badge" style="color:black; font-size:13px;">Likes {{$likes}}</span></button>
+                    <button type="button" onclick="incrementDislike(this)" class="btn btn-outline-secondary"><i
+                            class="fa fa-thumbs-o-down text-danger"></i><span id="dislike-counter"
+                            class="badge"style="color:black; font-size:13px;">Disklikes {{$dislikes}}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary"><i
+                        class="fa fa-eye text-primary"></i><span
+                        class="badge"style="color:black; font-size:13px;">Views {{$views}}</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary"><i
+                        class="fa fa-share text-primary"></i><span
+                        class="badge"style="color:black; font-size:13px;">Share {{$shares}}</span>
+                    </button>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-2">
@@ -265,6 +284,41 @@ table.nepal_data_table tr td.data{
 
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoEoSKYFDXovqwCwCHIhAYGFsnrUW09Oo&callback=initMap"></script>
+<script>
+function incrementLike(button){
+    var button = $(button);
+    Url = '/dashboard/incrementlike';
+
+    $.ajax({
+        url:Url,
+        method:"POST",
+        success:function(res){
+            if(res.message =='success'){
+                var like = res.value;
+                $('#like-counter').html('Likes '+like);
+            }else{
+            }
+        }
+    });
+}
+
+function incrementDislike(button){
+    var button = $(button);
+    Url = '/dashboard/incrementdislike';
+
+    $.ajax({
+        url:Url,
+        method:"POST",
+        success:function(res){
+            if(res.message =='success'){
+                var dislike = res.value;
+                $('#dislike-counter').html('Dislikes '+dislike);
+            }else{
+            }
+        }
+    });
+}
+</script>
 
 @endsection
 

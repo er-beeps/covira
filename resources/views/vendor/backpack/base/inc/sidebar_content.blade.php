@@ -4,6 +4,21 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('response') }}'><i class='nav-icon fa fa-file'></i> Responses</a></li>
 <!-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gismap') }}'><i class='nav-icon fa fa-map-marker'></i> GIS Map</a></li> -->
 
+{{-- Secondary Masters --}}
+@if(backpack_user()->hasanyrole('superadmin|admin'))
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-link-secondary nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-cogs"></i>{{ trans('main.secondary') }}</span></a>
+    <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prhospital') }}'><i class='nav-icon fa fa-hospital-o'></i>{{ trans('main.prhospital')}}</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prquarantinecenter') }}'><i class='nav-icon fa fa-h-square'></i>{{ trans('main.prquarantinecenter')}}</a></li>
+       
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prfactor') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.prfactor')}}</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('practivity') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.practivity')}}</a></li>
+        
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('imagecategory') }}'><i class='nav-icon fa fa-picture-o'></i> Image Category</a></li>
+      
+    </ul>
+</li>
 {{-- Primary Masters --}}
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-link-secondary nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-cogs"></i>{{ trans('main.primary') }}</span></a>
@@ -19,26 +34,9 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('profession') }}'><i class='nav-icon fa fa-briefcase'></i> {{ trans('main.profession')}}</a></li>
     </ul>
 </li>
-{{-- Secondary Masters --}}
-<li class="nav-item nav-dropdown">
-    <a class="nav-link nav-link-secondary nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-cogs"></i>{{ trans('main.secondary') }}</span></a>
-    <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prhospital') }}'><i class='nav-icon fa fa-hospital-o'></i>{{ trans('main.prhospital')}}</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prquarantinecenter') }}'><i class='nav-icon fa fa-h-square'></i>{{ trans('main.prquarantinecenter')}}</a></li>
-        @hasanyrole('superadmin|admin')
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('prfactor') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.prfactor')}}</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('practivity') }}'><i class='nav-icon fa fa-asterisk'></i>{{ trans('main.practivity')}}</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('imagecategory') }}'><i class='nav-icon fa fa-question'></i> Image Category</a></li>
-        @endhasanyrole
-    </ul>
-</li>
-
-@hasanyrole('superadmin|admin')
+@endif
+@if(backpack_user()->hasanyrole('superadmin|admin'))
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('nepaldatacovid') }}'><i class='nav-icon fa fa-database'></i> NepalDataCovids</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('uploadimage') }}'><i class='nav-icon fa fa-picture-o'></i>Upload Images</a></li>
 <li class='nav-item'><a class='nav-link nav-link-secondary' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-users'></i>{{trans('Users')}} </a></li>
-@endhasanyrole
-
-@hasanyrole('superadmin|admin')
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('nepaldatacovid') }}'><i class='nav-icon fa fa-question'></i> NepalDataCovids</a></li>
-@endhasanyrole
-
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('uploadimage') }}'><i class='nav-icon fa fa-question'></i>Upload Images</a></li>
+@endif
