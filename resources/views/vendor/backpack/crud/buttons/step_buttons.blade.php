@@ -39,18 +39,19 @@
 		  title: "",
 		  text: 'We are conducting research on the impact of this pandemic, hence would you like to help us by answering few more questions? If you have done it earlier, no need to repeat it.',
 		  buttons: {
-		  	submit: {
-			  text: " Sorry !, I want only Personal Risk Assessment",
-			  value: 'submit',
-			  visible: true,
-			  className: "btn btn-success",
-			  closeModal: true,
-			},
+		  
 		  	delete: {
 			  text: "Sure, I am happy to help.",
 			  value: 'process_next',
 			  visible: true,
 			  className: "btn btn-warning",
+			},
+            submit: {
+			  text: " Sorry !, I want only Personal Risk Assessment",
+			  value: 'submit',
+			  visible: true,
+			  className: "btn btn-success",
+			  closeModal: true,
 			}
 		  },
           }).then((value) => {
