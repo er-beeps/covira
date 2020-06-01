@@ -152,12 +152,19 @@ table.nepal_data_table tr td.data{
                                     </a>
                                 </li>
                                 <li class="for_chart">
-                                    <!-- <a href="#risk_map" data-toggle="tab" class="riskmap">
-                                        <div data-toggle="tooltip" data-placement="bottom" title="Risk Map">
-                                            <button class="btn btn-secondary btn-sm btn-map" style="border:1px solid black;">{{trans('dashboard.riskmap')}}</button>
-                                        </div>
-                                    </a> -->
-                                    <a data-fancybox data-type="ajax" href="/response/fetchimages"  class="btn btn-secondary btn-sm btn-map" style="border:1px solid gray;">{{ trans('dashboard.riskmap') }}</a>
+                                    <a data-fancybox data-type="ajax" href="/response/fetchimages?id=1"  class="btn btn-secondary btn-sm btn-map" style="border:1px solid gray;">{{ trans('dashboard.socioeconomic_risk') }}</a>
+                                </li>
+                                <li class="for_chart">
+                                    <a data-fancybox data-type="ajax" href="/response/fetchimages?id=2"  class="btn btn-secondary btn-sm btn-map" style="border:1px solid gray;">{{ trans('dashboard.publichealth_risk') }}</a>
+                                </li>
+                                <li class="for_chart">
+                                    <a data-fancybox data-type="ajax" href="/response/fetchimages?id=3"  class="btn btn-secondary btn-sm btn-map" style="border:1px solid gray;">{{ trans('dashboard.food_productivity_map') }}</a>
+                                </li>
+                                <li class="for_chart">
+                                    <a data-fancybox data-type="ajax" href="/response/fetchimages?id=4"  class="btn btn-secondary btn-sm btn-map" style="border:1px solid gray;">{{ trans('dashboard.transmission_risk') }}</a>
+                                </li>
+                                <li class="for_chart">
+                                    <a data-fancybox data-type="ajax" href="/response/fetchimages?id=5"  class="btn btn-secondary btn-sm btn-map" style="border:1px solid gray;">{{ trans('dashboard.overall_risk') }}</a>
                                 </li>
                             </ul>
                         </div>

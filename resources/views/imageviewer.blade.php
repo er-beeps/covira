@@ -1,6 +1,10 @@
 <div>
-    <div id="risk_image"></div> 
+    <div id="risk_image"></div>
+    @if(isset($risk_map_path) && $risk_map_path != NULL) 
         <img id ="image_view" src = "{{asset('storage/uploads/'.$risk_map_path)}}"></img>  
+    @else
+    <span style="color:red; font-weight:bold;">No any image available<span>
+    @endif    
     </div>
 </div>
 

@@ -32,7 +32,11 @@ Route::crud('/respondantdata', 'Admin\RespondentDataCrudController');
 Route::post('/dashboard/incrementlike', 'GisMapController@incrementLike');
 Route::post('/dashboard/incrementdislike', 'GisMapController@incrementDislike');
 
-Route::get('/response/fetchimages', 'GisMapController@fetchImages');
+Route::get('/response/fetchimages', 'GisMapController@fetchImg');
+// Route::get('/response/fetchimages/publichealth', 'GisMapController@publichealthImg');
+// Route::get('/response/fetchimages/foodproductivity', 'GisMapController@foodproductivityImg');
+// Route::get('/response/fetchimages/transmissionrisk', 'GisMapController@transmissionImg');
+// Route::get('/response/fetchimages/overallrisk', 'GisMapController@overallriskImg');
 
 
  

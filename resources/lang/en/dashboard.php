@@ -22,7 +22,12 @@ return [
     'quarantine' => 'Quarantined',
     'worldupdates' => 'World updates regarding COVID-19',
     'covid_guidelines' => 'Click Here for National Guidelines',
-    'covid_updates' => 'Click Here for WHO Guidelines'
+    'covid_updates' => 'Click Here for WHO Guidelines',
+    'socioeconomic_risk'=>'SocioEconomic Risk',
+    'publichealth_risk'=>'Public Health Risk',
+    'food_productivity_map'=>'Food Productivity Map',
+    'transmission_risk'=>'Transmission Risk',
+    'overall_risk'=>'Overall Risk',
 
 
     
