@@ -97,6 +97,10 @@ class ActivityTableSeeder extends Seeder
               array('id' => 54, 'code' => '54', 'name_en' => '1-5 km', 'name_lc' => '1-5 km','factor_id' => 12,'weight_factor' => 50),
               array('id' => 55, 'code' => '55', 'name_en' => 'More than 5 km', 'name_lc' => 'More than 5 km','factor_id' => 12,'weight_factor' => 100),
 
+              array('id' => 96, 'code' => '96', 'name_en' => 'Within 1 km', 'name_lc' => 'Within 1 km','factor_id' => 13,'weight_factor' => 0),
+              array('id' => 97, 'code' => '97', 'name_en' => '1-5 km', 'name_lc' => '1-5 km','factor_id' => 13,'weight_factor' => 50),
+              array('id' => 98, 'code' => '98', 'name_en' => 'More than 5 km', 'name_lc' => 'More than 5 km','factor_id' => 13,'weight_factor' => 100),
+
               array('id' => 56, 'code' => '56', 'name_en' => 'Well equiped with enough doctors', 'name_lc' => 'Well equiped with enough doctors','factor_id' => 14,'weight_factor' => 0),
               array('id' => 57, 'code' => '57', 'name_en' => 'Doctors are enough but treatment facilities are limited', 'name_lc' => 'Doctors are enough but treatment facilities are limited','factor_id' => 14,'weight_factor' => 30),
               array('id' => 58, 'code' => '58', 'name_en' => 'Both doctors and facilities are limited', 'name_lc' => 'Both doctors and facilities are limited','factor_id' => 14,'weight_factor' => 60),
@@ -137,7 +141,7 @@ class ActivityTableSeeder extends Seeder
               array('id' => 85, 'code' => '85', 'name_en' => '1 year', 'name_lc' => '1 year','factor_id' => 22,'weight_factor' => 0),
               ]);
 
-             DB::statement("SELECT SETVAL('pr_activity_id_seq',100)");
+             DB::statement("SELECT SETVAL('pr_activity_id_seq',200)");
               
     }
 }
