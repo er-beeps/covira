@@ -2,7 +2,6 @@
 
 @section('content')
 <script src="{{asset('js/gauge.js')}}"></script>
-
 <link rel="stylesheet" href="{{ asset('/gismap/css/gismap.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/mapview.css') }}" />
 <link href="{{ asset('css/responsive.bootstrap.min.css') }}" rel="stylesheet"/>
@@ -66,6 +65,19 @@
                     </div>
                 </div>
             </div>
+        @else
+        <div class="row">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-3714412080139830"
+                data-ad-slot="5052669173"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+        </div>
         @endif
 
     </div>
