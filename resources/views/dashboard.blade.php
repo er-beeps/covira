@@ -1,6 +1,8 @@
 @extends(backpack_view('layouts.top_left'))
 
 @section('content')
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
 <script src="{{asset('js/gauge.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('/gismap/css/gismap.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/mapview.css') }}" />
@@ -17,9 +19,9 @@
             <div class="card col-md-12 side-card" style="background-color: lightblue; background-size:cover;">
                 <div class="card-header">
                 @if(backpack_user())
-                    <center><a href="{{backpack_url('response/create')}}" style="color:blue; font-size:18px;"><b>{{trans('dashboard.accessrisk')}}</b></a><center>
+                    <center><a href="{{backpack_url('response/create')}}" style="color:blue; font-size:18px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
                 @else
-                    <center><a href="fill_response/create" style="color:blue; font-size:18px;"><b>{{trans('dashboard.accessrisk')}}</b></a><center>
+                    <center><a href="fill_response/create" style="color:blue; font-size:18px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
                 @endif    
                 </div>
             </div>
@@ -182,18 +184,18 @@
         </div>
         <div class="row">
             <div class="content-footer" style="margin-left:3%">
-                    <button type="button" onclick="incrementLike(this)" class="btn btn-outline-secondary"><i
-                            class="fa fa-thumbs-o-up text-success"></i> <span id="like-counter"
-                        class="badge" style="color:black; font-size:13px;">Likes {{$likes}}</span></button>
-                    <button type="button" class="btn btn-outline-secondary"><i
-                        class="fa fa-eye text-primary"></i><span
-                        class="badge"style="color:black; font-size:13px;">Views {{$views}}</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary"><i
-                        class="fa fa-share text-primary"></i><span
-                        class="badge"style="color:black; font-size:13px;">Share {{$shares}}</span>
-                    </button>
-            </div>
+                <button type="button" onclick="incrementLike(this)" class="btn btn-outline-secondary"><i
+                        class="fa fa-thumbs-o-up text-success"></i> <span id="like-counter"
+                    class="badge" style="color:black; font-size:13px;">Likes {{$likes}}</span></button>
+                <button type="button" class="btn btn-outline-secondary"><i
+                    class="fa fa-eye text-primary"></i><span
+                    class="badge"style="color:black; font-size:13px;">Views {{$views}}</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary"><i
+                    class="fa fa-share text-primary"></i><span
+                    class="badge"style="color:black; font-size:13px;">Share {{$shares}}</span>
+                </button>
+            </div>        
         </div>
     </div>
 
