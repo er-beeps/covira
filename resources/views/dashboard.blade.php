@@ -13,12 +13,6 @@
 
 <div class ="row">
     <div class="col-md-2">
-        <!-- <div class="row">
-            <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
-                <div class="card-header"><center><b>COVIRA ड्यासबोर्ड</b></center></div>
-            </div>
-        </div> -->
-
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: lightblue; background-size:cover;">
                 <div class="card-header">
@@ -65,19 +59,6 @@
                     </div>
                 </div>
             </div>
-        @else
-        <div class="row">
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-3714412080139830"
-                data-ad-slot="5052669173"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-
-        </div>
         @endif
 
     </div>
