@@ -11,11 +11,6 @@
 <link rel="stylesheet" href="{{ asset('/gismap/css/MarkerCluster.Default.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/Control.FullScreen.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/leaflet.css') }}" />
-<style>
-table.nepal_data_table tr td.data{
-    margin-left:50px;
-}
-</style>
 
 <div class ="row">
     <div class="col-md-2">
@@ -216,7 +211,7 @@ table.nepal_data_table tr td.data{
                 <div class="card-body ">
                         <table class="nepal_data_table" style="margin-left:-20px; font-size:14px;">
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:orange; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.infected')}}</td>
+                                <td width="150%" class="title"><i class="fa fa-dot-circle-o" style="color:orange; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.infected')}}</td>
                                 <td class="data"> {{$nepal_covid_data->total_affected ?? '0'}}</td>
                             </tr>
                             <tr>

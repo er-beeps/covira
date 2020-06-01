@@ -87,7 +87,7 @@
 
 
 div.card-header.map-card-header, .map-tab {
-    height: 35px;
+    height: auto;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }

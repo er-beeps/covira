@@ -37,17 +37,17 @@
     function confirmation(){
       	swal({
 		  title: "",
-		  text: 'We are conducting research on the impact of this pandemic, hence would you like to help us by answering few questions? If you have done it once, no need to repeat it.',
+		  text: 'We are conducting research on the impact of this pandemic, hence would you like to help us by answering few more questions? If you have done it earlier, no need to repeat it.',
 		  buttons: {
 		  	submit: {
-			  text: " Submit ",
+			  text: " Sorry !, I want only Personal Risk Assessment",
 			  value: 'submit',
 			  visible: true,
 			  className: "btn btn-success",
 			  closeModal: true,
 			},
 		  	delete: {
-			  text: "Proceed Next",
+			  text: "Sure, I am happy to help.",
 			  value: 'process_next',
 			  visible: true,
 			  className: "btn btn-warning",

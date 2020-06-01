@@ -167,75 +167,7 @@ if ($request->all() != null) {
 
         return view('imageviewer',compact('risk_map_path'));
     }
-    // public function publichealthImg(){
-
-    //     $risk_map = DB::table('image_upload')
-    //                         ->select('image_path')
-    //                         ->where('image_category_id',2)
-    //                         ->orderby('created_at','desc')
-    //                         ->limit(1)
-    //                         ->get();
-
-    //     if($risk_map->count()>0){                                 // dd($risk_map);
-    //     $risk_map_path = $risk_map[0]->image_path;
-    //     }else{
-    //         $risk_map_path ='';
-    //     }
-
-    //     return view('imageviewer',compact('risk_map_path'));
-    // }
-    // public function foodproductivityImg(){
-
-    //     $risk_map = DB::table('image_upload')
-    //                         ->select('image_path')
-    //                         ->where('image_category_id',3)
-    //                         ->orderby('created_at','desc')
-    //                         ->limit(1)
-    //                         ->get();
-
-    //     if($risk_map->count()>0){                                 // dd($risk_map);
-    //     $risk_map_path = $risk_map[0]->image_path;
-    //     }else{
-    //         $risk_map_path ='';
-    //     }
-
-    //     return view('imageviewer',compact('risk_map_path'));
-    // }
-    // public function transmissionImg(){
-
-    //     $risk_map = DB::table('image_upload')
-    //                         ->select('image_path')
-    //                         ->where('image_category_id',4)
-    //                         ->orderby('created_at','desc')
-    //                         ->limit(1)
-    //                         ->get();
-
-    //     if($risk_map->count()>0){                                 // dd($risk_map);
-    //     $risk_map_path = $risk_map[0]->image_path;
-    //     }else{
-    //         $risk_map_path ='';
-    //     }
-
-    //     return view('imageviewer',compact('risk_map_path'));
-    // }
-    // public function overallriskImg(){
-
-    //     $risk_map = DB::table('image_upload')
-    //                         ->select('image_path')
-    //                         ->where('image_category_id',5)
-    //                         ->orderby('created_at','desc')
-    //                         ->limit(1)
-    //                         ->get();
-
-    //     if($risk_map->count()>0){                                 // dd($risk_map);
-    //     $risk_map_path = $risk_map[0]->image_path;
-    //     }else{
-    //         $risk_map_path ='';
-    //     }
-
-    //     return view('imageviewer',compact('risk_map_path'));
-    // }
-
+    
 }
 
 

@@ -953,6 +953,7 @@ class PrimaryMasterTableSeeder extends Seeder
             array('id' => 2,'code' => '2','name_en' => 'Bachelors','name_lc' => 'Bachelors'),
             array('id' => 3,'code' => '3','name_en' => 'High School','name_lc' => 'High School'),
             array('id' => 4,'code' => '4','name_en' => 'SLC','name_lc' => 'SLC'),
+            array('id' => 5,'code' => '5','name_en' => 'Under SLC','name_lc' => 'Under SLC'),
     
         ]);
         DB::statement("SELECT SETVAL('mst_educational_level_id_seq',100)");
@@ -964,6 +965,7 @@ class PrimaryMasterTableSeeder extends Seeder
             array('id' => 2,'code' => '2','name_en' => 'Civil servant','name_lc' => 'Civil servant'),
             array('id' => 3,'code' => '3','name_en' => 'Teaching','name_lc' => 'Teaching'),
             array('id' => 4,'code' => '4','name_en' => 'Private Companies','name_lc' => 'Private Companies'),
+            array('id' => 5,'code' => '5','name_en' => 'Student','name_lc' => 'Student'),
           
         ]);
         DB::statement("SELECT SETVAL('mst_profession_id_seq',100)");
