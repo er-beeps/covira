@@ -21,8 +21,8 @@ return [
     'swab_test' => 'Total Swab Test',
     'quarantine' => 'Quarantined',
     'worldupdates' => 'World updates regarding COVID-19',
-    'covid_guidelines' => 'Guidelines on COVID-19 (Nepal Government)',
-    'covid_updates' => 'Rolling Updates on COVID-19 (WHO)'
+    'covid_guidelines' => 'Click Here for National Guidelines',
+    'covid_updates' => 'Click Here for WHO Guidelines'
 
 
     

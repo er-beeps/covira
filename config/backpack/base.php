@@ -45,6 +45,7 @@ return [
         'packages/backpack/base/css/bundle.css',
         'css/custom.css',
         'css/nepali.datepicker.v2.2.min.css',
+        'css/jquery.fancybox.min.css',
 
         // Here's what's inside the bundle:
         // 'packages/@digitallyhappy/backstrap/css/style.min.css',
@@ -128,6 +129,8 @@ return [
         'js/nepali.datepicker.v2.2.min.js',
         'js/lattitude.longitude.converter.js',
         'js/dependentdropdown.js',
+        'js/jquery.fancybox.min.js',
+
 
         // examples (everything inside the bundle, loaded from CDN)
         // 'https://code.jquery.com/jquery-3.4.1.min.js',

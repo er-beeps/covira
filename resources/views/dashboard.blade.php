@@ -152,11 +152,12 @@ table.nepal_data_table tr td.data{
                                     </a>
                                 </li>
                                 <li class="for_chart">
-                                    <a href="#risk_map" data-toggle="tab" class="riskmap">
+                                    <!-- <a href="#risk_map" data-toggle="tab" class="riskmap">
                                         <div data-toggle="tooltip" data-placement="bottom" title="Risk Map">
                                             <button class="btn btn-secondary btn-sm btn-map" style="border:1px solid black;">{{trans('dashboard.riskmap')}}</button>
                                         </div>
-                                    </a>
+                                    </a> -->
+                                    <a data-fancybox data-type="ajax" href="/response/fetchimages"  class="btn btn-secondary btn-sm btn-map" style="border:1px solid gray;">{{ trans('dashboard.riskmap') }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -178,12 +179,6 @@ table.nepal_data_table tr td.data{
                                 <script>
                                     var json = <?php echo $markers; ?>
                                 </script>   
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="risk_map">
-                            <div class="map-body">
-                                <div id="risk_image"></div> 
-                               <img id ="image1" src = "{{asset('storage/uploads/'.$risk_map_path)}}"></img>  
                             </div>
                         </div>
                     </div>
@@ -277,8 +272,6 @@ table.nepal_data_table tr td.data{
  <script src="{{ asset('/gismap/js/googlemap.js') }}"></script>
 <script src="{{ asset('/gismap/js/markerclusterer_compiled.js') }}"></script>
 <script src="{{ asset('/gismap/js/leaflet-src.js') }}"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoEoSKYFDXovqwCwCHIhAYGFsnrUW09Oo&callback=initMap"></script>
 <script>

@@ -65,23 +65,6 @@ class GisMapController extends Controller
             $nepal_covid_data = $nepal_covid_data->first();
         }                       
 
-        $risk_map = DB::table('image_upload')
-                            ->select('image_path')
-                            ->where('image_category_id',1)
-                            ->orderby('created_at','desc')
-                            ->limit(1)
-                            ->get();
-
-                            // $risk_map = DB::select('SELECT image_path,image_category_id from image_upload
-                            //                 GROUP BY id,image_category_id
-                            //                 ORDER BY max(created_at) desc');
-
-        if($risk_map->count()>0){                                 // dd($risk_map);
-        $risk_map_path = $risk_map[0]->image_path;
-        }else{
-            $risk_map_path ='';
-        }
-
 //search criteria
 $params = [];
 $wheres = [];
@@ -165,6 +148,24 @@ if ($request->all() != null) {
                 'message' => 'fail',
             ]);
         }
+    }
+
+    public function fetchImages(){
+
+        $risk_map = DB::table('image_upload')
+                            ->select('image_path')
+                            ->where('image_category_id',1)
+                            ->orderby('created_at','desc')
+                            ->limit(1)
+                            ->get();
+
+        if($risk_map->count()>0){                                 // dd($risk_map);
+        $risk_map_path = $risk_map[0]->image_path;
+        }else{
+            $risk_map_path ='';
+        }
+
+        return view('imageviewer',compact('risk_map_path'));
     }
 
 }
