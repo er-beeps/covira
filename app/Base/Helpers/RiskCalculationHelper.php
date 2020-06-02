@@ -43,8 +43,12 @@ class RiskCalculationHelper{
 
         $crf = array_sum($weight_factor_values_for_crf);
 
-    
+        if($crf > 100){
+            $crf = 100;
+        }
+
         $total_covid_risk_index = $age_risk_factor*((1-$comorbidities_factor)+($comorbidities_factor*$crf/100));
+ 
 
 // weight factor values for symptopms
         $symptoms_ids = [19,20,21,22,23,24,25,26,27,28,29,90,91];
@@ -111,6 +115,7 @@ class RiskCalculationHelper{
         if($total_covid_risk_index > 100){
             $total_covid_risk_index = 100;
         }
+
         if($probability_of_covid_infection < 0){
             $probability_of_covid_infection = 0;
         }
