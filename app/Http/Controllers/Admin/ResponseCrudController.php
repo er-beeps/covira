@@ -68,6 +68,10 @@ class ResponseCrudController extends BaseCrudController
             $('.toBeHidden2').hide();
             $('.legend2').hide();
 
+            $('input[name=gps_lat]').prop('readonly',true);
+            $('input[name=gps_long]').prop('readonly',true);
+            $('input[type=map]').hide();
+
 
             var process_step_id = $('#process_step_id').val();
 
@@ -183,6 +187,32 @@ class ResponseCrudController extends BaseCrudController
                  updateMarkerByInputs();
 
             });
+
+ //By default hide the field and show in professionid choosen is 1           
+            $('.legend-hide').hide();
+            $('.agriculture-hide').hide();
+
+            var professionId = $('#profession-id').val();
+            if(professionId == 1){
+                $('.legend-hide').show();
+                $('.agriculture-hide').show();
+                $('.agriculture-hide').prop('readonly',true);
+            }
+
+// show fields on change in profession
+            $('#profession-id').on('change',function(){
+                var professionId = $('#profession-id').val();
+
+                if(professionId == 1){
+                    $('.legend-hide').show();
+                    $('.agriculture-hide').show();
+                }else{
+                    $('.legend-hide').hide();
+                    $('.agriculture-hide').hide();
+                }
+            });
+
+
 
         });
         ";
@@ -353,38 +383,6 @@ class ResponseCrudController extends BaseCrudController
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
-
-            [
-                'name' => 'legend2',
-                'type' => 'custom_html',
-                'value' => '<b><legend>Education and Profession:</legend></b>',
-                'wrapperAttributes'=>[
-                    'class' => 'legend0'
-                ],
-            ],
-          
-            [
-                'name'=>'education_id',
-                'type'=>'select2',
-                'label'=>trans('शैक्षिक योग्यता'),
-                'entity'=>'education',
-                'model'=>'App\Models\MstEducationalLevel',
-                'attribute'=>'name_lc',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden',
-                ],
-            ],
-            [
-                'name'=>'profession_id',
-                'type'=>'select2',
-                'label'=>trans('पेशा'),
-                'entity'=>'profession',
-                'model'=>'App\Models\MstProfession',
-                'attribute'=>'name_en',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden',
-                ],
-            ],
             [
                 'name' => 'email',
                 'type' => 'text',
@@ -477,52 +475,7 @@ class ResponseCrudController extends BaseCrudController
                     'class' => 'form-group col-md-2 toBeHidden',
                 ],
             ],
-            [
-                'name' => 'gps_lat_degree',
-                'fake' => true,
-                'label' => trans('Degrees'),
-                'type' => 'number',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2 toBeHidden',
-                ],
-                'attributes' => [
-                    'id' => 'gps_lat_degree',
-                ],
-            ],
-            [
-                'name' => 'gps_lat_minute',
-                'fake' => true,
-                'label' => trans('Minutes'),
-                'type' => 'number',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2 toBeHidden',
-                ],
-                'attributes' => [
-                    'id' => 'gps_lat_minute',
-
-                ],
-            ],
-            [
-                'name' => 'gps_lat_second',
-                'fake' => true,
-                'label' => trans('Seconds'),
-                'type' => 'number',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2 toBeHidden',
-                ],
-                'attributes' => [
-                    'id' => 'gps_lat_second',
-
-                ],
-            ],
-            [
-                'name' => 'arrow1',
-                'type' => 'custom_html',
-                'value' => '<b><span style="position: relative; top:25px; font-size:22px; color:red;">&#8651;</span></b>',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-1 toBeHidden',
-                ],
-            ],
+    
             [
                 'name' => 'gps_lat',
                 'label' => trans('Decimal Degrees Latitude'),
@@ -535,6 +488,7 @@ class ResponseCrudController extends BaseCrudController
                     'id' => 'gps_lat',
                 ],
                 'default' => '0',
+                'readonly'=>true,
             ],
             [
                 'name' => 'separater2',
@@ -544,52 +498,8 @@ class ResponseCrudController extends BaseCrudController
                     'class' => 'form-group col-md-2 toBeHidden',
                 ],
             ],
-            [
-                'name' => 'gps_long_degree',
-                'fake' => true,
-                'label' => trans('Degrees'),
-                'type' => 'number',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2 toBeHidden',
-                ],
-                'attributes' => [
-                    'id' => 'gps_long_degree',
-                ],
-            ],
-            [
-                'name' => 'gps_long_minute',
-                'fake' => true,
-                'label' => trans('Minutes'),
-                'type' => 'number',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2 toBeHidden',
-                ],
-                'attributes' => [
-                    'id' => 'gps_long_minute',
-                ],
-            ],
-            [
-                'name' => 'gps_long_second',
-                'fake' => true,
-                'label' => trans('Seconds'),
-                'type' => 'number',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-2 toBeHidden',
-                ],
-                'attributes' => [
-                    'id' => 'gps_long_second',
-                ],
-            ],
-            [
-                'name' => 'arrow2',
-                'type' => 'custom_html',
-                'value' => '<b><span style="font-size:22px; position: relative; top:25px; color:red;">&#8651;</span></b>',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-1 toBeHidden',
-                ],
-            ],
 
-          [
+            [
                 'name' => 'gps_long',
                 'label' => trans('Decimal Degrees Longitude'),
                 'type' => 'number',
@@ -606,9 +516,6 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'map',
                 'type' => 'map',
-                'wrapperAttributes' => [
-                    'class' => 'toBeHidden',
-                ],
             ],
 
 
@@ -740,7 +647,43 @@ class ResponseCrudController extends BaseCrudController
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden1',
                 ],
-       
+
+            ],
+
+            [
+                'name' => 'legend2',
+                'type' => 'custom_html',
+                'value' => '<b><legend>Education and Profession:</legend></b>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend2'
+                ],
+            ],
+          
+            [
+                'name'=>'education_id',
+                'type'=>'select2',
+                'label'=>trans('<b>Education</b>'),
+                'entity'=>'education',
+                'model'=>'App\Models\MstEducationalLevel',
+                'attribute'=>'name_lc',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-5 toBeHidden2',
+                ],
+            ],
+            [
+                'name'=>'profession_id',
+                'type'=>'select2',
+                'label'=>trans('<b>Profession</b>'),
+                'entity'=>'profession',
+                'model'=>'App\Models\MstProfession',
+                'attribute'=>'name_en',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-5 toBeHidden2',
+                ],
+                'attributes'=>[
+                    'id' => 'profession-id'
+                ],
+            ],
 
             [
                 'name' => 'legend10',
@@ -762,7 +705,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(6)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -787,12 +730,9 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(7)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
-            ],
-
-            ],
-          
+            ],          
             [
                 'name' => 'legend13',
                 'type' => 'custom_html',
@@ -813,7 +753,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(9)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -837,7 +777,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(10)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]            ],
 
 
@@ -861,8 +801,9 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(11)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
-                ]            ],
+                    'class' => 'form-group col-md-12 toBeHidden2'
+                ]            
+            ],
 
 
             [
@@ -885,7 +826,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(12)->get();
                 }),
                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -910,7 +851,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(13)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -935,7 +876,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(14)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -960,7 +901,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(15)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -985,7 +926,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(16)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -995,7 +936,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'custom_html',
                 'value' => '<legend>Agri Producer Seller</legend>',
                 'wrapperAttributes'=>[
-                    'class' => 'legend2'
+                    'class' => 'legend-hide'
                 ]
             ],
 
@@ -1010,7 +951,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(17)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 agriculture-hide'
                 ]
             ],
 
@@ -1020,7 +961,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'custom_html',
                 'value' => '<legend>Product Selling Price</legend>',
                 'wrapperAttributes'=>[
-                    'class' => 'legend2'
+                    'class' => 'legend-hide'
                 ]
             ],
 
@@ -1035,7 +976,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(18)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 agriculture-hide'
                 ]
             ],
 
@@ -1060,7 +1001,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(19)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -1085,7 +1026,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(20)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
               [
@@ -1108,7 +1049,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(8)->get();
                 }),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -1133,7 +1074,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(21)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -1158,7 +1099,7 @@ class ResponseCrudController extends BaseCrudController
                     return $query->whereFactorId(22)->get();
                 }),
                  'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden2'
+                    'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
 
@@ -1312,8 +1253,6 @@ class ResponseCrudController extends BaseCrudController
         'name_lc' => $request->name_lc,
         'age' => $request->age,
         'gender_id' => $request->gender_id,
-        'education_id' => $request->education_id,
-        'profession_id' => $request->profession_id,
         'email' => $request->email,
         'province_id' => $request->province_id,
         'district_id' => $request->district_id,

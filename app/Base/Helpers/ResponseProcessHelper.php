@@ -81,8 +81,6 @@ class ResponseProcessHelper{
             'name_en' => $request->name_en,
             'name_lc' => $request->name_lc,
             'gender_id' => $request->gender_id,
-            'education_id' => $request->education_id,
-            'profession_id' => $request->profession_id,
             'email' => $request->email,
             'province_id' => $request->province_id,
             'district_id' => $request->district_id,
@@ -182,6 +180,8 @@ class ResponseProcessHelper{
       private function saveLogistics($id, $further_step_id, $request){
 
         $logistics = Response::whereId($id)->update([
+            'education_id' => $request->education_id,
+            'profession_id' => $request->profession_id,
             'process_step_id' => $further_step_id,
             'neighbour_proximity' => $request->neighbour_proximity,
             'community_situation' => $request->community_situation,

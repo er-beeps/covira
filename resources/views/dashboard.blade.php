@@ -13,6 +13,14 @@
 <link rel="stylesheet" href="{{ asset('/gismap/css/Control.FullScreen.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/leaflet.css') }}" />
 
+<style>
+.legend-btn{
+    margin:0px 5px;
+    align:center;
+    color:black;
+}
+</style>
+
 <div class ="row">
     <div class="col-md-2">
         <div class="row">
@@ -182,6 +190,17 @@
                 </div>
             </div> 
         </div>
+        <div class="row" style="margin-bottom:20px; margin-left:auto;">
+            <div class="content-index col-md-12 col-md-8 col-md-6 col-md-4">
+                <span style="font-weight:bold"> Legend : </span>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:green;"><i<span>Very Low</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:#10b552;"><i<span>Low</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:yellow;"><i<span>Moderate</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:orange;"><i<span>High</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:red;"><i<span>Very High</span></button>
+            </div>        
+        </div>
+
         <div class="row">
             <div class="content-footer" style="margin-left:3%">
                 <button type="button" onclick="incrementLike(this)" class="btn btn-outline-secondary"><i

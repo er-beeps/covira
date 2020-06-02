@@ -6,18 +6,16 @@
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
       <style>
       #map {
-            position: relative;
+            /* position: relative; */
             border: 1px solid gray;
             border-radius: 25px;
-            left: 22%;
-            height: 450px;
-            width: 700px;
-            margin-bottom:30px;
+            margin:25px 2% 50px 2%;
+            height: 80vh;
+            width: 120vh;
       }
 </style>
 
-<div @include('crud::inc.field_wrapper_attributes')>
-      <div id='map'></div>
+      <div class ="col-md-10 col-md-6 col-md-3 col toBeHidden" id='map'></div>
       <script>
             var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
                   '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -127,4 +125,3 @@
 <script type="text/javascript" src="{{asset('js/lattitude.longitude.converter.js')}}"></script>  
 
      
-</div>

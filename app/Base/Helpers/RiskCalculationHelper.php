@@ -20,9 +20,9 @@ class RiskCalculationHelper{
         $age_risk_factor = $alpha*exp($beta*$x);
 
 
-        $a = 0.00003406;
-        $b = 0.00673;
-        $c = 0.6356; 
+        $a = -0.0000340646579722815;
+        $b = 0.0067296534381777200;
+        $c = 0.6356245655700390000; 
         $comorbidities_factor = ($a*pow($age,2))+($b*$age)+$c;
 
         $respondant_data = RespondentData::whereResponseId($id)->get()->toArray();
