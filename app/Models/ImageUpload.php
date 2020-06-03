@@ -67,7 +67,7 @@ class ImageUpload extends BaseModel
         $attribute_name = "image_path";
         $disk = "uploads";
         $path = 'images/###CATEGORY_ID###';
-        $category_id = (isset(request()->image_category_id) ? $this->imagecategory->name_lc : 'tmp');
+        $category_id = (isset(request()->image_category_id) ? $this->imagecategory->name_en : 'tmp');
 
         $destination_path = str_replace('###CATEGORY_ID###',$category_id,$path);
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);

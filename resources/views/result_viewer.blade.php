@@ -1,4 +1,8 @@
 <div id = "result_viewer">
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ed7de596973dba7"></script>
+
 <script src="{{asset('js/gauge.js')}}"></script>
 
     <div class="row">
@@ -47,13 +51,17 @@
             <br>
 
             <div class="row">
-            <div class="social-share">
-            </div>
+                <div class="col-md-12 col-md-8 col-md-4 social-share">
+                    <div class="addthis_inline_share_toolbox"></div>
+                </div>
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+</script>
 
 
 <style>
@@ -63,5 +71,11 @@
       margin-left:5%;
       max-width:90%;
       max-height:80%;
+  }
+  .social-share{
+      text-align:center;
+  }
+  .addthis_inline_share_toolbox{
+      display:inline-block;
   }
   </style>

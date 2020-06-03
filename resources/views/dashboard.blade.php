@@ -1,8 +1,6 @@
 @extends(backpack_view('layouts.top_left'))
 
 @section('content')
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
 <script src="{{asset('js/gauge.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('/gismap/css/gismap.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/mapview.css') }}" />
