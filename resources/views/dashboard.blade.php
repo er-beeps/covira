@@ -43,7 +43,7 @@
                     <div class="card-header"><center><b>{{trans('dashboard.covidriskindex')}}</b></center></div>
                     <div class="card-body">
                     @if(isset($id))
-                            @include(backpack_view('inc.cri_gauge'))
+                            <center>@include(backpack_view('inc.cri_gauge'))</center>
                     @else
                     <span style="color:red;"><b>{{trans('dashboard.accessriskwarning')}}</b></span>
                     @endif        
@@ -55,7 +55,7 @@
                     <div class="card-header"><center><b>{{trans('dashboard.covidchance')}}</b></center></div>
                     <div class="card-body">
                     @if(isset($id))
-                            @include(backpack_view('inc.pci_gauge'))
+                    <center>@include(backpack_view('inc.pci_gauge'))</center>
                     @else
                         <span style="color:red;"><b>{{trans('dashboard.covidchance')}}</b></span>
                     @endif  
@@ -69,6 +69,15 @@
                     </div>
                 </div>
             </div>
+        @elseif(!backpack_user())
+            <div class="row">
+                <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
+                    <div class="card-header"><center><b>
+                        <a data-fancybox data-type="ajax" href="/response/view_result" id = "result_view" style="color:darkblue; font-size:17px;">{{ trans('View Result') }}</a>  
+                        </b></center
+                    ></div>
+                </div>
+            </div>  
         @endif
 
     </div>
@@ -290,6 +299,24 @@
 <script src="{{ asset('/gismap/js/leaflet-src.js') }}"></script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoEoSKYFDXovqwCwCHIhAYGFsnrUW09Oo&callback=initMap"></script>
+
+@php
+$responseId = request()->session()->get('response_id');
+$process_step_id = \App\Models\Response::whereId($responseId)->pluck('process_step_id')->first();
+@endphp
+
+@section('after_scripts')
+<script>
+$(document).ready(function(){
+    var processStepId = '<?php echo $process_step_id ?>';
+
+    if(processStepId == 4){
+        $('#result_view').trigger('click');
+    }
+
+});
+</script>
+
 <script>
 function incrementLike(button){
     var button = $(button);
@@ -309,6 +336,7 @@ function incrementLike(button){
 }
 
 </script>
+@endsection
 
 @endsection
 

@@ -104,13 +104,6 @@ class ResponseCrudController extends BaseCrudController
                 $('form input[type=checkbox]').prop('readonly', true);
                 $('form input[type=checkbox]').click(false);
                 $('#map').click(false);
-
-                //update value in gauge
-                var ageRiskFactor = $('#age_risk_factor').val();
-                var covidRiskIndex = $('#covid_risk_index').val();
-                var probabilityOfCovidInfection = $('#probability_of_covid_infection').val();
-                cri_gauge.set(covidRiskIndex);
-                pci_gauge.set(probabilityOfCovidInfection);
             }
 
          
@@ -261,11 +254,6 @@ class ResponseCrudController extends BaseCrudController
 
         $mode = $this->crud->getActionMethod();
         $process_step_id = NULL;
-        $cri_gauge = NULL;
-        $pci_gauge = NULL;
-        $age_risk_factor = NULL;
-        $covid_risk_index = NULL;
-        $probability_of_covid_infection = NULL;
         if(in_array($mode,['edit','update'])){
             $current_process_step_id  = Response::find($this->parent('id'))->process_step_id;
 
@@ -278,57 +266,11 @@ class ResponseCrudController extends BaseCrudController
                 ],
             ];
 
-            if($current_process_step_id == 4){
-
-            $cri_gauge = [
-                'name' => 'cri_gauge',
-                'type' => 'cri_gauge',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
-                ],
-
-            ];
-            $pci_gauge = [
-                'name' => 'pci_gauge',
-                'type' => 'pci_gauge',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
-                ],
-
-            ];
-
-            $age_risk_factor = [
-                'name' => 'age_risk_factor',
-                'type' => 'hidden',
-                'attributes' => [
-                    'id' => 'age_risk_factor',
-                ]
-            ];
-             $covid_risk_index = [
-                'name' => 'covid_risk_index',
-                'type' => 'hidden',
-                'attributes' => [
-                    'id' => 'covid_risk_index',
-                ]
-            ];
-
-            $probability_of_covid_infection = [
-                'name' => 'probability_of_covid_infection',
-                'type' => 'hidden',
-                'attributes' => [
-                    'id' => 'probability_of_covid_infection',
-                ]
-            ];
-        }
         }
 
         $arr = [
             $process_step_id,
-            $cri_gauge,
-            $pci_gauge,
-            $age_risk_factor,
-            $probability_of_covid_infection,
-            $covid_risk_index,
+    
             // $this->addReadOnlyCodeField(),
             [
                 'name' => 'code',
@@ -1194,9 +1136,17 @@ class ResponseCrudController extends BaseCrudController
         }
 
         if(backpack_user()){
-            return redirect(backpack_url('/response').'/'.$id.'/edit');
+            if($process_step_id == 4){
+                return redirect(backpack_url('/'));
+            }else{
+                return redirect(backpack_url('/response').'/'.$id.'/edit');
+            }
         }else{
-            return redirect(url('/fill_response').'/'.$id.'/edit');
+            if($process_step_id == 4){
+                return redirect(url('/'));
+            }else{
+                return redirect(url('/fill_response').'/'.$id.'/edit');
+            }
         }
     }
 
@@ -1254,6 +1204,9 @@ class ResponseCrudController extends BaseCrudController
 
         if(!backpack_user()){
             $itemId = $this->saveRequest($request);
+
+            request()->session()->put('response_id',$itemId);
+
             \Alert::success(trans('Data Submitted Successfully'))->flash();
             return redirect(url('/fill_response').'/'.$itemId.'/edit');
         }else{
@@ -1265,6 +1218,8 @@ class ResponseCrudController extends BaseCrudController
                 $this->data['entry'] = $this->crud->entry = $item;
 
                 $itemId = $item->id;
+                request()->session()->put('response_id',$itemId);
+
         
                 //getting first process step for process type-bill
                 $firstProcessStep = ProcessSteps::whereIsFirstStep(true)->first();
@@ -1397,5 +1352,9 @@ class ResponseCrudController extends BaseCrudController
                 'message' => 'fail',
             ]);
         }
+    }
+
+    public function redirectResult(){
+        return view('result_viewer');
     }
 }

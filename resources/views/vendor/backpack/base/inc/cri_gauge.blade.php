@@ -1,79 +1,24 @@
 <!-- <script src="{{asset('js/gauge.js')}}"></script> -->
 
 <style>
-  .cri_title{
-    text-align: center;
-  }
-  #cri_gauge_view{
-    height:75px;
-    width:150px;
-    margin-left:-40px;
-  }
-  .index{
-    margin:0px;
-  }
 
-  #index{
-    margin-left:-30px;
-  }
-  span.indicator-box {
-    /* margin-bottom:5px; */
-    margin-right:5px;
-    margin-left:0px;
-  }
-  .indicator-box{
-    width:10px;
-    height:10px;
-    margin:auto;
-    display: inline-block;
-    border:1px solid gray;
-    border-radius: 3px;
-  }
-  .indicator-label{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 10px;
-    font-weight:bold;
-    margin-bottom:0px;
+  #cri_gauge_view{
+    height:80px;
   }
 
   </style>
 
-<div class="col-md-12">
-    <div class="row">
-      <div class = "col-md-5 index">
-        <table id ="index">
-          <tr>
-            <td><span class="indicator-box" style= "background-color:green"></td>
-            <td><span class="indicator-label">Very Low</span></td>
-          </tr>
-          <tr>
-            <td><span class="indicator-box" style= "background-color:#10b552"></td>
-            <td><span class="indicator-label">Low</span></td>
-          </tr>
-          <tr>
-            <td><span class="indicator-box" style= "background-color:yellow"></td>
-            <td><span class="indicator-label">Moderate</span></td>
-          </tr>
-          <tr>
-            <td><span class="indicator-box" style= "background-color:orange"></td>
-            <td><span class="indicator-label">High</span></td>
-          </tr>
-          <tr>
-            <td><span class="indicator-box" style= "background-color:#e80000"></td>
-            <td><span class="indicator-label">Very High</span></td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="col-md-7">
-        <canvas id="cri_gauge_view"></canvas>
-      </div> 
-    </div>
-</div>
+    <canvas id="cri_gauge_view"></canvas>
 
 @php
-$data = \App\Models\Response::where('user_id',backpack_user()->id)->get();
-$cri = $data[0]->covid_risk_index;
+if(!backpack_user()){
+  $responseId = request()->session()->get('response_id');
+  $data = \App\Models\Response::where('id',$responseId)->get();
+  $cri = $data[0]->covid_risk_index;
+}else{
+  $data = \App\Models\Response::where('user_id',backpack_user()->id)->get();
+  $cri = $data[0]->covid_risk_index;
+}
 @endphp
 
   <script type="text/javascript">
