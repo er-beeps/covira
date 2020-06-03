@@ -25,24 +25,21 @@ function initMap() {
         cri =json[x].covid_risk_index;
         pci =json[x].probability_of_covid_infection;
 
-        if(cri >0 && cri < 20){
-            url = '/gismap/icons/verylow.png';
+        if(cri >=0 && cri < 20){
             color_cri = 'green';
         }else if(cri > 20 && cri <= 40){
-            url = '/gismap/icons/low.png';
             color_cri= '#10b552';
         }else if(cri > 40 && cri <= 60){
-            url = '/gismap/icons/moderate.png';
             color_cri= 'yellow';
         }else if(cri > 60 && cri <= 80){
-            url = '/gismap/icons/high.png';
             color_cri='orange';
-        }else if(cri >= 80){
-            url = '/gismap/icons/veryhigh.png';
+        }else if(cri > 80){
             color_cri='red';
+        }else{
+            color_cri = 'null';
         }
 
-        if(pci >0 && pci < 20){
+        if(pci >=0 && pci < 20){
             url = '/gismap/icons/verylow.png';
             color_pci = 'green';
         }else if(pci > 20 && pci <= 40){
@@ -54,10 +51,14 @@ function initMap() {
         }else if(pci > 60 && pci <= 80){
             url = '/gismap/icons/high.png';
             color_pci='orange';
-        }else if(pci >= 80){
+        }else if(pci > 80){
             url = '/gismap/icons/veryhigh.png';
             color_pci='red';
+        }else{
+            url = '/gismap/icons/person.png';
+            color_pci = 'black';
         }
+
 
         var icon = {
             url: url, // url
