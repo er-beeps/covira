@@ -354,33 +354,33 @@ class ResponseCrudController extends BaseCrudController
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
-            [
-                'name' => 'name_lc',
-                'type' => 'text',
-                'label' => trans('नाम'),
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden',
-                ],
-            ],
+            // [
+            //     'name' => 'name_lc',
+            //     'type' => 'text',
+            //     'label' => trans('नाम'),
+            //     'wrapperAttributes' => [
+            //         'class' => 'form-group col-md-6 toBeHidden',
+            //     ],
+            // ],
             [
                 'name' => 'age',
                 'type' => 'number',
-                'label' => trans('उमेर'),
+                'label' => trans('Age'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden',
+                    'class' => 'form-group col-md-3 toBeHidden',
                 ],
-                'suffix' => 'बर्ष',
+                'suffix' => 'years',
             ],
 
             [
                 'name'=>'gender_id',
                 'type'=>'select2',
-                'label'=>trans('लिङ्ग'),
+                'label'=>trans('Gender'),
                 'entity'=>'gender',
                 'model'=>'App\Models\MstGender',
-                'attribute'=>'name_lc',
+                'attribute'=>'name_en',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden',
+                    'class' => 'form-group col-md-3 toBeHidden',
                 ],
             ],
             [
@@ -392,8 +392,6 @@ class ResponseCrudController extends BaseCrudController
                 ],
             ],
   
-
-
             [
                 'name' => 'legend3',
                 'type' => 'custom_html',
@@ -427,21 +425,21 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'province_id',
                 'type'=>'select2',
-                'label'=>trans('प्रदेश'),
+                'label'=>trans('Province'),
                 'entity'=>'province',
                 'model'=>'App\Models\MstProvince',
-                'attribute'=>'name_lc',
+                'attribute'=>'name_en',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
             [
                 'name'=>'district_id',
-                'label'=>trans('जिल्ला'),
+                'label'=>trans('District'),
                 'type'=>'select2_from_ajax',
                 'model'=>'App\Models\MstDistrict',
                 'entity'=>'district',
-                'attribute'=>'name_lc',
+                'attribute'=>'name_en',
                 'data_source' => url("api/district/province_id"),
                 'placeholder' => "Select a District",
                 'minimum_input_length' => 0,
@@ -452,11 +450,11 @@ class ResponseCrudController extends BaseCrudController
             ],
             [
                 'name'=>'local_level_id',
-                'label'=>trans('स्थानीय तह'),
+                'label'=>trans('Local Level'),
                 'type'=>'select2_from_ajax',
                 'entity'=>'locallevel',
                 'model'=>'App\Models\MstLocalLevel',
-                'attribute'=>'name_lc',
+                'attribute'=>'name_en',
                 'data_source' => url("api/locallevel/district_id"),
                 'placeholder' => "Select a Local Level",
                 'minimum_input_length' => 0,
@@ -471,7 +469,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'ward_number',
                 'type'=>'number',
-                'label'=>trans('वडा नं.'),
+                'label'=>trans('Ward No.'),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
@@ -482,7 +480,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'country_id',
                 'type'=>'select2',
-                'label'=>trans('देश'),
+                'label'=>trans('Country'),
                 'entity'=>'country',
                 'model'=>'App\Models\Country',
                 'attribute'=>'name_lc',
@@ -1238,6 +1236,15 @@ class ResponseCrudController extends BaseCrudController
             $lat = request()->request->get('gps_lat');
             $long = request()->request->get('gps_long');
 
+            if($lat == 0 || $long == 0){
+                $local_level_id = $request->local_level_id;
+
+                $local_level_code = MstLocalLevel::whereId($local_level_id)->pluck('code')->first();
+                
+                $lat = DB::table('mst_ward')->where('local_level_code',$local_level_code)->pluck('lat_municipal')->first();
+                $long = DB::table('mst_ward')->where('local_level_code',$local_level_code)->pluck('long_municipal')->first();
+            }
+
             $random = $this->generateRandomNum(0,9);
             $gps_lat = (float)$lat+(float)$random;
             $gps_long = (float)$long+(float)$random;
@@ -1281,9 +1288,13 @@ class ResponseCrudController extends BaseCrudController
     }
 
     public function saveRequest($request){
+
+        $is_other_country = $request->is_other_country;
+
+        if($is_other_country == 0){
         $request->validate([
             'name_en' => 'required|max:255',
-            'name_lc' => 'required|max:255',
+            // 'name_lc' => 'required|max:255',
             'age' => 'required|min:1|max:3',
             'gender_id' => 'required',
             'province_id' => 'required',
@@ -1291,11 +1302,22 @@ class ResponseCrudController extends BaseCrudController
             'local_level_id' => 'required',
             'ward_number' => 'required|min:1|max:2',
         ]);
+        }else{
+            $request->validate([
+                'name_en' => 'required|max:255',
+                // 'name_lc' => 'required|max:255',
+                'age' => 'required|min:1|max:3',
+                'gender_id' => 'required',
+                'country_id'=> 'required',
+                'city'=> 'required',
+            ]);
+
+        }
 
         $dataSet = [
         'code' => $request->code,
         'name_en' => $request->name_en,
-        'name_lc' => $request->name_lc,
+        // 'name_lc' => $request->name_lc,
         'age' => $request->age,
         'gender_id' => $request->gender_id,
         'email' => $request->email,
@@ -1306,9 +1328,21 @@ class ResponseCrudController extends BaseCrudController
         'remarks' => $request->remarks,
         ];
         //add random number to gps lat and long to make difference in co-ordinates
+        $lat = $request->gps_lat;
+        $long = $request->gps_long;
+
+        if($lat == 0 || $long == 0){
+            $local_level_id = $request->local_level_id;
+
+            $local_level_code = MstLocalLevel::whereId($local_level_id)->pluck('code')->first();
+            
+            $lat = DB::table('mst_ward')->where('local_level_code',$local_level_code)->pluck('lat_municipal')->first();
+            $long = DB::table('mst_ward')->where('local_level_code',$local_level_code)->pluck('long_municipal')->first();
+        }
+
         $random = $this->generateRandomNum(0,9);
-        $gps_lat = (float)$request->gps_lat+(float)$random;
-        $gps_long = (float)$request->gps_long+(float)$random;
+        $gps_lat = (float)$lat+(float)$random;
+        $gps_long = (float)$long+(float)$random;
 
         $dataSet['gps_lat'] = $gps_lat;
         $dataSet['gps_long'] = $gps_long;

@@ -15,6 +15,6 @@ return [
     'secondary' => 'Seconday',
     'prhospital' => 'Hospital',
     'prquarantinecenter' => 'Quarantine Center',
-    'practivity' => 'Practivity',
+    'practivity' => 'Activity',
     'prfactor' => 'Factor',
 ];

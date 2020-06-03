@@ -30,7 +30,7 @@ use Illuminate\Foundation\Http\FormRequest;
         if($is_other_country == 0){
             return [
                 'name_en' => 'required|max:255',
-                'name_lc' => 'required|max:255',
+                // 'name_lc' => 'required|max:255',
                 'age' => 'required|min:1|max:3',
                 'gender_id' => 'required',
                 'province_id' => 'required',
@@ -43,7 +43,7 @@ use Illuminate\Foundation\Http\FormRequest;
         if($is_other_country == 1){
             return [
                 'name_en' => 'required|max:255',
-                'name_lc' => 'required|max:255',
+                // 'name_lc' => 'required|max:255',
                 'age' => 'required|min:1|max:3',
                 'gender_id' => 'required',
                 'country_id'=> 'required',
