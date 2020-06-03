@@ -37,7 +37,7 @@ function initMap() {
         }else if(cri > 60 && cri <= 80){
             url = '/gismap/icons/high.png';
             color_cri='orange';
-        }else if(cri = 80){
+        }else if(cri >= 80){
             url = '/gismap/icons/veryhigh.png';
             color_cri='red';
         }
@@ -54,7 +54,7 @@ function initMap() {
         }else if(pci > 60 && pci <= 80){
             url = '/gismap/icons/high.png';
             color_pci='orange';
-        }else if(pci = 80){
+        }else if(pci >= 80){
             url = '/gismap/icons/veryhigh.png';
             color_pci='red';
         }
