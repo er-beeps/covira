@@ -33,7 +33,7 @@ if(!backpack_user()){
 
         // customize pointer
         pointer: {
-          length: 0.7,
+          length: 0.75,
           strokeWidth: 0.05,
           iconScale: 1.0
         },
