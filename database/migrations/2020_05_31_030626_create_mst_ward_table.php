@@ -11,21 +11,21 @@ class CreateMstWardTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('mst_ward', function (Blueprint $table) {
-            $table->smallIncrements('id');
-            $table->integer('local_level_code');
-            $table->integer('ward');
-            $table->string('GaPa_NaPa');
-            $table->string('lat_ward',20);
-            $table->string('long_ward',20);
-            $table->string('lat_municipal',20);
-            $table->string('long_municipal',20);
-            $table->string('lat_district',20);
-            $table->string('long_district',20);
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::create('mst_ward', function (Blueprint $table) {
+    //         $table->smallIncrements('id');
+    //         $table->integer('local_level_code');
+    //         $table->integer('ward');
+    //         $table->string('gapa_napa');
+    //         $table->string('lat_ward',20);
+    //         $table->string('long_ward',20);
+    //         $table->string('lat_municipal',20);
+    //         $table->string('long_municipal',20);
+    //         $table->string('lat_district',20);
+    //         $table->string('long_district',20);
+    //     });
+    // }
 
     /**
      * Reverse the migrations.

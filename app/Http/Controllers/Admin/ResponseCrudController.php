@@ -402,6 +402,28 @@ class ResponseCrudController extends BaseCrudController
                     'class' => 'legend0'
                 ]
             ],
+
+            [ //Toggle
+                'name' => 'is_other_country',
+                'label' => trans('Are you from Nepal? (Please specify city if selected other)'),
+                'type' => 'toggle',
+                'options'     => [ 
+                    0 => 'Nepal',
+                    1 => 'Others'
+                ],
+                'inline' => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-10 voting_info',
+                ],
+                'attributes' =>[
+                    'id' => 'is_other_country',
+                ],
+                'hide_when' => [
+                    0 => ['city'],
+                    1 => ['province_id','district_id','local_level_id','ward_number'],
+                ],
+                'default' => 0,
+            ],
             [
                 'name'=>'province_id',
                 'type'=>'select2',
@@ -455,6 +477,18 @@ class ResponseCrudController extends BaseCrudController
                 ],
                 'attributes'=> [
                     'id' => 'ward_num',
+                ]
+            ],
+
+            [
+                'name'=>'city',
+                'type'=>'text',
+                'label'=>trans('Please Specify City'),
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
+                'attributes'=> [
+                    'id' => 'city',
                 ]
             ],
 

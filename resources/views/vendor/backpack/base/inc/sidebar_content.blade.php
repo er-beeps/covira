@@ -23,6 +23,7 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-link-secondary nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-cogs"></i>{{ trans('main.primary') }}</span></a>
     <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('country') }}'><i class='nav-icon fa fa-globe'></i> Country</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('province') }}'><i class='nav-icon fa fa-compass'></i> {{ trans('main.province')}}</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('district') }}'><i class='nav-icon fa fa-compass'></i> {{ trans('main.district')}}</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('localleveltype') }}'><i class='nav-icon fa fa-compass'></i> {{ trans('main.localleveltype')}}</a></li>

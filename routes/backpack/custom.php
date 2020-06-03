@@ -30,6 +30,7 @@ Route::group([
 ], function () { // custom admin routes
 
     //primary master routes
+    Route::crud('country', 'CountryCrudController');
     Route::crud('province', 'MstProvinceCrudController');
     Route::crud('district', 'MstDistrictCrudController');
     Route::crud('localleveltype', 'MstLocalLevelTypeCrudController');
