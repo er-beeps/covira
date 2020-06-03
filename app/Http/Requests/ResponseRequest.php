@@ -25,6 +25,8 @@ use Illuminate\Foundation\Http\FormRequest;
      */
     public function rules()
     {
+
+        
         return [
             'name_en' => 'required|max:255',
             'name_lc' => 'required|max:255',

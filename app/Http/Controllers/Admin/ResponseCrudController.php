@@ -419,7 +419,7 @@ class ResponseCrudController extends BaseCrudController
                     'id' => 'is_other_country',
                 ],
                 'hide_when' => [
-                    0 => ['city'],
+                    0 => ['country_id','city'],
                     1 => ['province_id','district_id','local_level_id','ward_number'],
                 ],
                 'default' => 0,
@@ -478,6 +478,17 @@ class ResponseCrudController extends BaseCrudController
                 'attributes'=> [
                     'id' => 'ward_num',
                 ]
+            ],
+            [
+                'name'=>'country_id',
+                'type'=>'select2',
+                'label'=>trans('देश'),
+                'entity'=>'country',
+                'model'=>'App\Models\Country',
+                'attribute'=>'name_lc',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6',
+                ],
             ],
 
             [
