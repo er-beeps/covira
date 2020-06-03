@@ -47,6 +47,7 @@ class GisMapController extends Controller
                 r.probability_of_covid_infection,
                 ll.name_lc locallevel,
                 ll.name_en enlocallevel,
+                r.ward_number,
                 COALESCE (cast(nullif(r.gps_lat, '') as float), 27.700769) lat,
                 COALESCE (cast(nullif(r.gps_long, '') as float), 85.300140 ) lon
                 FROM response r

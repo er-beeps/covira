@@ -25,17 +25,36 @@ use Illuminate\Foundation\Http\FormRequest;
      */
     public function rules()
     {
+        $is_other_country = $this->request->get('is_other_country');
+
+        if($is_other_country == 0){
+            return [
+                'name_en' => 'required|max:255',
+                'name_lc' => 'required|max:255',
+                'age' => 'required|min:1|max:3',
+                'gender_id' => 'required',
+                'province_id' => 'required',
+                'district_id' => 'required',
+                'local_level_id' => 'required',
+                'ward_number' => 'required|min:1|max:2',
+            ];
+            
+        }
+        if($is_other_country == 1){
+            return [
+                'name_en' => 'required|max:255',
+                'name_lc' => 'required|max:255',
+                'age' => 'required|min:1|max:3',
+                'gender_id' => 'required',
+                'country_id'=> 'required',
+                'city'=> 'required',
+            ];
+        }
 
         
         return [
-            'name_en' => 'required|max:255',
-            'name_lc' => 'required|max:255',
-            'age' => 'required|min:1|max:3',
-            'gender_id' => 'required',
-            'province_id' => 'required',
-            'district_id' => 'required',
-            'local_level_id' => 'required',
-            'ward_number' => 'required|min:1|max:2',
+         
+        
         ];
     }
 
@@ -66,6 +85,8 @@ use Illuminate\Foundation\Http\FormRequest;
             'province_id.required'=>'कृपया प्रदेश छान्नुहोस् |',
             'district_id.required'=>'कृपया जिल्ला छान्नुहोस् |',
             'local_level_id.required'=>'कृपया स्थानीय तह छान्नुहोस् |',
+            'country_id.required'=>'कृपया देश छान्नुहोस् |',
+            'city.required'=>'कृपया सहर भर्नुहोस् |',
             'ward_number.required'=>'कृपया वडा नं. भर्नुहोस् |',
         ];
     }

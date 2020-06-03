@@ -21,41 +21,43 @@ function initMap() {
         name_lc = json[x].name_lc;
         locallevel = json[x].locallevel;
         district = json[x].district_name_np;
+        ward = json[x].ward_number;
         ari =json[x].age_risk_factor;
         cri =json[x].covid_risk_index;
         pci =json[x].probability_of_covid_infection;
 
         if(cri >=0 && cri < 20){
+            url = '/gismap/icons/verylow.png';
             color_cri = 'green';
         }else if(cri > 20 && cri <= 40){
+            url = '/gismap/icons/low.png';
             color_cri= '#10b552';
         }else if(cri > 40 && cri <= 60){
+            url = '/gismap/icons/moderate.png';
             color_cri= 'yellow';
         }else if(cri > 60 && cri <= 80){
+            url = '/gismap/icons/high.png';
             color_cri='orange';
         }else if(cri > 80){
             color_cri='red';
+            url = '/gismap/icons/veryhigh.png';
         }else{
             color_cri = 'null';
+            url = '/gismap/icons/person.png';
+
         }
 
-        if(pci >=0 && pci < 20){
-            url = '/gismap/icons/verylow.png';
+        if(pci >=0 && pci < 20){ 
             color_pci = 'green';
         }else if(pci > 20 && pci <= 40){
-            url = '/gismap/icons/low.png';
             color_pci= '#10b552';
         }else if(pci > 40 && pci <= 60){
-            url = '/gismap/icons/moderate.png';
             color_pci= 'yellow';
         }else if(pci > 60 && pci <= 80){
-            url = '/gismap/icons/high.png';
             color_pci='orange';
         }else if(pci > 80){
-            url = '/gismap/icons/veryhigh.png';
             color_pci='red';
         }else{
-            url = '/gismap/icons/person.png';
             color_pci = 'black';
         }
 
@@ -71,7 +73,7 @@ function initMap() {
             map: map1,
             icon: icon,
             content: '<font color="#003399">जिल्ला : </font>' + '<font color="purple">' + district + '</font>' + '<br>' +
-                    '<font color="#003399">स्थानीय तह : </font>' + '<font color="purple">' + locallevel + '</font>'+ '<br>' +
+                    '<font color="#003399">स्थानीय तह : </font>' + '<font color="purple">' + locallevel + ' - '+ ward + '</font>'+ '<br>' +
                     '<font color="#003399">COVID Risk Index : </font>' + '<b><font color="'+color_cri+'">' + cri + '</font></b>'+ '<br>' +
                     '<font color="#003399">Probability of COVID Infection : </font>' + '<b><font color="'+color_pci+'">' + pci + '</font></b>'
 

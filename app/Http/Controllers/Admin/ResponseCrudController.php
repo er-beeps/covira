@@ -413,7 +413,7 @@ class ResponseCrudController extends BaseCrudController
                 ],
                 'inline' => true,
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-10 voting_info',
+                    'class' => 'form-group col-md-10 toBeHidden',
                 ],
                 'attributes' =>[
                     'id' => 'is_other_country',
@@ -487,7 +487,7 @@ class ResponseCrudController extends BaseCrudController
                 'model'=>'App\Models\Country',
                 'attribute'=>'name_lc',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
 
@@ -496,7 +496,7 @@ class ResponseCrudController extends BaseCrudController
                 'type'=>'text',
                 'label'=>trans('Please Specify City'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
                 'attributes'=> [
                     'id' => 'city',

@@ -194,11 +194,19 @@ class Response extends BaseModel
     */
     public function province_district()
     {
-        return $this->province->name_lc.'<br>'.$this->district->name_lc;
+        if(isset($this->province_id) && isset($this->district_id)){
+            return $this->province->name_lc.'<br>'.$this->district->name_lc;
+        }else{
+            return ' - '.'<br>'.' - ';
+        }
     }
     
     public function local_address()
     {
-        return $this->locallevel->name_lc.'<br>'.$this->convertToNepaliNumber($this->ward_number);
+        if(isset($this->locallevel_id) && isset($this->ward_number)){
+            return $this->locallevel->name_lc.'<br>'.$this->convertToNepaliNumber($this->ward_number);
+        }else{
+            return ' - '.'<br>'.' - ';
+        }
     }
 }
