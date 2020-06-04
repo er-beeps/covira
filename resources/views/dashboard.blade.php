@@ -17,6 +17,11 @@
     align:center;
     color:black;
 }
+.about-card{
+    margin-left:3%;
+    border-radius:20px;
+
+}
 </style>
 
 <div class ="row">
@@ -75,7 +80,7 @@
                         </b></center
                     ></div>
                 </div>
-            </div>  
+            </div>   
         @endif
 
     </div>
@@ -133,6 +138,15 @@
                     </div>  <!-- card-body ends here -->
                 </div>
             </div> 
+        </div>
+        @else
+        <div class="row">
+            <div class="card col-md-11 about-card" style="background-color: white; background-size:cover;">
+                <div class="card-header"><center><b>
+                    कोभिरा (COVID-19 Vulnerability Risk Analysis), महामारीको समयमा ब्यक्ति तथा समुदायलाई यसको असर कम भन्दा कम पार्न सकिन्छ भन्ने अभिप्रायले बेलायतको युनिभर्सिटि अफ ब्रिस्टोल तथा नेपालको साइन्सहब (sciencehub.org.np) तथा अन्य संस्थाहरु समेतका अनुसन्धानकर्ताहरु मिलेर गरेको अनुसन्धान बाट प्रप्त नतिजाको आधारमा निर्माण गरिएको  ब्यक्तिगत तथा स्थानिय जोखिम मुल्यांकन गर्ने बिधि हो।  यसमा, व्यक्तिगत( <br>१. कोभीड-१९ लागी हालेमा ज्यान जान सक्ने जोखिम तथा <br>२. हालको अबस्थामा कोभिड संक्रमण भएको हुन सक्ने जोखिम) र भौगोलिक (तपाईको पालिकामा कोरोना सर्ने जोखिमको अबस्था) जोखिम आंकलन गरि ब्यक्ति या समुदायले आफुलाई र समुदायलाई कम असर पर्ने गरि जिवनयापन सहज बनाउन सक्नुहुनेछ। अनुसन्धानको बिस्तृत बिबरण : <br>" Parajuli et. al. (2020) ‘COVID-19 risk assessment and communication: a multidisciplinary approach to overcome the pandemic’"मा छिट्टै उपलब्ध हुने छ।
+                    </b></center>
+                </div>
+            </div>
         </div>
         @endif
 

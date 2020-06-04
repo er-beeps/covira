@@ -5,6 +5,10 @@
 
 <script src="{{asset('js/gauge.js')}}"></script>
 
+
+@php
+$responseId = request()->session()->get('response_id');
+@endphp
     <div class="row">
         <div class="col-md-12 col-md-8 col-md-4 col-md-2">
             <div class ="row">
@@ -14,7 +18,7 @@
             </div>
 
             <br>
-
+            @if(isset($responseId) && $responseId != NULL)
             <div class="row">
                 <div class="col-md-5 col-md-3">
                     <div class="card side-card" style="background-color: #bafdd0; background-size:cover">
@@ -33,8 +37,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
-
+            </div>
             <br>
 
             <div class="row" style="margin-bottom:20px; margin-left:auto;">
@@ -55,6 +58,9 @@
                     <div class="addthis_inline_share_toolbox"></div>
                 </div>
             </div>
+            @else
+            <span style="color:red; font-weight:bold;">Please assess your risk first !!<span>
+            @endif 
 
         </div>
     </div>
