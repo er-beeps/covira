@@ -16,12 +16,17 @@ class CreateMstCountry extends Migration
         Schema::create('mst_country', function (Blueprint $table) {
             
             $table->smallIncrements('id');
-            $table->string('code',20);
             $table->string('name_en',200);
             $table->string('name_lc',200);
+            $table->string('country_code',20);
+            $table->string('capital_name_en',200);
+            $table->string('capital_name_lc',200);
+            $table->string('cap_lat',20);
+            $table->string('cap_long',20);
+            $table->string('continent_name_en',20);
+            $table->string('continent_name_lc',20);
 
             $table->timestamps();
-            $table->string('remarks',500)->nullable();
             $table->unsignedInteger('created_by')->nullable();
             $table->unsignedInteger('updated_by')->nullable();
 
