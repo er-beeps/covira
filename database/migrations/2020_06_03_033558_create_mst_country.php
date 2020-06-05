@@ -31,7 +31,7 @@ class CreateMstCountry extends Migration
             $table->unsignedInteger('updated_by')->nullable();
 
 
-            $table->unique('code','uq_mst_country_code');
+            $table->unique('country_code','uq_mst_country_country_code');
             $table->unique('name_lc','uq_mst_country_name_lc');
             $table->unique('name_en','uq_mst_country_name_en');
 
