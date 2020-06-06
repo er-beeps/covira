@@ -10,7 +10,6 @@
 
     <canvas id="rtr_gauge_view"></canvas>
 
-    <!-- $rtr = DB::table('regional_transmission_risk')->where('code',$local_level_code)->pluck('regional_transmission_risk')->first(); -->
 
 
 @php
@@ -18,6 +17,7 @@ if(!backpack_user()){
   $responseId = request()->session()->get('response_id');
   $data = \App\Models\Response::where('id',$responseId)->get();
   $local_level_code = $data[0]->locallevel->code;
+   $rtr = DB::table('dt_transmission_risk')->where('code',$local_level_code)->pluck('rtr')->first(); -->
 
 }else{
   $data = \App\Models\Response::where('user_id',backpack_user()->id)->get();
