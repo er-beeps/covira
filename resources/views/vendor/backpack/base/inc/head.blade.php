@@ -1,11 +1,18 @@
-<meta charset="utf-8">
+@php
+$responseId = request()->session()->get('response_id');
+$response = \App\Models\Response::find($responseId);
+$cri = $response->covid_risk_index;
+$pci = $response->probability_of_covid_infection;
+@endphp
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <meta property="og:url"           content="https://covira.info" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Access your risk here" />
-    <meta property="og:description"   content="COVIRA- web application to calculate your Personal and Regional Risk" />
+    <meta property="og:title"         content="Access yours risk here" />
+    <meta property="og:description"   content="COVIRA- web application to calculate your Personal and Regional Risk <br> COVID Risk Index={{ $cri}} <br> Probability of COVID Infection={{$pci}}" />
     <meta property="og:image"         content="https://covira.info/img/result_view.jpg" />
 
     @if (config('backpack.base.meta_robots_content'))<meta name="robots" content="{{ config('backpack.base.meta_robots_content', 'noindex, nofollow') }}"> @endif
