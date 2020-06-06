@@ -141,6 +141,38 @@ class ResponseCrudController extends BaseCrudController
                 }
             });
 
+            // show gps lat_long for country
+            $('#country-id').on('change',function(){
+                var countryId = $('#country-id').val();
+                    if(countryId != null){
+                    $.ajax({
+                        type: 'GET',
+                        url: '/response/getcapitallatlong',
+                        data: { countryId: countryId },
+                        success: function(response) {
+                            console.log(response);
+                            if(response.message == 'success'){
+                                $('#gps_lat').val(response.country.cap_lat).trigger('change');
+                                $('#gps_long').val(response.country.cap_long).trigger('change');
+                                changeLatDecimalToDegree();
+                                changeLongDecimalToDegree();
+                                updateMarkerByInputs();
+                            }
+                            else if(response.message == 'fail'){
+                                new Noty({
+                                    type: 'warning',
+                                    text: 'समस्या पर्यो'
+                                }).show();
+                            }
+                        },
+                        error: function(error) {}
+                    });
+                }else{
+                    $('#gps_lat').val('').trigger('change');
+                    $('#gps_long').val('').trigger('change');
+                }
+            });
+
             //js for gismap
 
             changeLatDecimalToDegree();
@@ -429,6 +461,9 @@ class ResponseCrudController extends BaseCrudController
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
+                'attributes'=> [
+                    'id'=> 'country-id',
+                ]
             ],
 
             [
@@ -1356,5 +1391,23 @@ class ResponseCrudController extends BaseCrudController
 
     public function redirectResult(){
         return view('result_viewer');
+    }
+
+
+    public function fetchCapitalLatLong(Request $request){
+        $countryId = $request->countryId;
+
+        $country = DB::table('mst_country')->where('id',$countryId)->get()->first();
+        
+         if($country){
+            return response()->json([
+                'message' => 'success',
+                'country' => $country
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'fail',
+            ]);
+        }
     }
 }

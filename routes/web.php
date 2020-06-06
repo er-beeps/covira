@@ -27,6 +27,7 @@ Route::put('/response/{response_id}/nextstep', 'Admin\ResponseCrudController@nex
 Route::put('/response/{response_id}/updatefinalstep', 'Admin\ResponseCrudController@updatefinalstep');
 Route::get('/response/{response_id}/backstep', 'Admin\ResponseCrudController@backstep');
 Route::get('/response/getlatlong', 'Admin\ResponseCrudController@fetchLatLong');
+Route::get('/response/getcapitallatlong', 'Admin\ResponseCrudController@fetchCapitalLatLong');
 Route::crud('/respondantdata', 'Admin\RespondentDataCrudController');
 
 Route::post('/dashboard/incrementlike', 'GisMapController@incrementLike');
