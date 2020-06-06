@@ -17,7 +17,7 @@ if(!backpack_user()){
   $responseId = request()->session()->get('response_id');
   $data = \App\Models\Response::where('id',$responseId)->get();
   $local_level_code = $data[0]->locallevel->code;
-   $rtr = DB::table('dt_transmission_risk')->where('code',$local_level_code)->pluck('rtr')->first(); -->
+   $rtr = DB::table('dt_transmission_risk')->where('code',$local_level_code)->pluck('rtr')->first();
 
 }else{
   $data = \App\Models\Response::where('user_id',backpack_user()->id)->get();
