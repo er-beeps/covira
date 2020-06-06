@@ -1,8 +1,8 @@
 @php
 $responseId = request()->session()->get('response_id');
 $response = \App\Models\Response::find($responseId);
-$cri = $response->covid_risk_index;
-$pci = $response->probability_of_covid_infection;
+dd($response);
+
 @endphp
 
     <meta charset="utf-8">
