@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="{{ asset('/gismap/css/Control.FullScreen.css') }}" />
 <link rel="stylesheet" href="{{ asset('/gismap/css/leaflet.css') }}" />
 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ed7de596973dba7"></script>
+
+
 <style>
 .legend-btn{
     margin:0px 5px;
@@ -19,6 +22,7 @@
 }
 .about-card{
     margin-left:3%;
+    margin-right:2%;
     border-radius:20px;
 
 }
@@ -42,9 +46,9 @@
             <div class="card col-md-12 side-card" style="background-color: lightblue; background-size:cover;">
                 <div class="card-header">
                 @if(backpack_user())
-                    <center><a href="{{backpack_url('response/create')}}" style="color:blue; font-size:18px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
+                    <center><a href="{{backpack_url('response/create')}}" style="color:blue; font-size:15px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
                 @else
-                    <center><a href="fill_response/create" style="color:blue; font-size:18px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
+                    <center><a href="fill_response/create" style="color:blue; font-size:15px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
                 @endif    
                 </div>
             </div>
@@ -54,13 +58,17 @@
             $id = \App\Models\Response::where('user_id',backpack_user()->id)->pluck('id')->first();
             @endphp
             <div class="row">
-                <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
-                    <div class="card-header"><center><b>{{trans('dashboard.covidriskindex')}}</b></center></div>
+                <div class="card col-xs-12 side-card" style="background-color: #bafdd0; background-size:cover">
+                    <div class="card-header" style="font-size:13px;"><center><b>{{trans('dashboard.covidriskindex')}}</b></center></div>
                     <div class="card-body">
                     @if(isset($id))
                             <center>@include(backpack_view('inc.cri_gauge'))</center>
 
-                        <div class="fb-share-button" data-href="https://covira.info" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovira.info%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>        
+        
+                            <div class="fb-share-button" data-href="https://covira.info" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovira.info%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+
+
+
 
                     @else
                     <span style="color:red;"><b>{{trans('dashboard.accessriskwarning')}}</b></span>
@@ -69,8 +77,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="card col-md-12 side-card" style="background-color: bisque; background-size:cover">
-                    <div class="card-header"><center><b>{{trans('dashboard.covidchance')}}</b></center></div>
+                <div class="card col-xs-12 side-card" style="background-color: bisque; background-size:cover">
+                    <div class="card-header" style="font-size:13px;"><b>{{trans('dashboard.covidchance')}}</b></div>
                     <div class="card-body">
                     @if(isset($id))
                     <center>@include(backpack_view('inc.pci_gauge'))</center>
@@ -83,7 +91,7 @@
             <div class="row">
                 <div class="card col-md-12 side-card" style="background-color: lightgreen; background-size:cover;">
                     <div class="card-header">
-                        <center><a href="{{backpack_url('/response'.'/'.$id.'/edit')}}" style="color:blue; font-size:18px;"><b>{{trans('dashboard.survey')}}</b></a><center>
+                        <center><a href="{{backpack_url('/response'.'/'.$id.'/edit')}}" style="color:blue; font-size:15px;"><b>{{trans('dashboard.survey')}}</b></a><center>
                     </div>
                 </div>
             </div>
@@ -91,7 +99,7 @@
             <div class="row">
                 <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
                     <div class="card-header"><center><b>
-                        <a data-fancybox data-type="ajax" href="/response/view_result" id = "result_view" style="color:darkblue; font-size:17px;">{{ trans('View Result') }}</a>  
+                        <a data-fancybox data-type="ajax" href="/response/view_result" id = "result_view" style="color:darkblue; font-size:15px;">{{ trans('View Result') }}</a>  
                         </b></center
                     ></div>
                 </div>
@@ -156,10 +164,9 @@
         </div>
         @else
         <div class="row">
-            <div class="card col-md-11 about-card" style="background-color: white; background-size:cover;">
-                <div class="card-header about-content"><center><b>
+            <div class="card col-xs-10 about-card" style="background-color: white; background-size:cover;">
+                <div class="card-header about-content">
                 कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> Citation: Parajuli et. al. (2020) ‘COVID-19 risk assessment and communication: a multidisciplinary approach to overcome the pandemic.
-                    </b></center>
                 </div>
             </div>
         </div>
@@ -229,11 +236,11 @@
         <div class="row" style="margin-bottom:20px; margin-left:auto;">
             <div class="col-md-7 col-md-6 col-md-4 content-index">
                 <span style="font-weight:bold"> Legend : </span>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:green;"><i<span>Very Low</span></button>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:#10b552;"><i<span>Low</span></button>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:yellow;"><i<span>Moderate</span></button>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:orange;"><i<span>High</span></button>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:red;"><i<span>Very High</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:green;"><span>Very Low</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:#10b552;"><span>Low</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:yellow;"><span>Moderate</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:orange;"><span>High</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:red;"><span>Very High</span></button>
             </div>        
             <div class="col-md-5 content-footer">
                 <button type="button" onclick="incrementLike(this)" class="btn btn-sm btn-outline-secondary"><i
@@ -254,7 +261,7 @@
     <div class="col-md-2">
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
-                <div class="card-header"><center><b style="font-size:18px;">{{trans('dashboard.covidnepal')}}</b><center></div>
+                <div class="card-header"><center><b style="font-size:17px;">{{trans('dashboard.covidnepal')}}</b><center></div>
                 <div class="card-body ">
                         <table class="nepal_data_table" style="margin-left:-20px; font-size:14px;">
                             <tr>

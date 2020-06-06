@@ -5,8 +5,8 @@
     <meta property="og:url"           content="https://covira.info" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Access your risk here" />
-    <meta property="og:description"   content="COVIRA:: A web application to calculate your Personal and Regional Risk" />
-    <meta property="og:image"         content="https://covira.info/img/result_view.png" />
+    <meta property="og:description"   content="COVIRA- web application to calculate your Personal and Regional Risk" />
+    <meta property="og:image"         content="https://covira.info/img/result_view.jpg" />
 
     @if (config('backpack.base.meta_robots_content'))<meta name="robots" content="{{ config('backpack.base.meta_robots_content', 'noindex, nofollow') }}"> @endif
 
