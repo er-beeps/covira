@@ -1,11 +1,7 @@
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta property="og:url"           content="http://127.0.0.1:8000" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Access your risk here" />
-    <meta property="og:description"   content="COVIRA:: A web application to calculate your Personal and Regional Risk" />
-    <meta property="og:image"         content="http://127.0.0.1:8000/img/result_view.png" />
+
     @if (config('backpack.base.meta_robots_content'))<meta name="robots" content="{{ config('backpack.base.meta_robots_content', 'noindex, nofollow') }}"> @endif
 
     <meta name="csrf-token" content="{{ csrf_token() }}" /> {{-- Encrypted CSRF token for Laravel, in order for Ajax requests to work --}}

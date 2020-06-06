@@ -21,20 +21,29 @@ $responseId = request()->session()->get('response_id');
             <br>
             @if(isset($responseId) && $responseId != NULL)
             <div class="row">
-                <div class="col-md-5 col-md-3">
-                    <div class="card side-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header"><center><b>{{trans('COVID Risk Index')}}</b></center></div>
+                <div class="col-xs-5 col-xs-3">
+                    <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
+                        <div class="card-header"><span class ="heading"><b>{{trans('COVID Risk Index')}}</b></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.cri_gauge'))
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-7 col-md-4">
-                    <div class="card  side-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header"><center><b>{{trans('Probability of COVID Infection')}}</b></center></div>
+                <div class="col-xs-5 col-xs-3">
+                    <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
+                        <div class="card-header heading"><span class ="heading"><b>{{trans('Probability of COVID Infection')}}</b></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.pci_gauge'))
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-5 col-xs-3">
+                    <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
+                        <div class="card-header heading"><span class ="heading"><b>{{trans('Regional Transmission Risk')}}</b></span></div>
+                        <div class="card-body">
+                            @include(backpack_view('inc.rtr_gauge'))
                         </div>
                     </div>
                 </div>
@@ -57,7 +66,6 @@ $responseId = request()->session()->get('response_id');
                 <div class="col-md-12 col-md-8 col-md-4 social-share">
                     <!-- <div class="addthis_inline_share_toolbox"></div> -->
 
-                    <div id="fb-root"></div>
                     <script>(function(d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id)) return;
@@ -84,16 +92,24 @@ $responseId = request()->session()->get('response_id');
 <style>
   #result_viewer{
       border-radius:25px;
-      margin-bottom:10%;
+      margin-bottom:8%;
       margin-left:5%;
       max-width:90%;
-      max-height:80%;
+      max-height:90%;
+  }
+  .heading{
+      font-size:13px;
+      max-width:100%;
   }
   .social-share{
       text-align:center;
   }
   .addthis_inline_share_toolbox{
       display:inline-block;
+  }
+  .result-card{
+    border-radius: 20px;
+    margin:15px;
   }
   </style>
   </body>

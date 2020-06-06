@@ -59,6 +59,9 @@
                     <div class="card-body">
                     @if(isset($id))
                             <center>@include(backpack_view('inc.cri_gauge'))</center>
+
+                        <div class="fb-share-button" data-href="https://covira.info/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovira.info%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>        
+
                     @else
                     <span style="color:red;"><b>{{trans('dashboard.accessriskwarning')}}</b></span>
                     @endif        
@@ -155,7 +158,7 @@
         <div class="row">
             <div class="card col-md-11 about-card" style="background-color: white; background-size:cover;">
                 <div class="card-header about-content"><center><b>
-                कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> Citation: Parajuli et. al. (2020) ‘COVID-19 risk assessment and communication: a multidisciplinary approach to overcome the pandemic।
+                कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> Citation: Parajuli et. al. (2020) ‘COVID-19 risk assessment and communication: a multidisciplinary approach to overcome the pandemic.
                     </b></center>
                 </div>
             </div>
@@ -224,7 +227,7 @@
             </div> 
         </div>
         <div class="row" style="margin-bottom:20px; margin-left:auto;">
-            <div class="content-index col-md-12 col-md-8 col-md-6 col-md-4">
+            <div class="col-md-7 col-md-6 col-md-4 content-index">
                 <span style="font-weight:bold"> Legend : </span>
                 <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:green;"><i<span>Very Low</span></button>
                 <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:#10b552;"><i<span>Low</span></button>
@@ -232,23 +235,20 @@
                 <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:orange;"><i<span>High</span></button>
                 <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:red;"><i<span>Very High</span></button>
             </div>        
-        </div>
-
-        <div class="row">
-            <div class="content-footer" style="margin-left:3%">
-                <button type="button" onclick="incrementLike(this)" class="btn btn-outline-secondary"><i
+            <div class="col-md-5 content-footer">
+                <button type="button" onclick="incrementLike(this)" class="btn btn-sm btn-outline-secondary"><i
                         class="fa fa-thumbs-o-up text-success"></i> <span id="like-counter"
                     class="badge" style="color:black; font-size:13px;">Likes {{$likes}}</span></button>
-                <button type="button" class="btn btn-outline-secondary"><i
+                <button type="button" class="btn btn-sm btn-outline-secondary"><i
                     class="fa fa-eye text-primary"></i><span
                     class="badge"style="color:black; font-size:13px;">Views {{$views}}</span>
                 </button>
-                <button type="button" class="btn btn-outline-secondary"><i
+                <button type="button" class="btn btn-sm btn-outline-secondary"><i
                     class="fa fa-share text-primary"></i><span
                     class="badge"style="color:black; font-size:13px;">Share {{$shares}}</span>
                 </button>
-            </div>        
-        </div>
+            </div>
+        </div>        
     </div>
 
     <div class="col-md-2">
@@ -289,21 +289,21 @@
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: lightgreen; background-size:cover;">
                 <div class="card-header">
-                    <center><a target="_blank" href="https://www.worldometers.info/coronavirus/" style="color:blue; font-size:18px;"><b>{{trans('dashboard.worldupdates')}}</b></a><center>
+                    <center><a target="_blank" href="https://www.worldometers.info/coronavirus/" style="color:blue; font-size:15px;"><b>{{trans('dashboard.worldupdates')}}</b></a><center>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color:bisque; background-size:cover;">
                 <div class="card-header">
-                    <center><a target="_blank" href="https://heoc.mohp.gov.np/update-on-novel-corona-virus-covid-19/" style="color:blue; font-size:17px;"><b>{{trans('dashboard.covid_guidelines')}}</b></a><center>
+                    <center><a target="_blank" href="https://heoc.mohp.gov.np/update-on-novel-corona-virus-covid-19/" style="color:blue; font-size:15px;"><b>{{trans('dashboard.covid_guidelines')}}</b></a><center>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
                 <div class="card-header">
-                    <center><a target="_blank" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019?gclid=CjwKCAjw5cL2BRASEiwAENqAPngAvVQESLDpig3crKIIaGLOmmAflAkyRa8lrvBPUAtaKIX-pbwOKhoCDWwQAvD_BwE" style="color:darkblue; font-size:17px;"><b>{{trans('dashboard.covid_updates')}}</b></a><center>
+                    <center><a target="_blank" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019?gclid=CjwKCAjw5cL2BRASEiwAENqAPngAvVQESLDpig3crKIIaGLOmmAflAkyRa8lrvBPUAtaKIX-pbwOKhoCDWwQAvD_BwE" style="color:darkblue; font-size:15px;"><b>{{trans('dashboard.covid_updates')}}</b></a><center>
                 </div>
             </div>
         </div>
