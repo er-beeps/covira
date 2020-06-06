@@ -13,8 +13,11 @@
             height: 80vh;
             width: 120vh;
       }
+      #info{
+            margin-left:5%;
+      }
 </style>
-      <div id = "info"><span> </span style="color:red;">Note*: If you can identify the exact location please drag the pin drop to your location.</div>
+      <div id = "info"> <span style="color:red;">*Note : If you can identify the exact location please drag the pin drop to your location.</span></div>
       <div class ="col-md-10 col-md-6 col-md-3 col toBeHidden" id='map'></div>
       <script>
             var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
