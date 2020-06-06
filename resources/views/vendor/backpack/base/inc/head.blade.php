@@ -1,8 +1,13 @@
 @php
 $responseId = request()->session()->get('response_id');
 $response = \App\Models\Response::find($responseId);
-dd($response);
-
+if($response != NULL){
+$cri = $response->covid_risk_index;
+$pci = $response->probability_of_covid_infection;
+}else{
+$cri = NULL;
+$pci = NULL
+}
 @endphp
 
     <meta charset="utf-8">
