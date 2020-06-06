@@ -23,6 +23,7 @@
 
 }
 .about-content{
+        font-size:14px;
         color: red;
         animation:blinkingText 5s infinite;
     }
