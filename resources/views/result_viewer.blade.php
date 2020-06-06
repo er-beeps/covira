@@ -1,12 +1,13 @@
+<body>
 <div id = "result_viewer">
-
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ed7de596973dba7"></script>
 
 <script src="{{asset('js/gauge.js')}}"></script>
 
-
 @php
+$url = url('/');
+$image_path = $url.'/img/result_view.png';
 $responseId = request()->session()->get('response_id');
 @endphp
     <div class="row">
@@ -52,10 +53,24 @@ $responseId = request()->session()->get('response_id');
             </div>
 
             <br>
-
             <div class="row">
                 <div class="col-md-12 col-md-8 col-md-4 social-share">
-                    <div class="addthis_inline_share_toolbox"></div>
+                    <!-- <div class="addthis_inline_share_toolbox"></div> -->
+
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+
+                    <!-- Your share button code -->
+                    <div class="fb-share-button" 
+                        data-href="http://127.0.0.1:8000" 
+                        data-layout="button_count">
+                    </div>
                 </div>
             </div>
             @else
@@ -65,10 +80,6 @@ $responseId = request()->session()->get('response_id');
         </div>
     </div>
 </div>
-
-<script>
-</script>
-
 
 <style>
   #result_viewer{
@@ -85,3 +96,4 @@ $responseId = request()->session()->get('response_id');
       display:inline-block;
   }
   </style>
+  </body>
