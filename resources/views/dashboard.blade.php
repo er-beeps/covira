@@ -60,7 +60,7 @@
                     @if(isset($id))
                             <center>@include(backpack_view('inc.cri_gauge'))</center>
 
-                        <div class="fb-share-button" data-href="https://covira.info/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovira.info%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>        
+                        <div class="fb-share-button" data-href="https://covira.info" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovira.info%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>        
 
                     @else
                     <span style="color:red;"><b>{{trans('dashboard.accessriskwarning')}}</b></span>

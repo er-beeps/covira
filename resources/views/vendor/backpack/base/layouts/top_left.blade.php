@@ -3,11 +3,6 @@
 <html lang="{{ app()->getLocale() }}" dir="{{ config('backpack.base.html_direction') }}">
 
 <head>
-    <meta property="og:url"           content="https://covira.info" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Access your risk here" />
-    <meta property="og:description"   content="COVIRA:: A web application to calculate your Personal and Regional Risk" />
-    <meta property="og:image"         content="https://covira.info/img/result_view.png" />
 <script data-ad-client="ca-pub-4021645191234924" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   @include(backpack_view('inc.head'))
 
