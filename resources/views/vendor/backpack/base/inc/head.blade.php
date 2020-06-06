@@ -6,7 +6,7 @@ $cri = $response->covid_risk_index;
 $pci = $response->probability_of_covid_infection;
 }else{
 $cri = NULL;
-$pci = NULL
+$pci = NULL;
 }
 @endphp
 
