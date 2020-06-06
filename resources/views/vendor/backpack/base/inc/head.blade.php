@@ -15,7 +15,7 @@ $pci = NULL;
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <meta property="og:url"           content="https://covira.info" />
-    <meta property="fb:app_id"        content="277695410085664" >
+    <meta property="fb:app_id"        content="277695410085664" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Access yours risk here" />
     <meta property="og:description"   content="COVIRA- web application to calculate your Personal and Regional Risk </br> COVID Risk Index={{ $cri}} </br> Probability of COVID Infection={{$pci}}" />
