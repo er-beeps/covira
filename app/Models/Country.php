@@ -22,7 +22,7 @@ class Country extends BaseModel
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['code','name_en','name_lc','remarks','created_by','updated_by'];
+    // protected $fillable = ['country_code','name_en','name_lc','created_by','updated_by'];
     // protected $hidden = [];
     // protected $dates = [];
 
