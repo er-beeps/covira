@@ -454,7 +454,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'country_id',
                 'type'=>'select2',
-                'label'=>trans('Country'),
+                'label'=>trans('Select Country'),
                 'entity'=>'country',
                 'model'=>'App\Models\Country',
                 'attribute'=>'name_lc',
