@@ -40,17 +40,17 @@
 		  text: 'We are conducting research on the impact of this pandemic, hence would you like to help us by answering few more questions? If you have done it earlier, no need to repeat it.',
 		  buttons: {
 		  
-		  	delete: {
+		  	continue: {
 			  text: "Sure, I am happy to help.",
 			  value: 'process_next',
 			  visible: true,
-			  className: "btn btn-warning",
+			  className: "btn btn-success",
 			},
             submit: {
 			  text: " Sorry !, I want only Personal Risk Assessment",
 			  value: 'submit',
 			  visible: true,
-			  className: "btn btn-success",
+			  className: "btn btn-warning",
 			  closeModal: true,
 			}
 		  },

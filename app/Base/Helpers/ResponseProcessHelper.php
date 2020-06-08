@@ -82,6 +82,9 @@ class ResponseProcessHelper{
             // 'name_lc' => $request->name_lc,
             'gender_id' => $request->gender_id,
             'email' => $request->email,
+            'is_other_country'=> $request->is_other_country,
+            'country_id'=> $request->country_id,
+            'city'=> $request->city,
             'province_id' => $request->province_id,
             'district_id' => $request->district_id,
             'local_level_id' => $request->local_level_id,
@@ -166,7 +169,9 @@ class ResponseProcessHelper{
     }
 
         $questionnaire = Response::whereId($id)->update([
-            'process_step_id' => $further_step_id
+            'process_step_id' => $further_step_id,
+            'community_situation' => $request->community_situation,
+            'economic_impact' => $request->economic_impact,
         ]);
 
         if($questionnaire){
@@ -183,8 +188,7 @@ class ResponseProcessHelper{
             'education_id' => $request->education_id,
             'profession_id' => $request->profession_id,
             'process_step_id' => $further_step_id,
-            'neighbour_proximity' => $request->neighbour_proximity,
-            'community_situation' => $request->community_situation,
+            'neighbour_proximity' => $request->neighbour_proximity,     
             'confirmed_case' => $request->confirmed_case,
             'inbound_foreign_travel' => $request->inbound_foreign_travel,
             'community_population' => $request->community_population,

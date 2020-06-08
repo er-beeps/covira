@@ -19,6 +19,10 @@ class RiskCalculationHelper{
 
         $age_risk_factor = $alpha*exp($beta*$x);
 
+        if($age_risk_factor > 100){
+            $age_risk_factor = 100;
+        }
+
 
         $a = -0.0000340646579722815;
         $b = 0.0067296534381777200;

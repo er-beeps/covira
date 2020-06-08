@@ -349,7 +349,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'gender_id',
                 'type'=>'select2',
-                'label'=>trans('Gender'),
+                'label'=>trans('response.gender'),
                 'entity'=>'gender',
                 'model'=>'App\Models\MstGender',
                 'attribute'=>'name_en',
@@ -399,7 +399,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'province_id',
                 'type'=>'select2',
-                'label'=>trans('Province'),
+                'label'=>trans('response.province'),
                 'entity'=>'province',
                 'model'=>'App\Models\MstProvince',
                 'attribute'=>'name_en',
@@ -409,7 +409,7 @@ class ResponseCrudController extends BaseCrudController
             ],
             [
                 'name'=>'district_id',
-                'label'=>trans('District'),
+                'label'=>trans('response.district'),
                 'type'=>'select2_from_ajax',
                 'model'=>'App\Models\MstDistrict',
                 'entity'=>'district',
@@ -424,7 +424,7 @@ class ResponseCrudController extends BaseCrudController
             ],
             [
                 'name'=>'local_level_id',
-                'label'=>trans('Local Level'),
+                'label'=>trans('response.locallevel'),
                 'type'=>'select2_from_ajax',
                 'entity'=>'locallevel',
                 'model'=>'App\Models\MstLocalLevel',
@@ -454,7 +454,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'country_id',
                 'type'=>'select2',
-                'label'=>trans('Select Country'),
+                'label'=>trans("response.country"),
                 'entity'=>'country',
                 'model'=>'App\Models\Country',
                 'attribute'=>'name_lc',
@@ -669,6 +669,53 @@ class ResponseCrudController extends BaseCrudController
                 ],
 
             ],
+            
+            [
+                'name' => 'legend11',
+                'type' => 'custom_html',
+                'value' => '<legend>Community Situation</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend1'
+                ]                
+            ],
+
+            [
+                'label'     => '<b>How is current situation in your community ?</b>',
+                'type'      => 'select2',
+                'name'      => 'community_situation',
+                'entity'    => 'community_situation',
+                'attribute' => 'name_lc',
+                'model'     => PrActivity::class,
+                'options'   => (function ($query) {
+                    return $query->whereFactorId(7)->get();
+                }),
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden1'
+                ]
+            ], 
+            [
+                'name' => 'legend12',
+                'type' => 'custom_html',
+                'value' => '<legend>Economic Impact</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend1'
+                ]  
+            ],
+
+            [
+                'label'     => '<b>Economic impact of pandemic in your life</b>',
+                'type'      => 'select2',
+                'name'      => 'economic_impact',
+                'entity'    => 'economic_impact',
+                'attribute' => 'name_lc',
+                'model'     => PrActivity::class,
+                'options'   => (function ($query) {
+                    return $query->whereFactorId(8)->get();
+                }),
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden1'
+                ]
+            ],
 
             [
                 'name' => 'legend2',
@@ -729,30 +776,7 @@ class ResponseCrudController extends BaseCrudController
                 ]
             ],
 
-
-            [
-                'name' => 'legend11',
-                'type' => 'custom_html',
-                'value' => '<legend>Community Situation</legend>',
-                'wrapperAttributes'=>[
-                    'class' => 'legend2'
-                ]                
-            ],
-
-            [
-                'label'     => '<b>How is current situation in your community ?</b>',
-                'type'      => 'select2',
-                'name'      => 'community_situation',
-                'entity'    => 'community_situation',
-                'attribute' => 'name_lc',
-                'model'     => PrActivity::class,
-                'options'   => (function ($query) {
-                    return $query->whereFactorId(7)->get();
-                }),
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-12 toBeHidden2'
-                ]
-            ],          
+         
             [
                 'name' => 'legend13',
                 'type' => 'custom_html',
@@ -1049,30 +1073,6 @@ class ResponseCrudController extends BaseCrudController
                     'class' => 'form-group col-md-12 toBeHidden2'
                 ]
             ],
-              [
-                'name' => 'legend12',
-                'type' => 'custom_html',
-                'value' => '<legend>Economic Impact</legend>',
-                'wrapperAttributes'=>[
-                    'class' => 'legend2'
-                ]  
-            ],
-
-            [
-                'label'     => '<b>Economic impact of pandemic in your life</b>',
-                'type'      => 'select2',
-                'name'      => 'economic_impact',
-                'entity'    => 'economic_impact',
-                'attribute' => 'name_lc',
-                'model'     => PrActivity::class,
-                'options'   => (function ($query) {
-                    return $query->whereFactorId(8)->get();
-                }),
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-12 toBeHidden2'
-                ]
-            ],
-
 
             [
                 'name' => 'legend25',
@@ -1311,6 +1311,9 @@ class ResponseCrudController extends BaseCrudController
         'age' => $request->age,
         'gender_id' => $request->gender_id,
         'email' => $request->email,
+        'is_other_country'=> $request->is_other_country,
+        'country_id'=> $request->country_id,
+        'city'=> $request->city,
         'province_id' => $request->province_id,
         'district_id' => $request->district_id,
         'local_level_id' => $request->local_level_id,

@@ -77,7 +77,7 @@
                   function updateMarker(lat, lng) {
                   marker
                   .setLatLng([lat, lng])
-                  .bindPopup("Your location :  " + marker.getLatLng().toString())
+                  .bindPopup("Your approximate location :  " + marker.getLatLng().toString())
                   .openPopup();
                   map.setView([lat,lng],16);
                   $('#gps_lat').val(lat);

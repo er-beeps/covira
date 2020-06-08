@@ -6,6 +6,7 @@
 $url = url('/');
 $image_path = $url.'/img/result_view.png';
 $responseId = request()->session()->get('response_id');
+$country_exists = App\Models\Response::where('id',$responseId)->pluck('country_id')->first();
 @endphp
     <div class="row">
         <div class="col-md-12 col-md-8 col-md-4 col-md-2">
@@ -35,7 +36,9 @@ $responseId = request()->session()->get('response_id');
                         </div>
                     </div>
                 </div>
-
+                @if($country_exists)
+                {{-- do nothing --}}
+                @else
                 <div class="col-xs-5 col-xs-3">
                     <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
                         <div class="card-header heading"><span class ="heading"><b>{{trans('Regional Transmission Risk')}}</b></span></div>
@@ -44,6 +47,7 @@ $responseId = request()->session()->get('response_id');
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
             <br>
 

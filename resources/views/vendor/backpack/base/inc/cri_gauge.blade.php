@@ -2,7 +2,8 @@
 
 <style>
 
-  #cri_gauge_view{
+  #cri_gauge_view
+  {
     height:80px;
   }
 
@@ -47,11 +48,11 @@ if(!backpack_user()){
 
         // static zones
         staticZones: [
-          {strokeStyle: "green", min: 0, max: 20},
-          {strokeStyle: "#10b552", min: 20, max: 40},
-          {strokeStyle: "yellow", min: 40, max: 60},
-          {strokeStyle: "orange", min: 60, max: 80},
-          {strokeStyle: "#e80000", min: 80, max: 100}
+          {strokeStyle: "green", min: 0, max: 6},
+          {strokeStyle: "#10b552", min: 6, max: 15},
+          {strokeStyle: "yellow", min: 15, max: 28},
+          {strokeStyle: "orange", min: 28, max: 48},
+          {strokeStyle: "#e80000", min: 48, max: 100}
         ],
 
         highDpiSupport: true,
