@@ -17,7 +17,7 @@ $pci = NULL;
     <meta property="og:url"           content="https://covira.info" />
     <meta property="fb:app_id"        content="277695410085664" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Access yours risk here" />
+    <meta property="og:title"         content="Assess yours risk here" />
     <meta property="og:description"   content="COVIRA- web application to calculate your Personal and Regional Risk" />
     <meta property="og:image"         content="https://covira.info/img/result_view.jpg" />
 
