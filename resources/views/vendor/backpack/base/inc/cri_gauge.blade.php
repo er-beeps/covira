@@ -48,11 +48,11 @@ if(!backpack_user()){
 
         // static zones
         staticZones: [
-          {strokeStyle: "green", min: 0, max: 6},
-          {strokeStyle: "#10b552", min: 6, max: 15},
-          {strokeStyle: "yellow", min: 15, max: 28},
-          {strokeStyle: "orange", min: 28, max: 48},
-          {strokeStyle: "#e80000", min: 48, max: 100}
+          {strokeStyle: "green", min: 0, max: 20},
+          {strokeStyle: "#10b552", min: 20, max: 40},
+          {strokeStyle: "yellow", min: 40, max: 60},
+          {strokeStyle: "orange", min: 60, max: 80},
+          {strokeStyle: "#e80000", min: 80, max: 100}
         ],
 
         highDpiSupport: true,
@@ -67,6 +67,17 @@ cri_gauge_view.maxValue = 100;
 cri_gauge_view.setMinValue(0);
 
 var cri_value =  '<?php echo $cri ?>';
-cri_gauge_view.set(cri_value);
+    if(cri_value >= 0 && cri_value < 6){
+      cri_val = 0+cri_value*3.333333333;      
+    }else if(cri_value > 6 && cri_value <= 15){
+      cri_val = 20+(cri_value-6)*2.2222222;
+    }else if(cri_value > 15 && cri_value <= 28){
+      cri_val = 40+(cri_value-15)*1.53846;
+    }else if(cri_value > 28 && cri_value <= 48){
+      cri_val = 60+(cri_value-28);  
+    }else if(cri_value > 48){
+      cri_val = 80+(cri_value-48)*0.38462;   
+    }
+cri_gauge_view.set(cri_val);
 </script>
 

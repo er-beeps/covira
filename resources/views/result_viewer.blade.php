@@ -12,7 +12,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
         <div class="col-md-12 col-md-8 col-md-4 col-md-2">
             <div class ="row">
                 <div class="col-md-12 col-md-8 col-md-4" style="text-align:center">
-                    <h5><b>Risk Assessment Result !!</b></h5>
+                    <h5><b>Your COVID-19 Risk Assessment Result !!</b></h5>
                 </div>
             </div>
 
@@ -21,7 +21,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
             <div class="row">
                 <div class="col-xs-5 col-xs-3">
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header"><span class ="heading"><b>{{trans('COVID Risk Index')}}</b></span></div>
+                        <div class="card-header"><span class ="heading"><b>{{trans('COVID Risk Index')}}<br> (कोरोनाको जोखिम स्तर) </b></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.cri_gauge'))
                         </div>
@@ -30,7 +30,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
 
                 <div class="col-xs-5 col-xs-3">
                     <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header heading"><span class ="heading"><b>{{trans('Probability of COVID Infection')}}</b></span></div>
+                        <div class="card-header heading"><span class ="heading"><b>{{trans('Probability of COVID Infection')}}</br>(कोरोना सर्ने सम्भावना)</b></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.pci_gauge'))
                         </div>
@@ -41,7 +41,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
                 @else
                 <div class="col-xs-5 col-xs-3">
                     <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header heading"><span class ="heading"><b>{{trans('Regional Transmission Risk')}}</b></span></div>
+                        <div class="card-header heading"><span class ="heading"><b>{{trans('Regional Transmission Risk')}} </br>(तपाईको पालिकामा कोरोना सर्ने सम्भावना)</b></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.rtr_gauge'))
                         </div>
