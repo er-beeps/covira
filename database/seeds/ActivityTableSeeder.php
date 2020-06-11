@@ -19,7 +19,7 @@ class ActivityTableSeeder extends Seeder
               array('id' => 1, 'code' => '1', 'name_en' => 'Work in hospitals/healthposts/carehomes/pharmacy', 'name_lc' => 'Work in hospitals/healthposts/carehomes/pharmacy','factor_id' => 1 ,'weight_factor' => 75),
               array('id' => 2, 'code' => '2', 'name_en' => 'Driving public vehicles', 'name_lc' => 'Driving public vehicles' ,'factor_id' => 1 ,'weight_factor' => 75),
               array('id' => 3, 'code' => '3', 'name_en' => 'Need to attend meetings in person occasionally', 'name_lc' => 'Need to attend meetings in person occasionally','factor_id' => 1 ,'weight_factor' => 50),
-              array('id' => 4, 'code' => '4', 'name_en' => 'Arrived from India or other foreign country with in a month', 'name_lc' => 'Arrived from India or other foreign country wiht in a month','factor_id' => 1 ,'weight_factor' => 100),
+              array('id' => 4, 'code' => '4', 'name_en' => 'Arrived from India or other foreign country with in a month', 'name_lc' => 'Arrived from India or other foreign country with in a month','factor_id' => 1 ,'weight_factor' => 100),
               array('id' => 5, 'code' => '5', 'name_en' => 'Meet with COVID19 infected person', 'name_lc' => 'Meet with COVID19 infected person','factor_id' => 1 ,'weight_factor' => 100),
               array('id' => 93, 'code' => '93', 'name_en' => 'None', 'name_lc' => 'None','factor_id' => 1 ,'weight_factor' => 0),
 

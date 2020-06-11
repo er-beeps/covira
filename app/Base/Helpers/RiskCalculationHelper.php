@@ -70,7 +70,7 @@ class RiskCalculationHelper{
         $ss = array_sum($weight_factor_values_for_symptom);
 
 //weight factor values for exposure
-        $exposure_ids = [1,2,3,4,5];
+        $exposure_ids = [1,2,3,4,5,99,100,101,102,103];
         $exposureIds = [];
         foreach($respondant_data as $d){
             if(in_array($d['activity_id'],$exposure_ids)){
