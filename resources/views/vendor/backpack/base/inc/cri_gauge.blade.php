@@ -25,7 +25,7 @@ if(!backpack_user()){
   <script type="text/javascript">
     var opts = {
     // color configs
-        lineWidth: 0.3,
+        // lineWidth: 0.4,
         colorStart: "#6fadcf",
         colorStop: void 0,
         gradientType: 0,
@@ -35,8 +35,8 @@ if(!backpack_user()){
 
         // customize pointer
         pointer: {
-          length: 0.60,
-          strokeWidth: 0.08,
+          length: 0.75,
+          strokeWidth: 0.05,
           iconScale: 1.0
         },
 
