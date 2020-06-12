@@ -25,6 +25,7 @@ $pci = NULL;
 
     <meta name="csrf-token" content="{{ csrf_token() }}" /> {{-- Encrypted CSRF token for Laravel, in order for Ajax requests to work --}}
     <title>{{ isset($title) ? $title.' :: '.config('backpack.base.project_name') : config('backpack.base.project_name') }}</title>
+    <link rel="icon" sizes="120x120" type="image/png" href="{{ asset('/img/title_logo.png')}}">
 
     @yield('before_styles')
     @stack('before_styles')

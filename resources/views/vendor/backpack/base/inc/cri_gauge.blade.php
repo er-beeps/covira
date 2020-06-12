@@ -25,6 +25,7 @@ if(!backpack_user()){
   <script type="text/javascript">
     var opts = {
     // color configs
+        lineWidth: 0.3,
         colorStart: "#6fadcf",
         colorStop: void 0,
         gradientType: 0,
@@ -34,8 +35,8 @@ if(!backpack_user()){
 
         // customize pointer
         pointer: {
-          length: 0.75,
-          strokeWidth: 0.05,
+          length: 0.60,
+          strokeWidth: 0.08,
           iconScale: 1.0
         },
 
@@ -68,6 +69,6 @@ cri_gauge_view.setMinValue(0);
 
 var cri_value =  '<?php echo $cri ?>';
 
-cri_gauge_view.set(cri_value);
+cri_gauge_view.set(35);
 </script>
 

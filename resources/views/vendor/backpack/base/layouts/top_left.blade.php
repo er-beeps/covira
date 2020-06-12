@@ -3,16 +3,12 @@
 <html lang="{{ app()->getLocale() }}" dir="{{ config('backpack.base.html_direction') }}">
 
 <head>
-<script data-ad-client="ca-pub-4021645191234924" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  @include(backpack_view('inc.head'))
-
+<script data-ad-client="ca-pub-3714412080139830" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+@include(backpack_view('inc.head'))
 
 </head>
 
 <body class="{{ config('backpack.base.body_class') }}">
-
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=277695410085664&autoLogAppEvents=1"></script>
 
   @include(backpack_view('inc.main_header'))
 
