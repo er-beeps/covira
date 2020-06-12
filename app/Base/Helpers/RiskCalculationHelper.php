@@ -31,7 +31,7 @@ class RiskCalculationHelper{
 
         $respondant_data = RespondentData::whereResponseId($id)->get()->toArray();
 
-//weight factor value for covid_risk_factor
+        //weight factor value for covid_risk_factor
         $crf_ids = [13,14,15,16,17,18,87,88];
         $activity_ids = [];
         foreach($respondant_data as $d){
@@ -54,7 +54,7 @@ class RiskCalculationHelper{
         $total_covid_risk_index = $age_risk_factor*((1-$comorbidities_factor)+($comorbidities_factor*$crf/100));
  
 
-// weight factor values for symptopms
+        // weight factor values for symptopms
         $symptoms_ids = [19,20,21,22,23,24,25,26,27,28,29,90,91];
         $activities_ids = [];
         foreach($respondant_data as $d){
@@ -69,7 +69,7 @@ class RiskCalculationHelper{
 
         $ss = array_sum($weight_factor_values_for_symptom);
 
-//weight factor values for exposure
+        //weight factor values for exposure
         $exposure_ids = [1,2,3,4,5,99,100,101,102,103];
         $exposureIds = [];
         foreach($respondant_data as $d){
@@ -85,7 +85,7 @@ class RiskCalculationHelper{
         if(!isset($weight_factor_values_for_exposure)){
             $weight_factor_values_for_exposure = 0;
             }   
-//weight factor values for habituals
+        //weight factor values for habituals
         $habituals_ids = [1,2,3,4,5];
         $habitualIds = [];
         foreach($respondant_data as $d){
@@ -105,12 +105,8 @@ class RiskCalculationHelper{
         $merge_habitual_and_exposure = array_merge($weight_factor_values_for_exposure,$weight_factor_values_for_habituals);
         $sum_habitual_and_exposure = array_sum($merge_habitual_and_exposure);
 
-        if($sum_habitual_and_exposure > 100){
-            $sum_habitual_and_exposure = 100;
-        }
 
-
-//actual probability calculation formula    
+        //actual probability calculation formula    
         $probability_of_covid_infection = (0.8923*(0.41*$ss))+(0.1077*$sum_habitual_and_exposure);
 
         if($total_covid_risk_index < 0){
@@ -155,6 +151,6 @@ class RiskCalculationHelper{
             'probability_of_covid_infection' => $probability_of_covid_infection
         ];
             Response::whereId($id)->update($data);
- }
+    }
 
 }
