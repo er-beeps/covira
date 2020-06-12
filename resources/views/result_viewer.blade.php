@@ -95,7 +95,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
     }
     .heading{
         font-size:13px;
-        max-width:100%;
+        max-width:100%; 
     }
     .social-share{
         text-align:center;

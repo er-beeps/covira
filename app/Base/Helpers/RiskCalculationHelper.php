@@ -127,9 +127,31 @@ class RiskCalculationHelper{
             $probability_of_covid_infection = 100;
         }
 
+        // normalizing covid risk index
+        if($total_covid_risk_index >= 0 && $total_covid_risk_index < 6){
+            $covid_risk_index = 0+$total_covid_risk_index*3.333333333;      
+          }else if($total_covid_risk_index > 6 && $total_covid_risk_index <= 15){
+            $covid_risk_index = 20+($total_covid_risk_index-6)*2.2222222;
+          }else if($total_covid_risk_index > 15 && $total_covid_risk_index <= 28){
+            $covid_risk_index = 40+($total_covid_risk_index-15)*1.53846;
+          }else if($total_covid_risk_index > 28 && $total_covid_risk_index <= 48){
+            $covid_risk_index = 60+($total_covid_risk_index-28);  
+          }else if($total_covid_risk_index > 48){
+            $covid_risk_index = 80+($total_covid_risk_index-48)*0.38462;   
+          }
+
+          //normalizing probability of covid infection
+          $is_from_other_country = $response->is_other_country;
+
+          if($is_from_other_country == false){
+            $local_level_code = $response->locallevel->code;
+            $rtr = DB::table('dt_risk_transmission')->where('code',$local_level_code)->pluck('ctr')->first();
+
+            $probability_of_covid_infection = ($probability_of_covid_infection*$rtr)/100; 
+          }
         $data = [
             'age_risk_factor' => $age_risk_factor,
-            'covid_risk_index' => $total_covid_risk_index,
+            'covid_risk_index' => $covid_risk_index,
             'probability_of_covid_infection' => $probability_of_covid_infection
         ];
             Response::whereId($id)->update($data);
