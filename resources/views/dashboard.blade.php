@@ -90,6 +90,7 @@
                 <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
                     <div class="card-header"><center><b>
                         <a data-fancybox data-type="ajax" href="/response/view_result" id = "result_view" style="color:darkblue; font-size:15px;">{{ trans('View Result') }}</a>  
+                        <a data-fancybox data-type="ajax" href="/response/view_regional_risk" id = "regional_risk_btn" style="color:darkblue; font-size:15px;"></a>  
                         </b></center
                     ></div>
                 </div>
@@ -344,7 +345,10 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoEoSKYFDXovqwCwCHIhAYGFsnrUW09Oo&callback=initMap"></script>
 
 @php
+$session = request()->session();
 $responseId = request()->session()->get('response_id');
+$key = request()->session()->get('key');
+
 $process_step_id = \App\Models\Response::whereId($responseId)->pluck('process_step_id')->first();
 @endphp
 
@@ -355,6 +359,12 @@ $(document).ready(function(){
 
     if(processStepId == 4){
         $('#result_view').trigger('click');
+    }
+
+    var key = '<?php echo $key ?>';
+    
+    if(key == 0){
+        $('#regional_risk_btn').trigger('click');
     }
 
 });

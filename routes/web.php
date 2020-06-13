@@ -35,6 +35,7 @@ Route::post('/dashboard/incrementdislike', 'GisMapController@incrementDislike');
 
 Route::get('/response/fetchimages', 'GisMapController@fetchImg');
 Route::get('/response/view_result', 'Admin\ResponseCrudController@redirectResult');
+Route::get('/response/view_regional_risk', 'Admin\ResponseCrudController@redirectRegionalResult');
 
 Route::post('/searchregionalrisk', 'GisMapController@getRegionalRisk');
 

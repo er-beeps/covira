@@ -169,19 +169,24 @@ if ($request->all() != null) {
 
         if($province){
         $province_name = $province->name_lc;
+        request()->session()->put('province',$province_name);
         }
         if($district){
         $district_name = $district->name_lc;
+        request()->session()->put('district',$district_name);
         }
 
         if($local_level){
         $local_level_code = $local_level->code;
         $local_level_name = $local_level->name_lc;
         $rtr = DB::table('dt_risk_transmission')->where('code',$local_level_code)->pluck('ctr')->first();
+        request()->session()->put('local_level_name',$local_level_name);
+        request()->session()->put('rtr',$rtr);
+        request()->session()->put('key',0);
         }
 
         // return view('regionalrisk_view',compact('province_name','district_name','local_level_name','rtr'));
-        return response()->json(['province'=>$province_name]);
+        return redirect(url('/'));
     }
     
 }

@@ -92,12 +92,11 @@
                                 <div class="col-md-3">    
                                     <div class="row">
                                         <div class="form-inline">
-                                        <a data-fancybox data-type="ajax" id="post-btn" href="{{ url('/searchregionalrisk') }}" style="color:darkblue; font-size:15px;">{{ trans('Search') }}</a>  
-                                            <!-- <button type="submit" class="btn btn-primary btn-md" style="margin: 0px 0px 0px 10px;"><i class="fa fa-search"></i> {{trans('dashboard.search')}}</button> -->
+                                            <button type="submit" class="btn btn-primary btn-md" style="margin: 0px 0px 0px 10px;"><i class="fa fa-search"></i> {{trans('dashboard.search')}}</button>
                                         </div>
-                                        <div class="form-inline">
+                                        <!-- <div class="form-inline">
                                             <a href="{{url('/')}}" type="reset" class="btn btn-warning btn-md" style="margin: 0px 13px;"><i class="fa fa-refresh"></i>{{trans('dashboard.reset')}}</a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>    
                             </div> <!-- row ends here -->
