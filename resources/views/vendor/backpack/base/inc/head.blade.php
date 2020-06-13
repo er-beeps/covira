@@ -10,6 +10,18 @@ $pci = NULL;
 }
 @endphp
 
+
+<script>
+function keyCheck(key){
+    // var key = sessionStorage.getItem("key");
+    document.cookie = "myJavascriptVar ="+key;
+}
+</script>
+
+<?php
+$key = $_COOKIE['key'];
+?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -19,7 +31,11 @@ $pci = NULL;
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Assess yours risk here" />
     <meta property="og:description"   content="COVIRA- web application to calculate your Personal and Regional Risk" />
+    @if($key == "dashboard")
     <meta property="og:image"         content="https://covira.info/img/result_view.jpg" />
+    @else
+    <meta property="og:image"         content="https://covira.info/img/map.png" />
+    @endif
 
     @if (config('backpack.base.meta_robots_content'))<meta name="robots" content="{{ config('backpack.base.meta_robots_content', 'noindex, nofollow') }}"> @endif
 

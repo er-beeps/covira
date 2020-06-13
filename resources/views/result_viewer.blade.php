@@ -137,8 +137,6 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
 
   <script>
   var fbButton = document.getElementById('fb-share-button');
-    var url = window.location.href;
-
     fbButton.addEventListener('click', function() {
     window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovira.info%2F&amp;src=sdkpreparse',
         'facebook-share-dialog',

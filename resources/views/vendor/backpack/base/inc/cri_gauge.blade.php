@@ -69,6 +69,6 @@ cri_gauge_view.setMinValue(0);
 
 var cri_value =  '<?php echo $cri ?>';
 
-cri_gauge_view.set(35);
+cri_gauge_view.set(cri_value);
 </script>
 

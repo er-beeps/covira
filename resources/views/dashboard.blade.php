@@ -186,9 +186,9 @@
                     class="fa fa-eye text-primary"></i><span
                     class="badge"style="color:black; font-size:13px;">Views {{$views}}</span>
                 </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary"><i
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="share-btn"><i
                     class="fa fa-share text-primary"></i><span
-                    class="badge"style="color:black; font-size:13px;">Share {{$shares}}</span>
+                    class="badge"style="color:black; font-size:13px;">Share</span>
                 </button>
             </div>
         </div>
@@ -377,6 +377,15 @@ function incrementLike(button){
         }
     });
 }
+  var fbButton = document.getElementById('share-btn');
+    fbButton.addEventListener('click', function() {
+    keyCheck('dashboard');
+    window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovira.info%2F&amp;src=sdkpreparse',
+        'facebook-share-dialog',
+        'width=600,height=500'
+    );
+    return false;
+});
 
 </script>
 @endsection
