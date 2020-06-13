@@ -14,7 +14,9 @@ $pci = NULL;
 <script>
 function keyCheck(key){
     // var key = sessionStorage.getItem("key");
-    document.cookie = "myJavascriptVar ="+key;
+    if(key){
+    document.cookie = "key ="+key;
+    }
 }
 </script>
 
