@@ -54,7 +54,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
                         <div class="card-header"><span class ="heading"><center><b>{{trans('COVID Risk Index')}}<br> (कोरोनाको जोखिम स्तर) </b></center></span></div>
                         <div class="card-body">
-                            @include(backpack_view('inc.cri_gauge'))
+                            <center>@include(backpack_view('inc.cri_gauge'))</center>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
                     <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
                         <div class="card-header heading"><span class ="heading"><center><b>{{trans('Probability of COVID Infection')}}</br>(कोरोना सर्ने सम्भावना)</b></center></span></div>
                         <div class="card-body">
-                            @include(backpack_view('inc.pci_gauge'))
+                            <center>@include(backpack_view('inc.pci_gauge'))</center>
                         </div>
                     </div>
                 </div>
@@ -74,18 +74,17 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
                     <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
                         <div class="card-header heading"><span class ="heading"><center><b>{{trans('Regional Transmission Risk')}} </br>(तपाईको पालिकामा कोरोना सर्ने सम्भावना)</b></center></span></div>
                         <div class="card-body">
-                            @include(backpack_view('inc.rtr_gauge'))
+                            <center>@include(backpack_view('inc.rtr_gauge'))</center>
                         </div>
                     </div>
                 </div>
                 @endif
             </div>
-            <br>
 
             <div class="row">
-                <div class="personal-message col-xs-12 col-xs-8 col-xs-6">
+                <div class="personal-message col-xs-12 col-xs-8">
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header heading"><span class ="heading"><center><b></b></center></span></div>
+                        <div class="card-header heading"><span style="font-size:16px;"><center><b>Suggestions</b></center></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.personal_message'))                 
                         </div>
