@@ -200,7 +200,7 @@
                 <center><b>How to protect yourself and others?</b></center><br>
                 <center><b>Stay at home and stay safe</b></center><br>
 
-                    <b>1.	What is COVID-19 and how can I protect myself?</b> </br>
+                    <b>1.	What is COVID-19 ?</b> </br>
                     A virus linked to the family of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) was identified as the cause of a disease outbreak that began in China in 2019. The disease is called coronavirus disease 2019 (COVID-19).</br></br>
 
                     <b>2.	How does COVID-19 spread?</b></br>
@@ -379,7 +379,6 @@ function incrementLike(button){
 }
   var fbButton = document.getElementById('share-btn');
     fbButton.addEventListener('click', function() {
-    keyCheck('dashboard');
     window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovira.info%2F&amp;src=sdkpreparse',
         'facebook-share-dialog',
         'width=600,height=500'
