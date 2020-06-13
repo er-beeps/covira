@@ -257,10 +257,10 @@
                     <span>-----------------------------------------------------------------------------------------------------------</span></br>
                     <b>Sources:</b><br>
                     <ol>
-                        <li>	Ministry of Health and Population, Government of Nepal. https://heoc.mohp.gov.np/update-on-novel-corona-virus-covid-19/ </li>
-                        <li>	World Health Organization. https://www.who.int/emergencies/diseases/novel-coronavirus-2019. </li>
-                        <li>	Central for disease control and prevention. https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html. </li>
-                        <li>    American Red Cross. https://www.redcross.org/about-us/news-and-events/news/2020/coronavirus-safety-and-readiness-tips-for-you.html. </li>
+                        <li>	Ministry of Health and Population, Government of Nepal. <a target="_blank" href="https://heoc.mohp.gov.np/update-on-novel-corona-virus-covid-19/">https://heoc.mohp.gov.np/update-on-novel-corona-virus-covid-19/</a> </li>
+                        <li>	World Health Organization. <a target="_blank" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019"> https://www.who.int/emergencies/diseases/novel-coronavirus-2019</a>. </li>
+                        <li>	Central for disease control and prevention. <a target="_blank" href= "https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html"> https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html</a> </li>
+                        <li>    American Red Cross. <a target="_blank" href="https://www.redcross.org/about-us/news-and-events/news/2020/coronavirus-safety-and-readiness-tips-for-you.html"> https://www.redcross.org/about-us/news-and-events/news/2020/coronavirus-safety-and-readiness-tips-for-you.html</a> </li>
                     </ol>
                     </p>
                 </div>
