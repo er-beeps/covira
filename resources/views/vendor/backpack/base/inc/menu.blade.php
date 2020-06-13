@@ -1,11 +1,37 @@
 <!-- =================================================== -->
 <!-- ========== Top menu items (ordered left) ========== -->
 <!-- =================================================== -->
+<style>
+
+#about_btn, #teams_btn {
+    height:30px;
+    width:auto;
+    position : relative;
+    color:white;
+    background-color:#2f353a;
+    text-align:center;
+    border:none;
+    font-size:17px;
+}
+#about_btn:hover,#teams_btn:hover {
+    height:30px;
+    width:auto;
+    position : relative;
+    background-color:lightgray;
+    color:black;
+}
+</style>
+
 <ul class="nav navbar-nav d-md-down-none">
 
     @if (backpack_auth()->check())
         <!-- Topbar. Contains the left part -->
         @include(backpack_view('inc.topbar_left_content'))
+    @else    
+    <div class="row">   
+        <a id="about_btn"  class = "btn btn-sm btn-secondary" style="margin-left:20px;" href="{{ url('/about') }}">{{ trans('About') }}</a>
+        <a id ="teams_btn" class = "btn btn-sm btn-secondary" style="margin-left:20px;" href="{{ url('/teams') }}">{{ trans('Teams') }}</a>
+    </div>    
     @endif
 
 </ul>
