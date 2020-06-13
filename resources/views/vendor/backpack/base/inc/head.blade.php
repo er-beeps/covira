@@ -12,10 +12,16 @@ $pci = NULL;
 
 
 <script>
+$(document).ready(function(){
+    document.cookie = "key = undefined";
+});
+
 function keyCheck(key){
     // var key = sessionStorage.getItem("key");
     if(key){
     document.cookie = "key ="+key;
+    }else{
+    document.cookie = "key = undefined";
     }
 }
 </script>
