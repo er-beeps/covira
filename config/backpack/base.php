@@ -74,7 +74,7 @@ return [
     // ------
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo'   => '<b>COVIRA</b>',
+    'project_logo'   => '<b>COVIRA</b> &nbsp&nbsp <sub><small> Beta - V 0.1</small></sub>',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => true,

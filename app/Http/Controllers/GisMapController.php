@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use DB;
 use Charts;
 use Session;
+use App\Models\MstDistrict;
+use App\Models\MstProvince;
 use Illuminate\Http\Request;
+use App\Models\MstLocalLevel;
 use Illuminate\Support\Facades\Input;
 
 
@@ -134,23 +137,7 @@ if ($request->all() != null) {
         }
     }
 
-    public function incrementDislike(Request $request){
-        DB::table('counter_info')->update(['dislike_counter'=>DB::raw('dislike_counter+1')]);
-
-        $dislikes = DB::table('counter_info')->pluck('dislike_counter')->first();
-
-        if($dislikes){
-            return response()->json([
-                'message' => 'success',
-                'value'=>$dislikes,
-            ]);
-        }else{
-            return response()->json([
-                'message' => 'fail',
-            ]);
-        }
-    }
-
+   
     public function fetchImg(Request $request){
         $img_category_id = $request->id;
         $risk_map = DB::table('image_upload')
@@ -167,6 +154,34 @@ if ($request->all() != null) {
         }
 
         return view('imageviewer',compact('risk_map_path'));
+    }
+
+
+    public function getRegionalRisk(Request $request){
+
+        $ProvinceId = $request->province;
+        $DistrictId = $request->district;
+        $LocalLevelId = $request->local_level;
+
+        $province = MstProvince::find($ProvinceId);
+        $district = MstDistrict::find($DistrictId);
+        $local_level = MstLocalLevel::find($LocalLevelId);
+
+        if($province){
+        $province_name = $province->name_lc;
+        }
+        if($district){
+        $district_name = $district->name_lc;
+        }
+
+        if($local_level){
+        $local_level_code = $local_level->code;
+        $local_level_name = $local_level->name_lc;
+        $rtr = DB::table('dt_risk_transmission')->where('code',$local_level_code)->pluck('ctr')->first();
+        }
+
+        // return view('regionalrisk_view',compact('province_name','district_name','local_level_name','rtr'));
+        return response()->json(['province'=>$province_name]);
     }
     
 }

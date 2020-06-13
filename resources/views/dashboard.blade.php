@@ -99,68 +99,14 @@
     </div>
 
     <div class="col-md-8">
-        @if(backpack_user() && backpack_user()->hasanyrole('superadmin|admin'))
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card bg-light head-card">
-                    <div class="card-body" style="background-color: lightgray; max-height:50px;">
-                        <form>
-                            <div class="row" style="margin-top:-10px;">
-                                <div class="col-md-9">
-                                    <div class="row">
-                                        <div class="form-inline col-md-4">
-                                            {{-- <label>Province</label> --}}
-                                            <select class="form-control select2" name="province" id="province" style="width: 100%;">
-                                            <option selected disabled style="font-weight:bold;">{{trans('dashboard.province')}}</option>
-                                            @foreach($area_province as $ap)
-
-                                            @if(isset($selected_params['province']) && $ap->id == $selected_params['province'])
-                                                <option class="form-control nepali_td" SELECTED value="{{ $ap->id }}">{{ $ap->code }}-{{ $ap->name_lc }}-{{ $ap->name_en }}</option>
-                                                @else
-                                                <option class="form-control nepali_td" value="{{ $ap->id }}">{{ $ap->code }}-{{ $ap->name_lc }}-{{ $ap->name_en }}</option>
-                                                @endif
-                                            @endforeach
-                                            </select>
-                                        </div>
-
-                                        <div class="form-inline col-md-4">
-                                            {{-- <label for="district">District</label> --}}
-                                            <select class="form-control" style="width: 100%;" name="district" id="district">
-                                            <option selected disabled style="font-weight:bold;">{{trans('dashboard.district')}}</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-inline col-md-4">
-                                            {{-- <label for="locallevel">Local Level</label> --}}
-                                                <select class="form-control" style="width: 100%;" name="local_level" id="local_level"></select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">    
-                                    <div class="row">
-                                        <div class="form-inline">
-                                            <button type="submit" class="btn btn-primary btn-md" style="margin: 0px 0px 0px 10px;"><i class="fa fa-search"></i> {{trans('dashboard.search')}}</button>
-                                        </div>
-                                        <div class="form-inline">
-                                            <a href="{{url('/')}}" type="reset" class="btn btn-warning btn-md" style="margin: 0px 13px;"><i class="fa fa-refresh"></i>{{trans('dashboard.reset')}}</a>
-                                        </div>
-                                    </div>
-                                </div>    
-                            </div> <!-- row ends here -->
-                        </form>    
-                    </div>  <!-- card-body ends here -->
-                </div>
-            </div> 
-        </div>
-        @else
-        <div class="row">
+        @include(backpack_view('inc.search_filter'))
+        <!-- <div class="row">
             <div class="card col-xs-10 about-card" style="background-color: white; background-size:cover;">
                 <div class="card-header about-content">
                 कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> Citation: Parajuli et. al. (2020) ‘COVID-19 risk assessment and communication: a multidisciplinary approach to overcome the pandemic.
                 </div>
             </div>
-        </div>
-        @endif
+        </div> -->
 
         <div class="row">
             <div class="col-md-12">
@@ -245,7 +191,83 @@
                     class="badge"style="color:black; font-size:13px;">Share {{$shares}}</span>
                 </button>
             </div>
-        </div>        
+        </div>
+
+        <div class="row">
+            <div class="card col-xs-10 " style="background-color: white; background-size:cover;">
+                <div class="card-header">
+                <p>
+                <center><b>How to protect yourself and others?</b></center><br>
+                <center><b>Stay at home and stay safe</b></center><br>
+
+                    <b>1.	What is COVID-19 and how can I protect myself?</b> </br>
+                    A virus linked to the family of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) was identified as the cause of a disease outbreak that began in China in 2019. The disease is called coronavirus disease 2019 (COVID-19).</br></br>
+
+                    <b>2.	How does COVID-19 spread?</b></br>
+                    Several studies have shown that it spreads from person to person among those in close contact (within about 6 feet, or 2 meters). The virus spreads by respiratory droplets released when someone infected with the virus coughs, sneezes or talks.</br></br>
+
+                    <b>3.  What are the symptoms of COVID-19?</b> </br>
+                    COVID-19 symptoms can be very mild to severe. Sometime it is asymptomatic. The most common symptoms are fever, cough and tiredness. Other symptoms may include shortness of breath, muscle aches, chills, sore throat, headache, chest pain, and loss of taste or smell etc. Other less common symptoms have also been reported. Symptoms may appear two to 14 days after exposure.</br></br>
+
+                    <b>4. Can COVID-19 be prevented or treated?</b> </br>
+                    No vaccine is available yet for the coronavirus disease 2019 (COVID-19). No medication is recommended to treat COVID-19. Treatment is directed at relieving symptoms.</br></br>
+
+                    <b>5. What can I do to avoid becoming ill?</b> </br>
+                    <ul>
+                    <li>	Wash your hands often with soap and water for at least 20 seconds, or use an alcohol-based hand sanitizer that contains at least 60% alcohol.</li>
+                    <li>	Wear a surgical/cloth face mask in public areas</li>
+                    <li>	Keep a distance of about 6 feet, or 2 meters with anyone (who is sick or has symptoms).</li>
+                    <li>	Cover your mouth and nose with your elbow or a tissue when you cough or sneeze. Throw away the used tissue.</li>
+                    <li>	Avoid large events and mass gatherings.</li>
+                    <li>	Avoid touching your eyes, nose and mouth.</li>
+                    <li>	Clean and disinfect surfaces you often touch on a daily basis.</li>
+                    </ul>
+
+                    If you have a chronic medical condition and may have a higher risk of serious illness, check with your doctor about other ways to protect yourself.</br></br>
+
+                    <b>6. Should I wear a mask?</b> </br>
+                    We highly recommend wearing surgical/cloth mask in public places, such as the grocery store, where it's difficult to avoid close contact with others. It's especially suggested in areas with ongoing community spread. This updated advice is based on data showing that people with COVID-19 can transmit the virus before they realize they have it. Using masks in public may help reduce the spread from people who don't have symptoms. Non-medical cloth masks are recommended for the public. 
+                    Surgical masks and N-95 respirators are in short supply and should be reserved for health care providers.</br></br>
+
+                    <b>7. What can I do if I am or may be ill with COVID-19?</b> </br>
+                    COVID-19 symptoms include fever, coughing and shortness of breath, plus additional ones mentioned above. Keep track of your symptoms, which may appear two to 14 days after exposure, and call to seek medical attention if your symptoms worsen, such as difficulty breathing. If you think you may have been exposed to COVID-19, contact your health care provider immediately.
+                    Take the following precautions to avoid spreading the illness:
+                    <ul>
+                    <li>	Stay home from work, school and public areas, except to get medical care.</li>
+                    <li>	Avoid taking public transportation if possible.</li>
+                    <li>	Wear a mask around other people.</li>
+                    <li>	Isolate yourself as much as possible from others in your home.</li>
+                    <li>	Use a separate bedroom and bathroom if possible.</li>
+                    <li>	Avoid sharing dishes, glasses, bedding and other household items.</li>
+                    </ul>
+
+                    <b>8. Understanding the risks</b> </br>
+                    It’s very important to understand that even when people appear not to have symptoms of coronavirus (COVID-19), they may still be carrying the virus.  Where you’re meeting people who aren’t from your household, your risk of catching coronavirus can increase depending on the situation.  
+                    Science Hub assesses the risk (high to low) through COVID-19 risk assessment and communication tool (COVIRA).  You can assess your and your loved ones risk; and should take these risks into account when you are thinking about visiting or gathering with other people, in particular the time limits where you may be at a higher risk of catching COVID-19 when spending time with someone indoors. 
+                    You should also consider the greater risks posed to those who are classified as vulnerable and very vulnerable. When meeting people from outside your household, that is, people you don’t currently live with, you should continue to follow the national guidance, and practice good respiratory hygiene.
+                    Who is at a higher risk? 
+                    Early information of several countries show that older adults, people who live in a nursing home or long-term care facility, and individuals of any age with the conditions below are at higher risk of getting very sick from COVID-19:
+                    <ul>
+                    <li>	Have serious underlying medical conditions, particularly if not well controlled, such as heart, lung or liver disease; diabetes; moderate to severe asthma; severe obesity; and chronic kidney disease undergoing dialysis.</li>
+                    <li>	Have a weakened immune system, including those undergoing cancer treatment, smoking and having other immune compromised conditions.</li>
+                    </ul>
+                    If you are at higher risk for serious illness from COVID-19, it is critical for you too:
+                    </p> 
+                    <p>
+                    <span>-----------------------------------------------------------------------------------------------------------</span></br>
+                    <b>Sources:</b><br>
+                    <ol>
+                        <li>	Ministry of Health and Population, Government of Nepal. https://heoc.mohp.gov.np/update-on-novel-corona-virus-covid-19/ </li>
+                        <li>	World Health Organization. https://www.who.int/emergencies/diseases/novel-coronavirus-2019. </li>
+                        <li>	Central for disease control and prevention. https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html. </li>
+                        <li>    American Red Cross. https://www.redcross.org/about-us/news-and-events/news/2020/coronavirus-safety-and-readiness-tips-for-you.html. </li>
+                    </ol>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
     <div class="col-md-2">

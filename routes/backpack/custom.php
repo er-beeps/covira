@@ -21,6 +21,7 @@ Route::group([
     Route::get('response/{response_id}/backstep', 'ResponseCrudController@backstep');
     Route::crud('respondantdata', 'RespondentDataCrudController');
     Route::crud('fill_response', 'ResponseCrudController');
+    // Route::post('/searchregionalrisk', 'GisMapController@getRegionalRisk');
 });
 
 Route::group([
