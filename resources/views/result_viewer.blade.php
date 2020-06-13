@@ -21,6 +21,20 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
             <div class="row">
                 <div class="col-xs-5 col-xs-3">
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
+                        <div class="card-body">
+                        <ul>
+                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:green;"><i<span>Very Low</span></button> </li>
+                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:#10b552;"><i<span>Low</span></button> </li>
+                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:yellow;"><i<span>Moderate</span></button> </li>
+                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:orange;"><i<span>High</span></button> </li>
+                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:red;"><i<span>Very High</span></button> </li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-5 col-xs-3">
+                    <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
                         <div class="card-header"><span class ="heading"><center><b>{{trans('COVID Risk Index')}}<br> (कोरोनाको जोखिम स्तर) </b></center></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.cri_gauge'))
@@ -51,15 +65,15 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
             </div>
             <br>
 
-            <div class="row" style="margin-bottom:20px; margin-left:auto;">
-                <div class="content-index col-md-12 col-md-8 col-md-6 col-md-4">
-                    <span style="font-weight:bold"> Legend : </span>
-                    <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:green;"><i<span>Very Low</span></button>
-                    <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:#10b552;"><i<span>Low</span></button>
-                    <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:yellow;"><i<span>Moderate</span></button>
-                    <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:orange;"><i<span>High</span></button>
-                    <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:red;"><i<span>Very High</span></button>
-                </div>        
+            <div class="row">
+                <div class="personal-message col-xs-12 col-xs-8 col-xs-6">
+                    <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
+                        <div class="card-header heading"><span class ="heading"><center><b></b></center></span></div>
+                        <div class="card-body">
+                            @include(backpack_view('inc.personal_message'))                 
+                        </div>
+                    </div>
+                </div>    
             </div>
 
             <br>
@@ -90,7 +104,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
         border-radius:25px;
         margin-bottom:8%;
         margin-left:5%;
-        max-width:90%;
+        max-width:75%;
         max-height:90%;
     }
     .heading{
