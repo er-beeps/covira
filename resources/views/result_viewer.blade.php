@@ -22,13 +22,30 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
                 <div class="col-xs-5 col-xs-3">
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
                         <div class="card-body">
-                        <ul>
-                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:green;"><i<span>Very Low</span></button> </li>
-                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:#10b552;"><i<span>Low</span></button> </li>
-                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:yellow;"><i<span>Moderate</span></button> </li>
-                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:orange;"><i<span>High</span></button> </li>
-                        <li> <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:red;"><i<span>Very High</span></button> </li>
-                        </ul>
+                            <div class = "index"><center><b>Legend:</b></center>
+                                <table id ="index">
+                                <tr>
+                                    <td><span class="indicator-box" style= "background-color:green"></td>
+                                    <td><span class="indicator-label">Very Low</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="indicator-box" style= "background-color:#10b552"></td>
+                                    <td><span class="indicator-label">Low</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="indicator-box" style= "background-color:yellow"></td>
+                                    <td><span class="indicator-label">Moderate</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="indicator-box" style= "background-color:orange"></td>
+                                    <td><span class="indicator-label">High</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="indicator-box" style= "background-color:#e80000"></td>
+                                    <td><span class="indicator-label">Very High</span></td>
+                                </tr>
+                                </table>
+                            </div>  
                         </div>
                     </div>
                 </div>
@@ -79,7 +96,6 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
             <br>
             <div class="row">
                 <div class="col-md-12 col-md-8 col-md-4 social-share">
-
                 <div id="fb-share-button">
                     <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
                         <path class="svg-icon-path" d="M9.1,0.1V2H8C7.6,2,7.3,2.1,7.1,2.3C7,2.4,6.9,2.7,6.9,3v1.4H9L8.8,6.5H6.9V12H4.7V6.5H2.9V4.4h1.8V2.8 c0-0.9,0.3-1.6,0.7-2.1C6,0.2,6.6,0,7.5,0C8.2,0,8.7,0,9.1,0.1z"></path>
@@ -104,7 +120,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
         border-radius:25px;
         margin-bottom:8%;
         margin-left:5%;
-        max-width:75%;
+        max-width:67%;
         max-height:90%;
     }
     .heading{
@@ -120,7 +136,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
         margin:15px;
     }
 
-    #fb-share-button {
+    #fb-share-button{
         background: #385898;
         border-radius: 5px;
         font-weight: 600;
@@ -146,7 +162,25 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
         font-size: 14px;
         padding: 0 3px
     }
-}
+ 
+  span.indicator-box {
+    margin-bottom:0px;
+    margin-right:10px;
+    margin-top:5px;
+  }
+  .indicator-box{
+    width:17px;
+    height:17px;
+    margin:auto;
+    display: inline-block;
+    border:1px solid gray;
+    border-radius: 3px;
+  }
+  .indicator-label{
+    font-size: 13px;
+    font-weight:bold;
+    margin-top:-20px;
+  }
   </style>
 
   <script>
