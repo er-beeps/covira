@@ -1392,15 +1392,7 @@ class ResponseCrudController extends BaseCrudController
         }
     }
 
-    public function redirectResult(){
-        return view('result_viewer');
-    }
-
-    public function redirectRegionalResult(){
-        return view('regionalrisk_view');
-    }
-
-
+  
     public function fetchCapitalLatLong(Request $request){
         $countryId = $request->countryId;
 

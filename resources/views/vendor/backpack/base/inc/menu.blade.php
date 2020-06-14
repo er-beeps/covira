@@ -3,7 +3,7 @@
 <!-- =================================================== -->
 <style>
 
-#about_btn, #teams_btn {
+#home_btn,#about_btn, #teams_btn {
     height:30px;
     width:auto;
     position : relative;
@@ -13,7 +13,7 @@
     border:none;
     font-size:17px;
 }
-#about_btn:hover,#teams_btn:hover {
+#home_btn:hover,#about_btn:hover,#teams_btn:hover {
     height:30px;
     width:auto;
     position : relative;
@@ -29,8 +29,9 @@
         @include(backpack_view('inc.topbar_left_content'))
     @else    
     <div class="row">   
+        <a id="home_btn"  class = "btn btn-sm btn-secondary" style="margin-left:20px;" href="{{ url('/') }}">{{ trans('Home') }}</a>
         <a id="about_btn"  class = "btn btn-sm btn-secondary" style="margin-left:20px;" href="{{ url('/about') }}">{{ trans('About') }}</a>
-        <a id ="teams_btn" class = "btn btn-sm btn-secondary" style="margin-left:20px;" href="{{ url('/teams') }}">{{ trans('Teams') }}</a>
+        <a id ="teams_btn" class = "btn btn-sm btn-secondary" style="margin-left:20px;" href="{{ url('/teams') }}">{{ trans('Our Team') }}</a>
     </div>    
     @endif
 

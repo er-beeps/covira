@@ -30,14 +30,16 @@ Route::get('/response/getlatlong', 'Admin\ResponseCrudController@fetchLatLong');
 Route::get('/response/getcapitallatlong', 'Admin\ResponseCrudController@fetchCapitalLatLong');
 Route::crud('/respondantdata', 'Admin\RespondentDataCrudController');
 
-Route::post('/dashboard/incrementlike', 'GisMapController@incrementLike');
-Route::post('/dashboard/incrementdislike', 'GisMapController@incrementDislike');
+Route::post('/dashboard/incrementlike', 'BasicController@incrementLike');
+// Route::post('/dashboard/incrementdislike', 'GisMapController@incrementDislike');
 
-Route::get('/response/fetchimages', 'GisMapController@fetchImg');
-Route::get('/response/view_result', 'Admin\ResponseCrudController@redirectResult');
-Route::get('/response/view_regional_risk', 'Admin\ResponseCrudController@redirectRegionalResult');
+Route::get('/response/fetchimages', 'BasicController@fetchImg');
+Route::get('/response/view_result', 'BasicController@redirectResult');
+Route::get('/response/view_regional_risk', 'BasicController@redirectRegionalResult');
 
-Route::post('/searchregionalrisk', 'GisMapController@getRegionalRisk');
+Route::get('/about', 'BasicController@redirectAbout');
+Route::get('/teams', 'BasicController@redirectTeams');
+Route::post('/searchregionalrisk', 'BasicController@getRegionalRisk');
 
 
 // Route::get('/response/fetchimages/publichealth', 'GisMapController@publichealthImg');
