@@ -84,7 +84,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
             <div class="row">
                 <div class="personal-message col-xs-12 col-xs-8">
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header heading"><span style="font-size:16px;"><center><b>Suggestions</b></center></span></div>
+                        <div class="card-header heading"><span style="color:blue; font-size:16px;"><center><b>Suggestions</b></center></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.personal_message'))                 
                         </div>
@@ -119,7 +119,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
         border-radius:25px;
         margin-bottom:8%;
         margin-left:5%;
-        max-width:67%;
+        max-width:75%;
         max-height:90%;
     }
     .heading{
