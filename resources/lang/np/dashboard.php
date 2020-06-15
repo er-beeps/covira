@@ -11,6 +11,7 @@ return [
     'district' => 'जिल्ला छान्नुहोस्',
     'local_level' => 'स्थानीय तह छान्नुहोस्',
     'search' => 'खोज',
+    'searchregionalrisk'=> 'स्थानीय जोखिम स्तर खोज्नुहोस',
     'reset' => 'रिसेट',
     'riskmap' => 'जोखिम नक्शा',
     'covidnepal' => 'कोभिड-१९ नेपाल',

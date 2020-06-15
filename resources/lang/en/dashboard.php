@@ -11,6 +11,7 @@ return [
     'district' => 'Select District',
     'local_level' => 'Select Local Level',
     'search' => 'Search',
+    'searchregionalrisk'=> 'Find Regional Risk',
     'reset' => 'Reset',
     'riskmap' => 'Risk map',
     'covidnepal' => 'Covid-19 Nepal',
