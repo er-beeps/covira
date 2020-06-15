@@ -22,15 +22,15 @@
 }
 </style>
 
-<ul class="nav navbar-nav d-md-down-none">
+<ul class="nav navbar-nav">
 
     @if (backpack_auth()->check())
         <!-- Topbar. Contains the left part -->
         @include(backpack_view('inc.topbar_left_content'))
     @else    
     <div class="row">   
-        <a id="home_btn"  class = "btn btn-sm btn-secondary" style="margin-left:20px;" href="{{ url('/') }}">{{ trans('Home') }}</a>
-        <a id="about_btn"  class = "btn btn-sm btn-secondary" style="margin-left:20px;" href="{{ url('/about') }}">{{ trans('About') }}</a>
+        <a id="home_btn"  class = "btn btn-sm btn-secondary" style="margin-left:10px;" href="{{ url('/') }}">{{ trans('Home') }}</a>
+        <a id="about_btn"  class = "btn btn-sm btn-secondary" style="margin-right:0px;" href="{{ url('/about') }}">{{ trans('About') }}</a>
         <!-- <a id ="teams_btn" class = "btn btn-sm btn-secondary" style="margin-left:20px;" href="{{ url('/teams') }}">{{ trans('Our Team') }}</a> -->
     </div>    
     @endif
