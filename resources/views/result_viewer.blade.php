@@ -61,7 +61,11 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
 
                 <div class="col-xs-5 col-xs-3">
                     <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
+                    @if($country_exists)
+                        <div class="card-header heading"><span class ="heading" style="font-size:16px;"><center><b>{{trans('Your exposure level')}}</br> &nbsp</b></center></span></div>
+                    @else
                         <div class="card-header heading"><span class ="heading"><center><b>{{trans('Probability of COVID Infection')}}</br>(तपाईंलाई कोरोना सर्ने जोखिम)</b></center></span></div>
+                    @endif    
                         <div class="card-body">
                             <center>@include(backpack_view('inc.pci_gauge'))</center>
                         </div>
@@ -80,7 +84,8 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
                 </div>
                 @endif
             </div>
-
+            @if($country_exists)
+            @else
             <div class="row">
                 <div class="personal-message col-xs-12 col-xs-8">
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
@@ -91,6 +96,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
                     </div>
                 </div>    
             </div>
+             @endif
 
             <br>
             <div class="row">

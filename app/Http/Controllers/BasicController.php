@@ -30,20 +30,21 @@ class BasicController extends Controller
     }
 
     public function incrementLike(Request $request){
-        DB::table('counter_info')->update(['like_counter'=>DB::raw('like_counter+1')]);
-
-        $likes = DB::table('counter_info')->pluck('like_counter')->first();
-
-        if($likes){
-            return response()->json([
-                'message' => 'success',
-                'value'=>$likes,
-            ]);
+        $has_liked  = request()->session()->get('action');
+        // dd(request()->session());
+        if($has_liked){
         }else{
-            return response()->json([
-                'message' => 'fail',
-            ]);
+            request()->session()->put('action','like');
+          //if the user click on "like"
+            DB::table('counter_info')->update(['like_counter'=>DB::raw('like_counter+1')]);
         }
+
+        $like_count = DB::table('counter_info')->pluck('like_counter')->first();    
+        
+        return response()->json([
+                'message' => 'success',
+                'like_count' => $like_count,
+            ]);
     }
 
    

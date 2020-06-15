@@ -628,7 +628,7 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>Do you have any of the following heath condition ?</b>',
+                'label'     => '<b>Do you have any of the following health condition ?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'health_condition',
                 'entity'    => 'health_condition',

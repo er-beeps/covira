@@ -138,15 +138,16 @@ class RiskCalculationHelper{
             $local_level_code = $response->locallevel->code;
             $rtr = DB::table('dt_risk_transmission')->where('code',$local_level_code)->pluck('ctr')->first();
 
-            $probability_of_covid_infection = ($sum_habitual_and_exposure*$rtr)/100; 
-
-            if($probability_of_covid_infection < 0){
-                $probability_of_covid_infection = 0;
-            }
-            if($probability_of_covid_infection > 100){
-                $probability_of_covid_infection = 100;
-            }
+            $probability_of_covid_infection = ($sum_habitual_and_exposure*$rtr)/100;  
+          }else{
+            $probability_of_covid_infection = $sum_habitual_and_exposure;
           }
+          if($probability_of_covid_infection < 0){
+            $probability_of_covid_infection = 0;
+        }
+        if($probability_of_covid_infection > 100){
+            $probability_of_covid_infection = 100;
+        }
         $data = [
             'age_risk_factor' => $age_risk_factor,
             'covid_risk_index' => $covid_risk_index,

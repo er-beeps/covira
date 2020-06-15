@@ -24,7 +24,7 @@
 
 }
 .about-content{
-        font-size:14px;
+        font-size:15px;
         color: red;
         animation:blinkingText 5s infinite;
     }
@@ -101,15 +101,8 @@
 
     <div class="col-md-8">
         @include(backpack_view('inc.search_filter'))
-        <!-- <div class="row">
-            <div class="card col-xs-10 about-card" style="background-color: white; background-size:cover;">
-                <div class="card-header about-content">
-                कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> Citation: Parajuli et. al. (2020) ‘COVID-19 risk assessment and communication: a multidisciplinary approach to overcome the pandemic.
-                </div>
-            </div>
-        </div> -->
-
-        <div class="row">
+    
+          <div class="row">
             <div class="col-md-12">
                 <div class="card bg-light map-card">
                     <div class="card-header map-card-header" style="background-color: lightgray">
@@ -191,6 +184,14 @@
                     class="fa fa-share text-primary"></i><span
                     class="badge"style="color:black; font-size:13px;">Share</span>
                 </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="card col-xs-10 about-card" style="background-color: white; background-size:cover;">
+                <div class="card-header about-content">
+                कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> Citation: Parajuli et. al. (2020) ‘COVID-19 risk assessment and communication: a multidisciplinary approach to overcome the pandemic.
+                </div>
             </div>
         </div>
 
@@ -348,7 +349,6 @@
 $session = request()->session();
 $responseId = request()->session()->get('response_id');
 $key = request()->session()->get('key');
-
 $process_step_id = \App\Models\Response::whereId($responseId)->pluck('process_step_id')->first();
 @endphp
 
@@ -379,8 +379,9 @@ function incrementLike(button){
         url:Url,
         method:"POST",
         success:function(res){
+            console.log(res);
             if(res.message =='success'){
-                var like = res.value;
+                var like = res.like_count;
                 $('#like-counter').html('Likes '+like);
             }else{
             }
