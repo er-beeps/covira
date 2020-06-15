@@ -61,7 +61,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
 
                 <div class="col-xs-5 col-xs-3">
                     <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header heading"><span class ="heading"><center><b>{{trans('Probability of COVID Infection')}}</br>(कोरोना सर्ने सम्भावना)</b></center></span></div>
+                        <div class="card-header heading"><span class ="heading"><center><b>{{trans('Probability of COVID Infection')}}</br>(तपाईंलाई कोरोना सर्ने जोखिम)</b></center></span></div>
                         <div class="card-body">
                             <center>@include(backpack_view('inc.pci_gauge'))</center>
                         </div>
@@ -72,7 +72,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
                 @else
                 <div class="col-xs-5 col-xs-3">
                     <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header heading"><span class ="heading"><center><b>{{trans('Regional Transmission Risk')}} </br>(तपाईको पालिकामा कोरोना सर्ने सम्भावना)</b></center></span></div>
+                        <div class="card-header heading"><span class ="heading"><center><b>{{trans('Regional Transmission Risk')}} </br>(तपाईको पालिकामा कोरोना सर्ने जोखिम)</b></center></span></div>
                         <div class="card-body">
                             <center>@include(backpack_view('inc.rtr_gauge'))</center>
                         </div>
@@ -84,7 +84,7 @@ $country_exists = App\Models\Response::where('id',$responseId)->pluck('country_i
             <div class="row">
                 <div class="personal-message col-xs-12 col-xs-8">
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header heading"><span style="color:blue; font-size:16px;"><center><b>Suggestions</b></center></span></div>
+                        <div class="card-header heading"><span style="color:blue; font-size:16px;"><center><b>सुझाव</b></center></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.personal_message'))                 
                         </div>

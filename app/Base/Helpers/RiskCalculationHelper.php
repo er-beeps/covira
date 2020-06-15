@@ -107,7 +107,7 @@ class RiskCalculationHelper{
 
 
         //actual probability calculation formula    
-        $probability_of_covid_infection = (0.8923*(0.41*$ss))+(0.1077*$sum_habitual_and_exposure);
+        // $probability_of_covid_infection = (0.8923*(0.41*$ss))+(0.1077*$sum_habitual_and_exposure);
 
         if($total_covid_risk_index < 0){
             $total_covid_risk_index = 0;
@@ -116,12 +116,7 @@ class RiskCalculationHelper{
             $total_covid_risk_index = 100;
         }
 
-        if($probability_of_covid_infection < 0){
-            $probability_of_covid_infection = 0;
-        }
-        if($probability_of_covid_infection > 100){
-            $probability_of_covid_infection = 100;
-        }
+      
 
         // normalizing covid risk index
         if($total_covid_risk_index >= 0 && $total_covid_risk_index < 6){
@@ -143,7 +138,14 @@ class RiskCalculationHelper{
             $local_level_code = $response->locallevel->code;
             $rtr = DB::table('dt_risk_transmission')->where('code',$local_level_code)->pluck('ctr')->first();
 
-            $probability_of_covid_infection = ($probability_of_covid_infection*$rtr)/100; 
+            $probability_of_covid_infection = ($sum_habitual_and_exposure*$rtr)/100; 
+
+            if($probability_of_covid_infection < 0){
+                $probability_of_covid_infection = 0;
+            }
+            if($probability_of_covid_infection > 100){
+                $probability_of_covid_infection = 100;
+            }
           }
         $data = [
             'age_risk_factor' => $age_risk_factor,

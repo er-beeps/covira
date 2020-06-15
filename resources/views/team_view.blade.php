@@ -60,7 +60,7 @@
                         <img class="rounded-circle profile" src="{{ asset('/img/female-profile-icon.jpg') }}" alt=""/>
                         <div class="inner">
                             <h2>Shova Paudel</h2>
-                            <p>PhD, Science Hub, Nepal (Livelihood)</p>
+                            <p>PhD, Science Hub, Nepal ((Food security and livelihoods)</p>
                         </div>
                     </div>
                 </div>
