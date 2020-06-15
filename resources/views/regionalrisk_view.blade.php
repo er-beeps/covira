@@ -93,7 +93,7 @@ $rtr = request()->session()->get('rtr');
         </div>   
     <div class="col-xs-12 col-xs-8">
         <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
-            <div class="card-header heading"><span style="font-size:16px;"><center><b>{{trans('Regional Transmission Risk')}} </br>(तपाईको पालिकामा कोरोना सर्ने सम्भावना)</b></center></span></div>
+            <div class="card-header heading"><span style="font-size:16px;"><center><b>{{trans('Regional Transmission Risk')}} </br>(तपाईको पालिकामा कोरोना सर्ने जोखिम)</b></center></span></div>
             <div class="card-body">
             <center><canvas id="rr_gauge_view"></canvas></center>                
             </div>
