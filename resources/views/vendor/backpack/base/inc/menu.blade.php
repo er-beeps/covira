@@ -52,7 +52,7 @@
         </div>
         @if (config('backpack.base.registration_open'))
         <div class="row">
-        <a style="color:white;"href="{{ route('backpack.auth.register') }}">{{ trans('backpack::base.register') }}</a>
+        <!-- <a style="color:white;"href="{{ route('backpack.auth.register') }}">{{ trans('backpack::base.register') }}</a> -->
         </div>
         @endif
     </div>    

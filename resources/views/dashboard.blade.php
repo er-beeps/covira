@@ -363,8 +363,10 @@ $(document).ready(function(){
 
     var key = '<?php echo $key ?>';
     
-    if(key == 0){
+    if(key === '0'){
         $('#regional_risk_btn').trigger('click');
+    }else{
+
     }
 
 });
