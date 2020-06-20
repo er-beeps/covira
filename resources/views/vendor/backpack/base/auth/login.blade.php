@@ -62,6 +62,7 @@
             @endif
             @if (config('backpack.base.registration_open'))
                 <!-- <div class="text-center"><a href="{{ route('backpack.auth.register') }}">{{ trans('backpack::base.register') }}</a></div> -->
+                <div class="text-center"><a href="{{ url('/') }}">{{ trans('Go to dashboard') }}</a></div>
             @endif
         </div>
     </div>
