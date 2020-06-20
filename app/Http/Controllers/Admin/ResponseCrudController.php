@@ -118,8 +118,8 @@ class ResponseCrudController extends BaseCrudController
                         success: function(response) {
                             console.log(response);
                             if(response.message == 'success'){
-                                $('#gps_lat').val(response.wardinfo.lat_ward).trigger('change');
-                                $('#gps_long').val(response.wardinfo.long_ward).trigger('change');
+                                $('#gps_lat').val(response.lat).trigger('change');
+                                $('#gps_long').val(response.long).trigger('change');
                                 changeLatDecimalToDegree();
                                 changeLongDecimalToDegree();
                                 updateMarkerByInputs();
@@ -1409,18 +1409,22 @@ class ResponseCrudController extends BaseCrudController
         $local_level = MstLocalLevel::find($localLevelId);
         
         $ward_info = DB::table('mst_ward')->where([['local_level_code',$local_level->code],['ward',$ward_no]])->get();
-        // dd($ward_info);
-        $ward_info = $ward_info[0];
-         if($ward_info){
-            return response()->json([
-                'message' => 'success',
-                'wardinfo' => $ward_info
-            ]);
+        if($ward_info->count()>0){;
+            $ward_info = $ward_info[0];
+            $lat = $ward_info->lat_ward;
+            $long = $ward_info->long_ward;
+          
         }else{
-            return response()->json([
-                'message' => 'fail',
-            ]);
+            $local_level_info = MstLocalLevel::where('id',$localLevelId)->get()->first();
+            $lat = $local_level_info->gps_lat;
+            $long = $local_level_info->gps_long;
         }
+
+        return response()->json([
+            'message' => 'success',
+            'lat' => $lat,
+            'long' => $long,
+        ]);    
     }
 
   
