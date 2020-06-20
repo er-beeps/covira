@@ -9,7 +9,7 @@
           <!-- ================================================ -->
           <!-- ==== Recommended place for admin menu items ==== -->
           <!-- ================================================ -->
-
+       
           @include(backpack_view('inc.sidebar_content'))
 
           <!-- ======================================= -->
@@ -19,6 +19,16 @@
       </nav>
       <!-- /.sidebar -->
     </div>
+@else
+<div class="{{ config('backpack.base.sidebar_class') }}">
+      <nav class="sidebar-nav overflow-hidden">
+        <ul class="nav">
+        <li class='nav-item'><a  class='nav-link' href="{{ url('/') }}"><i class='nav-icon fa fa-home'></i>{{ trans('Home') }}</a></li>
+        <li class='nav-item'><a class='nav-link' href="{{ url('/about') }}"><i class='nav-icon fa fa-book'></i>{{ trans('About') }}</a></li>
+        </ul>
+      </nav>
+    </div>
+
 @endif
 
 @push('before_scripts')

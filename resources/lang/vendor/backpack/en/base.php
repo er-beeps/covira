@@ -33,7 +33,7 @@ return [
     'change_password'        => 'Change Password',
     'unauthorized'           => 'Unauthorized.',
     'dashboard'              => 'Dashboard',
-    'handcrafted_by'         => 'Handcrafted by',
+    'handcrafted_by'         => 'Developed by :',
     'powered_by'             => 'Powered by',
     'my_account'             => 'My Account',
     'update_account_info'    => 'Update Account Info',

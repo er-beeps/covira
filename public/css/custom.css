@@ -8,12 +8,21 @@
 
 .app-header .navbar-brand {
     color: white;
+    margin-left:-130px;
 }
 
 .app-header .navbar-toggler-icon {
     color: white;
 }
 
+.app-footer{
+    background-color: #2f353a;
+    color:white;
+}
+.text-muted{
+    font-size:17px;
+    color:white;
+}
 /* css for tabs*/
 
 .tab-link.active {
@@ -312,4 +321,9 @@ td p {
 
 form input[type=checkbox][readonly] {
     cursor: not-allowed;
+}
+
+#science_hub_logo{
+    height:45px;
+    /* margin-left:10%; */
 }
