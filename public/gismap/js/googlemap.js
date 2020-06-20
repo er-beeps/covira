@@ -77,7 +77,7 @@ function initMap() {
             map: map1,
             icon: icon,
             content: '<font color="#003399">जिल्ला : </font>' + '<font color="purple">' + district + '</font>' + '<br>' +
-                '<font color="#003399">स्थानीय तह : </font>' + '<font color="purple">' + locallevel + ' - ' + ward + '</font>' + '<br>' +
+                '<font color="#003399">स्थानीय तह : </font>' + '<font color="purple">' + locallevel + '</font>' + '<br>' +
                 '<font color="#003399">COVID Risk Index : </font>' + '<b><font color="' + color_cri + '">' + cri_data + '</font></b>' + '<br>' +
                 '<font color="#003399">Probability of COVID Infection : </font>' + '<b><font color="' + color_pci + '">' + pci_data + '</font></b>'
 
