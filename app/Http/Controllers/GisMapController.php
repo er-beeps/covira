@@ -65,9 +65,7 @@ class GisMapController extends Controller
                                 ->limit(1)
                                 ->get();
 
-         if($nepal_covid_data->count()>0){
             $nepal_covid_data = $nepal_covid_data->first();
-        }                       
 
 //search criteria
 $params = [];
@@ -116,8 +114,17 @@ if ($request->all() != null) {
         $selected_params[str_replace(":", "", $key)] = $val;
     }
 
+    $data = [
+        'markers' =>$markers,
+        'area_province' =>$area_province,
+        'gps' =>$gps,
+        'nepal_covid_data' =>$nepal_covid_data,
+        'selected_params' =>$selected_params,
+        'likes' =>$likes,
+        'views' =>$views,
+    ];
 
-    return view('dashboard', compact('markers','area_province','gps', 'nepal_covid_data','selected_params','risk_map_path','likes','dislikes','views','shares'));   
+    return view('dashboard', $data);   
     }    
 }
 

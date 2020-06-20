@@ -188,9 +188,10 @@
         </div>
         <br>
         <div class="row">
-            <div class="card col-xs-10 about-card" style="background-color: white; background-size:cover;">
+            <div class="card col-md-12 about-card" style="background-color: white; background-size:cover;">
                 <div class="card-header about-content">
-                कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> Citation: Parajuli et. al. (2020) ‘COVID-19 risk assessment and communication: a multidisciplinary approach to overcome the pandemic.
+                कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> 
+                Citation: Parajuli et. al. (2020) Multidisciplinary approach to COVID-19 risk communication: A framework for assessing the individual and regional risk.
                 </div>
             </div>
         </div>

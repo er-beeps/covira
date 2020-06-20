@@ -19,13 +19,16 @@ class CreateResponseTable extends Migration
             $table->unsignedSmallInteger('user_id')->nullable();
             $table->string('code',20);
             $table->string('name_en',200);
-            $table->string('name_lc',200);
+            $table->string('name_lc',200)->nullable();
             $table->unsignedSmallInteger('gender_id');
             $table->unsignedSmallInteger('age');
             $table->string('email')->nullable();
-            $table->unsignedSmallInteger('province_id');
-            $table->unsignedSmallInteger('district_id');
-            $table->unsignedSmallInteger('local_level_id');
+            $table->boolean('is_other_country')->nullable();
+            $table->unsignedSmallInteger('country_id')->nullable();
+            $table->string('city',200)->nullable();
+            $table->unsignedSmallInteger('province_id')->nullable();
+            $table->unsignedSmallInteger('district_id')->nullable();
+            $table->unsignedSmallInteger('local_level_id')->nullable();
             $table->unsignedSmallInteger('ward_number')->nullable();  
             $table->unsignedSmallInteger('education_id')->nullable();
             $table->unsignedSmallInteger('profession_id')->nullable();
@@ -66,6 +69,7 @@ class CreateResponseTable extends Migration
             $table->foreign('user_id','fk_response_user_id')->references('id')->on('users');
 
             $table->foreign('gender_id','fk_response_gender_id')->references('id')->on('mst_gender');
+            $table->foreign('country_id','fk_response_country_id')->references('id')->on('mst_country');
             $table->foreign('province_id','fk_response_province_id')->references('id')->on('mst_fed_province');
             $table->foreign('district_id','fk_response_district_id')->references('id')->on('mst_fed_district');
             $table->foreign('local_level_id','fk_response_local_level_id')->references('id')->on('mst_fed_local_level');

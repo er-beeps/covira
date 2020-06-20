@@ -13,6 +13,30 @@ class CreateAppPrimaryMasterTables extends Migration
      */
     public function up()
     {
+        Schema::create('mst_country', function (Blueprint $table) {
+            
+            $table->smallIncrements('id');
+            $table->string('name_en',200);
+            $table->string('name_lc',200);
+            $table->string('country_code',20);
+            $table->string('capital_name_en',200);
+            $table->string('capital_name_lc',200);
+            $table->string('cap_lat',20);
+            $table->string('cap_long',20);
+            $table->string('continent_name_en',20);
+            $table->string('continent_name_lc',20);
+
+            $table->timestamps();
+            $table->unsignedInteger('created_by')->nullable();
+            $table->unsignedInteger('updated_by')->nullable();
+
+
+            $table->unique('country_code','uq_mst_country_country_code');
+            $table->unique('name_lc','uq_mst_country_name_lc');
+            $table->unique('name_en','uq_mst_country_name_en');
+
+        });
+
         Schema::create('mst_fed_province', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->string('code',20);
@@ -177,6 +201,19 @@ class CreateAppPrimaryMasterTables extends Migration
             $table->unique('code','uq_mst_profession_code');
             $table->unique('name_lc','uq_mst_profession_name_lc');
             $table->unique('name_en','uq_mst_profession_name_en');
+        });
+
+        Schema::create('mst_ward', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->integer('local_level_code');
+            $table->integer('ward');
+            $table->string('gapa_napa');
+            $table->string('lat_ward',20);
+            $table->string('long_ward',20);
+            $table->string('lat_municipal',20);
+            $table->string('long_municipal',20);
+            $table->string('lat_district',20);
+            $table->string('long_district',20);
         });
 
     }

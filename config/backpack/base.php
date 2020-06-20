@@ -130,6 +130,7 @@ return [
         'js/lattitude.longitude.converter.js',
         'js/dependentdropdown.js',
         'js/jquery.fancybox.min.js',
+        'js/checkbox_selector.js',
 
 
         // examples (everything inside the bundle, loaded from CDN)

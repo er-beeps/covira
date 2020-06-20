@@ -235,8 +235,8 @@ legend {
 }
 
 .table td {
-    padding-top: 0.15rem !important;
-    padding-bottom: 0.15rem !important;
+    padding-top: 0.05rem !important;
+    padding-bottom: 0.05rem !important;
     border-top: none;
 }
 
@@ -260,8 +260,8 @@ legend {
 }
 
 td p {
-    margin-top: .3rem;
-    margin-bottom: .3rem;
+    margin-top: .2rem;
+    margin-bottom: .2rem;
 }
 
 /* css for current focus element */

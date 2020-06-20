@@ -102,14 +102,22 @@ class ResponseProcessHelper{
     }
 
     private function saveQuestionnaire($id, $further_step_id, $request){
-        $personal_travel = $request->personal_travel;
+
+        $occupation = $request->occupation;
+        $exposure = $request->exposure;
         $safety_measure = $request->safety_measure;
         $habits = $request->habits;
         $health_condition = $request->health_condition;
         $symptom = $request->symptom;
 
-     if(!is_null($personal_travel)){
-         foreach($personal_travel as $value){
+
+     if(!is_null($occupation)){
+         foreach($occupation as $value){
+             $values []=  $value;
+         }
+     }
+     if(!is_null($exposure)){
+         foreach($exposure as $value){
              $values []=  $value;
          }
      }

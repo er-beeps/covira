@@ -106,8 +106,6 @@ class ResponseCrudController extends BaseCrudController
                 $('#map').click(false);
             }
 
-         
-    
             //js for autoloading lat and long from local_level
             $('input[name = ward_number]').on('blur',function(){
                 var localLevelId = $('#local_level_id').val();
@@ -236,9 +234,6 @@ class ResponseCrudController extends BaseCrudController
                     $('.agriculture-hide').hide();
                 }
             });
-
-
-
         });
         ";
     }
@@ -255,27 +250,38 @@ class ResponseCrudController extends BaseCrudController
                 
             ],
 
-            [
-                'name' => 'name_lc',
-                'type' => 'text',
-                'label' => trans('नाम'),
+            // [
+            //     'name' => 'name_lc',
+            //     'type' => 'text',
+            //     'label' => trans('नाम'),
                 
-            ],
-            [
-                'name' => 'province_district',
-                'type' => 'model_function',
-                'function_name' =>'province_district',
-                'label' => trans('प्रदेश').'<br>'.trans('जिल्ला'),
-            ],
+            // ],
             [
                 'name'=>'local_address',
                 'type' => 'model_function',
                 'function_name' =>'local_address',
-                'label'=>trans('स्थानीय तह').'<br>'.trans('वडा नं.'),
+                'label'=>'Address',
             ],
+
+            [
+                'name' => 'age_risk_factor',
+                'type' => 'text',
+                'label' => 'Age Risk Factor',
+            ],
+            [
+                'name' => 'covid_risk_index',
+                'type' => 'text',
+                'label' => 'COVID Risk Index',
+            ],
+            [
+                'name' => 'probability_of_covid_infection',
+                'type' => 'text',
+                'label' => trans('Probability of').'<br>'.trans('COVID Infection '),
+            ]
           
         ];
         $this->crud->addColumns($cols);
+        $this->crud->orderBy('id');
    
 
     }
@@ -541,6 +547,30 @@ class ResponseCrudController extends BaseCrudController
 
 
             [
+                'name' => 'legend50',
+                'type' => 'custom_html',
+                'value' => '<legend>Occupation</legend>',
+                'wrapperAttributes'=>[
+                    'class' => 'legend1'
+                ]  
+            ],
+
+            [
+                'label'     => '<b>Select one that best describes your occupation.</b>',
+                'type'      => 'checklist_filtered',
+                'name'      => 'occupation',
+                'entity'    => 'occupation',
+                'attribute' => 'name_lc',
+                'model'     => PrActivity::class,
+                'options'   => (function ($query) {
+                    return $query->whereFactorId(1)->get();
+                }),
+                'pivot'     => true,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-12 toBeHidden1',
+                ],
+            ],
+            [
                 'name' => 'legend5',
                 'type' => 'custom_html',
                 'value' => '<legend>Exposure</legend>',
@@ -550,14 +580,14 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>Do you ?</b>',
+                'label'     => '<b>Select one that best describes your exposure.</b>',
                 'type'      => 'checklist_filtered',
-                'name'      => 'personal_travel',
-                'entity'    => 'personal_travel',
+                'name'      => 'exposure',
+                'entity'    => 'exposure',
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(1)->get();
+                    return $query->whereFactorId(2)->get();
                 }),
                 'pivot'     => true,
                 'wrapperAttributes' => [
@@ -583,7 +613,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(2)->get();
+                    return $query->whereFactorId(3)->get();
                 }),
                 'pivot'     => true,
                 'wrapperAttributes' => [
@@ -609,7 +639,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(3)->get();
+                    return $query->whereFactorId(4)->get();
                 }),
                 'pivot'     => true,
                 'wrapperAttributes' => [
@@ -635,7 +665,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(4)->get();
+                    return $query->whereFactorId(5)->get();
                 }),
                 'pivot'     => true,
                 'wrapperAttributes' => [
@@ -661,7 +691,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(5)->get();
+                    return $query->whereFactorId(6)->get();
                 }),
                 'pivot'     => true,
                 'wrapperAttributes' => [
@@ -687,7 +717,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(7)->get();
+                    return $query->whereFactorId(8)->get();
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden1'
@@ -710,7 +740,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(8)->get();
+                    return $query->whereFactorId(9)->get();
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden1'
@@ -769,7 +799,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(6)->get();
+                    return $query->whereFactorId(7)->get();
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -794,7 +824,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(9)->get();
+                    return $query->whereFactorId(10)->get();
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -818,7 +848,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(10)->get();
+                    return $query->whereFactorId(11)->get();
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -842,7 +872,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(11)->get();
+                    return $query->whereFactorId(12)->get();
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -867,7 +897,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(12)->get();
+                    return $query->whereFactorId(13)->get();
                 }),
                'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -892,7 +922,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(13)->get();
+                    return $query->whereFactorId(14)->get();
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -917,7 +947,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(14)->get();
+                    return $query->whereFactorId(15)->get();
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -942,7 +972,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(15)->get();
+                    return $query->whereFactorId(16)->get();
                 }),
                  'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -967,7 +997,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(16)->get();
+                    return $query->whereFactorId(17)->get();
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -992,7 +1022,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(17)->get();
+                    return $query->whereFactorId(18)->get();
                 }),
                  'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 agriculture-hide'
@@ -1017,7 +1047,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(18)->get();
+                    return $query->whereFactorId(19)->get();
                 }),
                  'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 agriculture-hide'
@@ -1042,7 +1072,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(19)->get();
+                    return $query->whereFactorId(20)->get();
                 }),
                  'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -1067,7 +1097,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(20)->get();
+                    return $query->whereFactorId(21)->get();
                 }),
                  'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -1091,7 +1121,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(21)->get();
+                    return $query->whereFactorId(22)->get();
                 }),
                  'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -1116,7 +1146,7 @@ class ResponseCrudController extends BaseCrudController
                 'attribute' => 'name_lc',
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
-                    return $query->whereFactorId(22)->get();
+                    return $query->whereFactorId(23)->get();
                 }),
                  'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden2'
@@ -1379,6 +1409,7 @@ class ResponseCrudController extends BaseCrudController
         $local_level = MstLocalLevel::find($localLevelId);
         
         $ward_info = DB::table('mst_ward')->where([['local_level_code',$local_level->code],['ward',$ward_no]])->get();
+        // dd($ward_info);
         $ward_info = $ward_info[0];
          if($ward_info){
             return response()->json([

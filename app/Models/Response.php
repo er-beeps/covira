@@ -75,7 +75,12 @@ class Response extends BaseModel
     }
 
     //pivot saving
-    public function personal_travel()
+    public function occupation()
+    {
+        return $this->belongsToMany('App\Models\PrActivity','respondent_data','response_id','activity_id');
+    }
+
+    public function exposure()
     {
         return $this->belongsToMany('App\Models\PrActivity','respondent_data','response_id','activity_id');
     }
@@ -195,7 +200,7 @@ class Response extends BaseModel
     public function province_district()
     {
         if(isset($this->province_id) && isset($this->district_id)){
-            return $this->province->name_lc.'<br>'.$this->district->name_lc;
+            return $this->province->name_en.'<br>'.$this->district->name_en;
         }else{
             return ' - '.'<br>'.' - ';
         }
@@ -203,10 +208,30 @@ class Response extends BaseModel
     
     public function local_address()
     {
-        if(isset($this->locallevel_id) && isset($this->ward_number)){
-            return $this->locallevel->name_lc.'<br>'.$this->convertToNepaliNumber($this->ward_number);
-        }else{
-            return ' - '.'<br>'.' - ';
+        if(isset($this->local_level_id)){
+            $locallevel = $this->locallevel->name_en;
+        }elseif($this->is_other_country == true){
+            $locallevel = $this->city.' , '.$this->country->name_en;
+
         }
+
+        if(isset($this->ward_number)){
+            $ward_number = ' - '.$this->ward_number;
+        }else{
+            $ward_number = '';
+        }
+
+        if(isset($this->province_id)){
+            $province = ', '.$this->province->name_en;
+        }else{
+            $province = '';
+        }
+        if(isset($this->district_id)){
+            $district = $this->district->name_en;
+        }else{
+            $district= '';
+        }
+
+        return $locallevel.$ward_number.'<br>'.$district.$province;
     }
 }
