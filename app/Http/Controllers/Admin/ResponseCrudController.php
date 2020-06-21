@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Response;
 use App\Models\PrActivity;
 use App\Models\StepMaster;
@@ -11,10 +12,10 @@ use App\Models\MstLocalLevel;
 use App\Base\Traits\ParentData;
 use App\Base\BaseCrudController;
 use Illuminate\Support\Facades\DB;
+use App\Base\Traits\CheckPermission;
 use App\Http\Requests\ResponseRequest;
 use App\Base\Helpers\ResponseProcessHelper;
 use App\Base\Helpers\RiskCalculationHelper;
-use App\Base\Traits\CheckPermission;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -1349,6 +1350,7 @@ class ResponseCrudController extends BaseCrudController
         'local_level_id' => $request->local_level_id,
         'ward_number' => $request->ward_number,
         'remarks' => $request->remarks,
+        'created_at'=> Carbon::now()->todatetimestring(),
         ];
         //add random number to gps lat and long to make difference in co-ordinates
         $lat = $request->gps_lat;
