@@ -89,7 +89,7 @@ class BasicController extends Controller
         if($local_level){
         $local_level_code = $local_level->code;
         $local_level_name = $local_level->name_lc;
-        $rtr = DB::table('dt_risk_transmission')->where('code',$local_level_code)->pluck('ctr')->first();
+        $rtr = DB::table('dt_risk_transmission')->where('code',$local_level_code)->orderBy('date_ad','desc')->pluck('ctr')->first();
         request()->session()->put('local_level_name',$local_level_name);
         request()->session()->put('rtr',$rtr);
         request()->session()->put('key',0);

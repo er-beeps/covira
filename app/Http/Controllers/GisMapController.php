@@ -16,14 +16,14 @@ class GisMapController extends Controller
 {
     public function index()
     {
-        // $client_id = \App\User::getSystemUserId();
-        // $this->data['list_tab_header_view'] = 'admin.gismap.tab';
+        $has_viewed  = request()->session()->get('has_viewed');
 
-        // CounterInfo::where("id", $id)->update(['views_counter' => DB::raw('views_counter+1')]);
-
-        DB::table('counter_info')
-            ->update(['views_counter'=>DB::raw('views_counter+1')]);
-
+        if($has_viewed){
+        }else{
+            request()->session()->put('has_viewed','viewed');
+          //if the user click on "like"
+          DB::table('counter_info')->update(['views_counter'=>DB::raw('views_counter+1')]);
+        }
         $result = DB::table('counter_info')->get()->first();
 
         if(isset($result)){
