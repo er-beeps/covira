@@ -18,7 +18,6 @@ Route::group([
 ], function () {
 
     Route::post('/response/store', 'ResponseCrudController@store');
-    Route::crud('respondantdata', 'RespondentDataCrudController');
     Route::crud('fill_response', 'ResponseCrudController');
     // Route::post('/searchregionalrisk', 'GisMapController@getRegionalRisk');
 });
