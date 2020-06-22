@@ -2,7 +2,7 @@
 
 
 return [
-    'assessrisk' => 'Assess your risk',
+    'assessrisk' => 'Click here to assess your personal risk',
     'covidriskindex' => 'COVID Risk Index',
     'accessriskwarning' => 'Please, access your risk first',
     'covidchance' => 'Probability of COVID Infection',

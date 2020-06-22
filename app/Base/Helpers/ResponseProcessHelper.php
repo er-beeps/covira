@@ -144,21 +144,31 @@ class ResponseProcessHelper{
 
      $already_exists = RespondentData::whereResponseId($id)->pluck('activity_id')->toArray();
      if(count($already_exists) == 0){
-        foreach($values as $val){
-            $questionnaire = RespondentData::create([
-                'response_id' => $id,
-                'activity_id' => $val
-            ]);
+         if(isset($values)){
+            foreach($values as $val){
+                $questionnaire = RespondentData::create([
+                    'response_id' => $id,
+                    'activity_id' => $val
+                ]);
+            }
+        }else{
+            \Alert::success("Please fill the form below to continue")->flash();
+            return redirect(url('/public/fill_response').'/'.$id.'/edit');
         }
     }else{
         $duplicate_ids [] = NULL;
         $new_ids [] = NULL;
+        if(isset($values)){
         foreach($values as $value){
             if(in_array($value, $already_exists)){
                 $duplicate_ids [] = $value; 
             }else{
                 $new_ids [] = $value;
             }
+        }
+        }else{
+            \Alert::success("Please fill the form below to continue")->flash();
+            return redirect(url('/public/fill_response').'/'.$id.'/edit');
         }
         $new_ids = array_filter($new_ids);
         $all_ids = array_merge($duplicate_ids, $new_ids);

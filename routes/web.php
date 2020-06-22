@@ -23,15 +23,15 @@ Route::get('/district/{id}', 'DependentDropdownController@getdistrict');
 Route::get('/local_level/{id}', 'DependentDropdownController@getlocal_level');
 Route::post('/response/store', 'Admin\ResponseCrudController@store');
 
-Route::put('/response/{response_id}/nextstep', 'Admin\ResponseCrudController@nextstep');
-Route::put('/response/{response_id}/updatefinalstep', 'Admin\ResponseCrudController@updatefinalstep');
-Route::get('/response/{response_id}/backstep', 'Admin\ResponseCrudController@backstep');
-Route::get('/response/getlatlong', 'Admin\ResponseCrudController@fetchLatLong');
-Route::get('/response/getcapitallatlong', 'Admin\ResponseCrudController@fetchCapitalLatLong');
-Route::crud('/respondantdata', 'Admin\RespondentDataCrudController');
+// Route::put('/response/{response_id}/nextstep', 'Admin\ResponseCrudController@nextstep');
+// Route::put('/response/{response_id}/updatefinalstep', 'Admin\ResponseCrudController@updatefinalstep');
+// Route::get('/response/{response_id}/backstep', 'Admin\ResponseCrudController@backstep');
+
+// Route::get('/response/getlatlong', 'Admin\ResponseCrudController@fetchLatLong');
+// Route::get('/response/getcapitallatlong', 'Admin\ResponseCrudController@fetchCapitalLatLong');
+// Route::crud('/respondantdata', 'Admin\RespondentDataCrudController');
 
 Route::post('/dashboard/incrementlike', 'BasicController@incrementLike');
-// Route::post('/dashboard/incrementdislike', 'GisMapController@incrementDislike');
 
 Route::get('/response/fetchimages', 'BasicController@fetchImg');
 Route::get('/response/view_result', 'BasicController@redirectResult');
@@ -41,11 +41,6 @@ Route::get('/about', 'BasicController@redirectAbout');
 Route::get('/teams', 'BasicController@redirectTeams');
 Route::post('/searchregionalrisk', 'BasicController@getRegionalRisk');
 
-
-// Route::get('/response/fetchimages/publichealth', 'GisMapController@publichealthImg');
-// Route::get('/response/fetchimages/foodproductivity', 'GisMapController@foodproductivityImg');
-// Route::get('/response/fetchimages/transmissionrisk', 'GisMapController@transmissionImg');
-// Route::get('/response/fetchimages/overallrisk', 'GisMapController@overallriskImg');
 
 
  

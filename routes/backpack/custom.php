@@ -12,17 +12,30 @@ Route::get('api/district/{province_id}', 'App\Http\Controllers\api\ProvinceDistr
 Route::get('api/locallevel/{district_id}', 'App\Http\Controllers\api\DistrictLocalLevelController@index');
 
 Route::group([
+    'prefix'     => 'public',
     'middleware' => ['web'],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () {
 
     Route::post('/response/store', 'ResponseCrudController@store');
-    Route::put('response/{response_id}/nextstep', 'ResponseCrudController@nextstep');
-    Route::get('response/{response_id}/backstep', 'ResponseCrudController@backstep');
     Route::crud('respondantdata', 'RespondentDataCrudController');
     Route::crud('fill_response', 'ResponseCrudController');
     // Route::post('/searchregionalrisk', 'GisMapController@getRegionalRisk');
 });
+
+Route::group([
+    'middleware' => ['web'],
+    'namespace'  => 'App\Http\Controllers\Admin',
+], function () {
+    Route::put('/response/{response_id}/nextstep', 'ResponseCrudController@nextstep');
+    Route::get('/response/{response_id}/backstep', 'ResponseCrudController@backstep');
+    Route::put('/response/{response_id}/updatefinalstep', 'ResponseCrudController@updatefinalstep');
+
+    Route::get('/response/getlatlong', 'ResponseCrudController@fetchLatLong');
+    Route::get('/response/getcapitallatlong', 'ResponseCrudController@fetchCapitalLatLong');
+    Route::crud('/respondantdata', 'RespondentDataCrudController');
+});
+
 
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),

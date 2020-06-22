@@ -45,7 +45,7 @@
                 @if(backpack_user())
                     <center><a href="{{backpack_url('response/create')}}" style="color:blue; font-size:15px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
                 @else
-                    <center><a href="fill_response/create" style="color:blue; font-size:15px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
+                    <center><a href="/public/fill_response/create" style="color:blue; font-size:15px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
                 @endif    
                 </div>
             </div>

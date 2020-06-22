@@ -42,7 +42,7 @@
 				@if ($crud->hasUploadFields('create')) enctype="multipart/form-data"
 				@endif>
 		@else
-		  <form method="post" action="{{ url('/response/store') }}"
+		  <form method="post" action="{{ url('/public/response/store') }}"
 				@if ($crud->hasUploadFields('create')) enctype="multipart/form-data"
 				@endif>
 		@endif

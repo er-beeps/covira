@@ -323,6 +323,11 @@ class ResponseCrudController extends BaseCrudController
                 ],
             ],
             [
+                'name' => 'info',
+                'type' => 'custom_html',
+                'value' =>'<div style="color:red; font-size:18px; font-weight:bold">Note: The fields with(*) are compulsory !!</div>'
+            ],
+            [
                 'name' => 'legend1',
                 'type' => 'custom_html',
                 'value' => '',
@@ -1274,7 +1279,7 @@ class ResponseCrudController extends BaseCrudController
             request()->session()->put('response_id',$itemId);
 
             \Alert::success(trans('Data Submitted Successfully'))->flash();
-            return redirect(url('/fill_response').'/'.$itemId.'/edit');
+            return redirect(url('/public/fill_response').'/'.$itemId.'/edit');
         }else{
 
            // insert item in the db

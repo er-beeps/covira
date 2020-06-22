@@ -35,42 +35,63 @@
 
 <script>
     function confirmation(){
-      	swal({
-		  title: "",
-		  text: 'We are conducting research on the impact of this pandemic, hence would you like to help us by answering few more questions? If you have done it earlier, no need to repeat it.',
-		  buttons: {
-          
-            submit: {
-			  text: " Sorry !, only show my risk",
-			  value: 'submit',
-			  visible: true,
-			  className: "btn btn-warning",
-			  closeModal: true,
-			},
-		  	continue: {
-			  text: "Sure, Happy to proceed.",
-			  value: 'process_next',
-			  visible: true,
-			  className: "btn btn-success",
-			} 
-		  },
-          }).then((value) => {
-              if(value == 'submit'){
-                  var response_id = '<?php echo $entry->getKey(); ?>'
-                  $.ajax({
-                      url: '/response/'+response_id+'/updatefinalstep',
-                      type: 'PUT',
-                      success: function(response){
-                            if(response.message == "success"){
-                                $('form').submit();
-                            }
-                      }
-                  });
-              }
-              if(value == 'process_next'){
-                    $('form').submit();
-              }
-          });
+
+        let fields = $('form');
+        let next_step = false;
+        // fields validation
+        fields.find("input:checkbox[name='health_condition[]']").each(function () {
+            $box = $(this);
+            if ($(this).is(':checked')){
+                next_step = true;
+            }
+        });
+
+
+        if (next_step === true) {
+            swal({
+            title: "",
+            text: 'We are conducting research on the impact of this pandemic, hence would you like to help us by answering few more questions? If you have done it earlier, no need to repeat it.',
+            buttons: {
+            
+                submit: {
+                text: " Sorry !, only show my risk",
+                value: 'submit',
+                visible: true,
+                className: "btn btn-warning",
+                closeModal: true,
+                },
+                continue: {
+                text: "Sure, Happy to proceed.",
+                value: 'process_next',
+                visible: true,
+                className: "btn btn-success",
+                } 
+            },
+            }).then((value) => {
+                if(value == 'submit'){
+                    var response_id = '<?php echo $entry->getKey(); ?>'
+                    $.ajax({
+                        url: '/response/'+response_id+'/updatefinalstep',
+                        type: 'PUT',
+                        success: function(response){
+                                if(response.message == "success"){
+                                    $('form').submit();
+                                }
+                        }
+                    });
+                }
+                if(value == 'process_next'){
+                        $('form').submit();
+                }
+            });
+        }else{
+            swal({
+            title: "Alert !!",
+            text: 'Please, fill the form to continue !!',
+            icon : "warning",
+            })
+
+        }
     }
 
 
