@@ -562,7 +562,7 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>Select one that best describes your occupation.</b>',
+                'label'     => '<b><span style="color:red;">* </span> Select one that best describes your occupation.</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'occupation',
                 'entity'    => 'occupation',
@@ -586,7 +586,7 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>Select one that best describes your exposure.</b>',
+                'label'     => '<b><span style="color:red;">* </span> Select one that best describes your exposure.</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'exposure',
                 'entity'    => 'exposure',
@@ -612,7 +612,7 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>Do you ?</b>',
+                'label'     => '<b><span style="color:red;">* </span> Do you ?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'safety_measure',
                 'entity'    => 'safety_measure',
@@ -638,7 +638,7 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>Do you?</b>',
+                'label'     => '<b><span style="color:red;">* </span> Do you?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'habits',
                 'entity'    => 'habits',
@@ -664,7 +664,7 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>Do you have any of the following health condition ?</b>',
+                'label'     => '<b><span style="color:red;">* </span> Do you have any of the following health condition ?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'health_condition',
                 'entity'    => 'health_condition',
@@ -690,7 +690,7 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>Do you have any of the following symptoms(currently) ?</b>',
+                'label'     => '<b><span style="color:red;">* </span> Do you have any of the following symptoms(currently) ?</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'symptom',
                 'entity'    => 'symptom',
@@ -716,7 +716,7 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>How is current situation in your community ?</b>',
+                'label'     => '<b><span style="color:red;">* </span> How is current situation in your community ?</b>',
                 'type'      => 'select2',
                 'name'      => 'community_situation',
                 'entity'    => 'community_situation',
@@ -727,7 +727,10 @@ class ResponseCrudController extends BaseCrudController
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden1'
-                ]
+                ],
+                'attributes'=> [
+                    'id' => 'community-situation',
+                ],
             ], 
             [
                 'name' => 'legend12',
@@ -739,7 +742,7 @@ class ResponseCrudController extends BaseCrudController
             ],
 
             [
-                'label'     => '<b>Economic impact of pandemic in your life</b>',
+                'label'     => '<b><span style="color:red;">* </span> Economic impact of pandemic in your life</b>',
                 'type'      => 'select2',
                 'name'      => 'economic_impact',
                 'entity'    => 'economic_impact',
@@ -750,7 +753,10 @@ class ResponseCrudController extends BaseCrudController
                 }),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden1'
-                ]
+                ], 
+                'attributes'=> [
+                    'id' => 'economic-impact',
+                ],
             ],
 
             [

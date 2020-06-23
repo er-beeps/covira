@@ -38,14 +38,57 @@
 
         let fields = $('form');
         let next_step = false;
+        let next_step1 = false;
+        let next_step2 = false;
+        let next_step3 = false;
+        let next_step4 = false;
+        let next_step5 = false;
+        let next_step6 = false;
         // fields validation
+        fields.find("input:checkbox[name='occupation[]']").each(function () {
+            $box = $(this);
+            if ($(this).is(':checked')){
+                next_step1 = true;
+            }
+        });
+        fields.find("input:checkbox[name='exposure[]']").each(function () {
+            $box = $(this);
+            if ($(this).is(':checked')){
+                next_step2 = true;
+            }
+        });
+        fields.find("input:checkbox[name='safety_measure[]']").each(function () {
+            $box = $(this);
+            if ($(this).is(':checked')){
+                next_step3 = true;
+            }
+        });
+        fields.find("input:checkbox[name='habits[]']").each(function () {
+            $box = $(this);
+            if ($(this).is(':checked')){
+                next_step4= true;
+            }
+        });
         fields.find("input:checkbox[name='health_condition[]']").each(function () {
             $box = $(this);
             if ($(this).is(':checked')){
-                next_step = true;
+                next_step5 = true;
+            }
+        });
+        fields.find("input:checkbox[name='symptom[]']").each(function () {
+            $box = $(this);
+            if ($(this).is(':checked')){
+                next_step6 = true;
             }
         });
 
+        var comm = $('#community-situation').val();
+        var eco = $('#economic-impact').val();
+
+       if(next_step1 === true && next_step2 === true && next_step3 === true && next_step4 === true && next_step5 === true && next_step6 === true && (comm != "") && (eco != "")){
+           next_step = true;
+       }
+       console.log(next_step);
 
         if (next_step === true) {
             swal({
