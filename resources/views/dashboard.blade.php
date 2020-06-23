@@ -12,13 +12,27 @@
 <link rel="stylesheet" href="{{ asset('/gismap/css/leaflet.css') }}" />
 
 <style>
+
+#assess-btn{
+    color:blue;
+    font-size:16px;
+    animation:blinkingbtn 2s infinite;
+}
+@keyframes blinkingbtn{
+    0%{     color: transparent;    }
+    25%{     color: green;    }
+    50%{    color: blue; }
+    75%{    color:red;  }
+    100%{   color: darkred;    }
+}
+
 .legend-btn{
     margin:0px 5px;
     align:center;
     color:black;
 }
 .about-card{
-    margin-left:3%;
+    margin-left:2%;
     margin-right:2%;
     border-radius:20px;
 
@@ -35,6 +49,9 @@
     75%{    color:red;  }
     100%{   color: darkred;    }
 }
+#more {
+    display: none;
+}
 </style>
 
 <div class ="row">
@@ -43,9 +60,9 @@
             <div class="card col-md-12 side-card" style="background-color: lightblue; background-size:cover;">
                 <div class="card-header">
                 @if(backpack_user())
-                    <center><a href="{{backpack_url('response/create')}}" style="color:blue; font-size:15px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
+                    <center><a href="{{backpack_url('response/create')}}" id="assess-btn"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
                 @else
-                    <center><a href="/public/fill_response/create" style="color:blue; font-size:15px;"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
+                    <center><a href="/public/fill_response/create" id="assess-btn"><b>{{trans('dashboard.assessrisk')}}</b></a><center>
                 @endif    
                 </div>
             </div>
@@ -188,7 +205,7 @@
         </div>
         <br>
         <div class="row">
-            <div class="card col-md-12 about-card" style="background-color: white; background-size:cover;">
+            <div class="card col-xs-12 about-card" style="background-color: white; background-size:cover;">
                 <div class="card-header about-content">
                 कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> 
                 Citation: Parajuli et. al. (2020) Multidisciplinary approach to COVID-19 risk communication: A framework for assessing the individual and regional risk.
@@ -207,8 +224,8 @@
                     A virus linked to the family of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) was identified as the cause of a disease outbreak that began in China in 2019. The disease is called coronavirus disease 2019 (COVID-19).</br></br>
 
                     <b>2.	How does COVID-19 spread?</b></br>
-                    Several studies have shown that it spreads from person to person among those in close contact (within about 6 feet, or 2 meters). The virus spreads by respiratory droplets released when someone infected with the virus coughs, sneezes or talks.</br></br>
-
+                    Several studies have shown that it spreads from person to person among those in close contact (within about 6 feet, or 2 meters).<span id="dots">...</span><span id="more"> The virus spreads by respiratory droplets released when someone infected with the virus coughs, sneezes or talks.</br></br>
+                    
                     <b>3.  What are the symptoms of COVID-19?</b> </br>
                     COVID-19 symptoms can be very mild to severe. Sometime it is asymptomatic. The most common symptoms are fever, cough and tiredness. Other symptoms may include shortness of breath, muscle aches, chills, sore throat, headache, chest pain, and loss of taste or smell etc. Other less common symptoms have also been reported. Symptoms may appear two to 14 days after exposure.</br></br>
 
@@ -265,7 +282,8 @@
                         <li>	Central for disease control and prevention. <a target="_blank" href= "https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html"> https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html</a> </li>
                         <li>    American Red Cross. <a target="_blank" href="https://www.redcross.org/about-us/news-and-events/news/2020/coronavirus-safety-and-readiness-tips-for-you.html"> https://www.redcross.org/about-us/news-and-events/news/2020/coronavirus-safety-and-readiness-tips-for-you.html</a> </li>
                     </ol>
-                    </p>
+                    </p></span>
+                    <button onclick="showMore()" id="show-more">Read more</button>
                 </div>
             </div>
         </div>
@@ -399,6 +417,22 @@ function incrementLike(button){
     );
     return false;
 });
+
+function showMore() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("show-more");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }
+}
 
 </script>
 @endsection

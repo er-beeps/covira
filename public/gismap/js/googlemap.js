@@ -14,6 +14,7 @@ function initMap() {
     });
     var markers = [];
     for (var x in json) {
+        console.log(json[x])
         var lat = json[x].lat;
         lng = json[x].lon;
         code = json[x].code;
@@ -22,9 +23,16 @@ function initMap() {
         locallevel = json[x].locallevel;
         district = json[x].district_name_np;
         ward = json[x].ward_number;
+        is_other_country = json[x].is_other_country;
+        country_en = json[x].country_name_en;
+        country_lc = json[x].country_name_lc;
+        capital_en = json[x].capital_name_en;
+        capital_lc = json[x].capital_name_lc;
+        city= json[x].city;
         ari = json[x].age_risk_factor;
         cri = json[x].covid_risk_index;
         pci = json[x].probability_of_covid_infection;
+
 
         if (cri >= 0 && cri < 20) {
             url = '/gismap/icons/verylow.png';
@@ -71,17 +79,33 @@ function initMap() {
             scaledSize: new google.maps.Size(13, 13), // scaled size
         };
 
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(lat, lng),
-            name: name,
-            map: map1,
-            icon: icon,
-            content: '<font color="#003399">जिल्ला : </font>' + '<font color="purple">' + district + '</font>' + '<br>' +
-                '<font color="#003399">स्थानीय तह : </font>' + '<font color="purple">' + locallevel + '</font>' + '<br>' +
-                '<font color="#003399">COVID Risk Index : </font>' + '<b><font color="' + color_cri + '">' + cri_data + '</font></b>' + '<br>' +
-                '<font color="#003399">Probability of COVID Infection : </font>' + '<b><font color="' + color_pci + '">' + pci_data + '</font></b>'
+        if(is_other_country === false){
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+                name: name,
+                map: map1,
+                icon: icon,
+                content: '<font color="#003399">जिल्ला : </font>' + '<font color="purple">' + district + '</font>' + '<br>' +
+                    '<font color="#003399">स्थानीय तह : </font>' + '<font color="purple">' + locallevel + '</font>' + '<br>' +
+                    '<font color="#003399">COVID Risk Index : </font>' + '<b><font color="' + color_cri + '">' + cri_data + '</font></b>' + '<br>' +
+                    '<font color="#003399">Probability of COVID Infection : </font>' + '<b><font color="' + color_pci + '">' + pci_data + '</font></b>'
 
-        });
+            });
+        }else{
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+                name: name,
+                map: map1,
+                icon: icon,
+                content: '<font color="#003399">Country : </font>' + '<font color="purple">' + country_en + '</font>' + '<br>' +
+                    '<font color="#003399">Capital  : </font>' + '<font color="purple">' + capital_en + '</font>' + '<br>' +
+                    '<font color="#003399">City  : </font>' + '<font color="purple">' + city + '</font>' + '<br>' +
+                    '<font color="#003399">COVID Risk Index : </font>' + '<b><font color="' + color_cri + '">' + cri_data + '</font></b>' + '<br>' +
+                    '<font color="#003399">Probability of COVID Infection : </font>' + '<b><font color="' + color_pci + '">' + pci_data + '</font></b>'
+
+            });
+            
+        }
 
         google.maps.event.addListener(marker, 'spider_click', function (e) {
             infowindow.setContent(this.content);
@@ -93,7 +117,7 @@ function initMap() {
     }
     var markerCluster = new MarkerClusterer(map1, markers, {
         imagePath: '/gismap/images/m',
-        minimumClusterSize: 30
+        minimumClusterSize: 100,
     }
 
     );

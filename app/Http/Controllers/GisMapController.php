@@ -51,12 +51,19 @@ class GisMapController extends Controller
                 ll.name_lc locallevel,
                 ll.name_en enlocallevel,
                 r.ward_number,
+                r.is_other_country,
+                mc.name_en as country_name_en,
+                mc.name_lc as country_name_lc,
+                mc.capital_name_en as capital_name_en,
+                mc.capital_name_lc as capital_name_lc,
+                r.city as city,
                 COALESCE (cast(nullif(r.gps_lat, '') as float), 27.700769) lat,
                 COALESCE (cast(nullif(r.gps_long, '') as float), 85.300140 ) lon
                 FROM response r
                 LEFT JOIN mst_fed_local_level AS ll ON r.local_level_id = ll.id
                 LEFT JOIN mst_fed_district d ON ll.district_id = d.id
                 LEFT JOIN mst_fed_province pr ON d.province_id = pr.id
+                LEFT JOIN mst_country mc ON r.country_id = mc.id
                 ";
 
         $nepal_covid_data = DB::table('covid_details_nepal')
@@ -113,7 +120,6 @@ if ($request->all() != null) {
     foreach ($params as $key => $val) {
         $selected_params[str_replace(":", "", $key)] = $val;
     }
-
     $data = [
         'markers' =>$markers,
         'area_province' =>$area_province,
