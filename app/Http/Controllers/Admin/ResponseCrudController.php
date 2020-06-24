@@ -71,7 +71,7 @@ class ResponseCrudController extends BaseCrudController
 
             $('input[name=gps_lat]').prop('readonly',true);
             $('input[name=gps_long]').prop('readonly',true);
-            $('input[type=map]').hide();
+            // $('input[type=map]').hide();
 
 
             var process_step_id = $('#process_step_id').val();
@@ -123,7 +123,7 @@ class ResponseCrudController extends BaseCrudController
                                 $('#gps_long').val(response.long).trigger('change');
                                 changeLatDecimalToDegree();
                                 changeLongDecimalToDegree();
-                                updateMarkerByInputs();
+                                // updateMarkerByInputs();
                             }
                             else if(response.message == 'fail'){
                                 new Noty({
@@ -155,7 +155,7 @@ class ResponseCrudController extends BaseCrudController
                                 $('#gps_long').val(response.country.cap_long).trigger('change');
                                 changeLatDecimalToDegree();
                                 changeLongDecimalToDegree();
-                                updateMarkerByInputs();
+                                // updateMarkerByInputs();
                             }
                             else if(response.message == 'fail'){
                                 new Noty({
@@ -178,9 +178,22 @@ class ResponseCrudController extends BaseCrudController
             changeLongDecimalToDegree();
 
             if($('#gps_lat').val() == 0 && $('#gps_long').val() == 0){  
-                getLocation();
+                // getLocation();
+
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition);
+                    } else { 
+                          alert('Your Browser does not support Geo-location.');
+                    }  
+
+                    function showPosition(position) {
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+                        // updateMarker(latitude, longitude);
+                    }
+       
             }else{
-                updateMarkerByInputs();
+                // updateMarkerByInputs();
             }
 
             //Convert degree-minute-second to decimal
@@ -202,13 +215,13 @@ class ResponseCrudController extends BaseCrudController
             // Convert decimal to degree-minute-second
             $('#gps_lat').on('keyup', function() {
                 changeLatDecimalToDegree();
-                 updateMarkerByInputs();
+                //  updateMarkerByInputs();
             });
 
         
             $('#gps_long').on('keyup', function() {
                 changeLongDecimalToDegree();
-                 updateMarkerByInputs();
+                //  updateMarkerByInputs();
 
             });
 
@@ -332,14 +345,14 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'custom_html',
                 'value' => '',
             ],
-            [
-                'name' => 'name_en',
-                'type' => 'text',
-                'label' => trans('Name'),
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6 toBeHidden',
-                ],
-            ],
+            // [
+            //     'name' => 'name_en',
+            //     'type' => 'text',
+            //     'label' => trans('Name'),
+            //     'wrapperAttributes' => [
+            //         'class' => 'form-group col-md-6 toBeHidden',
+            //     ],
+            // ],
             // [
             //     'name' => 'name_lc',
             //     'type' => 'text',
@@ -353,7 +366,7 @@ class ResponseCrudController extends BaseCrudController
                 'type' => 'number',
                 'label' => trans('Age'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-3 toBeHidden',
+                    'class' => 'form-group col-md-5 toBeHidden',
                 ],
                 'suffix' => 'years',
             ],
@@ -366,17 +379,17 @@ class ResponseCrudController extends BaseCrudController
                 'model'=>'App\Models\MstGender',
                 'attribute'=>'name_en',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-3 toBeHidden',
+                    'class' => 'form-group col-md-5 toBeHidden',
                 ],
             ],
-            [
-                'name' => 'email',
-                'type' => 'text',
-                'label' => trans('Email'),
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-12 toBeHidden',
-                ],
-            ],
+            // [
+            //     'name' => 'email',
+            //     'type' => 'text',
+            //     'label' => trans('Email'),
+            //     'wrapperAttributes' => [
+            //         'class' => 'form-group col-md-12 toBeHidden',
+            //     ],
+            // ],
   
             [
                 'name' => 'legend3',
@@ -545,10 +558,10 @@ class ResponseCrudController extends BaseCrudController
                 'default' => '0',
             ],
 
-            [
-                'name' => 'map',
-                'type' => 'map',
-            ],
+            // [
+            //     'name' => 'map',
+            //     'type' => 'map',
+            // ],
 
 
 

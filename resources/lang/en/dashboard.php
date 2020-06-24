@@ -6,6 +6,7 @@ return [
     'covidriskindex' => 'COVID Risk Index',
     'accessriskwarning' => 'Please, access your risk first',
     'covidchance' => 'Probability of COVID Infection',
+    'view_result'=>'View Result',
     'survey' => 'Take part in survey',
     'province' => 'Select Province',
     'district' => 'Select District',

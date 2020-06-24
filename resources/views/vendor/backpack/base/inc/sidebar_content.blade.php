@@ -1,7 +1,7 @@
 <!-- This file is used to store sidebar items, starting with Backpack\Base 0.9.0 -->
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
-<li class='nav-item'><a  class='nav-link' href="{{ url('/') }}"><i class='nav-icon fa fa-home'></i>{{ trans('Home') }}</a></li>
-<li class='nav-item'><a class='nav-link' href="{{ url('/about') }}"><i class='nav-icon fa fa-book'></i>{{ trans('About') }}</a></li>
+<li class='nav-item'><a  class='nav-link' href="{{ url('/') }}"><i class='nav-icon fa fa-home'></i>{{ trans('general.home') }}</a></li>
+<li class='nav-item'><a class='nav-link' href="{{ url('/about') }}"><i class='nav-icon fa fa-book'></i>{{ trans('general.about') }}</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('response') }}'><i class='nav-icon fa fa-file'></i> Responses</a></li>
 <!-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gismap') }}'><i class='nav-icon fa fa-map-marker'></i> GIS Map</a></li> -->

@@ -62,9 +62,9 @@
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="form-inline col-md-4">
-                                             <label>Province</label>
+                                             <label>{{trans('dashboard.province')}}</label>
                                             <select class="form-control select2" name="province" id="province" style="width: 100%;">
-                                            <option selected disabled style="font-weight:bold;">{{trans('dashboard.province')}}</option>
+                                            <option selected disabled style="font-weight:bold;">{{trans('dashboard.select_province')}}</option>
                                             @foreach($area_province as $ap)
 
                                             @if(isset($selected_params['province']) && $ap->id == $selected_params['province'])
@@ -77,14 +77,14 @@
                                         </div>
 
                                         <div class="form-inline col-md-4">
-                                            <label for="district">District</label>
+                                            <label for="district">{{trans('dashboard.district')}}</label>
                                             <select class="form-control" style="width: 100%;" name="district" id="district">
-                                            <option selected disabled style="font-weight:bold;">{{trans('dashboard.district')}}</option>
+                                            <option selected disabled style="font-weight:bold;">{{trans('dashboard.select_district')}}</option>
                                             </select>
                                         </div>
 
                                         <div class="form-inline col-md-4">
-                                             <label for="locallevel">Local Level</label>
+                                             <label for="locallevel">{{trans('dashboard.local_level')}}</label>
                                                 <select class="form-control" style="width: 100%;" name="local_level" id="local_level"></select>
                                         </div>
                                     </div>

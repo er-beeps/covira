@@ -110,7 +110,7 @@
             <div class="row">
                 <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
                     <div class="card-header"><center><b>
-                        <a data-fancybox data-type="ajax" href="/response/view_result" id = "result_view" style="color:darkblue; font-size:15px;">{{ trans('View Result') }}</a>  
+                        <a data-fancybox data-type="ajax" href="/response/view_result" id = "result_view" style="color:darkblue; font-size:15px;">{{ trans('dashboard.view_result') }}</a>  
                         <a data-fancybox data-type="ajax" href="/response/view_regional_risk" id = "regional_risk_btn" style="color:darkblue; font-size:15px;"></a>  
                         </b></center
                     ></div>

@@ -23,8 +23,8 @@
 <div class="{{ config('backpack.base.sidebar_class') }}">
       <nav class="sidebar-nav overflow-hidden">
         <ul class="nav">
-        <li class='nav-item'><a  class='nav-link' href="{{ url('/') }}"><i class='nav-icon fa fa-home'></i>{{ trans('Home') }}</a></li>
-        <li class='nav-item'><a class='nav-link' href="{{ url('/about') }}"><i class='nav-icon fa fa-book'></i>{{ trans('About') }}</a></li>
+        <li class='nav-item'><a  class='nav-link' href="{{ url('/') }}"><i class='nav-icon fa fa-home'></i>{{ trans('general.home') }}</a></li>
+        <li class='nav-item'><a class='nav-link' href="{{ url('/about') }}"><i class='nav-icon fa fa-book'></i>{{ trans('general.about') }}</a></li>
         </ul>
       </nav>
     </div>
