@@ -1,5 +1,9 @@
 @extends(backpack_view('layouts.top_left'))
 
+@php
+    $lang = App::getLocale();
+@endphp
+
 @section('content')
 <script src="{{asset('js/gauge.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('/gismap/css/gismap.css') }}" />

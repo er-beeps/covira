@@ -21,6 +21,16 @@
 <ul class="nav navbar-nav ml-auto" style="margin-right:30px;">
 
     @if (backpack_auth()->guest())
+    <li class="nav-item dropdown d-md-down-none">
+        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;">
+          {{ strtoupper(app()->getLocale()) }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+         @foreach(config('app.languages') as $langLocale => $langName)
+          <a class="dropdown-item" href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }} ({{ $langName }})</a>
+          @endforeach
+        </div>
+      </li>
     <div class = "col-md-4">
         <div class="row">   
         <a style="margin-right:10px; color:white" href="{{ route('backpack.auth.login') }}">{{ trans('backpack::base.login') }}</a>
