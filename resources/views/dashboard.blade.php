@@ -311,11 +311,7 @@
                         <table class="nepal_data_table" style="margin-left:-20px; font-size:14px;">
                             <tr>
                                 <td width="150%" class="title"><i class="fa fa-dot-circle-o" style="color:orange; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.infected')}}</td>
-                                @if($lang == "en")
-                                    <td class="data"> {{$nepal_covid_data->total_affected ?? '0'}}</td>
-                                @else
-                                    <td class="data"> convertToNepaliNumber($nepal_covid_data->total_affected ?? '0')</td>
-                                @endif
+                                <td class="data"> {{$nepal_covid_data->total_affected ?? '0'}}</td>
                             </tr>
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:green; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.recovered')}}</td>
