@@ -49,4 +49,5 @@
         @include(backpack_view('inc.menu_user_dropdown'))
     @endif
 </ul>
+
 <!-- ========== End of top menu right items ========== -->

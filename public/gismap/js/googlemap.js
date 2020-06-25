@@ -14,7 +14,6 @@ function initMap() {
     });
     var markers = [];
     for (var x in json) {
-        console.log(json[x])
         var lat = json[x].lat;
         lng = json[x].lon;
         code = json[x].code;
@@ -28,7 +27,7 @@ function initMap() {
         country_lc = json[x].country_name_lc;
         capital_en = json[x].capital_name_en;
         capital_lc = json[x].capital_name_lc;
-        city= json[x].city;
+        city = json[x].city;
         ari = json[x].age_risk_factor;
         cri = json[x].covid_risk_index;
         pci = json[x].probability_of_covid_infection;
@@ -79,7 +78,7 @@ function initMap() {
             scaledSize: new google.maps.Size(13, 13), // scaled size
         };
 
-        if(is_other_country === false){
+        if (is_other_country === false) {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(lat, lng),
                 name: name,
@@ -91,7 +90,7 @@ function initMap() {
                     '<font color="#003399">Probability of COVID Infection : </font>' + '<b><font color="' + color_pci + '">' + pci_data + '</font></b>'
 
             });
-        }else{
+        } else {
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(lat, lng),
                 name: name,
@@ -104,7 +103,7 @@ function initMap() {
                     '<font color="#003399">Probability of COVID Infection : </font>' + '<b><font color="' + color_pci + '">' + pci_data + '</font></b>'
 
             });
-            
+
         }
 
         google.maps.event.addListener(marker, 'spider_click', function (e) {

@@ -12,6 +12,7 @@ use App\Models\MstLocalLevel;
 use App\Base\Traits\ParentData;
 use App\Base\BaseCrudController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use App\Base\Traits\CheckPermission;
 use App\Http\Requests\ResponseRequest;
 use App\Base\Helpers\ResponseProcessHelper;
@@ -33,7 +34,7 @@ class ResponseCrudController extends BaseCrudController
     {
         $this->crud->setModel('App\Models\Response');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/response');
-        $this->crud->setEntityNameStrings('Response', 'Response');
+        $this->crud->setEntityNameStrings(trans('response.title'), trans('response.title'));
         $this->data['script_js'] = $this->getScripsJs();
         if(backpack_user()){
         $this->checkPermission();  
@@ -260,7 +261,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'name_en',
                 'type' => 'text',
-                'label' => trans('Name'),
+                'label' => trans('response.name'),
                 
             ],
 
@@ -304,6 +305,12 @@ class ResponseCrudController extends BaseCrudController
     {
         $this->crud->setValidation(ResponseRequest::class);
 
+        $language =App::getLocale();
+        $lang = 'name_lc';
+        if($language == "en"){
+            $lang = 'name_en';
+        }
+
         $mode = $this->crud->getActionMethod();
         $process_step_id = NULL;
         if(in_array($mode,['edit','update'])){
@@ -338,7 +345,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'info',
                 'type' => 'custom_html',
-                'value' =>'<div style="color:red; font-size:18px; font-weight:bold">Note: The fields with(*) are compulsory !!</div>'
+                'value' =>'<div style="color:red; font-size:18px; font-weight:bold">'.trans('response.note_heading').'</div>'
             ],
             [
                 'name' => 'legend1',
@@ -364,9 +371,9 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'age',
                 'type' => 'number',
-                'label' => trans('Age'),
+                'label' => trans('response.age'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-5 toBeHidden',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
                 'suffix' => 'years',
             ],
@@ -377,9 +384,9 @@ class ResponseCrudController extends BaseCrudController
                 'label'=>trans('response.gender'),
                 'entity'=>'gender',
                 'model'=>'App\Models\MstGender',
-                'attribute'=>'name_en',
+                'attribute'=>$lang,
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-5 toBeHidden',
+                    'class' => 'form-group col-md-6 toBeHidden',
                 ],
             ],
             // [
@@ -394,7 +401,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend3',
                 'type' => 'custom_html',
-                'value' => '<b><legend>Address</legend></b>',
+                'value' => '<b><legend>'.trans('response.address').'</legend></b>',
                 'wrapperAttributes'=>[
                     'class' => 'legend0'
                 ]
@@ -402,11 +409,11 @@ class ResponseCrudController extends BaseCrudController
 
             [ //Toggle
                 'name' => 'is_other_country',
-                'label' => trans('Are you from Nepal? (Please specify city if selected other)'),
+                'label' => trans('response.is_other_country'),
                 'type' => 'toggle',
                 'options'     => [ 
-                    0 => 'Nepal',
-                    1 => 'Others'
+                    0 => trans('response.nepal'),
+                    1 => trans('response.others'),
                 ],
                 'inline' => true,
                 'wrapperAttributes' => [
@@ -427,7 +434,7 @@ class ResponseCrudController extends BaseCrudController
                 'label'=>trans('response.province'),
                 'entity'=>'province',
                 'model'=>'App\Models\MstProvince',
-                'attribute'=>'name_en',
+                'attribute'=>$lang,
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
@@ -438,7 +445,7 @@ class ResponseCrudController extends BaseCrudController
                 'type'=>'select2_from_ajax',
                 'model'=>'App\Models\MstDistrict',
                 'entity'=>'district',
-                'attribute'=>'name_en',
+                'attribute'=>$lang,
                 'data_source' => url("api/district/province_id"),
                 'placeholder' => "Select a District",
                 'minimum_input_length' => 0,
@@ -453,7 +460,7 @@ class ResponseCrudController extends BaseCrudController
                 'type'=>'select2_from_ajax',
                 'entity'=>'locallevel',
                 'model'=>'App\Models\MstLocalLevel',
-                'attribute'=>'name_en',
+                'attribute'=>$lang,
                 'data_source' => url("api/locallevel/district_id"),
                 'placeholder' => "Select a Local Level",
                 'minimum_input_length' => 0,
@@ -468,7 +475,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'ward_number',
                 'type'=>'number',
-                'label'=>trans('Ward No.'),
+                'label'=>trans('response.ward'),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
@@ -482,7 +489,7 @@ class ResponseCrudController extends BaseCrudController
                 'label'=>trans("response.country"),
                 'entity'=>'country',
                 'model'=>'App\Models\Country',
-                'attribute'=>'name_lc',
+                'attribute'=>$lang,
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
@@ -494,7 +501,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'city',
                 'type'=>'text',
-                'label'=>trans('Please Specify City'),
+                'label'=>trans('response.city'),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6 toBeHidden',
                 ],
@@ -503,11 +510,10 @@ class ResponseCrudController extends BaseCrudController
                 ]
             ],
 
-
             [
                 'name' => 'legend4',
                 'type' => 'custom_html',
-                'value' => '<b><legend>GPS Co-ordinates</legend></b>',
+                'value' => '<b><legend>'.trans('response.gps_coordinates').'</legend></b>',
                 'wrapperAttributes'=>[
                     'class' => 'legend0'
                 ]
@@ -515,7 +521,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'separater1',
                 'type' => 'custom_html',
-                'value' => '<h5><b><span style="position: relative; top:23px;">Latitude :</span></b></h5>',
+                'value' => '<h5><b><span style="position: relative; top:23px;">'.trans('response.latitude').'</span></b></h5>',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-2 toBeHidden',
                 ],
@@ -523,7 +529,7 @@ class ResponseCrudController extends BaseCrudController
     
             [
                 'name' => 'gps_lat',
-                'label' => trans('Decimal Degrees Latitude'),
+                'label' => trans('response.decimal_degree_latitude'),
                 'type' => 'number',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-3 toBeHidden',
@@ -538,7 +544,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'separater2',
                 'type' => 'custom_html',
-                'value' => '<h5><b><span style="position: relative; top:23px;">Longitude :</span></b></h5>',
+                'value' => '<h5><b><span style="position: relative; top:23px;">'.trans('response.longitude').'</span></b></h5>',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-2 toBeHidden',
                 ],
@@ -546,7 +552,7 @@ class ResponseCrudController extends BaseCrudController
 
             [
                 'name' => 'gps_long',
-                'label' => trans('Decimal Degrees Longitude'),
+                'label' => trans('response.decimal_degree_longitude'),
                 'type' => 'number',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-3 toBeHidden',
@@ -568,18 +574,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend50',
                 'type' => 'custom_html',
-                'value' => '<legend>Occupation</legend>',
+                'value' => '<legend>'.trans('response.occupation_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend1'
                 ]  
             ],
 
             [
-                'label'     => '<b><span style="color:red;">* </span> Select one that best describes your occupation.</b>',
+                'label'     => '<b><span style="color:red;">* </span>'.trans('response.occupation_label').'</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'occupation',
                 'entity'    => 'occupation',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(1)->get();
@@ -592,18 +598,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend5',
                 'type' => 'custom_html',
-                'value' => '<legend>Exposure</legend>',
+                'value' => '<legend>'.trans('response.exposure_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend1'
                 ]  
             ],
 
             [
-                'label'     => '<b><span style="color:red;">* </span> Select one that best describes your exposure.</b>',
+                'label'     => '<b><span style="color:red;">* </span>'.trans('response.exposure_label').'</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'exposure',
                 'entity'    => 'exposure',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(2)->get();
@@ -618,18 +624,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend6',
                 'type' => 'custom_html',
-                'value' => '<legend>Safety Measure</legend>',
+                'value' => '<legend>'.trans('response.safety_measure_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend1'
                 ]  
             ],
 
             [
-                'label'     => '<b><span style="color:red;">* </span> Do you ?</b>',
+                'label'     => '<b><span style="color:red;">* </span>'.trans('response.do_you').'</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'safety_measure',
                 'entity'    => 'safety_measure',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(3)->get();
@@ -644,18 +650,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend7',
                 'type' => 'custom_html',
-                'value' => '<legend>Habits</legend>',
+                'value' => '<legend>'.trans('response.habits_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend1'
                 ]  
             ],
 
             [
-                'label'     => '<b><span style="color:red;">* </span> Do you?</b>',
+                'label'     => '<b><span style="color:red;">* </span>'.trans('response.do_you').'</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'habits',
                 'entity'    => 'habits',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(4)->get();
@@ -670,18 +676,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend8',
                 'type' => 'custom_html',
-                'value' => '<legend>Existing Health Condition</legend>',
+                'value' => '<legend>'.trans('response.health_condition_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend1'
                 ]  
             ],
 
             [
-                'label'     => '<b><span style="color:red;">* </span> Do you have any of the following health condition ?</b>',
+                'label'     => '<b><span style="color:red;">* </span>'.trans('response.health_condition_label').'</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'health_condition',
                 'entity'    => 'health_condition',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(5)->get();
@@ -696,18 +702,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend9',
                 'type' => 'custom_html',
-                'value' => '<legend>Symptom</legend>',
+                'value' => '<legend>'.trans('response.symptom_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend1'
                 ]  
             ],
 
             [
-                'label'     => '<b><span style="color:red;">* </span> Do you have any of the following symptoms(currently) ?</b>',
+                'label'     => '<b><span style="color:red;">* </span>'.trans('response.symptom_label').'</b>',
                 'type'      => 'checklist_filtered',
                 'name'      => 'symptom',
                 'entity'    => 'symptom',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(6)->get();
@@ -722,18 +728,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend11',
                 'type' => 'custom_html',
-                'value' => '<legend>Community Situation</legend>',
+                'value' => '<legend>'.trans('response.community_situation_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend1'
                 ]                
             ],
 
             [
-                'label'     => '<b><span style="color:red;">* </span> How is current situation in your community ?</b>',
+                'label'     => '<b><span style="color:red;">* </span>'.trans('response.community_situation_label').'</b>',
                 'type'      => 'select2',
                 'name'      => 'community_situation',
                 'entity'    => 'community_situation',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(8)->get();
@@ -749,17 +755,18 @@ class ResponseCrudController extends BaseCrudController
                 'name' => 'legend12',
                 'type' => 'custom_html',
                 'value' => '<legend>Economic Impact</legend>',
+                'value' => '<legend>'.trans('response.economic_impact_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend1'
                 ]  
             ],
 
             [
-                'label'     => '<b><span style="color:red;">* </span> Economic impact of pandemic in your life</b>',
+                'label'     => '<b><span style="color:red;">* </span>'.trans('response.economic_impact_label').'</b>',
                 'type'      => 'select2',
                 'name'      => 'economic_impact',
                 'entity'    => 'economic_impact',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(9)->get();
@@ -775,7 +782,7 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend2',
                 'type' => 'custom_html',
-                'value' => '<b><legend>Education and Profession:</legend></b>',
+                'value' => '<b><legend>'.trans('response.education_profession_title').'</legend></b>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ],
@@ -784,23 +791,23 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name'=>'education_id',
                 'type'=>'select2',
-                'label'=>trans('<b>Education</b>'),
+                'label'=>'<b>'.trans('response.education').'</b>',
                 'entity'=>'education',
                 'model'=>'App\Models\MstEducationalLevel',
-                'attribute'=>'name_lc',
+                'attribute'=>$lang,
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-5 toBeHidden2',
+                    'class' => 'form-group col-md-6 toBeHidden2',
                 ],
             ],
             [
                 'name'=>'profession_id',
                 'type'=>'select2',
-                'label'=>trans('<b>Profession</b>'),
+                'label'=>'<b>'.trans('response.profession').'</b>',
                 'entity'=>'profession',
                 'model'=>'App\Models\MstProfession',
-                'attribute'=>'name_en',
+                'attribute'=>$lang,
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-5 toBeHidden2',
+                    'class' => 'form-group col-md-6 toBeHidden2',
                 ],
                 'attributes'=>[
                     'id' => 'profession-id'
@@ -810,18 +817,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend10',
                 'type' => 'custom_html',
-                'value' => '<legend>Neighbour Proximity</legend>',
+                'value' => '<legend>'.trans('response.neighbour_proximity_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]  
             ],
 
             [
-                'label'     => '<b>Nearby houses from your home (with in 100 meters)</b>',
+                'label'     => '<b>'.trans('response.neighbour_proximity_label').'</b>',
                 'type'      => 'select2',
                 'name'      => 'neighbour_proximity',
                 'entity'    => 'neighbour_proximity',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(7)->get();
@@ -835,18 +842,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend13',
                 'type' => 'custom_html',
-                'value' => '<legend>Confirmed Case</legend>',
+                'value' => '<legend>'.trans('response.confirmed_case_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>Is there any confirmed case in your community ?</b>',
+                'label'     => '<b>'.trans('response.confirmed_case_label').'</b>',
                 'type'      => 'select2',
                 'name'      => 'confirmed_case',
                 'entity'    => 'confirmed_case',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(10)->get();
@@ -859,18 +866,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend14',
                 'type' => 'custom_html',
-                'value' => '<legend>Inbound Foreign Travel</legend>',
+                'value' => '<legend>'.trans('response.inbound_foreign_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>Are there any people travelled recently from abroad ?</b>',
+                'label'     => '<b>'.trans('response.inbound_foreign_label').'</b>',
                 'type'      => 'select2',
                 'name'      => 'inbound_foreign_travel',
                 'entity'    => 'inbound_foreign_travel',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(11)->get();
@@ -883,18 +890,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend15',
                 'type' => 'custom_html',
-                'value' => '<legend>Community Population</legend>',
+                'value' => '<legend>'.trans('response.community_population_title').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>Population of your community(village/tole, where you mostly interact in normal time)</b>',
+                'label'     => '<b>'.trans('response.community_population_label').'</b>',
                 'type'      => 'select2',
                 'name'      => 'community_population',
                 'entity'    => 'community_population',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(12)->get();
@@ -908,18 +915,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend16',
                 'type' => 'custom_html',
-                'value' => '<legend>Hospital Proximity</legend>',
+                'value' => '<legend>'.trans('response.hospital_proximity_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>How far is the hospital/healthpost ?</b>',
+                'label'     => '<b>'.trans('response.hospital_proximity_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'hospital_proximity',
                 'entity'    => 'hospital_proximity',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(13)->get();
@@ -933,18 +940,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend17',
                 'type' => 'custom_html',
-                'value' => '<legend>Corona Centre Proximity</legend>',
+                'value' => '<legend>'.trans('response.corona_centre_proximity_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>How far is the corona centre ?</b>',
+                'label'     => '<b>'.trans('response.corona_centre_proximity_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'corona_centre_proximity',
                 'entity'    => 'corona_centre_proximity',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(14)->get();
@@ -958,18 +965,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend18',
                 'type' => 'custom_html',
-                'value' => '<legend>Health Facility</legend>',
+                'value' => '<legend>'.trans('response.health_facility_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>Condition of hospital/healthpost</b>',
+                'label'     => '<b>'.trans('response.health_facility_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'health_facility',
                 'entity'    => 'health_facility',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(15)->get();
@@ -983,18 +990,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend19',
                 'type' => 'custom_html',
-                'value' => '<legend>Market Proximity</legend>',
+                'value' => '<legend>'.trans('response.market_proximity_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>How far is the market area from your place or locality ?</b>',
+                'label'     => '<b>'.trans('response.market_proximity_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'market_proximity',
                 'entity'    => 'market_proximity',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(16)->get();
@@ -1008,18 +1015,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend20',
                 'type' => 'custom_html',
-                'value' => '<legend>Food Stock</legend>',
+                'value' => '<legend>'.trans('response.food_stock_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>Were there sufficient food items supplies in your house during lock down ?</b>',
+                'label'     => '<b>'.trans('response.food_stock_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'food_stock',
                 'entity'    => 'food_stock',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(17)->get();
@@ -1033,18 +1040,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend21',
                 'type' => 'custom_html',
-                'value' => '<legend>Agri Producer Seller</legend>',
+                'value' => '<legend>'.trans('response.agri_producer_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend-hide'
                 ]
             ],
 
             [
-                'label'     => '<b>Are you able to sell your agricultutal products in market ?</b>',
+                'label'     => '<b>'.trans('response.agri_producer_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'agri_producer_seller',
                 'entity'    => 'agri_producer_seller',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(18)->get();
@@ -1058,18 +1065,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend22',
                 'type' => 'custom_html',
-                'value' => '<legend>Product Selling Price</legend>',
+                'value' => '<legend>'.trans('response.product_selling_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend-hide'
                 ]
             ],
 
             [
-                'label'     => '<b>Are you getting regular price compared to normal situation ?</b>',
+                'label'     => '<b>'.trans('response.product_selling_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'product_selling_price',
                 'entity'    => 'product_selling_price',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(19)->get();
@@ -1083,18 +1090,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend23',
                 'type' => 'custom_html',
-                'value' => '<legend>Commodity Availability</legend>',
+                'value' => '<legend>'.trans('response.commodity_availability_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>Is there food and other commoditiity item available in local market ?</b>',
+                'label'     => '<b>'.trans('response.commodity_availability_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'commodity_availability',
                 'entity'    => 'commodity_availability',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(20)->get();
@@ -1108,18 +1115,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend24',
                 'type' => 'custom_html',
-                'value' => '<legend>Commodity Price Difference</legend>',
+                'value' => '<legend>'.trans('response.commodity_price_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>What is the state of market food and commodity price ?</b>',
+                'label'     => '<b>'.trans('response.commodity_price_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'commodity_price_difference',
                 'entity'    => 'commodity_price_difference',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(21)->get();
@@ -1132,18 +1139,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend25',
                 'type' => 'custom_html',
-                'value' => '<legend>Job Status</legend>',
+                'value' => '<legend>'.trans('response.job_status_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>Are you regularly doing your job ?</b>',
+                'label'     => '<b>'.trans('response.job_status_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'job_status',
                 'entity'    => 'job_status',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(22)->get();
@@ -1157,18 +1164,18 @@ class ResponseCrudController extends BaseCrudController
             [
                 'name' => 'legend26',
                 'type' => 'custom_html',
-                'value' => '<legend>Sustainability Duration</legend>',
+                'value' => '<legend>'.trans('response.sustainability_label').'</legend>',
                 'wrapperAttributes'=>[
                     'class' => 'legend2'
                 ]
             ],
 
             [
-                'label'     => '<b>How long can you sustain in the current situaiton ?</b>',
+                'label'     => '<b>'.trans('response.sustainability_title').'</b>',
                 'type'      => 'select2',
                 'name'      => 'sustainability_duration',
                 'entity'    => 'sustainability_duration',
-                'attribute' => 'name_lc',
+                'attribute' => $lang,
                 'model'     => PrActivity::class,
                 'options'   => (function ($query) {
                     return $query->whereFactorId(23)->get();
@@ -1186,7 +1193,7 @@ class ResponseCrudController extends BaseCrudController
             ],
             [
                 'name' => 'remarks',
-                'label' => trans('common.remarks'),
+                'label' => trans('response.remarks'),
                 'type' => 'textarea',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-12 toBeHidden'
@@ -1338,7 +1345,6 @@ class ResponseCrudController extends BaseCrudController
 
         if($is_other_country == 0){
         $request->validate([
-            'name_en' => 'required|max:255',
             // 'name_lc' => 'required|max:255',
             'age' => 'required|min:1|max:3',
             'gender_id' => 'required',
@@ -1349,7 +1355,6 @@ class ResponseCrudController extends BaseCrudController
         ]);
         }else{
             $request->validate([
-                'name_en' => 'required|max:255',
                 // 'name_lc' => 'required|max:255',
                 'age' => 'required|min:1|max:3',
                 'gender_id' => 'required',
@@ -1361,7 +1366,7 @@ class ResponseCrudController extends BaseCrudController
 
         $dataSet = [
         'code' => $request->code,
-        'name_en' => $request->name_en,
+        // 'name_en' => $request->name_en,
         // 'name_lc' => $request->name_lc,
         'age' => $request->age,
         'gender_id' => $request->gender_id,

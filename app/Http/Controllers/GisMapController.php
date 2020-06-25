@@ -72,7 +72,7 @@ class GisMapController extends Controller
                                 ->limit(1)
                                 ->get();
 
-            $nepal_covid_data = $nepal_covid_data->first();
+        $nepal_covid_data = $nepal_covid_data->first();
 
 //search criteria
 $params = [];

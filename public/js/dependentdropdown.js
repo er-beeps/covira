@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    let lang;
+
+    lang = sessionStorage.getItem('lang');
+
+   
     $.urlParam = function (name) {
         try {
 
@@ -8,8 +13,6 @@ $(document).ready(function () {
             return null;
         }
     }
-    $('#district').append('<option value="">--जिल्ला--</option>');
-    $('#local_level').append('<option value="">--स्थानीय तह--</option>');
 
     $('#province').on('change', function () {
         var stateID = $(this).val();
@@ -31,7 +34,12 @@ $(document).ready(function () {
                         $('#district').empty();
                         $('#local_level').empty();
                         $('#district').focus;
-                        $('#district').append('<option value="">-- जिल्ला छान्नुहोस्  --</option>');
+                        
+                        if(lang ==='en'){
+                            $('#district').append('<option value="">-- Select District  --</option>');
+                        }else{
+                            $('#district').append('<option value="">-- जिल्ला छान्नुहोस्  --</option>');
+                        }
                         var selected_id = $.urlParam("district");
 
                         $.each(data, function (key, value) {
@@ -40,7 +48,12 @@ $(document).ready(function () {
                                 selected = "SELECTED";
                             }
 
-                            $('select[name="district"]').append('<option class="form-control nepali_td" value="' + value.id + '" ' + selected + '>' + value.code + '-' + value.name_lc + '-' + value.name_en + '</option>');
+                            if(lang ==='en'){
+                                $('select[name="district"]').append('<option class="form-control nepali_td" value="' + value.id + '" ' + selected + '>' + value.code + '-' + value.name_en + '</option>');
+                            }else{
+                                $('select[name="district"]').append('<option class="form-control nepali_td" value="' + value.id + '" ' + selected + '>' + value.code + '-' + value.name_lc + '</option>');
+                            }
+                        
                             if (selected == "") {
                                 $("#district").trigger("change");
                                 $("#local_level").trigger("change");
@@ -74,14 +87,23 @@ $(document).ready(function () {
                     if (data) {
                         $('#local_level').empty();
                         $('#local_level').focus;
-                        $('#local_level').append('<option value="">-- स्थानीय तह  छान्नुहोस् --</option>');
+                        if(lang ==='en'){
+                            $('#local_level').append('<option value="">-- Select Local Level --</option>');
+                        }else{
+                            $('#local_level').append('<option value="">-- स्थानीय तह  छान्नुहोस् --</option>');
+                        }
                         var selected_id = $.urlParam("local_level");
                         $.each(data, function (key, value) {
                             var selected = "";
                             if (selected_id == value.id) {
                                 selected = "SELECTED";
                             }
-                            $('select[name="local_level"]').append('<option class="form-control nepali_td" value="' + value.id + '" ' + selected + '>' + value.code + '-' + value.name_lc + '-' + value.name_en + '</option>');
+                            if(lang ==='en'){
+                                $('select[name="local_level"]').append('<option class="form-control nepali_td" value="' + value.id + '" ' + selected + '>' + value.code + '-' + value.name_en+'</option>');
+                            }else{
+                                $('select[name="local_level"]').append('<option class="form-control nepali_td" value="' + value.id + '" ' + selected + '>' + value.code + '-' + value.name_lc+'</option>');
+                            }
+                        
                             if (selected == "") {
                                 $("#local_level").trigger("change");
                             }

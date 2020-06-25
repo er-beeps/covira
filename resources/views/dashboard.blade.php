@@ -2,6 +2,14 @@
 
 @php
     $lang = App::getLocale();
+
+    function convertToNepaliNumber($input)
+    {
+        $standard_numsets = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", '-', '/');
+        $devanagari_numsets = array("०", "१", "२", "३", "४", "५", "६", "७", "८", "९", '-', '-');
+
+        return str_replace($standard_numsets, $devanagari_numsets, $input);
+    }
 @endphp
 
 @section('content')
@@ -187,11 +195,11 @@
         <div class="row" style="margin-bottom:20px; margin-left:auto;">
             <div class="col-md-7 col-md-6 col-md-4 content-index">
                 <span style="font-weight:bold"> Legend : </span>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:green;"><span>Very Low</span></button>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:#10b552;"><span>Low</span></button>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:yellow;"><span>Moderate</span></button>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:orange;"><span>High</span></button>
-                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:red;"><span>Very High</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:green;"><span>{{ trans('dashboard.verylow')}}</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:#10b552;"><span>{{ trans('dashboard.low')}}</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:yellow;"><span>{{ trans('dashboard.moderate')}}</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:orange;"><span>{{ trans('dashboard.high')}}</span></button>
+                <button type="button" class="btn btn-sm btn-secondary legend-btn" style="background-color:red;"><span>{{ trans('dashboard.veryhigh')}}</span></button>
             </div>        
             <div class="col-md-5 content-footer">
                 <button type="button" onclick="incrementLike(this)" class="btn btn-sm btn-outline-secondary"><i
@@ -303,7 +311,11 @@
                         <table class="nepal_data_table" style="margin-left:-20px; font-size:14px;">
                             <tr>
                                 <td width="150%" class="title"><i class="fa fa-dot-circle-o" style="color:orange; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.infected')}}</td>
-                                <td class="data"> {{$nepal_covid_data->total_affected ?? '0'}}</td>
+                                @if($lang == "en")
+                                    <td class="data"> {{$nepal_covid_data->total_affected ?? '0'}}</td>
+                                @else
+                                    <td class="data"> convertToNepaliNumber($nepal_covid_data->total_affected ?? '0')</td>
+                                @endif
                             </tr>
                             <tr>
                                 <td class="title"><i class="fa fa-dot-circle-o" style="color:green; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.recovered')}}</td>
@@ -378,6 +390,9 @@ $process_step_id = \App\Models\Response::whereId($responseId)->pluck('process_st
 @section('after_scripts')
 <script>
 $(document).ready(function(){
+    let lang = "<?php echo App::getLocale() ?>";
+    sessionStorage.setItem("lang", lang);
+
     var processStepId = '<?php echo $process_step_id ?>';
 
     if(processStepId == 4){

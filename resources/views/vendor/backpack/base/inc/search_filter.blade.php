@@ -68,9 +68,17 @@
                                             @foreach($area_province as $ap)
 
                                             @if(isset($selected_params['province']) && $ap->id == $selected_params['province'])
-                                                <option class="form-control nepali_td" SELECTED value="{{ $ap->id }}">{{ $ap->code }}-{{ $ap->name_lc }}-{{ $ap->name_en }}</option>
+                                                    @if($lang == "en")
+                                                        <option class="form-control nepali_td" SELECTED value="{{ $ap->id }}">{{ $ap->code }}-{{ $ap->name_en }}</option>
+                                                    @else    
+                                                        <option class="form-control nepali_td" SELECTED value="{{ $ap->id }}">{{ $ap->code }}-{{ $ap->name_lc }}</option>
+                                                    @endif  
                                                 @else
-                                                <option class="form-control nepali_td" value="{{ $ap->id }}">{{ $ap->code }}-{{ $ap->name_lc }}-{{ $ap->name_en }}</option>
+                                                    @if($lang == "en")
+                                                        <option class="form-control nepali_td" value="{{ $ap->id }}">{{ $ap->code }}-{{ $ap->name_en }}</option>
+                                                    @else
+                                                        <option class="form-control nepali_td" value="{{ $ap->id }}">{{ $ap->code }}-{{ $ap->name_lc }}</option>
+                                                    @endif    
                                                 @endif
                                             @endforeach
                                             </select>

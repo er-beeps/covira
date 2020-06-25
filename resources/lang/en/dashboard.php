@@ -8,9 +8,12 @@ return [
     'covidchance' => 'Probability of COVID Infection',
     'view_result'=>'View Result',
     'survey' => 'Take part in survey',
-    'province' => 'Select Province',
-    'district' => 'Select District',
-    'local_level' => 'Select Local Level',
+    'province' => 'Province',
+    'district' => 'District',
+    'local_level' => 'Local Level',
+    'select_province' => 'Select Province',
+    'select_district' => 'Select District',
+    'select_local_level' => 'Select Local Level',
     'search' => 'Search',
     'searchregionalrisk'=> 'Find Regional Risk',
     'reset' => 'Reset',
@@ -30,6 +33,11 @@ return [
     'food_productivity_map'=>'Food Productivity Map',
     'transmission_risk'=>'Transmission Risk',
     'overall_risk'=>'Overall Risk',
+    'verylow'=>'Very Low',
+    'low'=>'Low',
+    'moderate'=>'Moderate',
+    'high'=>'High',
+    'veryhigh'=>'Very High',
 
 
     

@@ -25,9 +25,19 @@ return [
     'deaths' => 'मृत्यु',
     'swab_test' => 'कुल स्वाब परिक्षण गरिएको',
     'quarantine' => 'क्वारेन्टाईनमा बसेका',
-    'worldupdates' => 'कोभिड-१९ बारे संसारमा नयाँ खबर ',
-    'covid_guidelines' => 'कोभिड-१९बारे नियमावली (नेपाल सरकार)',
-    'covid_updates' => 'Rolling Updates on COVID-19 (WHO)'
+    'worldupdates' => 'कोभिड-१९ को ताजा अवस्था (विश्व)',
+    'covid_guidelines' => 'कोभिड-१९बारे मार्गनिर्देशन (नेपाल सरकार)',
+    'covid_updates' => 'कोभिड-१९ बारे विश्व स्वास्थ्य संगठनको मार्गनिर्देशन',
+    'socioeconomic_risk'=>'सामाजिक आर्थिक जोखिम',
+    'publichealth_risk'=>'जन स्वास्थ्य जोखिम',
+    'food_productivity_map'=>'खाद्य उत्पादकत्व',
+    'transmission_risk'=>'सर्ने फैलिने जोखिम',
+    'overall_risk'=>'सापेक्षित जोखिम',
+    'verylow'=>'अति न्यून',
+    'low'=>'न्यून',
+    'moderate'=>'मध्यम',
+    'high'=>'उच्च',
+    'veryhigh'=>'अति उच्च',
 
 
     
