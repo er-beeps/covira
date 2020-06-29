@@ -1186,19 +1186,19 @@ class ResponseCrudController extends BaseCrudController
             ],
 
 
-            [
-                'name' => 'legend27',
-                'type' => 'custom_html',
-                'value' => '',
-            ],
-            [
-                'name' => 'remarks',
-                'label' => trans('response.remarks'),
-                'type' => 'textarea',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-12 toBeHidden'
-                ]
-            ]
+            // [
+            //     'name' => 'legend27',
+            //     'type' => 'custom_html',
+            //     'value' => '',
+            // ],
+            // [
+            //     'name' => 'remarks',
+            //     'label' => trans('response.remarks'),
+            //     'type' => 'textarea',
+            //     'wrapperAttributes' => [
+            //         'class' => 'form-group col-md-12 toBeHidden'
+            //     ]
+            // ]
 
 
         ];
@@ -1242,7 +1242,7 @@ class ResponseCrudController extends BaseCrudController
             if($process_step_id == 4){
                 return redirect(url('/'));
             }else{
-                return redirect(url('/fill_response').'/'.$id.'/edit');
+                return redirect(url('/public/fill_response').'/'.$id.'/edit');
             }
         }
     }
@@ -1254,7 +1254,7 @@ class ResponseCrudController extends BaseCrudController
     if(backpack_user()){
         return redirect(backpack_url('/response').'/'.$id.'/edit');
     }else{
-        return redirect(url('/fill_response').'/'.$id.'/edit');
+        return redirect(url('/public/fill_response').'/'.$id.'/edit');
     }
     }
 

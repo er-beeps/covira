@@ -57,7 +57,7 @@
 		@else
 			@if(isset($next_btn))
 				<form method="post"
-					action="{{ url('/response'.'/'.$entry->getKey().'/nextstep') }}"
+					action="{{ url('/response/'.$entry->getKey().'/nextstep') }}"
 					@if ($crud->hasUploadFields('update', $entry->getKey()))
 					enctype="multipart/form-data"
 					@endif
