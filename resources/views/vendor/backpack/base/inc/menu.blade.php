@@ -6,7 +6,6 @@
 <ul class="nav navbar-nav ml-auto">
 
     @if (backpack_auth()->check())
-        Topbar. Contains the left part
     @endif
 
 </ul>
