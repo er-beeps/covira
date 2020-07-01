@@ -71,4 +71,6 @@ Route::group([
     Route::crud('nepaldatacovid', 'NepalDataCovidCrudController');
     Route::crud('uploadimage', 'ImageUploadCrudController');
     Route::crud('imagecategory', 'ImageCategoryCrudController');
+    Route::crud('import', 'ImportCrudController');
+    Route::post('import_excel', 'ImportCrudController@import');
 }); // this should be the absolute last line of this file
