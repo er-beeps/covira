@@ -18,7 +18,7 @@ class DtRiskTransmission extends BaseModel
     |--------------------------------------------------------------------------
     */
     public $dataAccessPermission = DataAccessPermission::SystemOnly;
-    protected $table = 'dt_risk_transmission_history';
+    protected $table = 'dt_risk_transmission';
     protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
