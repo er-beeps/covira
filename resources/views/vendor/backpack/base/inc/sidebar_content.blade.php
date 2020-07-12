@@ -44,4 +44,4 @@
 <li class='nav-item'><a class='nav-link nav-link-secondary' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-users'></i>{{trans('Users')}} </a></li>
 @endif
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('import') }}'><i class='nav-icon fa fa-file'></i> Import CSV</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('import') }}'><i class='nav-icon fa fa-file'></i> Import / Export</a></li>

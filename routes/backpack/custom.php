@@ -72,5 +72,7 @@ Route::group([
     Route::crud('uploadimage', 'ImageUploadCrudController');
     Route::crud('imagecategory', 'ImageCategoryCrudController');
     Route::crud('import', 'ImportCrudController');
+
     Route::post('import_excel', 'ImportCrudController@import');
+    Route::get('export_excel', 'ImportCrudController@export');
 }); // this should be the absolute last line of this file

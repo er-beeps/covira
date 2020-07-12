@@ -3,10 +3,10 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-4" style="margin-left:30%">
+    <div class="row mt-4">
+        <div class="col-md-4" style="margin-left:10%">
             <div class="card h-200 p-3">
-                <div class="card-header bg-primary p-2"><i class="fa fa-info"></i>Import CSV</div>
+                <div class="card-header bg-primary p-2"><i class="fa fa-info"></i>Import Risk CSV</div>
                 <div class="card-body p-0">
                     @if(count($errors) > 0)
                         <div class="alert alert-danger">
@@ -48,6 +48,15 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>  
+        </div>
+   
+        <div class="col-md-4" style="margin-left:10%">
+            <div class="card h-200 p-3">
+                <div class="card-header bg-primary p-2"><i class="fa fa-info"></i>Export Response Excel </div>
+                <div class="card-body p-2 m-4">    
+                    <center><a class="btn btn-sm btn-primary"href="{{ backpack_url('/export_excel') }}" target="_blank" >Export </a></center>
                 </div>
             </div>  
         </div>
