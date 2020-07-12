@@ -52,11 +52,11 @@ class ImportCrudController extends BaseCrudController
         $datas= DB::select('SELECT (row_number() over (order by r.id)) as rnum,r.code as code, r.name_en as english_name,r.name_lc as nepali_name,g.name_en as gender,r.age, r.email,
                             r.is_other_country,c.name_en as country,r.city, fp.name_en as province,d.name_en as district,ll.name_en as local_level,r.ward_number,edu.name_en as education,
                             prf.name_en as profession,r.gps_lat,r.gps_long,r.age_risk_factor,r.covid_risk_index,r.probability_of_covid_infection,
-                             np.name_en as neighbour_proximity,cs.name_en as community_situation,cc.name_en as confirmed_case,np.name_en as inbound_foreign_travel,
-                             np.name_en as community_population,np.name_en as hospital_proximity,np.name_en as corona_centre_proximity,np.name_en as health_facility,
-                             np.name_en as market_proximity,np.name_en as food_stock,np.name_en as agri_producer_seller,np.name_en as product_selling_price,
-                             np.name_en as commodity_availability,np.name_en as commodity_price_difference,np.name_en as job_status,np.name_en as economic_impact,
-                             np.name_en as sustainability_duration
+                             np.name_en as neighbour_proximity,cs.name_en as community_situation,cc.name_en as confirmed_case,ift.name_en as inbound_foreign_travel,
+                             cp.name_en as community_population,hop.name_en as hospital_proximity,ccp.name_en as corona_centre_proximity,hp.name_en as health_facility,
+                             mp.name_en as market_proximity,fs.name_en as food_stock,aps.name_en as agri_producer_seller,psp.name_en as product_selling_price,
+                             ca.name_en as commodity_availability,cpd.name_en as commodity_price_difference,js.name_en as job_status,ei.name_en as economic_impact,
+                             sd.name_en as sustainability_duration
                               from response r 
                             LEFT JOIN mst_country as c on r.country_id = c.id
                             LEFT JOIN mst_fed_province as fp on r.province_id = fp.id
