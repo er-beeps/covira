@@ -25,6 +25,12 @@
                     <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >Profession</th>
                     <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >GPS Latitude</th>
                     <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >GPS Longitude</th>
+
+                    <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >GPS Longitude</th>
+                    <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >GPS Longitude</th>
+                    <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >GPS Longitude</th>
+                    <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >GPS Longitude</th>
+
                     <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >Neighbour Proximity</th>
                     <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >Community Situation</th>
                     <th style="font-weight: bold; background-color:#e6e7eb; text-align: center" >Confirmed Case</th>
@@ -52,48 +58,48 @@
             <tbody>
                 @foreach ($datas as $data)
                 <tr>
-                    <td style="text-align: center">{{ $data->rnum }}</td>
-                    <td style="text-align: center">{{ $data->code }}</td>
-                    <td style="text-align: center">{{ $data->english_name }}</td>
-                    <td style="text-align: center">{{ $data->nepali_name }}</td>
-                    <td style="text-align: center">{{ $data->gender }}</td>
-                    <td style="text-align: center">{{ $data->age }}</td>
-                    <td style="text-align: center">{{ $data->email }}</td>
-                    @if($data->is_other_country)
+                    <td style="text-align: center">{{ $data['rnum'] }}</td>
+                    <td style="text-align: center">{{ $data['code'] }}</td>
+                    <td style="text-align: center">{{ $data['english_name'] }}</td>
+                    <td style="text-align: center">{{ $data['nepali_name'] }}</td>
+                    <td style="text-align: center">{{ $data['gender'] }}</td>
+                    <td style="text-align: center">{{ $data['age'] }}</td>
+                    <td style="text-align: center">{{ $data['email'] }}</td>
+                    @if($data['is_other_country'])
                     <td style="text-align: center">True</td>
                     @else
                     <td style="text-align: center">False</td>
                     @endif
-                    <td style="text-align: center">{{ $data->country }}</td>
-                    <td style="text-align: center">{{ $data->city }}</td>
-                    <td style="text-align: center">{{ $data->province }}</td>
-                    <td style="text-align: center">{{ $data->district }}</td>
-                    <td style="text-align: center">{{ $data->local_level }}</td>
-                    <td style="text-align: center">{{ $data->ward_number }}</td>
-                    <td style="text-align: center">{{ $data->education }}</td>
-                    <td style="text-align: center">{{ $data->profession }}</td>
-                    <td style="text-align: center">{{ $data->gps_lat }}</td>
-                    <td style="text-align: center">{{ $data->gps_long }}</td>
-                    <td style="text-align: center">{{ $data->neighbour_proximity }}</td>
-                    <td style="text-align: center">{{ $data->community_situation }}</td>
-                    <td style="text-align: center">{{ $data->confirmed_case }}</td>
-                    <td style="text-align: center">{{ $data->inbound_foreign_travel }}</td>
-                    <td style="text-align: center">{{ $data->community_population }}</td>
-                    <td style="text-align: center">{{ $data->hospital_proximity }}</td>
-                    <td style="text-align: center">{{ $data->corona_centre_proximity }}</td>
-                    <td style="text-align: center">{{ $data->health_facility }}</td>
-                    <td style="text-align: center">{{ $data->market_proximity }}</td>
-                    <td style="text-align: center">{{ $data->food_stock }}</td>
-                    <td style="text-align: center">{{ $data->agri_producer_seller }}</td>
-                    <td style="text-align: center">{{ $data->product_selling_price }}</td>
-                    <td style="text-align: center">{{ $data->commodity_availability }}</td>
-                    <td style="text-align: center">{{ $data->commodity_price_difference }}</td>
-                    <td style="text-align: center">{{ $data->job_status }}</td>
-                    <td style="text-align: center">{{ $data->economic_impact }}</td>
-                    <td style="text-align: center">{{ $data->sustainability_duration }}</td>
-                    <td style="text-align: center">{{ $data->age_risk_factor }}</td>
-                    <td style="text-align: center">{{ $data->covid_risk_index }}</td>
-                    <td style="text-align: center">{{ $data->probability_of_covid_infection }}</td>
+                    <td style="text-align: center">{{ $data['country'] }}</td>
+                    <td style="text-align: center">{{ $data['city'] }}</td>
+                    <td style="text-align: center">{{ $data['province'] }}</td>
+                    <td style="text-align: center">{{ $data['district'] }}</td>
+                    <td style="text-align: center">{{ $data['local_level'] }}</td>
+                    <td style="text-align: center">{{ $data['ward_number'] }}</td>
+                    <td style="text-align: center">{{ $data['education'] }}</td>
+                    <td style="text-align: center">{{ $data['profession'] }}</td>
+                    <td style="text-align: center">{{ $data['gps_lat'] }}</td>
+                    <td style="text-align: center">{{ $data['gps_long'] }}</td>
+                    <td style="text-align: center">{{ $data['neighbour_proximity'] }}</td>
+                    <td style="text-align: center">{{ $data['community_situation'] }}</td>
+                    <td style="text-align: center">{{ $data['confirmed_case'] }}</td>
+                    <td style="text-align: center">{{ $data['inbound_foreign_travel'] }}</td>
+                    <td style="text-align: center">{{ $data['community_population'] }}</td>
+                    <td style="text-align: center">{{ $data['hospital_proximity'] }}</td>
+                    <td style="text-align: center">{{ $data['corona_centre_proximity'] }}</td>
+                    <td style="text-align: center">{{ $data['health_facility'] }}</td>
+                    <td style="text-align: center">{{ $data['market_proximity'] }}</td>
+                    <td style="text-align: center">{{ $data['food_stock'] }}</td>
+                    <td style="text-align: center">{{ $data['agri_producer_seller'] }}</td>
+                    <td style="text-align: center">{{ $data['product_selling_price'] }}</td>
+                    <td style="text-align: center">{{ $data['commodity_availability'] }}</td>
+                    <td style="text-align: center">{{ $data['commodity_price_difference'] }}</td>
+                    <td style="text-align: center">{{ $data['job_status'] }}</td>
+                    <td style="text-align: center">{{ $data['economic_impact'] }}</td>
+                    <td style="text-align: center">{{ $data['sustainability_duration'] }}</td>
+                    <td style="text-align: center">{{ $data['age_risk_factor'] }}</td>
+                    <td style="text-align: center">{{ $data['covid_risk_index'] }}</td>
+                    <td style="text-align: center">{{ $data['probability_of_covid_infection'] }}</td>
 
                 </tr>
                 @endforeach

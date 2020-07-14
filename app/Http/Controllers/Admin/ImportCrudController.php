@@ -49,15 +49,15 @@ class ImportCrudController extends BaseCrudController
 
     public function export()
     {
-        $datas= DB::select('SELECT (row_number() over (order by r.id)) as rnum,r.code as code, r.name_en as english_name,r.name_lc as nepali_name,g.name_en as gender,r.age, r.email,
+        $datas= DB::select('SELECT r.id,(row_number() over (order by r.id)) as rnum,r.code as code, r.name_en as english_name,r.name_lc as nepali_name,g.name_en as gender,r.age, r.email,
                             r.is_other_country,c.name_en as country,r.city, fp.name_en as province,d.name_en as district,ll.name_en as local_level,r.ward_number,edu.name_en as education,
                             prf.name_en as profession,r.gps_lat,r.gps_long,r.age_risk_factor,r.covid_risk_index,r.probability_of_covid_infection,
-                             np.name_en as neighbour_proximity,cs.name_en as community_situation,cc.name_en as confirmed_case,ift.name_en as inbound_foreign_travel,
-                             cp.name_en as community_population,hop.name_en as hospital_proximity,ccp.name_en as corona_centre_proximity,hp.name_en as health_facility,
-                             mp.name_en as market_proximity,fs.name_en as food_stock,aps.name_en as agri_producer_seller,psp.name_en as product_selling_price,
-                             ca.name_en as commodity_availability,cpd.name_en as commodity_price_difference,js.name_en as job_status,ei.name_en as economic_impact,
-                             sd.name_en as sustainability_duration
-                              from response r 
+                            np.name_en as neighbour_proximity,cs.name_en as community_situation,cc.name_en as confirmed_case,ift.name_en as inbound_foreign_travel,
+                            cp.name_en as community_population,hop.name_en as hospital_proximity,ccp.name_en as corona_centre_proximity,hp.name_en as health_facility,
+                            mp.name_en as market_proximity,fs.name_en as food_stock,aps.name_en as agri_producer_seller,psp.name_en as product_selling_price,
+                            ca.name_en as commodity_availability,cpd.name_en as commodity_price_difference,js.name_en as job_status,ei.name_en as economic_impact,
+                            sd.name_en as sustainability_duration
+                            from response r
                             LEFT JOIN mst_country as c on r.country_id = c.id
                             LEFT JOIN mst_fed_province as fp on r.province_id = fp.id
                             LEFT JOIN mst_fed_district as d on r.district_id = d.id
@@ -83,13 +83,38 @@ class ImportCrudController extends BaseCrudController
                             LEFT JOIN pr_activity as ei on r.economic_impact = ei.id
                             LEFT JOIN pr_activity as sd on r.sustainability_duration = sd.id');
 
-        $this->data['datas'] = $datas;
+        $respondent_data = DB::select('SELECT rd.response_id,rd.activity_id,pra.name_en as activity_name from respondent_data as rd
+                            LEFT JOIN response as r on r.id = rd.response_id
+                            LEFT JOIN pr_activity as pra on pra.id = rd.activity_id');
 
+       foreach($respondent_data as $key=>$rd){
+        $activity[$rd->response_id][$rd->activity_id]=$rd->activity_name;
+       }
+    // dd($datas,$respondent_data);
+    $d = [];
+    $data = [];
+    foreach($datas as $key=>$dt){
+        // foreach($activity as $act){
+            if(array_key_exists($key,$activity)){
+                $act=  $activity[$key];
+                $datasets1[$key]=(array) $dt;
+                $datasets2['activity']=$act;
+                $datasets[$key] = array_merge($datasets1[$key],$datasets2);
+            }else{
+                $datasets[$key] = (array) $dt;
+            }
+           
+        // }
+    }
+
+        $this->data['datas'] = $datasets;
         $excel_sheet = new \App\Exports\ExcelExport('excel_export.response',$this->data);
 
-        ob_end_clean();
-        ob_start();
-        return Excel::download($excel_sheet, 'response_data.xlsx');
+        return view('excel_export.response',$this->data);
+
+        // ob_end_clean();
+        // ob_start();
+        // return Excel::download($excel_sheet, 'response_data.xlsx');
 
     }
 
