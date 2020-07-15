@@ -90,23 +90,25 @@ class ImportCrudController extends BaseCrudController
        foreach($respondent_data as $key=>$rd){
         $activity[$rd->response_id][$rd->activity_id]=$rd->activity_name;
        }
-    // dd($datas,$respondent_data);
+    // dd($datas[307],$activity);
     $d = [];
     $data = [];
-    foreach($datas as $key=>$dt){
-        // foreach($activity as $act){
-            if(array_key_exists($key,$activity)){
-                $act=  $activity[$key];
-                $datasets1[$key]=(array) $dt;
+    foreach($datas as $dt){
+        $dt = (array) $dt;
+      
+            if(array_key_exists($dt['id'],$activity)){
+                $act=  $activity[$dt['id']];
+                $datasets1[$dt['id']]= $dt;
                 $datasets2['activity']=$act;
-                $datasets[$key] = array_merge($datasets1[$key],$datasets2);
+                $datasets[$dt['id']] = array_merge($datasets1[$dt['id']],$datasets2);
             }else{
-                $datasets[$key] = (array) $dt;
+                $datasets[$dt['id']] = $dt;
             }
            
         // }
+       
     }
-
+    // dd($datasets[314]);
         $this->data['datas'] = $datasets;
         $excel_sheet = new \App\Exports\ExcelExport('excel_export.response',$this->data);
 
