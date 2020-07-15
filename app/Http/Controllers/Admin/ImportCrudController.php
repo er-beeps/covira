@@ -110,11 +110,11 @@ class ImportCrudController extends BaseCrudController
         $this->data['datas'] = $datasets;
         $excel_sheet = new \App\Exports\ExcelExport('excel_export.response',$this->data);
 
-        return view('excel_export.response',$this->data);
+        // return view('excel_export.response',$this->data);
 
-        // ob_end_clean();
-        // ob_start();
-        // return Excel::download($excel_sheet, 'response_data.xlsx');
+        ob_end_clean();
+        ob_start();
+        return Excel::download($excel_sheet, 'response_data.xlsx');
 
     }
 
