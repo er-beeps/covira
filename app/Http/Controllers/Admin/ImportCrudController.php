@@ -47,7 +47,7 @@ class ImportCrudController extends BaseCrudController
       
     }
 
-    public function export()
+    public function exportResponseExcel()
     {
         $datas= DB::select('SELECT r.id,(row_number() over (order by r.id)) as rnum,r.code as code, r.name_en as english_name,r.name_lc as nepali_name,g.name_en as gender,r.age, r.email,
                             r.is_other_country,c.name_en as country,r.city, fp.name_en as province,d.name_en as district,ll.name_en as local_level,r.ward_number,edu.name_en as education,
@@ -118,6 +118,30 @@ class ImportCrudController extends BaseCrudController
         ob_start();
         return Excel::download($excel_sheet, 'response_data.xlsx');
 
+    }
+
+    public function exportSearchRiskExcel()
+    {   
+        $datas= DB::select('SELECT rs.id,(row_number() over (order by rs.id)) as rnum,
+                fp.name_en as province_eng,fp.name_lc as province_nep,
+                d.name_en as district_eng, d.name_lc as district_nep,
+                ll.name_en as locallevel_eng, ll.name_lc as locallevel_nep,
+                rs.date,rs.time
+                from dt_regional_risk_search rs
+                LEFT JOIN mst_fed_province as fp on rs.province_id = fp.id
+                LEFT JOIN mst_fed_district as d on rs.district_id = d.id
+                LEFT JOIN mst_fed_local_level as ll on rs.locallevel_id = ll.id');
+
+        $this->data['datas'] = $datas;
+        // dd($this->data);
+        $excel_sheet = new \App\Exports\ExcelExport('excel_export.regional_risk_search',$this->data);
+
+// return view('excel_export.regional_risk_search',$this->data);
+
+        ob_end_clean();
+        ob_start();
+        return Excel::download($excel_sheet, 'regional_risk_search_data.xlsx');
+            
     }
 
 }

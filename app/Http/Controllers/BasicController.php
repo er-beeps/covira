@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use DB;
 use Session;
+use Carbon\Carbon;
 use App\Models\MstDistrict;
 use App\Models\MstProvince;
 use Illuminate\Http\Request;
 use App\Models\MstLocalLevel;
+use App\Base\Helpers\DateHelper;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
 
@@ -67,15 +70,43 @@ class BasicController extends Controller
     }
 
 
-    public function getRegionalRisk(Request $request){
-
+    public function getRegionalRisk(Request $request)
+    {
         $ProvinceId = $request->province;
         $DistrictId = $request->district;
         $LocalLevelId = $request->local_level;
 
+
+        //insert search in database
+        $datehelper = new DateHelper;
+        $date_ad = Carbon::now()->toDateString();
+        $date_ad = str_replace('-','/',$date_ad);
+        $date_bs = $datehelper->convertBsFromAd($date_ad);
+
+        $data =[
+            'date'=>$date_bs,
+            'time'=>Carbon::now()->toTimeString(),
+            'created_at'=>Carbon::now()->toDateTimeString(),
+            'updated_at'=>Carbon::now()->toDateTimeString()
+        ];
+
+        if($ProvinceId){
+            $data['province_id'] = $ProvinceId;
+        }
+        if($DistrictId){
+            $data['district_id'] = $DistrictId;
+        }
+        if($LocalLevelId){
+            $data['locallevel_id'] = $LocalLevelId;
+        }
+        // dd($data);
+      
+        DB::table('dt_regional_risk_search')->insert($data);
+
         $province = MstProvince::find($ProvinceId);
         $district = MstDistrict::find($DistrictId);
         $local_level = MstLocalLevel::find($LocalLevelId);
+
 
         if($province){
         $province_name = $province->name_lc;

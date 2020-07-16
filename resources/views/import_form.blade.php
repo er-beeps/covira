@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="row mt-4">
-        <div class="col-md-4" style="margin-left:10%">
+        <div class="col-md-4" style="margin-left:35%">
             <div class="card h-200 p-3">
                 <div class="card-header bg-primary p-2"><i class="fa fa-info"></i>Import Risk CSV</div>
                 <div class="card-body p-0">
@@ -51,12 +51,24 @@
                 </div>
             </div>  
         </div>
-   
-        <div class="col-md-4" style="margin-left:10%">
+    </div>    
+<br/><br/>
+    
+    <div class="row">
+        <div class="col-md-4" style="margin-left:7%">
             <div class="card h-200 p-3">
                 <div class="card-header bg-primary p-2"><i class="fa fa-info"></i>Export Response Excel </div>
                 <div class="card-body p-2 m-4">    
-                    <center><a class="btn btn-sm btn-primary"href="{{ backpack_url('/export_excel') }}" target="_blank" >Export </a></center>
+                    <center><a class="btn btn-sm btn-primary"href="{{ backpack_url('/export_response_excel') }}" target="_blank" >Export </a></center>
+                </div>
+            </div>  
+        </div>
+
+        <div class="col-md-4" style="margin-left:7%">
+            <div class="card h-200 p-3">
+                <div class="card-header bg-primary p-2"><i class="fa fa-info"></i>Export Regional Risk Search Excel </div>
+                <div class="card-body p-2 m-4">    
+                    <center><a class="btn btn-sm btn-primary"href="{{ backpack_url('/export_searchrisk_excel') }}" target="_blank" >Export </a></center>
                 </div>
             </div>  
         </div>
