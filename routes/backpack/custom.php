@@ -28,7 +28,7 @@ Route::group([
 ], function () {
     Route::put('/response/{response_id}/nextstep', 'ResponseCrudController@nextstep');
     Route::get('/response/{response_id}/backstep', 'ResponseCrudController@backstep');
-    Route::put('/response/{response_id}/updatefinalstep', 'ResponseCrudController@updatefinalstep');
+    Route::get('/response/{response_id}/updatefinalstep', 'ResponseCrudController@updatefinalstep');
 
     Route::get('/response/getlatlong', 'ResponseCrudController@fetchLatLong');
     Route::get('/response/getcapitallatlong', 'ResponseCrudController@fetchCapitalLatLong');

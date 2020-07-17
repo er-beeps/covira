@@ -19,6 +19,9 @@ class BasicController extends Controller
     public function redirectResult(){
         return view('result_viewer');
     }
+    public function redirectResultProceed(){
+        return view('result_view_proceed');
+    }
 
     public function redirectRegionalResult(){
         return view('regionalrisk_view');

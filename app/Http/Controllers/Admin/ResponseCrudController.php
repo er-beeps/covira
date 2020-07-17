@@ -1216,7 +1216,7 @@ class ResponseCrudController extends BaseCrudController
     public function updatefinalstep($id){
          Response::whereId($id)->update(['process_step_id' => 4]);
 
-          return response()->json(['message' => 'success']);
+         return redirect(url('/'));
     }
 
     public function nextstep($id){
@@ -1224,12 +1224,16 @@ class ResponseCrudController extends BaseCrudController
         $request = $this->crud->validateRequest();
         ResponseProcessHelper::updateProcess($id, $request,'next');
 
-        $response = Response::whereId($id)->get()->toArray();
-        $process_step_id = $response[0]['process_step_id'];
+        $response = Response::find($id);
+        $process_step_id = $response->process_step_id;
 
-        if($process_step_id == 4){
+        if($process_step_id == 3){
             $risk_calculation = new RiskCalculationHelper();
             $risk_calculation->calculate_risk($id);
+
+            request()->session()->put('is_calculated','true');
+
+            return redirect(url('/'));
         }
 
         if(backpack_user()){
