@@ -129,10 +129,10 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col pull-left">
-                                <a class="btn btn-warning" href="{{ url('response/'.$responseId.'/updatefinalstep')}}">Sorry !, only show my risk</a>
+                                <a class="btn btn-warning" href="{{ url('response/'.$responseId.'/updatefinalstep')}}">Sorry !</a>
                             </div>
                             <div class="col">
-                                <a class="btn btn-success" href="{{ url('/public/fill_response/'.$responseId.'/edit') }}" style="float:right">Sure, Happy to proceed.</a>
+                                <a class="btn btn-success" href="{{ url('/public/fill_response/'.$responseId.'/edit') }}" style="float:right">Proceed Further<i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
