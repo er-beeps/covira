@@ -3,6 +3,8 @@
 <script src="{{asset('js/gauge.js')}}"></script>
 
 @php
+$lang = App::getLocale();
+
 $url = url('/');
 $image_path = $url.'/img/result_view.png';
 $responseId = request()->session()->get('response_id');
@@ -52,7 +54,7 @@ $other_country = App\Models\Response::where('id',$responseId)->pluck('is_other_c
 
                 <div class="col-xs-5 col-xs-3">
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header"><span class ="heading"><center><b>{{trans('COVID Risk Index')}}<br> (कोरोनाको जोखिम स्तर) </b></center></span></div>
+                        <div class="card-header"><span class ="heading"><center><b>{{ $lang ==='np' ? 'कोरोनाको जोखिम स्तर' : 'COVID Risk Index' }}</b></center></span></div>
                         <div class="card-body">
                             <center>@include(backpack_view('inc.cri_gauge'))</center>
                         </div>
@@ -64,7 +66,7 @@ $other_country = App\Models\Response::where('id',$responseId)->pluck('is_other_c
                     @if($other_country)
                         <div class="card-header heading"><span class ="heading" style="font-size:16px;"><center><b>{{trans('Your exposure level')}}</br> &nbsp</b></center></span></div>
                     @else
-                        <div class="card-header heading"><span class ="heading"><center><b>{{trans('Probability of COVID Infection')}}</br>(तपाईंलाई कोरोना सर्ने जोखिम)</b></center></span></div>
+                        <div class="card-header heading"><span class ="heading"><center><b>{{ $lang ==='np' ? 'तपाईंलाई कोरोना सर्ने जोखिम' : 'Probability of COVID Infection' }}</b></center></span></div>
                     @endif    
                         <div class="card-body">
                             <center>@include(backpack_view('inc.pci_gauge'))</center>
@@ -76,7 +78,7 @@ $other_country = App\Models\Response::where('id',$responseId)->pluck('is_other_c
                 @else
                 <div class="col-xs-5 col-xs-3">
                     <div class="card  result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header heading"><span class ="heading"><center><b>{{trans('Regional Transmission Risk')}} </br>(तपाईको पालिकामा कोरोना सर्ने जोखिम)</b></center></span></div>
+                        <div class="card-header heading"><span class ="heading"><center><b>{{ $lang ==='np' ? 'तपाईको पालिकामा कोरोना सर्ने जोखिम' : 'Regional Transmission Risk' }}</b></center></span></div>
                         <div class="card-body">
                             <center>@include(backpack_view('inc.rtr_gauge'))</center>
                         </div>
@@ -89,7 +91,7 @@ $other_country = App\Models\Response::where('id',$responseId)->pluck('is_other_c
             <div class="row">
                 <div class="personal-message col-xs-12 col-xs-8">
                     <div class="card result-card" style="background-color: #bafdd0; background-size:cover">
-                        <div class="card-header heading"><span style="color:blue; font-size:16px;"><center><b>सुझाव</b></center></span></div>
+                        <div class="card-header heading"><span style="color:blue; font-size:16px;"><center><b> {{ $lang ==='np' ? 'सुझाव' : 'Suggestion' }}</b></center></span></div>
                         <div class="card-body">
                             @include(backpack_view('inc.personal_message'))                 
                         </div>
