@@ -32,7 +32,11 @@ class ImportCrudController extends BaseCrudController
 
             if($extension == "csv")
             {
-                $path = $request->file->getRealPath();
+                // $path = $request->file->getRealPath();
+                // dd($request->file('file')->store('temp'));
+                $path1 = $request->file('file')->store('temp');
+                $path=storage_path('app').'/'.$path1;
+                // dd($path);
             }else{
                 return back()->withErrors('Please select the file with (.csv) extension');
             }

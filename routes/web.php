@@ -35,6 +35,7 @@ Route::post('/dashboard/incrementlike', 'BasicController@incrementLike');
 
 Route::get('/response/fetchimages', 'BasicController@fetchImg');
 Route::get('/response/view_result', 'BasicController@redirectResult');
+Route::get('/response/view_result_proceed', 'BasicController@redirectResultProceed');
 Route::get('/response/view_regional_risk', 'BasicController@redirectRegionalResult');
 
 Route::get('/about', 'BasicController@redirectAbout');

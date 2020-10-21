@@ -119,7 +119,8 @@
                 <div class="card col-md-12 side-card" style="background-color: lightgray; background-size:cover;">
                     <div class="card-header"><center><b>
                         <a data-fancybox data-type="ajax" href="/response/view_result" id = "result_view" style="color:darkblue; font-size:15px;">{{ trans('dashboard.view_result') }}</a>  
-                        <a data-fancybox data-type="ajax" href="/response/view_regional_risk" id = "regional_risk_btn" style="color:darkblue; font-size:15px;"></a>  
+                        <a data-fancybox data-type="ajax" href="/response/view_result_proceed" id = "result_view_proceed_btn"></a>  
+                        <a data-fancybox data-type="ajax" href="/response/view_regional_risk" id = "regional_risk_btn"></a>  
                         </b></center
                     ></div>
                 </div>
@@ -380,6 +381,7 @@
 $session = request()->session();
 $responseId = request()->session()->get('response_id');
 $key = request()->session()->get('key');
+$is_calculated = request()->session()->get('is_calculated');
 $process_step_id = \App\Models\Response::whereId($responseId)->pluck('process_step_id')->first();
 @endphp
 
@@ -390,9 +392,14 @@ $(document).ready(function(){
     sessionStorage.setItem("lang", lang);
 
     var processStepId = '<?php echo $process_step_id ?>';
+    var isCalculated = '<?php echo $is_calculated ?>';
 
     if(processStepId == 4){
+
         $('#result_view').trigger('click');
+    }
+    if(isCalculated === 'true' && processStepId != 4){
+        $('#result_view_proceed_btn').trigger('click');
     }
 
     var key = '<?php echo $key ?>';
