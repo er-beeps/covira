@@ -115,7 +115,7 @@ $other_country = App\Models\Response::where('id',$responseId)->pluck('is_other_c
                 </div>
             </div>
             @else
-            <span style="color:red; font-weight:bold;">Please assess your risk first !!<span>
+            <span style="color:red; font-weight:bold;">{{ $lang ==='np' ? 'पहिला, ब्यक्तिगत जोखीम मुल्यांकन गर्नुहोस् !' : 'Please assess your risk first !!' }}<span>
             @endif 
 
         </div>
