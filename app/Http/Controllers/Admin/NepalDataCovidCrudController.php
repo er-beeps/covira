@@ -19,6 +19,9 @@ class NepalDataCovidCrudController extends BaseCrudController
         $this->crud->setModel('App\Models\NepalDataCovid');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/nepaldatacovid');
         $this->crud->setEntityNameStrings('', 'Nepal Covid Data');
+
+        $this->crud->addButtonFromModelFunction('top', 'Fetch', 'fetchData', 'end');
+
     }
 
     protected function setupListOperation()

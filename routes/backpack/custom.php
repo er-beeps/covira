@@ -76,4 +76,6 @@ Route::group([
     Route::post('import_excel', 'ImportCrudController@import');
     Route::get('export_response_excel', 'ImportCrudController@exportResponseExcel');
     Route::get('export_searchrisk_excel', 'ImportCrudController@exportSearchRiskExcel');
+    
+    //scrap
 }); // this should be the absolute last line of this file

@@ -42,6 +42,9 @@ Route::get('/about', 'BasicController@redirectAbout');
 Route::get('/teams', 'BasicController@redirectTeams');
 Route::post('/searchregionalrisk', 'BasicController@getRegionalRisk');
 
+Route::get('scrap-data', 'ScrapController@startFetchingData');
+
+
 
 
  

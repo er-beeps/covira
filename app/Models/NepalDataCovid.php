@@ -28,6 +28,11 @@ class NepalDataCovid extends BaseModel
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function fetchData($crud = false)
+    { 
+        return '<a href="/scrap-data" class="btn btn-primary" style="margin-right:50px;"  data-toggle="tooltip" title="Fetch Latest Data">Fetch Data</a>';
+    }
+
 
     /*
     |--------------------------------------------------------------------------
