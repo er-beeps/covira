@@ -19,7 +19,7 @@ class NepalDataCovid extends BaseModel
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id','created_by','updated_by'];
-    protected $fillable = ['total_affected','total_recovered','total_isolation','total_quarantine','total_swab_test','total_death','new_cases','new_recovered','new_death'];
+    protected $fillable = ['total_affected','total_recovered','total_isolation','total_quarantine','total_swab_test','total_death','new_cases','new_recovered','new_death','new_pcr','updated_timestamp'];
     // protected $hidden = [];
     // protected $dates = [];
 

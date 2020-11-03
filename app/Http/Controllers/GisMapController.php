@@ -9,6 +9,7 @@ use App\Models\MstDistrict;
 use App\Models\MstProvince;
 use Illuminate\Http\Request;
 use App\Models\MstLocalLevel;
+use App\Models\NepalDataCovid;
 use Illuminate\Support\Facades\Input;
 
 
@@ -66,13 +67,7 @@ class GisMapController extends Controller
                 LEFT JOIN mst_country mc ON r.country_id = mc.id
                 ";
 
-        $nepal_covid_data = DB::table('covid_details_nepal')
-                                ->select('*')
-                                ->orderby('created_at','desc')
-                                ->limit(1)
-                                ->get();
-
-        $nepal_covid_data = $nepal_covid_data->first();
+        $nepal_covid_data = $latest_covid_data = NepalDataCovid::latest('created_at')->limit(1)->first();
 
 //search criteria
 $params = [];

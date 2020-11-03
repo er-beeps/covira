@@ -2,69 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use DOMDocument;
-use Goutte\Client;
 use Illuminate\Http\Request;
 use App\Models\NepalDataCovid;
+use Illuminate\Support\Facades\Http;
 
 class ScrapController extends Controller
 {
 
     public function scrap(){
-        $url="https://www.worldometers.info/coronavirus/";
-        $html=file_get_contents($url);
-        $dom=new \DOMDocument();
-        @$dom->loadHTML($html);
 
-        $tables=$dom->getElementsByTagName('table');
-        $rows=$tables->item(0)->getElementsByTagName('tr');
+        $response = Http::get('https://covid19.mohp.gov.np/covid/api/confirmedcases');
 
-        foreach ($rows as $row) {
-            $cols=$row->getElementsByTagName('td');
-            if(isset($cols->item(0)->nodeValue) && isset($cols->item(1)->nodeValue) && isset($cols->item(2)->nodeValue)){
-               
-                $title=trim($cols->item(1)->nodeValue);
-                //get details only for nepal
-                if($title === 'Nepal'){
-                    $total_cases = trim($cols->item(2)->nodeValue);
-                    $new_cases = trim($cols->item(3)->nodeValue);
-                    $total_deaths = trim($cols->item(4)->nodeValue);
-                    $new_deaths = trim($cols->item(5)->nodeValue);
-                    $total_recovered = trim($cols->item(6)->nodeValue);
-                    $active_cases = trim($cols->item(7)->nodeValue);
+        $nepal_data = $response->json()['nepal'];
 
-                    $data = [
-                        'total_affected' => $total_cases,
-                        'total_recovered' => $total_recovered,
-                        'total_isolation' => $active_cases,
-                        'total_death' => $total_deaths,
-                        'new_cases' => $new_cases,
-                        'new_recovered' => 0,
-                        'new_death' => $new_deaths
-                    ];
-                    
-                    NepalDataCovid::create($data);
+        $data = [
+            'total_swab_test' => $nepal_data['samples_tested'],
+            'total_affected' => $nepal_data['positive'],
+            'total_recovered' => $nepal_data['extra1'],
+            'total_isolation' => $nepal_data['extra2'],
+            'total_death' => $nepal_data['deaths'],
+            'total_quarantine' => $nepal_data['extra8'],
 
-                }
+            'new_pcr' => $nepal_data['today_pcr'],
+            'new_cases' => $nepal_data['today_newcase'],
+            'new_recovered' => $nepal_data['today_recovered'],
+            'new_death' => $nepal_data['today_death'],
+            'updated_timestamp' => $nepal_data['updated_at']
+            ];
 
-               
+            $latest_covid_data = NepalDataCovid::latest('created_at')->limit(1)->first();
+
+            $prev_updated_timestamp = $latest_covid_data->updated_timestamp;
+            $current_timestamp = $nepal_data['updated_at'];
+
+
+            if($prev_updated_timestamp !== $current_timestamp){
+                NepalDataCovid::create($data);
+
             }
-        }
+            return back();
     }
 
- 
-
-
-    // public function scrap(){
-    //     $client = new Client();
-    //     $crawler = $client->request('GET', 'https://covid19.mohp.gov.np');
-    //     $crawler->filter('#root > .ant-row > .ant-row > .ant-col> .ant-card >.ant-card-body > p');
-
-    //     dd($crawler);
-        
-    //     // ->each(function ($node) {
-    //     //     dd($node);
-    //     //     dd($node->text());
-    //     // });
-    // }
 }

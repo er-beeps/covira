@@ -18,7 +18,8 @@ return [
     'searchregionalrisk'=> 'Find Regional Risk',
     'reset' => 'Reset',
     'riskmap' => 'Risk map',
-    'covidnepal' => 'Covid-19 Nepal',
+    'covidnepal' => 'COVID-19 Nepal',
+    'total_data' => '(Total Data)',
     'infected' => 'Total Infected',
     'recovered' => 'Recovered',
     'isolation' => 'Isolated',
@@ -38,6 +39,15 @@ return [
     'moderate'=>'Moderate',
     'high'=>'High',
     'veryhigh'=>'Very High',
+
+    'total_pcr' => 'Total PCR',
+    'today_update' => 'Last 24 hours update',
+    'today_pcr' => 'Today PCR',
+    'today_newcase' => 'New Cases',
+    'today_recovered' => 'Recovered',
+    'today_death' => 'Deaths',
+
+    'source' => 'Source :'
 
 
     

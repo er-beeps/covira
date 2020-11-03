@@ -126,6 +126,43 @@
                 </div>
             </div>   
         @endif
+        <div class="row">
+            <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
+                <div class="card-header"><center><b style="font-size:17px;">{{trans('dashboard.covidnepal')}}<br>{{trans('dashboard.total_data')}} </b><center></div>
+                <div class="card-body ">
+                        <table class="nepal_data_table" style="margin-left:-20px;">
+                            <tr>
+                                <td width="150%" class="title font-weight-bold"><i class="fa fa-dot-circle-o"> &nbsp;</i>{{trans('dashboard.total_pcr')}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_swab_test ?? '0'}}</td>
+                            </tr>
+                            <tr>
+                                <td width="150%" class="title font-weight-bold"><i class="fa fa-dot-circle-o" style="color:orange;"> &nbsp;</i>{{trans('dashboard.infected')}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_affected ?? '0'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="title font-weight-bold"><i class="fa fa-dot-circle-o" style="color:green;"> &nbsp;</i>{{trans('dashboard.recovered')}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_recovered ?? '0'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="title font-weight-bold"><i class="fa fa-dot-circle-o" style="color:gray;"> &nbsp;</i>{{trans('dashboard.isolation')}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_isolation ?? '0'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="title font-weight-bold"><i class="fa fa-dot-circle-o" style="color:red;"> &nbsp;</i>{{trans('dashboard.deaths')}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_death ?? '0'}}</td>
+                            </tr>
+                          
+                            <tr>
+                                <td class="title font-weight-bold"><i class="fa fa-dot-circle-o" style="color:blue;"> &nbsp;</i>{{trans('dashboard.quarantine')}}</td>
+                                <td class="data"> {{$nepal_covid_data->total_quarantine ?? '0'}}</td>
+                            </tr>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <center><b>{{ trans('dashboard.source')}} <a target="_blank" href="https://covid19.mohp.gov.np/">MOHP</a></b></center>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -307,34 +344,29 @@
     <div class="col-md-2">
         <div class="row">
             <div class="card col-md-12 side-card" style="background-color: #bafdd0; background-size:cover">
-                <div class="card-header"><center><b style="font-size:17px;">{{trans('dashboard.covidnepal')}}</b><center></div>
+                <div class="card-header"><center><b style="font-size:17px;">{{trans('dashboard.today_update')}}</b><center></div>
                 <div class="card-body ">
                         <table class="nepal_data_table" style="margin-left:-20px; font-size:14px;">
                             <tr>
-                                <td width="150%" class="title"><i class="fa fa-dot-circle-o" style="color:orange; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.infected')}}</td>
-                                <td class="data"> {{$nepal_covid_data->total_affected ?? '0'}}</td>
+                                <td class="title font-weight-bold"><i class="fa fa-dot-circle-o" style="color:orange;"> &nbsp;</i>{{trans('dashboard.today_pcr')}}</td>
+                                <td class="data"> {{$nepal_covid_data->new_pcr ?? '0'}}</td>
                             </tr>
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:green; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.recovered')}}</td>
-                                <td class="data"> {{$nepal_covid_data->total_recovered ?? '0'}}</td>
+                                <td width="150%" class="title font-weight-bold"><i class="fa fa-dot-circle-o" style="color:blue;"> &nbsp;</i>{{trans('dashboard.today_newcase')}}</td>
+                                <td class="data"> {{$nepal_covid_data->new_cases ?? '0'}}</td>
                             </tr>
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:gray; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.isolation')}}</td>
-                                <td class="data"> {{$nepal_covid_data->total_isolation ?? '0'}}</td>
+                                <td class="title font-weight-bold"><i class="fa fa-dot-circle-o" style="color:green;"> &nbsp;</i>{{trans('dashboard.today_recovered')}}</td>
+                                <td class="data"> {{$nepal_covid_data->new_recovered ?? '0'}}</td>
                             </tr>
                             <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:red; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.deaths')}}</td>
-                                <td class="data"> {{$nepal_covid_data->total_death ?? '0'}}</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:rgb(203, 71, 226); font-weight:bolder"> &nbsp;</i>{{trans('dashboard.swab_test')}}</td>
-                                <td class="data"> {{$nepal_covid_data->total_swab_test ?? '0'}}</td>
-                            </tr>
-                            <tr>
-                                <td class="title"><i class="fa fa-dot-circle-o" style="color:blue; font-weight:bolder"> &nbsp;</i>{{trans('dashboard.quarantine')}}</td>
-                                <td class="data"> {{$nepal_covid_data->total_quarantine ?? '0'}}</td>
+                                <td class="title font-weight-bold"><i class="fa fa-dot-circle-o" style="color:red;"> &nbsp;</i>{{trans('dashboard.today_death')}}</td>
+                                <td class="data"> {{$nepal_covid_data->new_death ?? '0'}}</td>
                             </tr>
                     </table>
+                </div>
+                <div class="card-footer">
+                    <center><b>{{ trans('dashboard.source')}} <a target="_blank" href="https://covid19.mohp.gov.np/">MOHP</a></b></center>
                 </div>
             </div>
         </div>

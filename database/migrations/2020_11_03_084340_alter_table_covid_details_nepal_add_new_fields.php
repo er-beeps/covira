@@ -14,9 +14,12 @@ class AlterTableCovidDetailsNepalAddNewFields extends Migration
     public function up()
     {
         Schema::table('covid_details_nepal', function (Blueprint $table) {
+            $table->integer('new_pcr')->default(0);
             $table->integer('new_cases')->default(0);
             $table->integer('new_recovered')->default(0);
             $table->integer('new_death')->default(0);
+
+            $table->dateTime('updated_timestamp')->nullable();
         });
     }
 

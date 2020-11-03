@@ -19,6 +19,7 @@ return [
     'reset' => 'रिसेट',
     'riskmap' => 'जोखिम नक्शा',
     'covidnepal' => 'कोभिड-१९ नेपाल',
+    'total_data' => '(कुल तथ्यांक)',
     'infected' => 'संक्रमित',
     'recovered' => 'निको भएको',
     'isolation' => 'आइसोलेसममा',
@@ -38,6 +39,15 @@ return [
     'moderate'=>'मध्यम',
     'high'=>'उच्च',
     'veryhigh'=>'अति उच्च',
+
+    'total_pcr' => 'जम्मा PCR',
+    'today_update' => 'पछिल्लो २४ घण्टामा ',
+    'today_pcr' => 'जम्मा PCR',
+    'today_newcase' => 'नया संक्रमित',
+    'today_recovered' => 'निको भएको',
+    'today_death' => 'मृत्यु',
+
+    'source' => 'श्रोत :'
 
 
     
