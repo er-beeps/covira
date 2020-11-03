@@ -3,53 +3,68 @@
 namespace App\Http\Controllers;
 
 use DOMDocument;
+use Goutte\Client;
 use Illuminate\Http\Request;
+use App\Models\NepalDataCovid;
 
 class ScrapController extends Controller
 {
-    public function startFetchingData(){
-        $url="https://covid19.mohp.gov.np/";
+
+    public function scrap(){
+        $url="https://www.worldometers.info/coronavirus/";
         $html=file_get_contents($url);
         $dom=new \DOMDocument();
         @$dom->loadHTML($html);
 
-        $content_node=$dom->getElementById("root");
+        $tables=$dom->getElementsByTagName('table');
+        $rows=$tables->item(0)->getElementsByTagName('tr');
 
-        $div_row_class_nodes=$this->getElementsByClass($content_node, 'div', 'ant-card-body');
-    
-        dd($div_row_class_nodes);
-        $datas=$dom->getElementsByClassName('ant-row');
-        dd($datas);
-        DB::delete('delete from news');
         foreach ($rows as $row) {
             $cols=$row->getElementsByTagName('td');
-            if(isset($cols->item(0)->nodeValue) && isset($cols->item(1)->nodeValue) &&
-            isset($cols->item(2)->nodeValue)){
-                $sn=$cols->item(0)->nodeValue;
+            if(isset($cols->item(0)->nodeValue) && isset($cols->item(1)->nodeValue) && isset($cols->item(2)->nodeValue)){
+               
                 $title=trim($cols->item(1)->nodeValue);
-                $date=trim($cols->item(2)->nodeValue);
-                $url =trim($cols->item(1)->childNodes[1]->getAttribute('href'));
-                DB::insert("insert into news(sn,title,date_bs,url) values ('$sn','$title','$date','$url')");
+                //get details only for nepal
+                if($title === 'Nepal'){
+                    $total_cases = trim($cols->item(2)->nodeValue);
+                    $new_cases = trim($cols->item(3)->nodeValue);
+                    $total_deaths = trim($cols->item(4)->nodeValue);
+                    $new_deaths = trim($cols->item(5)->nodeValue);
+                    $total_recovered = trim($cols->item(6)->nodeValue);
+                    $active_cases = trim($cols->item(7)->nodeValue);
+
+                    $data = [
+                        'total_affected' => $total_cases,
+                        'total_recovered' => $total_recovered,
+                        'total_isolation' => $active_cases,
+                        'total_death' => $total_deaths,
+                        'new_cases' => $new_cases,
+                        'new_recovered' => 0,
+                        'new_death' => $new_deaths
+                    ];
+                    
+                    NepalDataCovid::create($data);
+
+                }
+
+               
             }
         }
-
     }
 
-    public function getElementsByClass(&$parentNode, $tagName, $className) {
-        $nodes=array();
+ 
 
-        dd($parentNode,$tagName,$className);
-    
-        $childNodeList = $parentNode->getElementsByTagName($tagName);
-        dd($childNodeList);
-      
-        for ($i = 0; $i < $childNodeList->length; $i++) {
-            $temp = $childNodeList->item($i);
-            if (stripos($temp->getAttribute('class'), $className) !== false) {
-                $nodes[]=$temp;
-            }
-        }
-    
-        return $nodes;
-    }
+
+    // public function scrap(){
+    //     $client = new Client();
+    //     $crawler = $client->request('GET', 'https://covid19.mohp.gov.np');
+    //     $crawler->filter('#root > .ant-row > .ant-row > .ant-col> .ant-card >.ant-card-body > p');
+
+    //     dd($crawler);
+        
+    //     // ->each(function ($node) {
+    //     //     dd($node);
+    //     //     dd($node->text());
+    //     // });
+    // }
 }
