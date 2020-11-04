@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Http;
 class ScrapController extends Controller
 {
 
-    public function scrap(){
+    public function __invoke(){
 
         $response = Http::get('https://covid19.mohp.gov.np/covid/api/confirmedcases');
 
         $nepal_data = $response->json()['nepal'];
+
 
         $data = [
             'total_swab_test' => $nepal_data['samples_tested'],
