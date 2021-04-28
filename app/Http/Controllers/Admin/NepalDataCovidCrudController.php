@@ -28,7 +28,11 @@ class NepalDataCovidCrudController extends BaseCrudController
     {
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
         $column=[
-            $this->addRowNumber(),
+            [
+                'name' => 'row_number',
+                'type' => 'row_number',
+                'label' => 'S.N',
+            ]
         ];
         $this->crud->addColumns($column);
         $this->crud->setFromDb();
