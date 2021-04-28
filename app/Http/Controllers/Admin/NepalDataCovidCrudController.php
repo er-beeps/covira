@@ -27,6 +27,10 @@ class NepalDataCovidCrudController extends BaseCrudController
     protected function setupListOperation()
     {
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
+        $column=[
+            $this->addRowNumber(),
+        ];
+        $this->crud->addColumns($column);
         $this->crud->setFromDb();
     }
 
