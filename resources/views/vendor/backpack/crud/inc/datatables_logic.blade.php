@@ -5,6 +5,7 @@
   <script type="text/javascript" src="{{ asset('packages/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('packages/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('packages/datatables.net-fixedheader-bs4/js/fixedHeader.bootstrap4.min.js') }}"></script>
+  <script type="text/javascript" src="{{asset('js/fixedColumns.min.js')}}"></script>  
 
   <script>
     @if ($crud->getPersistentTable())
@@ -118,10 +119,17 @@
         fixedHeader: true,
         @else
         responsive: false,
-        scrollX: true,
+          scrollX: true,
+          //scrollY:"100vh",
+          scrollY:true,
+          scrollCollapse: true,
+          fixedColumns: true,
+          paging:true,
         @endif
 
         @if ($crud->getPersistentTable())
+        deferRender:true,                   //only render visible part of dataTable
+        scroller:true,
         stateSave: true,
         /*
             if developer forced field into table 'visibleInTable => true' we make sure when saving datatables state
@@ -159,6 +167,10 @@
         },
         @endif
         @endif
+        fixedColumns:{                  
+            leftColumns: 0,
+            rightColumns: 1,    //fixing action column
+        },
         autoWidth: false,
         pageLength: {{ $crud->getDefaultPageLength() }},
         lengthMenu: @json($crud->getPageLengthMenu()),
@@ -205,9 +217,37 @@
             "<'row hidden'<'col-sm-6 hidden-xs'i><'col-sm-6 hidden-print'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row mt-2 '<'col-sm-6 col-md-4'l><'col-sm-2 col-md-4 text-center'B><'col-sm-6 col-md-4 hidden-print'p>>",
+
+            drawCallback: function( settings ) {
+              if($('.DTFC_RightWrapper').css('width') !== undefined){
+                setTimeout(function(){ 
+                  $('.DTFC_RightWrapper').css('width', (parseFloat($('.DTFC_RightWrapper').css('width').replace('px','')) + 17) + "px");
+                }, 400);
+              }
+          }
       }
   }
   </script>
+
+<style>
+    /* set vertical and horizontal scrollbar in the datatables*/
+  .dataTables_scrollBody{overflow-y:scroll !important; overflow-x:scroll !important; } 
+
+      /* Hide Scroll bar in action column*/
+  .DTFC_RightBodyLiner{
+      overflow-y:hidden !important;
+      overflow-x: hidden !important;
+  }
+
+  /* Adjusting Position of action column */
+  .DTFC_RightFootWrapper{
+      margin-top:-6px !important;
+  }
+  div.DTFC_RightBodyWrapper {
+      top:-6px !important;
+  }
+  
+</style>
 
   @include('crud::inc.export_buttons')
 

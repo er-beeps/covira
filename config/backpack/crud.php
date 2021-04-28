@@ -23,7 +23,7 @@ return [
 
             // enable the datatables-responsive plugin, which hides columns if they don't fit?
             // if not, a horizontal scrollbar will be shown instead
-            'responsiveTable' => true,
+            'responsiveTable' => false,
 
             // stores pagination and filters in localStorage for two hours
             // whenever the user tries to see that page, backpack loads the previous pagination and filtration
@@ -39,12 +39,12 @@ return [
             // How many items should be shown by default by the Datatable?
             // This value can be overwritten on a specific CRUD by calling
             // $this->crud->setDefaultPageLength(50);
-            'defaultPageLength' => 10,
+            'defaultPageLength' => 15,
 
             // A 1D array of options which will be used for both the displayed option and the value, or
             // A 2D array in which the first array is used to define the value options and the second array the displayed options
             // If a 2D array is used, strings in the right hand array will be automatically run through trans()
-            'pageLengthMenu' => [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'backpack::crud.all']],
+            'pageLengthMenu' => [[10, 15,25, 50, 100, -1], [10,15, 25, 50, 100, 'backpack::crud.all']],
 
             // How important is it for the action buttons to be visible?
             // - 0 - most important

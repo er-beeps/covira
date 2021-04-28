@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->call(new ScrapController)->twiceDaily(17, 18);
+        $schedule->call(new ScrapController);
     }
 
     /**
