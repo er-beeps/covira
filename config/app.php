@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'np',
+    'locale' => 'en',
     'languages' => [
         'en' => 'English',
         'np' => "नेपाली"
