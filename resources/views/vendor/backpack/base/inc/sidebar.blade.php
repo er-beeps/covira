@@ -59,9 +59,7 @@
 @push('after_scripts')
   <script>
 
-  $(document).ready(function(){
-    sessionStorage.setItem('sidebar-collapsed', '1');
-  });
+ 
       // Set active state on menu element
       var full_url = "{{ Request::fullUrl() }}";
       var $navLinks = $(".sidebar-nav li a");
