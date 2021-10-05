@@ -32,6 +32,7 @@
 @endif
 
 @push('before_scripts')
+
   <script type="text/javascript">
     /* Recover sidebar state */
     if (Boolean(sessionStorage.getItem('sidebar-collapsed'))) {
@@ -49,6 +50,7 @@
         } else {
           sessionStorage.setItem('sidebar-collapsed', '1');
         }
+        window.location.reload();
       });
     }
   </script>
@@ -56,6 +58,10 @@
 
 @push('after_scripts')
   <script>
+
+  $(document).ready(function(){
+    sessionStorage.setItem('sidebar-collapsed', '1');
+  });
       // Set active state on menu element
       var full_url = "{{ Request::fullUrl() }}";
       var $navLinks = $(".sidebar-nav li a");
