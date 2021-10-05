@@ -257,7 +257,11 @@
         <div class="row">
             <div class="card col-xs-12 about-card" style="background-color: white; background-size:cover;">
                 <div class="card-header about-content">
+                @if($lang == 'en')
+                COVIRA (COVID-19 Vulnerability Risk Analysis),is a tool developed to assess the COVID risk based on the model developed with empirical data collected from several countries. We need to understand that low risk still is a risk. For details, kindly refer the given article.<br>
+                @else
                 कोभिरा (COVID-19 Vulnerability Risk Analysis), बिभिन्न देशका डाटाहरुको अध्ययन अनुसन्धानमा आधारित जोखिम मुल्यांकन गर्ने बिधि हो। कम जोखिम हुनु भनेको जोखिम नहुनु होइन। अनुसन्धानको बिस्तृत बिबरण तलको लिंकमा उपलब्ध छ। <br> 
+                @endif
                 <b>Citation: <a target="_blank" href = "https://www.nature.com/articles/s41598-020-78779-0?fbclid=IwAR0hfZx05IExl8c0XDc75VXlLKh_WhZ6tlrocUGrjLIN5xmHC9fagKPKYJg">Multidisciplinary Approach to COVID-19 Risk Communication: A Framework and Tool for Individual and Regional Risk Assessment.</a></b>
                 </div>
             </div>
